@@ -1,3 +1,4 @@
+^\.travis\.yml$
 ^vignettes/siteonly$
 ^data-raw$
 ^fgeo\.analyze\.Rproj$
