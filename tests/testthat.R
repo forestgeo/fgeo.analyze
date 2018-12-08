@@ -1,4 +1,4 @@
 library(testthat)
-library(fgeo.abundance)
+library(fgeo.analyze)
 
-test_check("fgeo.abundance")
+test_check("fgeo.analyze")
