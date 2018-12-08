@@ -1,0 +1,13 @@
+# A tibble: 8 x 13
+  PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate 
+  <chr>       <int>  <int>  <dbl> <chr>  <int> <chr> <chr>       <date>    
+1 luq             1      1    1.1 alive     10 Gn    spp         2001-01-01
+2 luq             1      1    1.2 dead      NA Gn    spp         2001-01-01
+3 luq             1      2    2.1 alive     20 Gn    spp         2001-01-01
+4 luq             1      2    2.2 alive     30 Gn    spp         2001-01-01
+5 luq             2      1    1.1 alive     20 Gn    spp         2002-01-01
+6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-01
+7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-01
+8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-01
+# ... with 4 more variables: PlotCensusNumber <int>, Family <chr>, Tag <int>,
+#   HOM <int>

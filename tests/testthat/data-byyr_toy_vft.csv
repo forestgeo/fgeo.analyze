@@ -1,0 +1,9 @@
+PlotName,CensusID,TreeID,StemID,Status,DBH,Genus,SpeciesName,ExactDate,PlotCensusNumber,Family,Tag,HOM
+luq,1,1,1.1,alive,1,Gn,spp,2001-01-01,1,f,1,130
+luq,1,1,1.2,dead,NA,Gn,spp,2001-01-01,1,f,1,130
+luq,1,2,2.1,alive,2,Gn,spp,2001-01-01,1,f,2,130
+luq,1,2,2.2,alive,3,Gn,spp,2001-01-01,1,f,2,130
+luq,2,1,1.1,alive,2,Gn,spp,2002-01-01,2,f,1,130
+luq,2,1,1.2,gone,NA,Gn,spp,2002-01-01,2,f,1,130
+luq,2,2,2.1,dead,NA,Gn,spp,2002-01-01,2,f,2,130
+luq,2,2,2.2,dead,NA,Gn,spp,2002-01-01,2,f,2,130

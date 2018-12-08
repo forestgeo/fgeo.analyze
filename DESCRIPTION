@@ -11,7 +11,29 @@ Authors@R:
              email = "ForestGEO@si.edu"))
 Description: What the package does (one paragraph).
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
 URL: https://github.com/forestgeo/fgeo.analyze
 BugReports: https://github.com/forestgeo/fgeo.analyze/issues
+Depends: 
+    R (>= 3.2)
+Imports: 
+    dplyr,
+    fgeo.tool,
+    glue,
+    lubridate,
+    magrittr,
+    rlang (>= 0.1.2),
+    tibble,
+    tidyr
+Suggests: 
+    covr,
+    ggplot2,
+    janitor,
+    knitr,
+    readr,
+    rmarkdown,
+    testthat
+Remotes: 
+    forestgeo/fgeo.tool
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
