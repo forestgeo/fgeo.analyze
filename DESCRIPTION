@@ -13,3 +13,5 @@ Description: What the package does (one paragraph).
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/forestgeo/fgeo.analyze
+BugReports: https://github.com/forestgeo/fgeo.analyze/issues
