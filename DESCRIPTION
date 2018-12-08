@@ -18,10 +18,14 @@ Depends:
 Imports: 
     dplyr,
     fgeo.tool,
+    fgeo.x,
     glue,
+    graphics,
+    grDevices,
     lubridate,
     magrittr,
     rlang (>= 0.1.2),
+    stats,
     tibble,
     tidyr
 Suggests: 
@@ -29,11 +33,14 @@ Suggests:
     ggplot2,
     janitor,
     knitr,
+    purrr,
     readr,
     rmarkdown,
     testthat
 Remotes: 
-    forestgeo/fgeo.tool
+    forestgeo/fgeo.tool,
+    forestgeo/fgeo.x
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+
