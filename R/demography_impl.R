@@ -87,7 +87,7 @@
 #' recruitment_impl(census1, census2)
 #'
 #' # Demography by any number of grouping variables via `interaction(...)`
-#' sp_quadrat <- interaction(census1$sp, census1$quadrat, quiet = TRUE)
+#' sp_quadrat <- interaction(census1$sp, census1$quadrat)
 #'
 #' recruitment <- recruitment_impl(
 #'   census1, census2,
