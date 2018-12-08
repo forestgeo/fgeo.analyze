@@ -1,2 +1,4 @@
+^vignettes/siteonly$
+^data-raw$
 ^fgeo\.analyze\.Rproj$
 ^\.Rproj\.user$

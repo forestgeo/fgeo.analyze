@@ -1,5 +1,9 @@
 equal <- function(x, y) isTRUE(all.equal(x, y))
 
+commas <- function(...) {
+  paste0(..., collapse = ", ")
+}
+
 glue_comma <- function(x) paste0(x, collapse = ", ")
 
 glue_dash <- function(x) paste0(x, collapse = "-")

@@ -1,0 +1,27 @@
+                  GIROPA
+N.Hab.1           1.0000
+Gr.Hab.1         99.0000
+Ls.Hab.1       4880.0000
+Eq.Hab.1         21.0000
+Rep.Agg.Neut.1    0.0000
+Obs.Quantile.1    0.0198
+N.Hab.2          21.0000
+Gr.Hab.2         15.0000
+Ls.Hab.2       4984.0000
+Eq.Hab.2          1.0000
+Rep.Agg.Neut.2   -1.0000
+Obs.Quantile.2    0.0030
+N.Hab.3          15.0000
+Gr.Hab.3       4852.0000
+Ls.Hab.3        142.0000
+Eq.Hab.3          6.0000
+Rep.Agg.Neut.3    0.0000
+Obs.Quantile.3    0.9704
+N.Hab.4          13.0000
+Gr.Hab.4       4933.0000
+Ls.Hab.4         57.0000
+Eq.Hab.4         10.0000
+Rep.Agg.Neut.4    1.0000
+Obs.Quantile.4    0.9866
+attr(,"class")
+[1] "tt"     "tt"     "matrix"

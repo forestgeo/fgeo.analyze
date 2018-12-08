@@ -1,0 +1,10 @@
+       N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
+CASARB      25     1489      109        2              0       0.930625      12
+       Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
+CASARB      168     1431        1              0          0.105      14
+       Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
+CASARB      567     1029        4              0       0.354375      15
+       Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
+CASARB      934      661        5              0        0.58375
+attr(,"class")
+[1] "tt"     "tt"     "matrix"

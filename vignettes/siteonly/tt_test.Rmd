@@ -1,0 +1,172 @@
+---
+title: "Habitat-species associations"
+subtitle: "Given a number of tree species and habitat types in a plot, are species significantly aggregated within habitats?"
+author: "Mauro Lepore"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Habitat-species associations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+options(digits = 3)
+
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  cache = FALSE,
+  out.width = "70%",
+  fig.align = "center",
+  fig.height = 9,
+  fig.width = 6,
+  fig.asp = 0.618,  # 1 / phi
+  fig.show = "hold"
+)
+```
+
+This article shows how to determine habitat-species associations with the function [`tt_test()`](https://forestgeo.github.io/fgeo.analyze/reference/tt_test), developed by Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms. 
+
+## Setup
+
+First, install and load ("open") the relevant packages.
+
+```R
+# install.packages("remotes")
+remotes::install_github("forestgeo/fgeo")
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(fgeo)
+```
+
+```{r}
+# For reproducible results
+set.seed(1014)
+```
+
+## Load census and habitat data
+
+We will use example datasets that come with __fgeo.analyze__.
+
+```{r}
+census <- luquillo_tree6_random
+
+str(census)
+```
+
+```{r}
+# Creating habitat data from elevation data
+habitat <- fgeo.tool::fgeo_habitat(luquillo_elevation, gridsize = 20, n = 4)
+str(habitat)
+```
+
+```{r}
+fgeo.map::autoplot(habitat)
+```
+
+
+To load your own data, you may run something like this:
+
+```R
+load("PATH/CENSUS_DATA.rdata")
+census <- CENSUS_DATA
+
+load("PATH/HABITAT-DATA.rdata")
+habitat <- HABITAT-DATA
+```
+
+## Pick data
+
+We will pick alive trees, of 10 mm or more, and of sufficiently abundant species.
+
+```{r}
+pick <- filter(
+  census,
+  # Keep only alive
+  status == "A", 
+  # Keep dbh of 10 mm or more (drops missing dbh)
+  dbh >= 10
+)
+# Count number of rows per species
+pick <- add_count(pick, sp)
+# Keep sufficiently abundant trees
+pick <- filter(pick, n > 50)
+
+# Summary
+unique(select(pick, sp, n))
+```
+
+## Overview
+
+Before testing, we can overview the relationship between species and habitats with a plot.
+
+```{r}
+# Tweaks
+offset <- 20 / 2
+habitat2 <- mutate(
+  habitat, 
+  # Center species and habitat data
+  x = gx + offset, 
+  y = gy + offset,
+  # From continuous to categorical
+  habitats = as.factor(habitats)
+)
+```
+
+```{r, out.width="90%", fig.widh=(6 * 0.9 / 0.7)}
+ggplot(pick, aes(x = gx, y = gy)) +
+  geom_raster(data = habitat2, aes(x, y, fill = habitats)) + 
+  geom_point() +
+  coord_fixed() +
+  facet_wrap(~sp) +
+  labs(fill = "Habitat")
+```
+
+## `tt_test()` and any number of species
+
+```{r}
+all_sp <- unique(pick$sp)
+out <- tt_test(census, all_sp, habitat)
+out
+```
+
+To help you interpret the results, you can use `summary()`.
+
+```{r}
+summary(out)
+```
+
+You may want to combine the output into a single matrix by row-binding each element of the results-list.
+
+```{r}
+Reduce(rbind, out)
+```
+
+You also can gather all results into a single dataframe -- this lets you use a wide range of tools for data manipulation and visualization.
+
+```{r}
+tt_df <- to_df(out)
+tt_df
+```
+
+You can benefit from storing your results in a dataframe. Compared to a matrix, a dataframe fits better in common workflows for data manipulation and visualization. The dataframe is the most important data structure used in __dplyr__, __ggplot2__, and many other packages. Here are some examples of what you can do with our dataframe output. (The next few code chunks use [the pipe operator (`%>%`)](http://style.tidyverse.org/pipes.html) to avoid saving intermediary results and to make our code more expressive -- where each line is an imperative statement that communicates our intention.)
+
+* Pick interesting rows and sort them in a meaningful way.
+
+```{r}
+tt_df %>% filter(distribution == "aggregated")
+```
+
+* Summarize
+
+```{r}
+tt_df %>% 
+  group_by(sp, distribution) %>% 
+  summarize(total_stem_count = sum(stem_count))
+```
