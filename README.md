@@ -4,10 +4,10 @@
 # <img src="https://i.imgur.com/vTLlhbp.png" align="right" height=88 /> Analyze fgeo data
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-
+[![Travis build
+status](https://travis-ci.org/forestgeo/fgeo.analyze.svg?branch=master)](https://travis-ci.org/forestgeo/fgeo.analyze)
 [![Coverage
 status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master)
-
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
 
@@ -28,7 +28,7 @@ article](https://goo.gl/dQKEeg).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages -------------------------------- fgeo 0.0.0.9002 --
+#> -- Attaching packages --------------------------------------------------- fgeo 0.0.0.9002 --
 #> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9000
 #> v fgeo.tool    0.0.0.9004     v fgeo.map     0.0.0.9402
 #> 

@@ -3,8 +3,14 @@ url: https://forestgeo.github.io/fgeo.analyze/
 authors:
   Mauro Lepore:
     href: https://github.com/maurolepore
+  Gabriel Arellano:
+    href: https://forestgeo.si.edu/arellano-gabriel
+  KangMin Ngo:
+    href: https://ngokangmin.wordpress.com/about/
   CTFS-ForestGEO:
     href: http://www.forestgeo.si.edu/
+
+
 
 template:
   params:

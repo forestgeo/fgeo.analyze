@@ -4,9 +4,9 @@
 \name{fgeo.analyze-package}
 \alias{fgeo.analyze}
 \alias{fgeo.analyze-package}
-\title{fgeo.analyze: What the Package Does (One Line, Title Case)}
+\title{fgeo.analyze: Analyze ForestGEO Data}
 \description{
-What the package does (one paragraph).
+Analyze ForestGEO data.
 }
 \seealso{
 Useful links:
@@ -19,8 +19,21 @@ Useful links:
 \author{
 \strong{Maintainer}: Mauro Lepore \email{leporem@si.edu} [contractor]
 
+Authors:
+\itemize{
+  \item Gabriel Arellano \email{gabriel.arellano.torres@gmail.com} [reviewer]
+  \item  Richard  Condit \email{richardcondit@gmail.com}
+  \item Matteo Detto \email{teoparaglider@gmail.com}
+  \item Kyle Harms \email{ kharms@lsu.edu}
+  \item Suzanne Lao \email{laoz@si.edu} [reviewer]
+  \item Sabrina Russo \email{srusso2@unl.edu} [reviewer]
+  \item Daniel Zuleta \email{dfzuleta@gmail.com} [reviewer]
+}
+
 Other contributors:
 \itemize{
+  \item KangMin Ngo \email{ngokangmin@gmail.com} [reviewer]
+  \item Haley Overstreet \email{OverstreetH@si.edu} [reviewer]
   \item CTFS-ForestGEO \email{ForestGEO@si.edu} [copyright holder]
 }
 
