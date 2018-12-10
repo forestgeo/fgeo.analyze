@@ -43,6 +43,7 @@ remotes::install_github("forestgeo/fgeo")
 library(dplyr)
 library(ggplot2)
 library(fgeo)
+library(fgeo.data)
 ```
 
 ```{r}

@@ -53,4 +53,7 @@ standardize_at(in_he, .at = years, denominator = 50)
 }
 \seealso{
 [fgeo.tool::pick_main_stem()], [fgeo.tool::convert_unit()].
+
+Other functions for abundance and basal area: \code{\link{abundance}}
 }
+\concept{functions for abundance and basal area}

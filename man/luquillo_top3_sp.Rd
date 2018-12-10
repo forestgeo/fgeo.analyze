@@ -14,4 +14,8 @@ A tiny dataset from Luquillo of the three most abundant species.
 \examples{
 str(luquillo_top3_sp)
 }
+\seealso{
+Other datasets: \code{\link{example_byyr}}
+}
+\concept{datasets}
 \keyword{datasets}

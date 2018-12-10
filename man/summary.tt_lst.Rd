@@ -20,8 +20,11 @@ outputs objects of class "tt_lst").
 }
 \seealso{
 [tt_test()].
+
+Other habitat functions: \code{\link{tt_test}}
 }
 \author{
 Daniel Zuleta.
 }
+\concept{habitat functions}
 \concept{methods for common generics}

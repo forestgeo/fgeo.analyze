@@ -1,0 +1,53 @@
+url: https://forestgeo.github.io/fgeo.analyze/
+
+authors:
+  Mauro Lepore:
+    href: https://github.com/maurolepore
+  CTFS-ForestGEO:
+    href: http://www.forestgeo.si.edu/
+
+template:
+  params:
+    bootswatch: united
+
+home:
+  links:
+    - text: Learn more about ForestGEO
+      href: http://www.forestgeo.si.edu/
+
+
+
+navbar:
+
+  type: default
+
+  right:
+
+    - icon: fa-gavel
+      href: https://github.com/maurolepore
+
+    - icon: fa-github
+      href: https://github.com/forestgeo/fgeo.analyze
+
+    - text: fgeo
+      href: https://forestgeo.github.io/fgeo/
+
+
+
+reference:
+
+  - title: Abundance
+    contents:
+    - has_concept("functions for abundance and basal area")
+
+  - title: Demography
+    contents:
+    - has_concept("demography functions")
+
+  - title: Habitat
+    contents:
+    - has_concept("habitat functions")
+
+  - title: Datasets
+    contents:
+    - has_concept("datasets")

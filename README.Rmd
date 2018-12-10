@@ -1,0 +1,289 @@
+---
+output: github_document 
+---
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+# <img src="https://i.imgur.com/vTLlhbp.png" align="right" height=88 /> Analyze fgeo data
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
+[![Coverage status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master)
+
+[![CRAN status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
+
+The goal of __fgeo.analyze__ is to analyze fgeo data.
+
+## Installation
+
+```
+# install.packages("devtools")
+devtools::install_github("forestgeo/fgeo.analyze")
+```
+
+Or [install all **fgeo** packages in one step](https://forestgeo.github.io/fgeo/index.html#installation).
+
+For details on how to install packages from GitHub, see [this article](https://goo.gl/dQKEeg).
+
+## Example
+
+```{r}
+library(fgeo)
+```
+
+### Abundance
+
+Your data may have multiple stems per treeid and even multiple measures per
+stemid (if trees have buttresses).
+
+```{r}
+# Trees with buttresses may have multiple measurements of a single stem. 
+# Main stems have highest `HOM`, then largest `DBH`.
+vft <- tribble(
+  ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
+          1,     "1",   "1.1",   88,  130,
+          1,     "1",   "1.1",   10,  160,  # Main stem
+          1,     "2",   "2.1",   20,  130,
+          1,     "2",   "2.2",   30,  130,  # Main stem
+)
+```
+
+Fundamentally, `abundance()` counts rows. All of these results are the same:
+
+```{r}
+nrow(vft)
+dplyr::count(vft)
+dplyr::summarize(vft, n = n())
+abundance(vft)
+```
+
+But that result is likely not what you expect. Instead, you likely expect this:
+
+```{r}
+summarize(vft, n = n_distinct(TreeID))
+```
+
+As shown above, you can get a correct result by combining `summarize()` and `n_distinct()` (from the __dplyr__ package). But `abundance()` includes some useful additional features (see `?abundance()`). This code conveys your intention more clearly, i.e. to calculate tree abundance by counting the number of main stems:
+
+```{r}
+(main_stems <- pick_main_stem(vft))
+abundance(main_stems)
+```
+
+If you have data from multiple censuses, then you can compute by census (or any other group).
+
+```{r}
+vft2 <- tibble::tribble(
+  ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
+          1,     "1",   "1.1",   10,  130,
+          1,     "1",   "1.2",   20,  130,  # Main stem
+          2,     "1",   "1.1",   12,  130,
+          2,     "1",   "1.2",   22,  130   # Main stem
+)
+by_census <- group_by(vft2, CensusID)
+(main_stems_by_census <- pick_main_stem(by_census))
+abundance(main_stems_by_census)
+```
+
+Often you will need to first subset data (e.g. by `status` or `DBH`) and then count.
+
+```{r}
+over20 <- filter(main_stems_by_census, DBH > 20)
+abundance(over20)
+```
+
+### Basal area
+
+If trees have buttresses, then you may need to pick the main stemid of each stem so you do not count the same stem more than once.
+
+```{r}
+vft3 <- tribble(
+  ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
+          1,     "1",   "1.1",   88,  130,
+          1,     "1",   "1.1",   10,  160,  # Main stem
+          1,     "2",   "2.1",   20,  130,
+          1,     "2",   "2.2",   30,  130,  # Main stem
+          2,     "1",   "1.1",   98,  130,
+          2,     "1",   "1.1",   20,  160,  # Main stem
+          2,     "2",   "2.1",   30,  130,
+          2,     "2",   "2.2",   40,  130,  # Main stem
+)
+(main_stemids <- pick_main_stemid(vft3))
+main_stemids
+basal_area(main_stemids)
+```
+
+`basal_area()` also allows you to compute by groups.
+
+```{r}
+by_census <- group_by(main_stemids, CensusID)
+basal_area(by_census)
+```
+
+But if you want to compute on a subset of data, then you need to pick the data first.
+
+```{r}
+ten_to_twenty <- filter(by_census, DBH >= 10, DBH <= 20)
+ba <- basal_area(ten_to_twenty)
+ba
+```
+
+And if you need to convert units, then you can do so after the fact with `fgeo.tool::convert_unit_at()`.
+
+```{r}
+convert_unit_at(ba, .at = "basal_area", from = "mm2", to = "hectare")
+```
+
+### Abundance and basal area aggregated by year
+
+Example data.
+
+```{r}
+vft <- example_byyr
+vft
+```
+
+Abundance by year.
+
+```{r}
+abundance_byyr(vft, DBH >= 10, DBH < 20)
+abundance_byyr(vft, DBH >= 10)
+```
+
+Basal area by year.
+
+```{r}
+basal <- basal_area_byyr(vft, DBH >= 10)
+basal
+# Convert units and standardize by plot size in hectares
+years <- c("yr_2001", "yr_2002")
+in_he <- convert_unit_at(basal, .at = years, from = "mm2", to = "hectare")
+standardize_at(in_he, .at = years, denominator = 50)
+```
+
+### Demography
+
+```{r}
+census1 <- fgeo.x::tree5
+census2 <- fgeo.x::tree6
+```
+
+Demography functions output a list that you can convert to a more convenient dataframe with `to_df()`.
+
+```{r}
+recruitment_impl(census1, census2)
+to_df(
+  recruitment_impl(census1, census2, quiet = TRUE)
+)
+```
+
+Except if you use `split2`: This argument creates a complex data structure that `to_df()` cannot handle.
+
+```{r, error=TRUE}
+not_recommended <- recruitment_impl(
+  census1, census2, 
+  split1 = census1$sp, 
+  split2 = census1$quadrat, 
+  quiet = TRUE
+)
+# Errs
+to_df(not_recommended)
+```
+
+Instead, pass the multiple grouping variables to `split` via `interaction()`. This approach allows you to use any number of grouping variables and the output always works with `to_df()`.
+
+```{r}
+# Recommended
+sp_quadrat <- interaction(census1$sp, census1$quadrat)
+recruitment <- recruitment_impl(
+  census1, census2, 
+  split1 = sp_quadrat, 
+  quiet = TRUE
+)
+to_df(recruitment)
+```
+
+The same applies for other demography functions.
+
+```{r}
+to_df(mortality_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE))
+growth <- to_df(growth_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE))
+growth
+```
+
+A simple way to separate the grouping variables is with `tidyr::separate()`.
+
+```{r}
+tidyr::separate(
+  growth, 
+  groups, into = c("species", "quadrats")
+)
+```
+
+### Species-habitat associations
+
+```{r}
+tree <- fgeo.data::luquillo_tree5_random
+elevation <- fgeo.data::luquillo_elevation
+# Pick alive trees, of 10 mm or more
+census <- filter(tree, status == "A", dbh >= 10)
+# Pick sufficiently abundant species
+pick <- filter(add_count(census, sp), n > 50)
+species <- unique(pick$sp)
+# Use your habitat data or create it from elevation data
+habitat <- fgeo.tool::fgeo_habitat(elevation, gridsize = 20, n = 4)
+# A list or matrices
+tt_lst <- tt_test(census, species, habitat)
+tt_lst
+# A simple summary to help you interpret the results
+summary(tt_lst)
+# A combined matrix
+Reduce(rbind, tt_lst)
+# A dataframe
+dfm <- to_df(tt_lst)
+# Using dplyr to summarize results by species and distribution
+summarize(group_by(dfm, sp, distribution), n = sum(stem_count))
+```
+
+[Get started with __fgeo__](https://forestgeo.github.io/fgeo/articles/fgeo.html)
+
+## Information
+
+EDIT: Run this chunk then delete it:
+TODO: Move files to .github/ but refer to (FILE.md), not (.github/FILE.md)
+
+```
+usethis::use_template("SUPPORT.md", package = "fgeo.template")
+usethis::use_template("CONTRIBUTING.md", package = "fgeo.template")
+usethis::use_template("CODE_OF_CONDUCT.md", package = "fgeo.template")
+usethis::use_template("ISSUE_TEMPLATE.md", package = "fgeo.template")
+```
+
+* [Getting help](SUPPORT.md).
+* [Contributing](CONTRIBUTING.md).
+* [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+
+## READ AND DELETE THIS SECTION
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r cars}
+summary(cars)
+```
+
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+
+You can also embed plots, for example:
+
+```{r pressure, echo = FALSE}
+plot(pressure)
+```
+
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

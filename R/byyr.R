@@ -1,5 +1,5 @@
 #' Create tables of abundance and basal area by year.
-#' 
+#'
 #' * `abundance_byyr()` first picks the main stem of each tree (see
 #' ?[fgeo.tool::pick_main_stem()] and then, for each species and each
 #' (round mean) year of measurement, counts the number of
@@ -8,29 +8,31 @@
 #' tree, and then, for each species and each (round mean) year of measurement,
 #' sums the basal area of all trees. The result includes all stems within a
 #' given dbh range (notice the difference with `abundance_byyr()`).
-#' 
+#'
 #' You don't need to pick stems by status before feeding data to these
 #' functions. Doing so may make your code more readable but it should not affect
 #' the result. This is because the expressions passed to `...` pick data by
 #' `dbh` and exclude missing the `dbh` values associated to non-alive stems,
 #' including dead, missing, and gone.
-#' 
+#'
 #' @param vft A ForestGEO-like dataframe; particularly a ViewFullTable. As such,
 #'   it should contain columns `PlotName`, `CensusID`, `TreeID`, `StemID`,
 #'   `Status`, `DBH`, `Genus`, `SpeciesName`, `ExactDate`, `PlotCensusNumber`,
 #'   `Family`, `Tag`, and `HOM`. `ExactDate` should contain dates from
 #'   1980-01-01 to the present day in the format yyyy-mm-dd.
 #' @param ... Expressions to pick main stems of a specific `dbh` range.
-#' 
+#'
+#' @family functions for abundance and basal area
+#'
 #' @seealso [fgeo.tool::pick_main_stem()], [fgeo.tool::convert_unit()].
 #'
 #' @return A dataframe.
-#' 
+#'
 #' @export
-#' 
-#' @examples 
+#'
+#' @examples
 #' library(fgeo.tool)
-#' 
+#'
 #' vft <- example_byyr
 #' vft
 #' abundance_byyr(vft, DBH >= 10, DBH < 20)
@@ -44,19 +46,19 @@ abundance_byyr <- function(vft, ...) {
   low_nms  <- check_byyr(set_names(vft, tolower))
   crucial <- c("plotname", "tag")
   low_nms  <- check_crucial_names(low_nms, crucial)
-  
+
   main_stems <- fgeo.tool::pick_main_stem(low_nms)
-  
+
   with_years <- add_years(pick_byyr(main_stems, ...))
-  out <- with_years %>% 
+  out <- with_years %>%
     group_by(.data$plotname, .data$year, .data$family, .data$species) %>%
-    dplyr::summarize(n = dplyr::n_distinct(.data$treeid)) %>% 
+    dplyr::summarize(n = dplyr::n_distinct(.data$treeid)) %>%
     ungroup() %>%
     select(-.data$plotname) %>%
     select(.data$species, .data$family, dplyr::everything()) %>%
     tidyr::spread(.data$year, n, fill = 0) %>%
     arrange(.data$species, .data$family)
-  
+
   tidy_byyr_names(rename_matches(out, vft))
 }
 
@@ -64,16 +66,16 @@ abundance_byyr <- function(vft, ...) {
 #' @export
 basal_area_byyr <- function(vft, ...) {
   low_nms <- check_byyr(set_names(vft, tolower))
-  
+
   main_stemids <- fgeo.tool::pick_main_stemid(low_nms)
   with_years <- add_years(pick_byyr(main_stemids, ...))
-  out <- with_years %>% 
+  out <- with_years %>%
     group_by(.data$species, .data$family, .data$year) %>%
     basal_area() %>%
     arrange(.data$species, .data$family, .data$year) %>%
     ungroup() %>%
     tidyr::spread(.data$year, basal_area, fill = 0)
-  
+
   tidy_byyr_names(rename_matches(out, vft))
 }
 
@@ -86,20 +88,20 @@ check_byyr <- function(vft) {
     "plotcensusnumber"
   )
   check_crucial_names(vft, crucial)
-  
+
   dates <- unique(vft$exactdate)
   if (all(is.na(lubridate::ymd(dates)))) {
     abort(
       "Can't parse `exactdates`. Try parsing dates with `lubridate::ymd()`."
     )
   }
-  
+
   too_early <- lubridate::ymd(dates) < lubridate::ymd("1980-01-01")
   too_late <- lubridate::ymd(dates) > lubridate::today()
   if (any(too_early || too_late)) {
     warn("Dates should be from 1980-present and have format yyy-mm-dd.")
   }
-  
+
   invisible(vft)
 }
 
@@ -112,7 +114,7 @@ pick_byyr <- function(vft, ...) {
 }
 
 add_years <- function(x) {
-  drop_if_missing_dates(x) %>% 
+  drop_if_missing_dates(x) %>%
     mean_years() %>%
     fgeo.tool::drop_if_na("year")
 }
@@ -167,7 +169,7 @@ flag_if_not_expression_of_var <- function(dots, .flag, .var) {
     msg <- glue("All expressions passed to `...` {request} refer to `{.var}`.")
     .flag(msg)
   }
-  
+
   invisible(dots)
 }
 
@@ -179,7 +181,7 @@ lowercase_var <- function(..., .var) {
     dots <- gsub(.var, .var, rlang::expr_deparse(dots), ignore.case = TRUE)
     rlang::parse_expr(dots)
   }
-  
+
   lapply(rlang::exprs(...), lowercase_each, .var)
 }
 

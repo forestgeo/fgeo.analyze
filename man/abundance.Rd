@@ -47,7 +47,7 @@ vft <- tibble::tribble(
 # * Also warns if it detects duplicated values of treeid
 abundance(vft)
 
-# You should probably work with a single plotname. 
+# You should probably work with a single plotname.
 # Yet your data may have multiple stems per treeid and even multiple measures
 # per stemid (when trees have buttressess).
 vft2 <- tibble::tribble(
@@ -97,4 +97,7 @@ convert_unit_at(ba, .at = "basal_area", from = "mm2", to = "hectare")
 }
 \seealso{
 [dplyr::n()], [group_by()], [convert_unit()].
+
+Other functions for abundance and basal area: \code{\link{abundance_byyr}}
 }
+\concept{functions for abundance and basal area}

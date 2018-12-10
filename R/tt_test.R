@@ -2,7 +2,7 @@
 #'
 #' Determine habitat-species associations with code developed by Sabrina Russo,
 #' Daniel Zuleta, Matteo Detto, and Kyle Harms.
-#' 
+#'
 #' You should only try to determine the habitat association for sufficiently
 #' abundant species. In a 50-ha plot, a minimum abundance of 50 trees/species
 #' has been used. Also, you should use data of individual trees (i.e. a tree
@@ -17,7 +17,7 @@
 #' @param habitat Object giving the habitat designation for each
 #'   plot partition defined by `gridsize`. See [`fgeo_habitat()`].
 #' @param plotdim,gridsize Plot dimensions and gridsize. If `NULL` (default)
-#'   they will be guessed, and a message will inform you of the chosen values. 
+#'   they will be guessed, and a message will inform you of the chosen values.
 #'   If the guess is wrong, you should provide the correct values manually (and
 #'   check that your habitat data is correct).
 #'
@@ -50,59 +50,61 @@
 #' The `Rep.Agg.Neut` columns for each habitat indicate whether the species is
 #' significantly repelled (-1), aggregated (1), or neutrally distributed (0) on
 #' the habitat in question.
-#' 
+#'
 #' The probabilities associated with the test for whether these patterns are
 #' statistically significant are in the `Obs.Quantile` columns for each habitat.
 #' Note that to calculate the probability for repelled, it is the value given,
 #' but to calculate the probability for aggregated, it is 1 - the value given.
-#' 
+#'
 #' Values of the `Obs.Quantile` < 0.025 means that the species is repelled from
 #' that habitat, while values of the `Obs.Quantile` > 0.975 means that the
 #' species is aggregated on that habitat.
-#' 
+#'
 #' @section References:
 #' Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 #' \url{https://doi.org/10.1007/s11104-018-3878-0}.
-#' 
+#'
 #' @export
+#'
+#' @family habitat functions
 #'
 #' @examples
 #' library(dplyr)
-#' 
+#'
 #' # Example data
 #' tree <- luquillo_top3_sp
 #' elevation <- fgeo.x::elevation
-#' 
+#'
 #' # Pick alive trees, of 10 mm or more
 #' census <- filter(tree, status == "A", dbh >= 10)
-#' 
+#'
 #' # Pick sufficiently abundant species
 #' pick <- filter(add_count(census, sp), n > 50)
 #' species <- unique(pick$sp)
-#' 
+#'
 #' # Use your habitat data or create it from elevation data
 #' habitat <- fgeo.tool::fgeo_habitat(elevation, gridsize = 20, n = 4)
-#' 
+#'
 #' # A list or matrices
 #' tt_lst <- tt_test(census, species, habitat)
 #' tt_lst
-#' 
+#'
 #' # A simple summary to help you interpret the results
 #' summary(tt_lst)
-#' 
+#'
 #' # A combined matrix
 #' Reduce(rbind, tt_lst)
-#' 
+#'
 #' # A dataframe
 #' dfm <- to_df(tt_lst)
-#' 
+#'
 #' # Using dplyr to summarize results by species and distribution
 #' summarize(group_by(dfm, sp, distribution), n = sum(stem_count))
 tt_test <- function(census, sp, habitat, plotdim = NULL, gridsize = NULL) {
   stopifnot(is.data.frame(habitat))
   if (!inherits(habitat, "fgeo_habitat")) {
     warn(glue("
-      `habitat` isn't of class 'fgeo_habitat'. This commonly causes errors. 
+      `habitat` isn't of class 'fgeo_habitat'. This commonly causes errors.
       See ?fgeo.tool::fgeo_habitat().
     "))
   }
@@ -154,16 +156,16 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   # CALCULATIONS FOR OBSERVED RELATIVE DENSITIES ON THE TRUE HABITAT MAP
 
   # pulls out the abundance by quad data for the focal species
-  allabund20.sp <- allabund20[which(rownames(allabund20) == species), ] 
+  allabund20.sp <- allabund20[which(rownames(allabund20) == species), ]
   # Fills a matrix, with no. rows = plotdimqy (dim 2) and no. columns =
   # plotdimqx (dim 1), with the indiv. counts per quadrat of one species.
-  spmat <- matrix(as.numeric(allabund20.sp), nrow = plotdimqy, plotdimqx, byrow = F) 
+  spmat <- matrix(as.numeric(allabund20.sp), nrow = plotdimqy, plotdimqx, byrow = F)
   # calculates total number of stems in each quad for all species and puts in matrix
-  totmat <- matrix(apply(allabund20, MARGIN = 2, FUN = "sum"), plotdimqy, plotdimqx, byrow = F) 
-  
+  totmat <- matrix(apply(allabund20, MARGIN = 2, FUN = "sum"), plotdimqy, plotdimqx, byrow = F)
+
   # fills matrix with habitat types, oriented in the same way as the species and
   # total matrices above
-  habmat <- matrix(hab.index20$habitats, nrow = plotdimqy, ncol = plotdimqx, byrow = F) 
+  habmat <- matrix(hab.index20$habitats, nrow = plotdimqy, ncol = plotdimqx, byrow = F)
 
   spstcnthab <- numeric() # Creates empty vector for stem counts per sp. per habitat.
   totstcnthab <- numeric() # Creates empty vector for tot. stem counts per habitat.
@@ -291,12 +293,12 @@ check_tt_test <- function(census, sp, habitat, plotdim, gridsize) {
     is.numeric(gridsize),
     length(gridsize) == 1
   )
-  
-  has_tree_names <- 
+
+  has_tree_names <-
     !has_table_names(fgeo.x::tree6)(census)
   msg <- "Is `census` a tree table (not a stem table)? See `?tt_test()`."
   if (has_tree_names) warn(msg)
-  
+
   common_gridsize <- gridsize %in% c(5, 10, 20)
   if (!common_gridsize) {
     rlang::warn(paste("Uncommon `gridsize`:", gridsize, "\nIs this expected?"))

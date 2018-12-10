@@ -15,7 +15,7 @@ tt_test(census, sp, habitat, plotdim = NULL, gridsize = NULL)
 plot partition defined by `gridsize`. See [`fgeo_habitat()`].}
 
 \item{plotdim, gridsize}{Plot dimensions and gridsize. If `NULL` (default)
-they will be guessed, and a message will inform you of the chosen values. 
+they will be guessed, and a message will inform you of the chosen values.
 If the guess is wrong, you should provide the correct values manually (and
 check that your habitat data is correct).}
 }
@@ -114,7 +114,10 @@ summarize(group_by(dfm, sp, distribution), n = sum(stem_count))
 }
 \seealso{
 [summary.tt_lst()], [to_df()], [fgeo_habitat()].
+
+Other habitat functions: \code{\link{summary.tt_lst}}
 }
 \author{
 Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.
 }
+\concept{habitat functions}
