@@ -5,7 +5,7 @@
 #' warns if it detects duplicated values of treeid. `basal_area()` sums the
 #' basal area of all woods in a dataset, optionally by groups created with
 #' [group_by()]. It warns if it detects duplicated values of stemid. It does not
-#' convert units (but see [fgeo.tool::convert_unit()]). Both `abundance()` and
+#' convert units (but see examples). Both `abundance()` and
 #' `basal_area()` warn if they detect multiple censusid and multiple plots.
 #'
 #' You may want to calculate the abundance or basal area for a specific subset
@@ -17,7 +17,7 @@
 #'   insensitive).
 #' @family functions for abundance and basal area
 #'
-#' @seealso [dplyr::n()], [group_by()], [convert_unit()].
+#' @seealso [dplyr::n()], [group_by()].
 #'
 #' @examples
 #' library(dplyr)
@@ -82,9 +82,18 @@
 #' # You can compute by groups
 #' basal_area(by_census)
 #'
-#' # To convert units see ?convert_unit()
+#' \dontrun{
+#' # Convert units
+#' missing_measurements <- !requireNamespace("measurements", quietly = TRUE)
+#' if (missing_measurements) stop("Please run `install.packages('measurements')`")
 #' ba <- basal_area(by_census)
-#' convert_unit_at(ba, .at = "basal_area", from = "mm2", to = "hectare")
+#' ba$basal_area_he <- measurements::conv_unit(
+#'   ba$basal_area,
+#'   from = "mm2",
+#'   to = "hectare"
+#' )
+#' ba
+#' }
 #' @name abundance
 NULL
 

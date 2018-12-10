@@ -37,7 +37,7 @@ optionally by groups created with [group_by()] (similar to [dplyr::n()]). It
 warns if it detects duplicated values of treeid. `basal_area()` sums the
 basal area of all woods in a dataset, optionally by groups created with
 [group_by()]. It warns if it detects duplicated values of stemid. It does not
-convert units (but see [fgeo.tool::convert_unit()]). Both `abundance()` and
+convert units (but see examples). Both `abundance()` and
 `basal_area()` warn if they detect multiple censusid and multiple plots." />
 <meta name="twitter:card" content="summary" />
 
@@ -69,7 +69,7 @@ convert units (but see [fgeo.tool::convert_unit()]). Both `abundance()` and
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -138,7 +138,7 @@ optionally by groups created with [group_by()] (similar to [dplyr::n()]). It
 warns if it detects duplicated values of treeid. `basal_area()` sums the
 basal area of all woods in a dataset, optionally by groups created with
 [group_by()]. It warns if it detects duplicated values of stemid. It does not
-convert units (but see [fgeo.tool::convert_unit()]). Both `abundance()` and
+convert units (but see examples). Both `abundance()` and
 `basal_area()` warn if they detect multiple censusid and multiple plots.</p>
     
     </div>
@@ -166,7 +166,7 @@ Subsetting data is not the job of these functions. Instead see [subset()],
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[dplyr::n()], [group_by()], [convert_unit()].</p>
+    <div class='dont-index'><p>[dplyr::n()], [group_by()].</p>
 <p>Other functions for abundance and basal area: <code><a href='abundance_byyr.html'>abundance_byyr</a></code></p></div>
     
 
@@ -276,14 +276,18 @@ Subsetting data is not the job of these functions. Instead see [subset()],
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>        1       393.
 #&gt; </span><span style='color: #555555;'>2</span><span>        2       493.</div><div class='input'>
-<span class='co'># To convert units see ?convert_unit()</span>
+</div></span><span class='co'># NOT RUN {</span>
+<span class='co'># Convert units</span>
+<span class='no'>missing_measurements</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='kw'>if</span> (<span class='no'>missing_measurements</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"Please run `install.packages('measurements')`"</span>)
 <span class='no'>ba</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area</span>(<span class='no'>by_census</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/convert_unit'>convert_unit_at</a></span>(<span class='no'>ba</span>, <span class='kw'>.at</span> <span class='kw'>=</span> <span class='st'>"basal_area"</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 2</span><span>
-#&gt; </span><span style='color: #555555;'># Groups:   CensusID [2]</span><span>
-#&gt;   CensusID   basal_area
-#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>        1 0.000</span><span style='text-decoration: underline;'>000</span><span>039</span><span style='text-decoration: underline;'>3</span><span>
-#&gt; </span><span style='color: #555555;'>2</span><span>        2 0.000</span><span style='text-decoration: underline;'>000</span><span>049</span><span style='text-decoration: underline;'>3</span><span></div></span></pre>
+<span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(
+  <span class='no'>ba</span>$<span class='no'>basal_area</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>,
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>
+)
+<span class='no'>ba</span>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

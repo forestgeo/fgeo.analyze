@@ -70,7 +70,7 @@ given dbh range (notice the difference with `abundance_byyr()`)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -207,13 +207,35 @@ including dead, missing, and gone.</p>
 #&gt;   species family yr_2001 yr_2002
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            2       1</div><div class='input'><span class='no'>basal</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)
-<span class='co'># Convert units and standardize by plot size in hectares</span>
-<span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
-<span class='no'>in_he</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/convert_unit'>convert_unit_at</a></span>(<span class='no'>basal</span>, <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/standardize_at'>standardize_at</a></span>(<span class='no'>in_he</span>, <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>, <span class='kw'>denominator</span> <span class='kw'>=</span> <span class='fl'>50</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
-#&gt;   species family       yr_2001  yr_2002
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f      0.000</span><span style='text-decoration: underline;'>000</span><span>002</span><span style='text-decoration: underline;'>20</span><span> 6.28</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-10</span><span></div></span></pre>
+<span class='no'>basal</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
+#&gt;   species family yr_2001 yr_2002
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div><div class='input'>
+</div></span><span class='co'># NOT RUN {</span>
+<span class='co'># Convert units</span>
+<span class='co'># This exmaple requires the following packages (see `?install.packages`):</span>
+<span class='no'>required_packages</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>)
+<span class='no'>not_installed</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='no'>required_packages</span>, <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='no'>T</span>))
+<span class='kw'>if</span> (<span class='no'>not_installed</span>) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"To run this section please install the required packages."</span>)
+} <span class='kw'>else</span> {
+  <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
+  <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/purrr/topics/modify'>modify_at</a></span>(
+    <span class='no'>basal</span>,
+    <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>,
+    <span class='kw'>.f</span> <span class='kw'>=</span>  ~<span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>)
+  )
+  <span class='no'>basal_he</span>
+
+  <span class='co'># Standardize</span>
+  <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
+  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/purrr/topics/map'>map_at</a></span>(
+    <span class='no'>basal_he</span>,
+    <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>,
+    <span class='kw'>.f</span> <span class='kw'>=</span> ~<span class='no'>.x</span> / <span class='no'>number_of_hectares</span>
+  )
+}
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

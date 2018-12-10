@@ -38,10 +38,33 @@
 #' abundance_byyr(vft, DBH >= 10, DBH < 20)
 #' abundance_byyr(vft, DBH >= 10)
 #' basal <- basal_area_byyr(vft, DBH >= 10)
-#' # Convert units and standardize by plot size in hectares
-#' years <- c("yr_2001", "yr_2002")
-#' in_he <- convert_unit_at(basal, .at = years, from = "mm2", to = "hectare")
-#' standardize_at(in_he, .at = years, denominator = 50)
+#' basal
+#'
+#' \dontrun{
+#' # Convert units
+#' # This exmaple requires the following packages (see `?install.packages`):
+#' required_packages <- c("measurements", "purrr")
+#' not_installed <- !all(sapply(required_packages, requireNamespace, quietly = T))
+#' if (not_installed) {
+#'   stop("To run this section please install the required packages.")
+#' } else {
+#'   years <- c("yr_2001", "yr_2002")
+#'   basal_he <- purrr::modify_at(
+#'     basal,
+#'     .at = years,
+#'     .f =  ~measurements::conv_unit(.x, from = "mm2", to = "hectare")
+#'   )
+#'   basal_he
+#'
+#'   # Standardize
+#'   number_of_hectares <- 50
+#'   purrr::map_at(
+#'     basal_he,
+#'     .at = years,
+#'     .f = ~.x / number_of_hectares
+#'   )
+#' }
+#' }
 abundance_byyr <- function(vft, ...) {
   low_nms  <- check_byyr(set_names(vft, tolower))
   crucial <- c("plotname", "tag")
