@@ -75,7 +75,7 @@ if (not_installed) {
 }
 }
 \seealso{
-[fgeo.tool::pick_main_stem()], [fgeo.tool::convert_unit()].
+[fgeo.tool::pick_main_stem()].
 
 Other functions for abundance and basal area: \code{\link{abundance}}
 }

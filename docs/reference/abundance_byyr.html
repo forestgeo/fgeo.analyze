@@ -70,7 +70,7 @@ given dbh range (notice the difference with `abundance_byyr()`)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -180,7 +180,7 @@ including dead, missing, and gone.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[fgeo.tool::pick_main_stem()], [fgeo.tool::convert_unit()].</p>
+    <div class='dont-index'><p>[fgeo.tool::pick_main_stem()].</p>
 <p>Other functions for abundance and basal area: <code><a href='abundance.html'>abundance</a></code></p></div>
     
 
@@ -220,7 +220,7 @@ including dead, missing, and gone.</p>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"To run this section please install the required packages."</span>)
 } <span class='kw'>else</span> {
   <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
-  <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/purrr/topics/modify'>modify_at</a></span>(
+  <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(
     <span class='no'>basal</span>,
     <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>,
     <span class='kw'>.f</span> <span class='kw'>=</span>  ~<span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>)
@@ -229,7 +229,7 @@ including dead, missing, and gone.</p>
 
   <span class='co'># Standardize</span>
   <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
-  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/purrr/topics/map'>map_at</a></span>(
+  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(
     <span class='no'>basal_he</span>,
     <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>,
     <span class='kw'>.f</span> <span class='kw'>=</span> ~<span class='no'>.x</span> / <span class='no'>number_of_hectares</span>

@@ -647,7 +647,7 @@ check_alivecode <- function(census1, census2, alivecode, quiet) {
   statuses <- unique(c(census1$status, census2$status))
   if (!is.null(alivecode) && !any(alivecode %in% statuses)) {
     warning(
-      "`alivecode` matches no value of `status` (", glue_comma(statuses), ").",
+      "`alivecode` matches no value of `status` (", commas(statuses), ").",
       call. = FALSE
     )
   }
@@ -657,8 +657,8 @@ inform_dbh_range <- function(census1, census2, mindbh) {
   mindbh <- mindbh %||% 0
   message(
     "Detected dbh ranges:\n",
-    "  * `census1` = ", glue_dash(range(census1$dbh, na.rm = TRUE)), ".\n",
-    "  * `census2` = ", glue_dash(range(census2$dbh, na.rm = TRUE)), ".\n",
+    "  * `census1` = ", dashes(range(census1$dbh, na.rm = TRUE)), ".\n",
+    "  * `census2` = ", dashes(range(census2$dbh, na.rm = TRUE)), ".\n",
     paste0("Using dbh `mindbh = ", mindbh, "` and above.\n")
   )
 

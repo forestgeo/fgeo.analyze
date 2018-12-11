@@ -2,7 +2,7 @@
 #' @importFrom dplyr count
 #' @importFrom fgeo.tool check_crucial_names is_duplicated is_multiple
 #' @importFrom fgeo.tool to_df rename_matches
-#' @importFrom glue glue
+#' @importFrom glue glue glue_collapse
 #' @importFrom grDevices dev.off graphics.off pdf
 #' @importFrom graphics hist lines par plot points text
 #' @importFrom MASS boxcox

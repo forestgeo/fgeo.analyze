@@ -83,7 +83,7 @@
 #' species <- unique(pick$sp)
 #'
 #' # Use your habitat data or create it from elevation data
-#' habitat <- fgeo.tool::fgeo_habitat(elevation, gridsize = 20, n = 4)
+#' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 #'
 #' # A list or matrices
 #' tt_lst <- tt_test(census, species, habitat)
@@ -105,7 +105,7 @@ tt_test <- function(census, sp, habitat, plotdim = NULL, gridsize = NULL) {
   if (!inherits(habitat, "fgeo_habitat")) {
     warn(glue("
       `habitat` isn't of class 'fgeo_habitat'. This commonly causes errors.
-      See ?fgeo.tool::fgeo_habitat().
+      See ?fgeo_habitat().
     "))
   }
 

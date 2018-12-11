@@ -64,7 +64,7 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -237,7 +237,7 @@ species is aggregated on that habitat.</p>
 <span class='no'>species</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unique'>unique</a></span>(<span class='no'>pick</span>$<span class='no'>sp</span>)
 
 <span class='co'># Use your habitat data or create it from elevation data</span>
-<span class='no'>habitat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.tool</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/fgeo_habitat'>fgeo_habitat</a></span>(<span class='no'>elevation</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='no'>habitat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fgeo_habitat.html'>fgeo_habitat</a></span>(<span class='no'>elevation</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
 <span class='co'># A list or matrices</span>
 <span class='no'>tt_lst</span> <span class='kw'>&lt;-</span> <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>species</span>, <span class='no'>habitat</span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'><span class='no'>tt_lst</span></div><div class='output co'>#&gt; [[1]]

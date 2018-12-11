@@ -28,9 +28,9 @@ article](https://goo.gl/dQKEeg).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages --------------------------------------------------- fgeo 0.0.0.9002 --
-#> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9000
-#> v fgeo.tool    0.0.0.9004     v fgeo.map     0.0.0.9402
+#> -- Attaching packages ----------------------------------------------- fgeo 0.0.0.9002 --
+#> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003
+#> v fgeo.tool    0.0.0.9005     v fgeo.map     0.0.0.9402
 #> 
 ```
 
@@ -218,27 +218,13 @@ the data first.
 
 ``` r
 ten_to_twenty <- filter(by_census, DBH >= 10, DBH <= 20)
-ba <- basal_area(ten_to_twenty)
-ba
+basal_area(ten_to_twenty)
 #> # A tibble: 2 x 2
 #> # Groups:   CensusID [2]
 #>   CensusID basal_area
 #>      <dbl>      <dbl>
 #> 1        1       393.
 #> 2        2       314.
-```
-
-And if you need to convert units, then you can do so after the fact with
-`fgeo.tool::convert_unit_at()`.
-
-``` r
-convert_unit_at(ba, .at = "basal_area", from = "mm2", to = "hectare")
-#> # A tibble: 2 x 2
-#> # Groups:   CensusID [2]
-#>   CensusID   basal_area
-#>      <dbl>        <dbl>
-#> 1        1 0.0000000393
-#> 2        2 0.0000000314
 ```
 
 ### Abundance and basal area aggregated by year
@@ -281,20 +267,11 @@ abundance_byyr(vft, DBH >= 10)
 Basal area by year.
 
 ``` r
-basal <- basal_area_byyr(vft, DBH >= 10)
-basal
+basal_area_byyr(vft, DBH >= 10)
 #> # A tibble: 1 x 4
 #>   species family yr_2001 yr_2002
 #>   <chr>   <chr>    <dbl>   <dbl>
 #> 1 Gn spp  f        1100.    314.
-# Convert units and standardize by plot size in hectares
-years <- c("yr_2001", "yr_2002")
-in_he <- convert_unit_at(basal, .at = years, from = "mm2", to = "hectare")
-standardize_at(in_he, .at = years, denominator = 50)
-#> # A tibble: 1 x 4
-#>   species family       yr_2001  yr_2002
-#>   <chr>   <chr>          <dbl>    <dbl>
-#> 1 Gn spp  f      0.00000000220 6.28e-10
 ```
 
 ### Demography
@@ -467,7 +444,7 @@ census <- filter(tree, status == "A", dbh >= 10)
 pick <- filter(add_count(census, sp), n > 50)
 species <- unique(pick$sp)
 # Use your habitat data or create it from elevation data
-habitat <- fgeo.tool::fgeo_habitat(elevation, gridsize = 20, n = 4)
+habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 # A list or matrices
 tt_lst <- tt_test(census, species, habitat)
 #> Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.

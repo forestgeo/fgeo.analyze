@@ -9,7 +9,7 @@
 #'
 #'
 #' @return Invisible `x`, or an error with informative message.
-#' 
+#'
 #' @family exported functions for internal use
 #' @export
 #' @keywords internal
@@ -30,7 +30,7 @@ check_crucial_names <- function(x, nms) {
   }
 
   stop(
-    "Ensure your data set has these variables:\n", glue_comma(nms),
+    "Ensure your data set has these variables:\n", commas(nms),
       call. = FALSE
   )
 }

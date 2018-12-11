@@ -1,12 +1,13 @@
+commas <- function(...) paste0(..., collapse = ", ")
+dashes <- function(x) paste0(x, collapse = "-")
+
 equal <- function(x, y) isTRUE(all.equal(x, y))
 
-commas <- function(...) {
-  paste0(..., collapse = ", ")
+abort_bad_class <- function(x) {
+  .class <- glue_collapse(class(x), sep = ", ", last = ", or ")
+  abort(glue("Can't deal with data of class: {.class}."))
 }
 
-glue_comma <- function(x) paste0(x, collapse = ", ")
-
-glue_dash <- function(x) paste0(x, collapse = "-")
 
 #' Round to multiple of any number. Copied from `plyr:::round_any.numeric()`.
 #' @noRd
