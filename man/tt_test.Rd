@@ -107,15 +107,13 @@ summary(tt_lst)
 Reduce(rbind, tt_lst)
 
 # A dataframe
-dfm <- to_df(tt_lst)
-
-# Using dplyr to summarize results by species and distribution
-summarize(group_by(dfm, sp, distribution), n = sum(stem_count))
+to_df(tt_lst)
 }
 \seealso{
 [summary.tt_lst()], [to_df()], [fgeo_habitat()].
 
-Other habitat functions: \code{\link{summary.tt_lst}}
+Other habitat functions: \code{\link{fgeo_habitat}},
+  \code{\link{summary.tt_lst}}
 }
 \author{
 Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.

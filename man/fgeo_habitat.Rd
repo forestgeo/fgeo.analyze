@@ -83,8 +83,12 @@ str(hab2)
 }
 \seealso{
 [fgeo.map::autoplot.fgeo_habitat()], [fgeo.tool::fgeo_topography()].
+
+Other habitat functions: \code{\link{summary.tt_lst}},
+  \code{\link{tt_test}}
 }
 \author{
 Rick Condit.
 }
 \concept{functions to construct fgeo classes}
+\concept{habitat functions}

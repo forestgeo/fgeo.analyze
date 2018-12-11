@@ -21,7 +21,8 @@ outputs objects of class "tt_lst").
 \seealso{
 [tt_test()].
 
-Other habitat functions: \code{\link{tt_test}}
+Other habitat functions: \code{\link{fgeo_habitat}},
+  \code{\link{tt_test}}
 }
 \author{
 Daniel Zuleta.

@@ -24,6 +24,7 @@
 #'   rounded with accuracy determined by `gridsize`, and column `habitats`, with
 #'   as many distinct integer values as determined by the argument `n`.
 #'
+#' @family habitat functions
 #'
 #' @export
 #'

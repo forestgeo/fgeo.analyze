@@ -63,7 +63,7 @@ str(census)
 
 ```{r}
 # Creating habitat data from elevation data
-habitat <- fgeo.tool::fgeo_habitat(luquillo_elevation, gridsize = 20, n = 4)
+habitat <- fgeo_habitat(luquillo_elevation, gridsize = 20, n = 4)
 str(habitat)
 ```
 
@@ -161,13 +161,13 @@ You can benefit from storing your results in a dataframe. Compared to a matrix, 
 * Pick interesting rows and sort them in a meaningful way.
 
 ```{r}
-tt_df %>% filter(distribution == "aggregated")
+tt_df %>% filter(sp == "CASARB")
 ```
 
 * Summarize
 
 ```{r}
 tt_df %>% 
-  group_by(sp, distribution) %>% 
-  summarize(total_stem_count = sum(stem_count))
+  group_by(sp, habitat) %>% 
+  summarize(total_stem_count = sum(N.Hab))
 ```

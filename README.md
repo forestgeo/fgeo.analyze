@@ -28,7 +28,7 @@ article](https://goo.gl/dQKEeg).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages ----------------------------------------------- fgeo 0.0.0.9002 --
+#> -- Attaching packages -------------------------------------------- fgeo 0.0.0.9002 --
 #> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003
 #> v fgeo.tool    0.0.0.9005     v fgeo.map     0.0.0.9402
 #> 
@@ -504,16 +504,22 @@ Reduce(rbind, tt_lst)
 #> PREMON      15       64     1535        1              0       0.040000
 #> SLOBER       8      833      764        3              0       0.520625
 # A dataframe
-dfm <- to_df(tt_lst)
-# Using dplyr to summarize results by species and distribution
-summarize(group_by(dfm, sp, distribution), n = sum(stem_count))
-#> # A tibble: 3 x 3
-#> # Groups:   sp [?]
-#>   sp     distribution     n
-#>   <chr>  <chr>        <dbl>
-#> 1 CASARB neutral         78
-#> 2 PREMON neutral        245
-#> 3 SLOBER neutral         75
+to_df(tt_lst)
+#> # A tibble: 12 x 8
+#>    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
+#>  * <chr>   <chr>  <dbl>  <dbl>  <dbl>  <dbl>        <dbl>        <dbl>
+#>  1 1       CASARB    35   1508     90      2            0        0.942
+#>  2 2       CASARB    24    433   1162      5            0        0.271
+#>  3 3       CASARB    11    440   1157      3            0        0.275
+#>  4 4       CASARB     8    774    824      2            0        0.484
+#>  5 1       PREMON    94   1511     87      2            0        0.944
+#>  6 2       PREMON    97   1403    196      1            0        0.877
+#>  7 3       PREMON    39    212   1386      2            0        0.132
+#>  8 4       PREMON    15     64   1535      1            0        0.04 
+#>  9 1       SLOBER    21    413   1183      4            0        0.258
+#> 10 2       SLOBER    25    558   1040      2            0        0.349
+#> 11 3       SLOBER    21   1289    309      2            0        0.806
+#> 12 4       SLOBER     8    833    764      3            0        0.521
 ```
 
 [Get started with

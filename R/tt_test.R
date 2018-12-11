@@ -96,10 +96,7 @@
 #' Reduce(rbind, tt_lst)
 #'
 #' # A dataframe
-#' dfm <- to_df(tt_lst)
-#'
-#' # Using dplyr to summarize results by species and distribution
-#' summarize(group_by(dfm, sp, distribution), n = sum(stem_count))
+#' to_df(tt_lst)
 tt_test <- function(census, sp, habitat, plotdim = NULL, gridsize = NULL) {
   stopifnot(is.data.frame(habitat))
   if (!inherits(habitat, "fgeo_habitat")) {

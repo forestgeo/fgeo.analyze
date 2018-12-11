@@ -107,7 +107,7 @@ devtools::install_github("forestgeo/fgeo.analyze")</a></code></pre>
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; -- Attaching packages ----------------------------------------------- fgeo 0.0.0.9002 --</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; -- Attaching packages -------------------------------------------- fgeo 0.0.0.9002 --</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; v fgeo.tool    0.0.0.9005     v fgeo.map     0.0.0.9402</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; </span></a></code></pre></div>
@@ -500,16 +500,22 @@ devtools::install_github("forestgeo/fgeo.analyze")</a></code></pre>
 <a class="sourceLine" id="cb21-66" data-line-number="66"><span class="co">#&gt; PREMON      15       64     1535        1              0       0.040000</span></a>
 <a class="sourceLine" id="cb21-67" data-line-number="67"><span class="co">#&gt; SLOBER       8      833      764        3              0       0.520625</span></a>
 <a class="sourceLine" id="cb21-68" data-line-number="68"><span class="co"># A dataframe</span></a>
-<a class="sourceLine" id="cb21-69" data-line-number="69">dfm &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/fgeo.tool/topics/to_df">to_df</a></span>(tt_lst)</a>
-<a class="sourceLine" id="cb21-70" data-line-number="70"><span class="co"># Using dplyr to summarize results by species and distribution</span></a>
-<a class="sourceLine" id="cb21-71" data-line-number="71"><span class="kw">summarize</span>(<span class="kw">group_by</span>(dfm, sp, distribution), <span class="dt">n =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(stem_count))</a>
-<a class="sourceLine" id="cb21-72" data-line-number="72"><span class="co">#&gt; # A tibble: 3 x 3</span></a>
-<a class="sourceLine" id="cb21-73" data-line-number="73"><span class="co">#&gt; # Groups:   sp [?]</span></a>
-<a class="sourceLine" id="cb21-74" data-line-number="74"><span class="co">#&gt;   sp     distribution     n</span></a>
-<a class="sourceLine" id="cb21-75" data-line-number="75"><span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb21-76" data-line-number="76"><span class="co">#&gt; 1 CASARB neutral         78</span></a>
-<a class="sourceLine" id="cb21-77" data-line-number="77"><span class="co">#&gt; 2 PREMON neutral        245</span></a>
-<a class="sourceLine" id="cb21-78" data-line-number="78"><span class="co">#&gt; 3 SLOBER neutral         75</span></a></code></pre></div>
+<a class="sourceLine" id="cb21-69" data-line-number="69"><span class="kw"><a href="https://www.rdocumentation.org/packages/fgeo.tool/topics/to_df">to_df</a></span>(tt_lst)</a>
+<a class="sourceLine" id="cb21-70" data-line-number="70"><span class="co">#&gt; # A tibble: 12 x 8</span></a>
+<a class="sourceLine" id="cb21-71" data-line-number="71"><span class="co">#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>
+<a class="sourceLine" id="cb21-72" data-line-number="72"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb21-73" data-line-number="73"><span class="co">#&gt;  1 1       CASARB    35   1508     90      2            0        0.942</span></a>
+<a class="sourceLine" id="cb21-74" data-line-number="74"><span class="co">#&gt;  2 2       CASARB    24    433   1162      5            0        0.271</span></a>
+<a class="sourceLine" id="cb21-75" data-line-number="75"><span class="co">#&gt;  3 3       CASARB    11    440   1157      3            0        0.275</span></a>
+<a class="sourceLine" id="cb21-76" data-line-number="76"><span class="co">#&gt;  4 4       CASARB     8    774    824      2            0        0.484</span></a>
+<a class="sourceLine" id="cb21-77" data-line-number="77"><span class="co">#&gt;  5 1       PREMON    94   1511     87      2            0        0.944</span></a>
+<a class="sourceLine" id="cb21-78" data-line-number="78"><span class="co">#&gt;  6 2       PREMON    97   1403    196      1            0        0.877</span></a>
+<a class="sourceLine" id="cb21-79" data-line-number="79"><span class="co">#&gt;  7 3       PREMON    39    212   1386      2            0        0.132</span></a>
+<a class="sourceLine" id="cb21-80" data-line-number="80"><span class="co">#&gt;  8 4       PREMON    15     64   1535      1            0        0.04 </span></a>
+<a class="sourceLine" id="cb21-81" data-line-number="81"><span class="co">#&gt;  9 1       SLOBER    21    413   1183      4            0        0.258</span></a>
+<a class="sourceLine" id="cb21-82" data-line-number="82"><span class="co">#&gt; 10 2       SLOBER    25    558   1040      2            0        0.349</span></a>
+<a class="sourceLine" id="cb21-83" data-line-number="83"><span class="co">#&gt; 11 3       SLOBER    21   1289    309      2            0        0.806</span></a>
+<a class="sourceLine" id="cb21-84" data-line-number="84"><span class="co">#&gt; 12 4       SLOBER     8    833    764      3            0        0.521</span></a></code></pre></div>
 <p><a href="https://forestgeo.github.io/fgeo/articles/fgeo.html">Get started with <strong>fgeo</strong></a></p>
 </div>
 </div>
