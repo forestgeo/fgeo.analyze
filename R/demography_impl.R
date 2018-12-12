@@ -160,18 +160,13 @@ recruitment_impl <- function(census1,
   splitN <- list(prep$split1[alive1], prep$split2[alive1])
   splitN2 <- list(prep$split1[N2.inc], prep$split2[N2.inc])
 
-  # TODO: Extract function fill.dimension:
-  #  fill_class_dim(x, class1, class2, fill = NA)
-  S <- tapply(prep$census2$dbh[S.inc], splitS, length)
-  S <- fill.dimension(S, class1, class2)
-  N2 <- tapply(prep$census2$dbh[N2.inc], splitN2, length)
-  N2 <- fill.dimension(N2, class1, class2)
-  timeint <- tapply(prep$time[N2.inc], splitN2, mean, na.rm = T)
-  timeint <- fill.dimension(timeint, class1, class2, fill = NA)
-  startdate <- tapply(prep$census1$date[alive1], splitN, mean, na.rm = T)
-  startdate <- fill.dimension(startdate, class1, class2, fill = NA)
-  enddate <- tapply(prep$census2$date[N2.inc], splitN2, mean, na.rm = T)
-  enddate <- fill.dimension(enddate, class1, class2, fill = NA)
+  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
+  S         <- fill_0( apply_length(prep$census2$dbh[S.inc], splitS))
+  N2        <- fill_0( apply_length(prep$census2$dbh[N2.inc], splitN2))
+  timeint   <- fill_NA(apply_mean(prep$time[N2.inc], splitN2))
+  startdate <- fill_NA(apply_mean(prep$census1$date[alive1], splitN))
+  enddate   <- fill_NA(apply_mean(prep$census2$date[N2.inc], splitN2))
 
   if (equal(sum(N2), 0)) {
     nms <- c("N2", "R", "rate", "lower", "upper", "time", "date1", "date2")
@@ -229,31 +224,23 @@ mortality_impl <- function(census1,
   splitN <- list(prep$split1[alive1], prep$split2[alive1])
   splitS <- list(prep$split1[alive1 & alive2], prep$split2[alive1 & alive2])
 
-  N <- tapply(prep$census1$dbh[alive1], splitN, length)
-  N <- fill.dimension(N, class1, class2)
-  S <- tapply(prep$census1$dbh[alive1 & alive2], splitS, length)
-  S <- fill.dimension(S, class1, class2)
-  meantime <- tapply(prep$time[alive1], splitN, mean, na.rm = T)
-  meantime <- fill.dimension(meantime, class1, class2, fill = NA)
-  meandbh <- tapply(prep$census1$dbh[alive1], splitN, mean, na.rm = T)
-  meandbh <- fill.dimension(meandbh, class1, class2, fill = NA)
-  startdate <- tapply(prep$census1$date[alive1], splitN, mean, na.rm = T)
-  startdate <- fill.dimension(startdate, class1, class2, fill = NA)
-  enddate <- tapply(prep$census2$date[alive1], splitN, mean, na.rm = T)
-  enddate <- fill.dimension(enddate, class1, class2, fill = NA)
+  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
+  N         <- fill_0(apply_length(prep$census1$dbh[alive1], splitN))
+  S         <- fill_0(apply_length(prep$census1$dbh[alive1 & alive2], splitS))
+  meantime  <- fill_NA(apply_mean(prep$time[alive1], splitN))
+  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[alive1], splitN))
+  startdate <- fill_NA(apply_mean(prep$census1$date[alive1], splitN))
+  enddate   <- fill_NA(apply_mean(prep$census2$date[alive1], splitN))
 
   if (equal(sum(N), 0)) {
     message(
       "To improve tests, please explain what triggered this message ",
       "(maurolepore@gmail.com)."
     )
-    result <- list(
-      N     = rep(NA, length(class1)), D = rep(NA, length(class1)),
-      rate  = rep(NA, length(class1)),
-      lower = rep(NA, length(class1)), upper = rep(NA, length(class1)),
-      time  = rep(NA, length(class1)), dbhmean = rep(NA, length(class1)),
-      date1 = rep(NA, length(class1)), date2 = rep(NA, length(class1))
-    )
+    .names <-
+      c("N", "D", "rate", "lower", "upper", "time", "dbhmean", "date1", "date2")
+    result <- Map(function(x) rep(NA, length(class1)), .names)
     return(new_demography_impl(result, split2))
   }
 
@@ -293,7 +280,7 @@ mortality.calculation <- function(N, S, meantime) {
   lower.rate[lower.ci == N] <- 0
   mort.rate[N == 0] <- lower.rate[N == 0] <- upper.rate[N == 0] <- NA
 
-  out <- list(
+  result <- list(
     N = N,
     S = S,
     D = N - S,
@@ -305,10 +292,9 @@ mortality.calculation <- function(N, S, meantime) {
 
   # FIXME: Returning different data structures is error-prone
   if (is.null(dim(N))) {
-    out <- data.frame(out)
+    result <- data.frame(result)
   }
-
-  out
+  result
 }
 
 # Growth ------------------------------------------------------------------
@@ -344,8 +330,7 @@ growth_impl <- function(census1,
     prep$split2 <- rep("all", dim(prep$census2)[1])
   }
   if (is.null(prep$census2$codes)) {
-    # This could be just `census2$codes <- "."`
-    prep$census2$codes <- rep(".", length(size2))
+    prep$census2$codes <- "."
   }
   time <- time_diff(prep$census1, prep$census2)
   if (rounddown) {
@@ -369,20 +354,15 @@ growth_impl <- function(census1,
   class2 <- sort(unique(prep$split2))
   splitgood <- list(prep$split1[good], prep$split2[good])
 
-  mean.grow <- tapply(growthrate[good], splitgood, mean, na.rm = TRUE)
-  mean.grow <- fill.dimension(mean.grow, class1, class2, fill = NA)
-  sd.grow <- tapply(growthrate[good], splitgood, sd, na.rm = TRUE)
-  sd.grow <- fill.dimension(sd.grow, class1, class2, fill = NA)
-  N <- tapply(growthrate[good], splitgood, length)
-  N <- fill.dimension(N, class1, class2, fill = 0)
-  meandbh <- tapply(prep$census1$dbh[good], splitgood, mean, na.rm = TRUE)
-  meandbh <- fill.dimension(meandbh, class1, class2, fill = NA)
-  interval <- tapply(time[good], splitgood, mean, na.rm = TRUE)
-  interval <- fill.dimension(interval, class1, class2, fill = NA)
-  startdate <- tapply(prep$census1$date[good], splitgood, mean, na.rm = TRUE)
-  startdate <- fill.dimension(startdate, class1, class2, fill = NA)
-  enddate <- tapply(prep$census2$date[good], splitgood, mean, na.rm = TRUE)
-  enddate <- fill.dimension(enddate, class1, class2, fill = NA)
+  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
+  N         <- fill_0( apply_length(growthrate[good], splitgood))
+  mean.grow <- fill_NA(apply_mean(growthrate[good], splitgood))
+  sd.grow   <- fill_NA(apply_sd(growthrate[good], splitgood))
+  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[good], splitgood))
+  interval  <- fill_NA(apply_mean(time[good], splitgood))
+  startdate <- fill_NA(apply_mean(prep$census1$date[good], splitgood))
+  enddate   <- fill_NA(apply_mean(prep$census2$date[good], splitgood))
 
   ci.grow <- sd.grow
   ci.grow[N == 0] <- NA
@@ -401,11 +381,8 @@ growth_impl <- function(census1,
     result$sd <- NULL
     result <- append(result, list(clim = drp(ci.grow)), after = 2)
   }
-
   new_demography_impl(result, split2)
 }
-
-
 
 #' Internal.
 #'
@@ -639,6 +616,18 @@ warn_if_time_diff_is_na <- function(time) {
   invisible(time)
 }
 
+fill_with_classes <- function(classes, fill) {
+  force(classes)
+  force(fill)
+  function(x) {
+    fill.dimension(x, classes[[1]], classes[[2]], fill = fill)
+  }
+}
+
+apply_mean   <- function(X, INDEX) tapply(X, INDEX, FUN = mean, na.rm = TRUE)
+apply_sd     <- function(X, INDEX) tapply(X, INDEX, FUN = sd,   na.rm = TRUE)
+apply_length <- function(X, INDEX) tapply(X, INDEX, FUN = length)
+
 #' Internal.
 #'
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
@@ -689,4 +678,6 @@ fill.dimension <- function(dataarray, class1, class2, fill = 0) {
 #' @noRd
 #' @author Rick Condit, Suzanne Lao.
 rndown5 <- function(s) 5 * floor(s / 5)
+
+
 
