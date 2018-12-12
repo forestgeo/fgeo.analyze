@@ -1,7 +1,7 @@
 #' @importFrom dplyr group_by ungroup filter select mutate summarize arrange
 #' @importFrom dplyr count
 #' @importFrom fgeo.tool check_crucial_names is_duplicated is_multiple
-#' @importFrom fgeo.tool to_df rename_matches
+#' @importFrom fgeo.tool rename_matches
 #' @importFrom glue glue glue_collapse
 #' @importFrom grDevices dev.off graphics.off pdf
 #' @importFrom graphics hist lines par plot points text
@@ -11,8 +11,6 @@
 #' @importFrom stats nls var nls.control predict resid
 #' @importFrom tibble tibble
 NULL
-#' @export
-fgeo.tool::to_df
 
 #' Pipe operator
 #'

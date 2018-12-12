@@ -90,7 +90,7 @@
             <h3 class="subtitle">Given a number of tree species and habitat types in a plot, are species significantly aggregated within habitats?</h3>
                         <h4 class="author">Mauro Lepore</h4>
             
-            <h4 class="date">2018-12-11</h4>
+            <h4 class="date">2018-12-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/forestgeo/fgeo.analyze/blob/master/vignettes/siteonly/tt_test.Rmd"><code>vignettes/siteonly/tt_test.Rmd</code></a></small>
       <div class="hidden name"><code>tt_test.Rmd</code></div>
@@ -117,7 +117,7 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages -------------------------------------------- fgeo 0.0.0.9002 --</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages --------------------------------------------- fgeo 0.0.0.9002 --</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; v fgeo.tool    0.0.0.9005     v fgeo.map     0.0.0.9402</span></a>
 <a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; </span></a>
@@ -277,7 +277,7 @@
 <a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt; PREMON      14       76     1523        1              0         0.0475</span></a>
 <a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; SLOBER       7      912      680        8              0         0.5700</span></a></code></pre></div>
 <p>You also can gather all results into a single dataframe – this lets you use a wide range of tools for data manipulation and visualization.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">tt_df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/fgeo.tool/topics/to_df">to_df</a></span>(out)</a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">tt_df &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/to_df.html">to_df</a></span>(out)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">tt_df</a>
 <a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt; # A tibble: 12 x 8</span></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>

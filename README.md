@@ -28,7 +28,7 @@ article](https://goo.gl/dQKEeg).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages -------------------------------------------- fgeo 0.0.0.9002 --
+#> -- Attaching packages --------------------------------------------- fgeo 0.0.0.9002 --
 #> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003
 #> v fgeo.tool    0.0.0.9005     v fgeo.map     0.0.0.9402
 #> 
@@ -285,7 +285,7 @@ Demography functions output a list that you can convert to a more
 convenient dataframe with `to_df()`.
 
 ``` r
-recruitment_impl(census1, census2)
+recruitment_ctfs(census1, census2)
 #> Detected dbh ranges:
 #>   * `census1` = 14-661.
 #>   * `census2` = 14.5-676.
@@ -314,7 +314,7 @@ recruitment_impl(census1, census2)
 #> $date2
 #> [1] 20589.76
 to_df(
-  recruitment_impl(census1, census2, quiet = TRUE)
+  recruitment_ctfs(census1, census2, quiet = TRUE)
 )
 #> # A tibble: 1 x 8
 #>      N2     R  rate lower  upper  time  date1  date2
@@ -326,7 +326,7 @@ Except if you use `split2`: This argument creates a complex data
 structure that `to_df()` cannot handle.
 
 ``` r
-not_recommended <- recruitment_impl(
+not_recommended <- recruitment_ctfs(
   census1, census2, 
   split1 = census1$sp, 
   split2 = census1$quadrat, 
@@ -350,7 +350,7 @@ variables and the output always works with `to_df()`.
 ``` r
 # Recommended
 sp_quadrat <- interaction(census1$sp, census1$quadrat)
-recruitment <- recruitment_impl(
+recruitment <- recruitment_ctfs(
   census1, census2, 
   split1 = sp_quadrat, 
   quiet = TRUE
@@ -376,7 +376,7 @@ The same applies for other demography
 functions.
 
 ``` r
-to_df(mortality_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE))
+to_df(mortality_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
 #> # A tibble: 540 x 10
 #>    groups          N     D  rate  lower   upper  time date1 date2 dbhmean
 #>    <chr>       <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>   <dbl>
@@ -391,7 +391,7 @@ to_df(mortality_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE))
 #>  9 MANBID.1502     1     1   Inf 0.0371 Inf      4.64 18812 20506    15.7
 #> 10 MATDOM.1505     1     0     0 0        0.404  4.56 18854 20521   210  
 #> # ... with 530 more rows
-growth <- to_df(growth_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE))
+growth <- to_df(growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
 growth
 #> # A tibble: 540 x 8
 #>    groups         rate     N  clim dbhmean  time date1 date2

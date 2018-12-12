@@ -90,7 +90,7 @@ describe("basal_area_byyr and abundance_byyr work with different datasets", {
 })
 
 describe("abundance_byyr and basa_area_byyr return expected output", {
-  tiny <- tibble::tibble(
+  tiny <- tibble(
     Tag = c("0001", "0001", "0002", "0002", "0003", "0003"),
     TreeID = c("0001", "0001", "0002", "0002", "0003", "0003"),
     PlotName = c("p", "p", "p", "p", "p", "p"),

@@ -33,5 +33,10 @@ head(to_df(.x))
 }
 \seealso{
 [to_df()].
+
+Other methods for fgeo generics: \code{\link{to_df.tt_lst}}
+
+Other demography functions: \code{\link{demography_ctfs}}
 }
+\concept{demography functions}
 \concept{methods for fgeo generics}

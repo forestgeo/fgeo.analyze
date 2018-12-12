@@ -85,7 +85,7 @@ str(hab2)
 [fgeo.map::autoplot.fgeo_habitat()], [fgeo.tool::fgeo_topography()].
 
 Other habitat functions: \code{\link{summary.tt_lst}},
-  \code{\link{tt_test}}
+  \code{\link{to_df.tt_lst}}, \code{\link{tt_test}}
 }
 \author{
 Rick Condit.

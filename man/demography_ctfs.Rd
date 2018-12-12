@@ -158,6 +158,9 @@ if (is_installed) {
 }
 }
 }
+\seealso{
+Other demography functions: \code{\link{to_df.demography_ctfs}}
+}
 \author{
 Rick Condit, Suzanne Lao.
 }

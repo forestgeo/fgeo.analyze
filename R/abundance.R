@@ -133,7 +133,7 @@ abundance_df <- function(x) {
 basal_area_df <- function(x) {
   g <- dplyr::group_vars(x)
   if (rlang::is_empty(x)) {
-    x <- tibble::tibble(dbh = double(0))
+    x <- tibble(dbh = double(0))
   }
   out <- summarize(x, basal_area = sum(basal_area_dbl(.data$dbh), na.rm = TRUE))
   dplyr::grouped_df(out, g)

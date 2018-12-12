@@ -566,7 +566,7 @@ new_demography_ctfs <- function(.x, split2, ...) {
   stopifnot(is.list(.x))
   .x <- structure(.x, class = c("demography_ctfs", class(.x)))
 
-  # Flag deprecated argument to be used in fgeo.tool::to_df()
+  # Flag deprecated argument to be used in to_df()
   if (!is.null(split2)) {
     attr(.x, "split2") <- TRUE
   }

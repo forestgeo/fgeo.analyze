@@ -165,16 +165,16 @@ census2 <- fgeo.x::tree6
 Demography functions output a list that you can convert to a more convenient dataframe with `to_df()`.
 
 ```{r}
-recruitment_impl(census1, census2)
+recruitment_ctfs(census1, census2)
 to_df(
-  recruitment_impl(census1, census2, quiet = TRUE)
+  recruitment_ctfs(census1, census2, quiet = TRUE)
 )
 ```
 
 Except if you use `split2`: This argument creates a complex data structure that `to_df()` cannot handle.
 
 ```{r, error=TRUE}
-not_recommended <- recruitment_impl(
+not_recommended <- recruitment_ctfs(
   census1, census2, 
   split1 = census1$sp, 
   split2 = census1$quadrat, 
@@ -189,7 +189,7 @@ Instead, pass the multiple grouping variables to `split` via `interaction()`. Th
 ```{r}
 # Recommended
 sp_quadrat <- interaction(census1$sp, census1$quadrat)
-recruitment <- recruitment_impl(
+recruitment <- recruitment_ctfs(
   census1, census2, 
   split1 = sp_quadrat, 
   quiet = TRUE
@@ -200,8 +200,8 @@ to_df(recruitment)
 The same applies for other demography functions.
 
 ```{r}
-to_df(mortality_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE))
-growth <- to_df(growth_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE))
+to_df(mortality_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
+growth <- to_df(growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
 growth
 ```
 

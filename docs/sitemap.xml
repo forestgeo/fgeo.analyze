@@ -16,7 +16,7 @@
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/check_crucial_names.html</loc>
   </url>
   <url>
-    <loc>https://forestgeo.github.io/fgeo.analyze//reference/demography_impl.html</loc>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/demography_ctfs.html</loc>
   </url>
   <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/example_byyr.html</loc>
@@ -34,10 +34,16 @@
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://forestgeo.github.io/fgeo.analyze//reference/reexports.html</loc>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/summary.tt_lst.html</loc>
   </url>
   <url>
-    <loc>https://forestgeo.github.io/fgeo.analyze//reference/summary.tt_lst.html</loc>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/to_df.demography_ctfs.html</loc>
+  </url>
+  <url>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/to_df.html</loc>
+  </url>
+  <url>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/to_df.tt_lst.html</loc>
   </url>
   <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/tt_test.html</loc>
