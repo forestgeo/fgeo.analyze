@@ -13,7 +13,6 @@
 #' survivors. Individuals whose status is NA in either census are deleted from
 #' all calculations.
 #'
-#'
 #' @param quiet Use `TRUE` to suppress messages.
 #' @param census1,census2 Two census tables, each being a dataframe and in
 #'   particular, a ForestGEO tree table. You may use a stem table, but you more
@@ -28,7 +27,7 @@
 #' @param mindbh The minimum diameter above which the counts are done. Trees
 #'   smaller than `mindbh` are excluded. If `NULL`, all living trees are
 #'   included.
-#' @param rounddown If `TRUE``, all `dbh < 55` are rounded down to the nearest
+#' @param rounddown If `TRUE`, all `dbh < 55` are rounded down to the nearest
 #'   multiple of 5.
 #' @param method Use "I" to calculate annual dbh increment as
 #'   `(dbh2 - dbh1)/time`, or "E" to calculate the relative growth rate as
@@ -84,35 +83,34 @@
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
 #'
-#' recruitment_impl(census1, census2)
+#' recruitment_ctfs(census1, census2)
 #'
 #' # Demography by any number of grouping variables via `interaction(...)`
 #' sp_quadrat <- interaction(census1$sp, census1$quadrat)
 #'
-#' recruitment <- recruitment_impl(
+#' recruitment <- recruitment_ctfs(
 #'   census1, census2,
 #'   split1 = sp_quadrat,
 #'   quiet = TRUE
 #' )
 #' lapply(recruitment, head)
 #'
-#' mortality <- mortality_impl(
+#' mortality <- mortality_ctfs(
 #'   census1, census2, split1 = sp_quadrat, quiet = TRUE
 #' )
 #' lapply(mortality, head)
 #'
-#' growth <- growth_impl(census1, census2, split1 = sp_quadrat, quiet = TRUE)
+#' growth <- growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE)
 #' lapply(growth, head)
 #'
 #' \dontrun{
 #' # Convert to convenient dataframes -------------------------------------
-#' are_installed <- requireNamespace("fgeo.tool") && requireNamespace("tidyr")
-#' if (are_installed) {
-#'   library(fgeo.tool)
+#' is_installed <- requireNamespace("tidyr")
+#' if (is_installed) {
 #'   library(tidyr)
 #'
 #'   to_df(
-#'     recruitment_impl(census1, census2, quiet = TRUE)
+#'     recruitment_ctfs(census1, census2, quiet = TRUE)
 #'   )
 #'
 #'   to_df(mortality)
@@ -123,14 +121,12 @@
 #'   )
 #' }
 #' }
-#' @name demography_impl
+#' @name demography_ctfs
 NULL
 
-# Recruitment -------------------------------------------------------------
-
-#' @rdname demography_impl
+#' @rdname demography_ctfs
 #' @export
-recruitment_impl <- function(census1,
+recruitment_ctfs <- function(census1,
                              census2,
                              mindbh = NULL,
                              alivecode = NULL,
@@ -171,7 +167,7 @@ recruitment_impl <- function(census1,
   if (equal(sum(N2), 0)) {
     nms <- c("N2", "R", "rate", "lower", "upper", "time", "date1", "date2")
     result <- Map(function(x) rep(NA, length(class1)), nms)
-    return(new_demography_impl(result, split2))
+    return(new_demography_ctfs(result, split2))
   }
 
   lower.ci <- upper.ci <- N2
@@ -193,12 +189,10 @@ recruitment_impl <- function(census1,
     date1 = drp(startdate),
     date2 = drp(enddate)
   )
-  new_demography_impl(result, split2)
+  new_demography_ctfs(result, split2)
 }
 
-# Mortality ---------------------------------------------------------------
-
-#' @rdname demography_impl
+#' @rdname demography_ctfs
 #' @export
 mortality_impl <- function(census1,
                            census2,
@@ -241,7 +235,7 @@ mortality_impl <- function(census1,
     .names <-
       c("N", "D", "rate", "lower", "upper", "time", "dbhmean", "date1", "date2")
     result <- Map(function(x) rep(NA, length(class1)), .names)
-    return(new_demography_impl(result, split2))
+    return(new_demography_ctfs(result, split2))
   }
 
   m <- mortality.calculation(
@@ -258,13 +252,74 @@ mortality_impl <- function(census1,
     date2   = drp(enddate),
     dbhmean = drp(meandbh)
   )
-  new_demography_impl(result, split2)
+  new_demography_ctfs(result, split2)
 }
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @rdname demography_ctfs
+#' @export
+mortality_ctfs <- function(census1,
+                           census2,
+                           alivecode = NULL,
+                           split1 = NULL,
+                           split2 = NULL,
+                           quiet = FALSE) {
+  prep <- wrap_prepare_recruitment_mortality(
+    census1, census2, split1, split2, quiet, mindbh = NULL
+  )
+
+  check_alivecode(prep$census1, prep$census2, alivecode, quiet)
+  alivecode <- alivecode %||% c("A", "AB", "AS")
+
+  alive1 <- alive2 <- rep(FALSE, dim(prep$census1)[1])
+  alive1[prep$census1$status == "A"] <- TRUE
+  for (i in 1:length(alivecode)) {
+    alive2[prep$census2$status == alivecode[i]] <- TRUE
+  }
+
+  class1 <- sort(unique(prep$split1))
+  class2 <- sort(unique(prep$split2))
+  splitN <- list(prep$split1[alive1], prep$split2[alive1])
+  splitS <- list(prep$split1[alive1 & alive2], prep$split2[alive1 & alive2])
+
+  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
+  N         <- fill_0(apply_length(prep$census1$dbh[alive1], splitN))
+  S         <- fill_0(apply_length(prep$census1$dbh[alive1 & alive2], splitS))
+  meantime  <- fill_NA(apply_mean(prep$time[alive1], splitN))
+  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[alive1], splitN))
+  startdate <- fill_NA(apply_mean(prep$census1$date[alive1], splitN))
+  enddate   <- fill_NA(apply_mean(prep$census2$date[alive1], splitN))
+
+  if (equal(sum(N), 0)) {
+    message(
+      "To improve tests, please explain what triggered this message ",
+      "(maurolepore@gmail.com)."
+    )
+    .names <-
+      c("N", "D", "rate", "lower", "upper", "time", "dbhmean", "date1", "date2")
+    result <- Map(function(x) rep(NA, length(class1)), .names)
+    return(new_demography_ctfs(result, split2))
+  }
+
+  m <- mortality.calculation(
+    N = as.matrix(N), S = as.matrix(S), meantime = as.matrix(meantime)
+  )
+  result <- list(
+    N       = drp(m$N),
+    D       = drp(m$D),
+    rate    = drp(m$rate),
+    lower   = drp(m$lowerCI),
+    upper   = drp(m$upperCI),
+    time    = drp(m$time),
+    date1   = drp(startdate),
+    date2   = drp(enddate),
+    dbhmean = drp(meandbh)
+  )
+  new_demography_ctfs(result, split2)
+}
+
 #' @keywords internal
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 #' @author Rick Condit, Suzanne Lao.
 mortality.calculation <- function(N, S, meantime) {
@@ -297,9 +352,7 @@ mortality.calculation <- function(N, S, meantime) {
   result
 }
 
-# Growth ------------------------------------------------------------------
-
-#' @rdname demography_impl
+#' @rdname demography_ctfs
 #' @export
 growth_impl <- function(census1,
                         census2,
@@ -381,13 +434,96 @@ growth_impl <- function(census1,
     result$sd <- NULL
     result <- append(result, list(clim = drp(ci.grow)), after = 2)
   }
-  new_demography_impl(result, split2)
+  new_demography_ctfs(result, split2)
 }
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @rdname demography_ctfs
+#' @export
+growth_ctfs <- function(census1,
+                        census2,
+                        rounddown = FALSE,
+                        method = "I",
+                        stdev = FALSE,
+                        dbhunit = "mm",
+                        mindbh = NULL,
+                        growthcol = "dbh",
+                        err.limit = 1000,
+                        maxgrow = 1000,
+                        split1 = NULL,
+                        split2 = NULL,
+                        quiet = FALSE) {
+  # More crucial names checked downstream
+  lapply(list(census1, census2), check_crucial_names, "stemID")
+
+  prep <- prepare_demography(census1, census2, split1, split2, quiet, mindbh)
+  if (is.null(prep$mindbh)) {
+    prep$mindbh <- 0
+  }
+  size1 <- prep$census1[[growthcol]]
+  size2 <- prep$census2[[growthcol]]
+  if (is.null(prep$split1)) {
+    prep$split1 <- rep("all", dim(prep$census1)[1])
+  }
+  if (is.null(prep$split2)) {
+    prep$split2 <- rep("all", dim(prep$census2)[1])
+  }
+  if (is.null(prep$census2$codes)) {
+    prep$census2$codes <- "."
+  }
+  time <- time_diff(prep$census1, prep$census2)
+  if (rounddown) {
+    sm <- ((size1 < 55 | size2 < 55) & !is.na(size1) & !is.na(size2))
+    size1[sm] <- rndown5(size1[sm])
+    size2[sm] <- rndown5(size2[sm])
+  }
+
+  if (method == "I") {
+    growthrate <- (size2 - size1) / time
+  } else if (method == "E") {
+    growthrate <- (log(size2) - log(size1)) / time
+  }
+
+  good <- trim.growth(prep$census1, prep$census2, time,
+    err.limit = err.limit,
+    maxgrow = maxgrow, mindbh = prep$mindbh
+  )
+  growthrate[!good] <- NA
+  class1 <- sort(unique(prep$split1))
+  class2 <- sort(unique(prep$split2))
+  splitgood <- list(prep$split1[good], prep$split2[good])
+
+  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
+  N         <- fill_0( apply_length(growthrate[good], splitgood))
+  mean.grow <- fill_NA(apply_mean(growthrate[good], splitgood))
+  sd.grow   <- fill_NA(apply_sd(growthrate[good], splitgood))
+  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[good], splitgood))
+  interval  <- fill_NA(apply_mean(time[good], splitgood))
+  startdate <- fill_NA(apply_mean(prep$census1$date[good], splitgood))
+  enddate   <- fill_NA(apply_mean(prep$census2$date[good], splitgood))
+
+  ci.grow <- sd.grow
+  ci.grow[N == 0] <- NA
+  ci.grow[N > 0] <- sd.grow[N > 0] * qt(0.975, N[N > 0]) / sqrt(N[N > 0])
+  result <- list(
+    rate = drp(mean.grow),
+    N = drp(N),
+    sd = drp(sd.grow),
+    dbhmean = drp(meandbh),
+    time = drp(interval),
+    date1 = drp(startdate),
+    date2 = drp(enddate)
+  )
+
+  if (!stdev) {
+    result$sd <- NULL
+    result <- append(result, list(clim = drp(ci.grow)), after = 2)
+  }
+  new_demography_ctfs(result, split2)
+}
+
 #' @keywords internal
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 #' @author Rick Condit, Suzanne Lao.
 trim.growth <- function(cens1,
@@ -424,13 +560,11 @@ trim.growth <- function(cens1,
   return(accept)
 }
 
-
-
 # Helpers -----------------------------------------------------------------
 
-new_demography_impl <- function(.x, split2, ...) {
+new_demography_ctfs <- function(.x, split2, ...) {
   stopifnot(is.list(.x))
-  .x <- structure(.x, class = c("demography_impl", class(.x)))
+  .x <- structure(.x, class = c("demography_ctfs", class(.x)))
 
   # Flag deprecated argument to be used in fgeo.tool::to_df()
   if (!is.null(split2)) {
@@ -443,13 +577,13 @@ new_demography_impl <- function(.x, split2, ...) {
 #' @keywords internal
 #' @export
 #' @noRd
-print.demography_impl <- function(x, ...) {
+print.demography_ctfs <- function(x, ...) {
   print(unclass(x))
   invisible(x)
 }
 
-# Wrap code shared by recruitment_impl() and mortality_impl() including what's
-# also shared by growth_impl.
+# Wrap code shared by recruitment_ctfs() and mortality_ctfs() including what's
+# also shared by growth_ctfs.
 wrap_prepare_recruitment_mortality <- function(census1,
   census2,
   split1,
@@ -470,13 +604,13 @@ wrap_prepare_recruitment_mortality <- function(census1,
   )
 }
 
-# Code shared by recruitment_impl(), mortality_impl() and growth().
+# Code shared by recruitment_ctfs(), mortality_ctfs() and growth().
 prepare_demography <- function(census1,
-  census2,
-  split1,
-  split2,
-  quiet,
-  mindbh = NULL) {
+                               census2,
+                               split1,
+                               split2,
+                               quiet,
+                               mindbh = NULL) {
   force(census1)
   force(census2)
   check_prepare_demography(census1, census2, mindbh, split1, split2, quiet)
@@ -505,7 +639,7 @@ prepare_demography <- function(census1,
   )
 }
 
-# Code shared by recruitment_impl() and mortality_impl() but not growth().
+# Code shared by recruitment_ctfs() and mortality_ctfs() but not growth().
 prepare_recr_mort <- function(census1, census2, split1, split2) {
   split1 <- split1 %||% rep("all", dim(census1)[1])
   split2 <- split2 %||% rep("all", dim(census2)[1])
@@ -628,10 +762,8 @@ apply_mean   <- function(X, INDEX) tapply(X, INDEX, FUN = mean, na.rm = TRUE)
 apply_sd     <- function(X, INDEX) tapply(X, INDEX, FUN = sd,   na.rm = TRUE)
 apply_length <- function(X, INDEX) tapply(X, INDEX, FUN = length)
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @keywords internal
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 #' @author Rick Condit, Suzanne Lao.
 find.climits <- function(N, D, alpha = .05, kind = "upper") {
@@ -647,18 +779,16 @@ find.climits <- function(N, D, alpha = .05, kind = "upper") {
   return(result)
 }
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @keywords internal
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 #' @author Rick Condit, Suzanne Lao.
 drp <- function(x) {
   return(drop(as.matrix(x)))
 }
 
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @keywords internal
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 #' @author Rick Condit, Suzanne Lao.
 fill.dimension <- function(dataarray, class1, class2, fill = 0) {
@@ -671,13 +801,8 @@ fill.dimension <- function(dataarray, class1, class2, fill = 0) {
   return(result)
 }
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @keywords internal
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 #' @author Rick Condit, Suzanne Lao.
 rndown5 <- function(s) 5 * floor(s / 5)
-
-
-
