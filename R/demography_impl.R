@@ -137,90 +137,68 @@ recruitment_impl <- function(census1,
                              split1 = NULL,
                              split2 = NULL,
                              quiet = FALSE) {
-  # Used before return
-  .split2 <- split2
-
   prep <- wrap_prepare_recruitment_mortality(
     census1, census2, split1, split2, quiet, mindbh
   )
-  census1 <- prep$census1
-  census2 <- prep$census2
-  split1 <- prep$split1
-  split2 <- prep$split2
-  inc <- prep$inc
-  time <- prep$time
 
-  check_alivecode(census1, census2, alivecode, quiet)
+  check_alivecode(prep$census1, prep$census2, alivecode, quiet)
   alivecode <- alivecode %||% c("A", "AB", "AS")
   mindbh <- mindbh %||% 0
 
-  survivor <- alive1 <- alive2 <- rep(FALSE, length(census1$status))
-  alive1[census1$status == "A"] <- TRUE
+  survivor <- alive1 <- alive2 <- rep(FALSE, length(prep$census1$status))
+  alive1[prep$census1$status == "A"] <- TRUE
   for (i in 1:length(alivecode)) {
-    survivor[census1$status == "A" & census2$status == alivecode[i]] <- TRUE
-    alive2[census2$status == alivecode[i]] <- TRUE
+    survivor[prep$census1$status == "A" & prep$census2$status == alivecode[i]] <- TRUE
+    alive2[prep$census2$status == alivecode[i]] <- TRUE
   }
 
-  class1 <- sort(unique(split1))
-  class2 <- sort(unique(split2))
+  class1 <- sort(unique(prep$split1))
+  class2 <- sort(unique(prep$split2))
+  S.inc <- survivor & (prep$census1$dbh >= mindbh)
+  N2.inc <- (alive2 & (prep$census2$dbh >= mindbh)) | S.inc
+  splitS <- list(prep$split1[S.inc], prep$split2[S.inc])
+  splitN <- list(prep$split1[alive1], prep$split2[alive1])
+  splitN2 <- list(prep$split1[N2.inc], prep$split2[N2.inc])
 
-  S.inc <- survivor & (census1$dbh >= mindbh)
-  N2.inc <- (alive2 & (census2$dbh >= mindbh)) | S.inc
-
-  splitS <- list(split1[S.inc], split2[S.inc])
-  splitN <- list(split1[alive1], split2[alive1])
-  splitN2 <- list(split1[N2.inc], split2[N2.inc])
-
-  S <- tapply(census2$dbh[S.inc], splitS, length)
-  N2 <- tapply(census2$dbh[N2.inc], splitN2, length)
-  timeint <- tapply(time[N2.inc], splitN2, mean, na.rm = T)
-  startdate <- tapply(census1$date[alive1], splitN, mean, na.rm = T)
-  enddate <- tapply(census2$date[N2.inc], splitN2, mean, na.rm = T)
-
+  # TODO: Extract function fill.dimension:
+  #  fill_class_dim(x, class1, class2, fill = NA)
+  S <- tapply(prep$census2$dbh[S.inc], splitS, length)
   S <- fill.dimension(S, class1, class2)
+  N2 <- tapply(prep$census2$dbh[N2.inc], splitN2, length)
   N2 <- fill.dimension(N2, class1, class2)
+  timeint <- tapply(prep$time[N2.inc], splitN2, mean, na.rm = T)
   timeint <- fill.dimension(timeint, class1, class2, fill = NA)
+  startdate <- tapply(prep$census1$date[alive1], splitN, mean, na.rm = T)
   startdate <- fill.dimension(startdate, class1, class2, fill = NA)
+  enddate <- tapply(prep$census2$date[N2.inc], splitN2, mean, na.rm = T)
   enddate <- fill.dimension(enddate, class1, class2, fill = NA)
 
   if (equal(sum(N2), 0)) {
-    early <- list(
-      N2 = rep(NA, length(class1)),
-      R = rep(NA, length(class1)),
-      rate = rep(NA, length(class1)),
-      lower = rep(NA, length(class1)),
-      upper = rep(NA, length(class1)),
-      time = rep(NA, length(class1)),
-      date1 = rep(NA, length(class1)),
-      date2 = rep(NA, length(class1))
-    )
-    return(early)
+    nms <- c("N2", "R", "rate", "lower", "upper", "time", "date1", "date2")
+    result <- Map(function(x) rep(NA, length(class1)), nms)
+    return(new_demography_impl(result, split2))
   }
 
   lower.ci <- upper.ci <- N2
   lower.ci <- find.climits(as.matrix(N2), as.matrix(S), kind = "lower")
   upper.ci <- find.climits(as.matrix(N2), as.matrix(S), kind = "upper")
-
   rec.rate <- (log(N2) - log(S)) / timeint
   upper.rate <- (log(N2) - log(lower.ci)) / timeint
   lower.rate <- (log(N2) - log(upper.ci)) / timeint
-
   rec.rate[S == 0] <- upper.rate[S == 0] <- Inf
   upper.rate[lower.ci == 0] <- Inf
   rec.rate[N2 == 0] <- lower.rate[N2 == 0] <- upper.rate[N2 == 0] <- NA
-
   result <- list(
-    N2 = drp(N2),
-    R = drp(N2 - S),
-    rate = drp(rec.rate),
+    N2    = drp(N2),
+    R     = drp(N2 - S),
+    rate  = drp(rec.rate),
     lower = drp(lower.rate),
     upper = drp(upper.rate),
-    time = drp(timeint),
+    time  = drp(timeint),
     date1 = drp(startdate),
     date2 = drp(enddate)
   )
-
-  new_demography_impl(result, .split2)
+  new_demography_impl(result, split2)
 }
 
 # Mortality ---------------------------------------------------------------
@@ -233,44 +211,35 @@ mortality_impl <- function(census1,
                            split1 = NULL,
                            split2 = NULL,
                            quiet = FALSE) {
-  # Used before return
-  .split2 <- split2
   prep <- wrap_prepare_recruitment_mortality(
-    census1, census2, split1, split2, quiet,
-    mindbh = NULL
+    census1, census2, split1, split2, quiet, mindbh = NULL
   )
-  census1 <- prep$census1
-  census2 <- prep$census2
-  split1 <- prep$split1
-  split2 <- prep$split2
-  inc <- prep$inc
-  time <- prep$time
 
-  check_alivecode(census1, census2, alivecode, quiet)
+  check_alivecode(prep$census1, prep$census2, alivecode, quiet)
   alivecode <- alivecode %||% c("A", "AB", "AS")
 
-  alive1 <- alive2 <- rep(FALSE, dim(census1)[1])
-  alive1[census1$status == "A"] <- TRUE
-  for (i in 1:length(alivecode)) alive2[census2$status == alivecode[i]] <- TRUE
+  alive1 <- alive2 <- rep(FALSE, dim(prep$census1)[1])
+  alive1[prep$census1$status == "A"] <- TRUE
+  for (i in 1:length(alivecode)) {
+    alive2[prep$census2$status == alivecode[i]] <- TRUE
+  }
 
-  class1 <- sort(unique(split1))
-  class2 <- sort(unique(split2))
+  class1 <- sort(unique(prep$split1))
+  class2 <- sort(unique(prep$split2))
+  splitN <- list(prep$split1[alive1], prep$split2[alive1])
+  splitS <- list(prep$split1[alive1 & alive2], prep$split2[alive1 & alive2])
 
-  splitN <- list(split1[alive1], split2[alive1])
-  splitS <- list(split1[alive1 & alive2], split2[alive1 & alive2])
-
-  N <- tapply(census1$dbh[alive1], splitN, length)
-  S <- tapply(census1$dbh[alive1 & alive2], splitS, length)
-  meantime <- tapply(time[alive1], splitN, mean, na.rm = T)
-  meandbh <- tapply(census1$dbh[alive1], splitN, mean, na.rm = T)
-  startdate <- tapply(census1$date[alive1], splitN, mean, na.rm = T)
-  enddate <- tapply(census2$date[alive1], splitN, mean, na.rm = T)
-
+  N <- tapply(prep$census1$dbh[alive1], splitN, length)
   N <- fill.dimension(N, class1, class2)
+  S <- tapply(prep$census1$dbh[alive1 & alive2], splitS, length)
   S <- fill.dimension(S, class1, class2)
+  meantime <- tapply(prep$time[alive1], splitN, mean, na.rm = T)
   meantime <- fill.dimension(meantime, class1, class2, fill = NA)
+  meandbh <- tapply(prep$census1$dbh[alive1], splitN, mean, na.rm = T)
   meandbh <- fill.dimension(meandbh, class1, class2, fill = NA)
+  startdate <- tapply(prep$census1$date[alive1], splitN, mean, na.rm = T)
   startdate <- fill.dimension(startdate, class1, class2, fill = NA)
+  enddate <- tapply(prep$census2$date[alive1], splitN, mean, na.rm = T)
   enddate <- fill.dimension(enddate, class1, class2, fill = NA)
 
   if (equal(sum(N), 0)) {
@@ -278,34 +247,31 @@ mortality_impl <- function(census1,
       "To improve tests, please explain what triggered this message ",
       "(maurolepore@gmail.com)."
     )
-
-    return(list(
-      N = rep(NA, length(class1)), D = rep(NA, length(class1)),
-      rate = rep(NA, length(class1)),
+    result <- list(
+      N     = rep(NA, length(class1)), D = rep(NA, length(class1)),
+      rate  = rep(NA, length(class1)),
       lower = rep(NA, length(class1)), upper = rep(NA, length(class1)),
-      time = rep(NA, length(class1)), dbhmean = rep(NA, length(class1)),
+      time  = rep(NA, length(class1)), dbhmean = rep(NA, length(class1)),
       date1 = rep(NA, length(class1)), date2 = rep(NA, length(class1))
-    ))
+    )
+    return(new_demography_impl(result, split2))
   }
 
   m <- mortality.calculation(
     N = as.matrix(N), S = as.matrix(S), meantime = as.matrix(meantime)
   )
-
-  # ord=order(drp(meandbh))
   result <- list(
-    N = drp(m$N),
-    D = drp(m$D),
-    rate = drp(m$rate),
-    lower = drp(m$lowerCI),
-    upper = drp(m$upperCI),
-    time = drp(m$time),
-    date1 = drp(startdate),
-    date2 = drp(enddate),
+    N       = drp(m$N),
+    D       = drp(m$D),
+    rate    = drp(m$rate),
+    lower   = drp(m$lowerCI),
+    upper   = drp(m$upperCI),
+    time    = drp(m$time),
+    date1   = drp(startdate),
+    date2   = drp(enddate),
     dbhmean = drp(meandbh)
   )
-
-  new_demography_impl(result, .split2)
+  new_demography_impl(result, split2)
 }
 
 #' Internal.
@@ -362,39 +328,26 @@ growth_impl <- function(census1,
                         split1 = NULL,
                         split2 = NULL,
                         quiet = FALSE) {
-  # Used before return
-  .split2 <- split2
-
   # More crucial names checked downstream
   lapply(list(census1, census2), check_crucial_names, "stemID")
 
-  # TODO: check_method
-
-  prep_d <- prepare_demography(census1, census2, split1, split2, quiet, mindbh)
-  census1 <- prep_d$census1
-  census2 <- prep_d$census2
-  mindbh <- prep_d$mindbh
-  split1 <- prep_d$split1
-  split2 <- prep_d$split2
-
-  if (is.null(mindbh)) mindbh <- 0
-
-  size1 <- census1[[growthcol]]
-  size2 <- census2[[growthcol]]
-
-  if (is.null(split1)) {
-    split1 <- rep("all", dim(census1)[1])
+  prep <- prepare_demography(census1, census2, split1, split2, quiet, mindbh)
+  if (is.null(prep$mindbh)) {
+    prep$mindbh <- 0
   }
-  if (is.null(split2)) {
-    split2 <- rep("all", dim(census2)[1])
+  size1 <- prep$census1[[growthcol]]
+  size2 <- prep$census2[[growthcol]]
+  if (is.null(prep$split1)) {
+    prep$split1 <- rep("all", dim(prep$census1)[1])
   }
-  if (is.null(census2$codes)) {
+  if (is.null(prep$split2)) {
+    prep$split2 <- rep("all", dim(prep$census2)[1])
+  }
+  if (is.null(prep$census2$codes)) {
     # This could be just `census2$codes <- "."`
-    census2$codes <- rep(".", length(size2))
+    prep$census2$codes <- rep(".", length(size2))
   }
-
-  time <- time_diff(census1, census2)
-
+  time <- time_diff(prep$census1, prep$census2)
   if (rounddown) {
     sm <- ((size1 < 55 | size2 < 55) & !is.na(size1) & !is.na(size2))
     size1[sm] <- rndown5(size1[sm])
@@ -407,30 +360,30 @@ growth_impl <- function(census1,
     growthrate <- (log(size2) - log(size1)) / time
   }
 
-  good <- trim.growth(census1, census2, time,
+  good <- trim.growth(prep$census1, prep$census2, time,
     err.limit = err.limit,
-    maxgrow = maxgrow, mindbh = mindbh
+    maxgrow = maxgrow, mindbh = prep$mindbh
   )
   growthrate[!good] <- NA
-  class1 <- sort(unique(split1))
-  class2 <- sort(unique(split2))
-  splitgood <- list(split1[good], split2[good])
-  mean.grow <- tapply(growthrate[good], splitgood, mean, na.rm = TRUE)
-  sd.grow <- tapply(growthrate[good], splitgood, sd, na.rm = TRUE)
-  N <- tapply(growthrate[good], splitgood, length)
-  meandbh <- tapply(census1$dbh[good], splitgood, mean, na.rm = TRUE)
-  meansize <- tapply(size1[good], splitgood, mean, na.rm = TRUE)
-  interval <- tapply(time[good], splitgood, mean, na.rm = TRUE)
-  startdate <- tapply(census1$date[good], splitgood, mean, na.rm = TRUE)
-  enddate <- tapply(census2$date[good], splitgood, mean, na.rm = TRUE)
+  class1 <- sort(unique(prep$split1))
+  class2 <- sort(unique(prep$split2))
+  splitgood <- list(prep$split1[good], prep$split2[good])
 
+  mean.grow <- tapply(growthrate[good], splitgood, mean, na.rm = TRUE)
   mean.grow <- fill.dimension(mean.grow, class1, class2, fill = NA)
-  N <- fill.dimension(N, class1, class2, fill = 0)
-  meandbh <- fill.dimension(meandbh, class1, class2, fill = NA)
-  interval <- fill.dimension(interval, class1, class2, fill = NA)
-  startdate <- fill.dimension(startdate, class1, class2, fill = NA)
-  enddate <- fill.dimension(enddate, class1, class2, fill = NA)
+  sd.grow <- tapply(growthrate[good], splitgood, sd, na.rm = TRUE)
   sd.grow <- fill.dimension(sd.grow, class1, class2, fill = NA)
+  N <- tapply(growthrate[good], splitgood, length)
+  N <- fill.dimension(N, class1, class2, fill = 0)
+  meandbh <- tapply(prep$census1$dbh[good], splitgood, mean, na.rm = TRUE)
+  meandbh <- fill.dimension(meandbh, class1, class2, fill = NA)
+  interval <- tapply(time[good], splitgood, mean, na.rm = TRUE)
+  interval <- fill.dimension(interval, class1, class2, fill = NA)
+  startdate <- tapply(prep$census1$date[good], splitgood, mean, na.rm = TRUE)
+  startdate <- fill.dimension(startdate, class1, class2, fill = NA)
+  enddate <- tapply(prep$census2$date[good], splitgood, mean, na.rm = TRUE)
+  enddate <- fill.dimension(enddate, class1, class2, fill = NA)
+
   ci.grow <- sd.grow
   ci.grow[N == 0] <- NA
   ci.grow[N > 0] <- sd.grow[N > 0] * qt(0.975, N[N > 0]) / sqrt(N[N > 0])
@@ -449,7 +402,7 @@ growth_impl <- function(census1,
     result <- append(result, list(clim = drp(ci.grow)), after = 2)
   }
 
-  new_demography_impl(result, .split2)
+  new_demography_impl(result, split2)
 }
 
 
