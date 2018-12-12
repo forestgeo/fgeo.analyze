@@ -2,12 +2,12 @@
 % Please edit documentation in R/to_df.R
 \name{to_df.demography_ctfs}
 \alias{to_df.demography_ctfs}
-\title{Dataframe objects of class "demography_impl".}
+\title{Dataframe objects of class "demography_ctfs".}
 \usage{
 \method{to_df}{demography_ctfs}(.x, ...)
 }
 \arguments{
-\item{.x}{An object of class demography_impl.}
+\item{.x}{An object of class demography_ctfs.}
 
 \item{...}{Other arguments passed to `to_df()`.}
 }
@@ -15,7 +15,7 @@
 A (tibble) dataframe.
 }
 \description{
-Dataframe objects of class "demography_impl".
+Dataframe objects of class "demography_ctfs".
 }
 \examples{
 \dontrun{
@@ -26,7 +26,7 @@ census1 <- fgeo.x::tree5
 census2 <- fgeo.x::tree6
 
 by <- interaction(census1$sp, census1$quadrat, sep = "__")
-.x <- recruitment_impl(census1, census2, split1 = by)
+.x <- recruitment_ctfs(census1, census2, split1 = by)
 head(to_df(.x))
 }
 }

@@ -1,4 +1,4 @@
-context("data")
+context("luquillo_top3_sp")
 
 find_datasets <- function(package) {
   dinfo <- utils::data(package = package)
@@ -6,6 +6,6 @@ find_datasets <- function(package) {
 }
 
 test_that("expected datasets", {
-  actual <- find_datasets("fgeo.analyze")
-  expect_true(any(grepl("luquillo_top3_sp", actual)))
+  expect_true(any(grepl("luquillo_top3_sp", find_datasets("fgeo.analyze"))))
+  expect_is(luquillo_top3_sp, "tbl")
 })

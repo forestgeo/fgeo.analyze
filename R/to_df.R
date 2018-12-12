@@ -142,9 +142,9 @@ new_tt_df <- function(.x) {
 
 # Class demography_ctfs ---------------------------------------------------
 
-#' Dataframe objects of class "demography_impl".
+#' Dataframe objects of class "demography_ctfs".
 #'
-#' @param .x An object of class demography_impl.
+#' @param .x An object of class demography_ctfs.
 #' @param ... Other arguments passed to `to_df()`.
 #'
 #' @seealso [to_df()].
@@ -164,7 +164,7 @@ new_tt_df <- function(.x) {
 #' census2 <- fgeo.x::tree6
 #'
 #' by <- interaction(census1$sp, census1$quadrat, sep = "__")
-#' .x <- recruitment_impl(census1, census2, split1 = by)
+#' .x <- recruitment_ctfs(census1, census2, split1 = by)
 #' head(to_df(.x))
 #' }
 #' }

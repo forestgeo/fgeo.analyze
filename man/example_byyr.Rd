@@ -20,4 +20,4 @@ example_byyr
 Other datasets: \code{\link{luquillo_top3_sp}}
 }
 \concept{datasets}
-\keyword{datasets}
+\keyword{internal}

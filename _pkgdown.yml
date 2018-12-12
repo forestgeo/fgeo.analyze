@@ -53,8 +53,3 @@ reference:
   - title: Habitat
     contents:
     - has_concept("habitat functions")
-
-  - title: Datasets
-    contents:
-    - has_concept("datasets")
-

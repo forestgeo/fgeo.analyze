@@ -36,8 +36,7 @@
 original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
 feature formal tests, bug fixes, additional assertions, and improved
-messages. (These functions are the internal implementation of their
-in-development analogs -- hence the suffix `_impl`.)" />
+messages." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,24 +135,15 @@ in-development analogs -- hence the suffix `_impl`.)" />
 original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
 feature formal tests, bug fixes, additional assertions, and improved
-messages. (These functions are the internal implementation of their
-in-development analogs -- hence the suffix `_impl`.)</p>
+messages.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>recruitment_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='fu'>mortality_impl</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
 <span class='fu'>mortality_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-
-<span class='fu'>growth_impl</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>rounddown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"I"</span>,
-  <span class='kw'>stdev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbhunit</span> <span class='kw'>=</span> <span class='st'>"mm"</span>, <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>growthcol</span> <span class='kw'>=</span> <span class='st'>"dbh"</span>,
-  <span class='kw'>err.limit</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>maxgrow</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='fu'>growth_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>rounddown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"I"</span>,
   <span class='kw'>stdev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbhunit</span> <span class='kw'>=</span> <span class='st'>"mm"</span>, <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>growthcol</span> <span class='kw'>=</span> <span class='st'>"dbh"</span>,

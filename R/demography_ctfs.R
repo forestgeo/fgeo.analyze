@@ -4,8 +4,7 @@
 #' original functions, these ones have a similar interface but use more
 #' conservative defaults and allow suppressing messages. These functions also
 #' feature formal tests, bug fixes, additional assertions, and improved
-#' messages. (These functions are the internal implementation of their
-#' in-development analogs -- hence the suffix `_impl`.)
+#' messages.
 #'
 #' Survivors are all individuals alive in both censuses, with `status == A` in
 #' the first census, and larger than the minimum dbh in the first census. The
@@ -194,69 +193,6 @@ recruitment_ctfs <- function(census1,
 
 #' @rdname demography_ctfs
 #' @export
-mortality_impl <- function(census1,
-                           census2,
-                           alivecode = NULL,
-                           split1 = NULL,
-                           split2 = NULL,
-                           quiet = FALSE) {
-  prep <- wrap_prepare_recruitment_mortality(
-    census1, census2, split1, split2, quiet, mindbh = NULL
-  )
-
-  check_alivecode(prep$census1, prep$census2, alivecode, quiet)
-  alivecode <- alivecode %||% c("A", "AB", "AS")
-
-  alive1 <- alive2 <- rep(FALSE, dim(prep$census1)[1])
-  alive1[prep$census1$status == "A"] <- TRUE
-  for (i in 1:length(alivecode)) {
-    alive2[prep$census2$status == alivecode[i]] <- TRUE
-  }
-
-  class1 <- sort(unique(prep$split1))
-  class2 <- sort(unique(prep$split2))
-  splitN <- list(prep$split1[alive1], prep$split2[alive1])
-  splitS <- list(prep$split1[alive1 & alive2], prep$split2[alive1 & alive2])
-
-  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
-  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
-  N         <- fill_0(apply_length(prep$census1$dbh[alive1], splitN))
-  S         <- fill_0(apply_length(prep$census1$dbh[alive1 & alive2], splitS))
-  meantime  <- fill_NA(apply_mean(prep$time[alive1], splitN))
-  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[alive1], splitN))
-  startdate <- fill_NA(apply_mean(prep$census1$date[alive1], splitN))
-  enddate   <- fill_NA(apply_mean(prep$census2$date[alive1], splitN))
-
-  if (equal(sum(N), 0)) {
-    message(
-      "To improve tests, please explain what triggered this message ",
-      "(maurolepore@gmail.com)."
-    )
-    .names <-
-      c("N", "D", "rate", "lower", "upper", "time", "dbhmean", "date1", "date2")
-    result <- Map(function(x) rep(NA, length(class1)), .names)
-    return(new_demography_ctfs(result, split2))
-  }
-
-  m <- mortality.calculation(
-    N = as.matrix(N), S = as.matrix(S), meantime = as.matrix(meantime)
-  )
-  result <- list(
-    N       = drp(m$N),
-    D       = drp(m$D),
-    rate    = drp(m$rate),
-    lower   = drp(m$lowerCI),
-    upper   = drp(m$upperCI),
-    time    = drp(m$time),
-    date1   = drp(startdate),
-    date2   = drp(enddate),
-    dbhmean = drp(meandbh)
-  )
-  new_demography_ctfs(result, split2)
-}
-
-#' @rdname demography_ctfs
-#' @export
 mortality_ctfs <- function(census1,
                            census2,
                            alivecode = NULL,
@@ -350,91 +286,6 @@ mortality.calculation <- function(N, S, meantime) {
     result <- data.frame(result)
   }
   result
-}
-
-#' @rdname demography_ctfs
-#' @export
-growth_impl <- function(census1,
-                        census2,
-                        rounddown = FALSE,
-                        method = "I",
-                        stdev = FALSE,
-                        dbhunit = "mm",
-                        mindbh = NULL,
-                        growthcol = "dbh",
-                        err.limit = 1000,
-                        maxgrow = 1000,
-                        split1 = NULL,
-                        split2 = NULL,
-                        quiet = FALSE) {
-  # More crucial names checked downstream
-  lapply(list(census1, census2), check_crucial_names, "stemID")
-
-  prep <- prepare_demography(census1, census2, split1, split2, quiet, mindbh)
-  if (is.null(prep$mindbh)) {
-    prep$mindbh <- 0
-  }
-  size1 <- prep$census1[[growthcol]]
-  size2 <- prep$census2[[growthcol]]
-  if (is.null(prep$split1)) {
-    prep$split1 <- rep("all", dim(prep$census1)[1])
-  }
-  if (is.null(prep$split2)) {
-    prep$split2 <- rep("all", dim(prep$census2)[1])
-  }
-  if (is.null(prep$census2$codes)) {
-    prep$census2$codes <- "."
-  }
-  time <- time_diff(prep$census1, prep$census2)
-  if (rounddown) {
-    sm <- ((size1 < 55 | size2 < 55) & !is.na(size1) & !is.na(size2))
-    size1[sm] <- rndown5(size1[sm])
-    size2[sm] <- rndown5(size2[sm])
-  }
-
-  if (method == "I") {
-    growthrate <- (size2 - size1) / time
-  } else if (method == "E") {
-    growthrate <- (log(size2) - log(size1)) / time
-  }
-
-  good <- trim.growth(prep$census1, prep$census2, time,
-    err.limit = err.limit,
-    maxgrow = maxgrow, mindbh = prep$mindbh
-  )
-  growthrate[!good] <- NA
-  class1 <- sort(unique(prep$split1))
-  class2 <- sort(unique(prep$split2))
-  splitgood <- list(prep$split1[good], prep$split2[good])
-
-  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
-  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
-  N         <- fill_0( apply_length(growthrate[good], splitgood))
-  mean.grow <- fill_NA(apply_mean(growthrate[good], splitgood))
-  sd.grow   <- fill_NA(apply_sd(growthrate[good], splitgood))
-  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[good], splitgood))
-  interval  <- fill_NA(apply_mean(time[good], splitgood))
-  startdate <- fill_NA(apply_mean(prep$census1$date[good], splitgood))
-  enddate   <- fill_NA(apply_mean(prep$census2$date[good], splitgood))
-
-  ci.grow <- sd.grow
-  ci.grow[N == 0] <- NA
-  ci.grow[N > 0] <- sd.grow[N > 0] * qt(0.975, N[N > 0]) / sqrt(N[N > 0])
-  result <- list(
-    rate = drp(mean.grow),
-    N = drp(N),
-    sd = drp(sd.grow),
-    dbhmean = drp(meandbh),
-    time = drp(interval),
-    date1 = drp(startdate),
-    date2 = drp(enddate)
-  )
-
-  if (!stdev) {
-    result$sd <- NULL
-    result <- append(result, list(clim = drp(ci.grow)), after = 2)
-  }
-  new_demography_ctfs(result, split2)
 }
 
 #' @rdname demography_ctfs

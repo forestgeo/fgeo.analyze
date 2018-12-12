@@ -3,25 +3,15 @@
 \name{demography_ctfs}
 \alias{demography_ctfs}
 \alias{recruitment_ctfs}
-\alias{mortality_impl}
 \alias{mortality_ctfs}
-\alias{growth_impl}
 \alias{growth_ctfs}
 \title{Recruitment, mortality, and growth.}
 \usage{
 recruitment_ctfs(census1, census2, mindbh = NULL, alivecode = NULL,
   split1 = NULL, split2 = NULL, quiet = FALSE)
 
-mortality_impl(census1, census2, alivecode = NULL, split1 = NULL,
-  split2 = NULL, quiet = FALSE)
-
 mortality_ctfs(census1, census2, alivecode = NULL, split1 = NULL,
   split2 = NULL, quiet = FALSE)
-
-growth_impl(census1, census2, rounddown = FALSE, method = "I",
-  stdev = FALSE, dbhunit = "mm", mindbh = NULL, growthcol = "dbh",
-  err.limit = 1000, maxgrow = 1000, split1 = NULL, split2 = NULL,
-  quiet = FALSE)
 
 growth_ctfs(census1, census2, rounddown = FALSE, method = "I",
   stdev = FALSE, dbhunit = "mm", mindbh = NULL, growthcol = "dbh",
@@ -105,8 +95,7 @@ These functions are inherited from the the CTFS-R package. Compared to the
 original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
 feature formal tests, bug fixes, additional assertions, and improved
-messages. (These functions are the internal implementation of their
-in-development analogs -- hence the suffix `_impl`.)
+messages.
 }
 \details{
 Survivors are all individuals alive in both censuses, with `status == A` in
