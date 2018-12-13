@@ -25,6 +25,10 @@ included.}
 \description{
 A version of ctfs::abundanceperquad() focused only for abundance.
 }
+\seealso{
+Other functions from http://ctfs.si.edu/Public/CTFSRPackage/: \code{\link{calcslope}},
+  \code{\link{findborderquads}}, \code{\link{quadslope}}
+}
 \author{
 Rick Condit, Suzanne Lao.
 }

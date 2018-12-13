@@ -3,7 +3,7 @@
 #' This function constructs habitat data based on elevation data. It calculates
 #' habitats in two steps:
 #' 1. It calculates mean elevation, convexity and slope for each quadrat (via
-#' [fgeo.tool::fgeo_topography()])).
+#' [fgeo_topography()])).
 #' 2. It calculates habitats based on hierarchical clustering of the topographic
 #' metrics from step 1 (via [stats::hclust()]).
 #'
@@ -11,13 +11,13 @@
 #'
 #' @author Rick Condit.
 #'
-#' @inheritParams fgeo.tool::fgeo_topography
+#' @inheritParams fgeo_topography
 #'
 #' @param n Integer. Number of cluster-groups to construct (passed to the
 #'   argument `k` to [stats::cutree()]).
-#' @param ... Arguments passed to [fgeo.tool::fgeo_topography()].
+#' @param ... Arguments passed to [fgeo_topography()].
 #'
-#' @seealso [fgeo.map::autoplot.fgeo_habitat()], [fgeo.tool::fgeo_topography()].
+#' @seealso [fgeo.map::autoplot.fgeo_habitat()], [fgeo_topography()].
 #' @family functions to construct fgeo classes
 #'
 #' @return A dataframe of subclass fgeo_habitat, with columns `gx` and `gy`,
@@ -59,7 +59,7 @@
 #' str(hab2)
 #' }
 fgeo_habitat <- function(elevation, gridsize, n, ...) {
-  out <- add_cluster(fgeo.tool::fgeo_topography(elevation, gridsize, ...), n)
+  out <- add_cluster(fgeo_topography(elevation, gridsize, ...), n)
   names(out) <- sub("cluster", "habitats", names(out))
   new_fgeo_habitat(out[c("gx", "gy", "habitats")])
 }

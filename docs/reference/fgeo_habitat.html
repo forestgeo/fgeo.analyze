@@ -35,7 +35,7 @@
 <meta property="og:description" content="This function constructs habitat data based on elevation data. It calculates
 habitats in two steps:
 1. It calculates mean elevation, convexity and slope for each quadrat (via
-[fgeo.tool::fgeo_topography()])).
+[fgeo_topography()])).
 2. It calculates habitats based on hierarchical clustering of the topographic
 metrics from step 1 (via [stats::hclust()])." />
 <meta name="twitter:card" content="summary" />
@@ -135,7 +135,7 @@ metrics from step 1 (via [stats::hclust()])." />
     <p>This function constructs habitat data based on elevation data. It calculates
 habitats in two steps:
 1. It calculates mean elevation, convexity and slope for each quadrat (via
-[fgeo.tool::fgeo_topography()])).
+[fgeo_topography()])).
 2. It calculates habitats based on hierarchical clustering of the topographic
 metrics from step 1 (via [stats::hclust()]).</p>
     
@@ -148,19 +148,18 @@ metrics from step 1 (via [stats::hclust()]).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>elevation</th>
-      <td><p>One of these:</p><ul>
-<li><p>A list with at least three elements: <code>col</code> containing
-elevation data; and <code>xdim</code> and <code>ydim</code> giving plot dimensions; OR</p></li>
-<li><p>A dataframe containing elevation data, in which
-case the parameters <code>xdim</code> and <code>ydim</code> must be provided. It may be the
-element <code>col</code> of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see <code>fgeo_elevation()</code>).</p></li>
-</ul></td>
+      <td><p>One of these:
+* A list with at least three elements: `col` containing
+elevation data; and `xdim` and `ydim` giving plot dimensions; OR
+* A dataframe containing elevation data, in which
+case the parameters `xdim` and `ydim` must be provided. It may be the
+element `col` of a ForestGEO elevation-list or an object of class
+fgeo_elevation (see [fgeo.tool::fgeo_elevation()]).</p></td>
     </tr>
     <tr>
       <th>gridsize</th>
       <td><p>Number giving the size of each quadrat for which a habitat
-is calculated. Commonly, <code>gridsize = 20</code>.</p></td>
+is calculated. Commonly, `gridsize = 20`.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -169,7 +168,7 @@ argument `k` to [stats::cutree()]).</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed to [fgeo.tool::fgeo_topography()].</p></td>
+      <td><p>Arguments passed to [fgeo_topography()].</p></td>
     </tr>
     </table>
     
@@ -191,9 +190,11 @@ or <code>x</code> and <code>y</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[fgeo.map::autoplot.fgeo_habitat()], [fgeo.tool::fgeo_topography()].</p>
-<p>Other habitat functions: <code><a href='summary.tt_lst.html'>summary.tt_lst</a></code>,
-  <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code>, <code><a href='tt_test.html'>tt_test</a></code></p></div>
+    <div class='dont-index'><p>[fgeo.map::autoplot.fgeo_habitat()], [fgeo_topography()].</p>
+<p>Other functions to construct fgeo classes: <code><a href='fgeo_topography.html'>fgeo_topography</a></code></p>
+<p>Other habitat functions: <code><a href='fgeo_topography.html'>fgeo_topography</a></code>,
+  <code><a href='summary.tt_lst.html'>summary.tt_lst</a></code>, <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code>,
+  <code><a href='tt_test.html'>tt_test</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

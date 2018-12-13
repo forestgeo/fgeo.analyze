@@ -69,7 +69,7 @@ to_df.tt_lst <- function(.x, ...) {
 
 tt_gather <- function(.x) {
   flip <- t(Reduce(rbind, .x))
-  tibble::as.tibble(gather_mat(flip, "metric", "sp", "value"))
+  as.tibble(gather_mat(flip, "metric", "sp", "value"))
 }
 
 tt_restructure <- function(.x) {

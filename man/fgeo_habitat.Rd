@@ -8,22 +8,20 @@ fgeo_habitat(elevation, gridsize, n, ...)
 }
 \arguments{
 \item{elevation}{One of these:
-\itemize{
-\item A list with at least three elements: \code{col} containing
-elevation data; and \code{xdim} and \code{ydim} giving plot dimensions; OR
-\item A dataframe containing elevation data, in which
-case the parameters \code{xdim} and \code{ydim} must be provided. It may be the
-element \code{col} of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see \code{\link[=fgeo_elevation]{fgeo_elevation()}}).
-}}
+* A list with at least three elements: `col` containing
+elevation data; and `xdim` and `ydim` giving plot dimensions; OR
+* A dataframe containing elevation data, in which
+case the parameters `xdim` and `ydim` must be provided. It may be the
+element `col` of a ForestGEO elevation-list or an object of class
+fgeo_elevation (see [fgeo.tool::fgeo_elevation()]).}
 
 \item{gridsize}{Number giving the size of each quadrat for which a habitat
-is calculated. Commonly, \code{gridsize = 20}.}
+is calculated. Commonly, `gridsize = 20`.}
 
 \item{n}{Integer. Number of cluster-groups to construct (passed to the
 argument `k` to [stats::cutree()]).}
 
-\item{...}{Arguments passed to [fgeo.tool::fgeo_topography()].}
+\item{...}{Arguments passed to [fgeo_topography()].}
 }
 \value{
 A dataframe of subclass fgeo_habitat, with columns `gx` and `gy`,
@@ -34,7 +32,7 @@ A dataframe of subclass fgeo_habitat, with columns `gx` and `gy`,
 This function constructs habitat data based on elevation data. It calculates
 habitats in two steps:
 1. It calculates mean elevation, convexity and slope for each quadrat (via
-[fgeo.tool::fgeo_topography()])).
+[fgeo_topography()])).
 2. It calculates habitats based on hierarchical clustering of the topographic
 metrics from step 1 (via [stats::hclust()]).
 }
@@ -82,10 +80,13 @@ str(hab2)
 }
 }
 \seealso{
-[fgeo.map::autoplot.fgeo_habitat()], [fgeo.tool::fgeo_topography()].
+[fgeo.map::autoplot.fgeo_habitat()], [fgeo_topography()].
 
-Other habitat functions: \code{\link{summary.tt_lst}},
-  \code{\link{to_df.tt_lst}}, \code{\link{tt_test}}
+Other functions to construct fgeo classes: \code{\link{fgeo_topography}}
+
+Other habitat functions: \code{\link{fgeo_topography}},
+  \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}},
+  \code{\link{tt_test}}
 }
 \author{
 Rick Condit.

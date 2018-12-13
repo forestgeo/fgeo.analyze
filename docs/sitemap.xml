@@ -13,6 +13,9 @@
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/abundance_byyr.html</loc>
   </url>
   <url>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/calcslope.html</loc>
+  </url>
+  <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/check_crucial_names.html</loc>
   </url>
   <url>
@@ -28,10 +31,19 @@
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/fgeo_habitat.html</loc>
   </url>
   <url>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/fgeo_topography.html</loc>
+  </url>
+  <url>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/findborderquads.html</loc>
+  </url>
+  <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/luquillo_top3_sp.html</loc>
   </url>
   <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/quadslope.html</loc>
   </url>
   <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/summary.tt_lst.html</loc>

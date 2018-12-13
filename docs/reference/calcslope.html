@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • fgeo.analyze</title>
+<title>Internal. — calcslope • fgeo.analyze</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Internal. — calcslope" />
+
+<meta property="og:description" content="Internal." />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -47,7 +50,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -115,108 +118,37 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Internal.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/forestgeo/fgeo.analyze/blob/master/R/fgeo_topography.R'><code>R/fgeo_topography.R</code></a></small>
+    <div class="hidden name"><code>calcslope.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Internal.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>calcslope</span>(<span class='no'>z</span>, <span class='no'>gridsize</span>)</pre>
+        
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-abundance" class="hasAnchor"><a href="#section-abundance" class="anchor"></a>Abundance</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="abundance.html">abundance()</a></code> <code><a href="abundance.html">basal_area()</a></code> </p>
-        </td>
-        <td><p>Abundance and basal area, optionally by groups.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="abundance_byyr.html">abundance_byyr()</a></code> <code><a href="abundance_byyr.html">basal_area_byyr()</a></code> </p>
-        </td>
-        <td><p>Create tables of abundance and basal area by year.</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-demography" class="hasAnchor"><a href="#section-demography" class="anchor"></a>Demography</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="demography_ctfs.html">recruitment_ctfs()</a></code> <code><a href="demography_ctfs.html">mortality_ctfs()</a></code> <code><a href="demography_ctfs.html">growth_ctfs()</a></code> </p>
-        </td>
-        <td><p>Recruitment, mortality, and growth.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="to_df.demography_ctfs.html">to_df(<i>&lt;demography_ctfs&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Dataframe objects of class "demography_ctfs".</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-habitat" class="hasAnchor"><a href="#section-habitat" class="anchor"></a>Habitat</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="fgeo_habitat.html">fgeo_habitat()</a></code> </p>
-        </td>
-        <td><p>Structure habitat data from measures of topography.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fgeo_topography.html">fgeo_topography()</a></code> </p>
-        </td>
-        <td><p>Structure topography data with mean elevation, convexity, and slope.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.tt_lst.html">summary(<i>&lt;tt_lst&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summary objects of class "tt_lst".</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="to_df.tt_lst.html">to_df(<i>&lt;tt_lst&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Dataframe objects of class "tt_lst".</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tt_test.html">tt_test()</a></code> </p>
-        </td>
-        <td><p>Torus Translation Test to determine habitat associations of tree species.</p></td>
-      </tr>
-    </tbody>
-    </table>
+    <div class='dont-index'><p>Other functions from http://ctfs.si.edu/Public/CTFSRPackage/: <code><a href='abundanceperquad2.html'>abundanceperquad2</a></code>,
+  <code><a href='findborderquads.html'>findborderquads</a></code>, <code><a href='quadslope.html'>quadslope</a></code></p></div>
+    
+
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-abundance">Abundance</a></li>
-      <li><a href="#section-demography">Demography</a></li>
-      <li><a href="#section-habitat">Habitat</a></li>
-    </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+          </ul>
+
+    <h2>Author</h2>
+    <p>Rick Condit, Suzanne Lao.</p>
   </div>
 </div>
 

@@ -9,7 +9,7 @@
 #' @importFrom rlang abort inform warn expr eval_tidy expr_label %||% set_names
 #' @importFrom stats dnorm median optim qbeta qt quantile rgamma rnorm runif sd
 #' @importFrom stats nls var nls.control predict resid
-#' @importFrom tibble tibble
+#' @importFrom tibble tibble as.tibble
 NULL
 
 #' Pipe operator

@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' elev_ls <- fgeo.x::elevation
-#' topo <- fgeo.tool::fgeo_topography(elev_ls, gridsize = 20)
+#' topo <- fgeo_topography(elev_ls, gridsize = 20)
 #' add_cluster(topo, n = 4)
 #' @noRd
 add_cluster <- function(.data, n) {

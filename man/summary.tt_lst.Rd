@@ -22,6 +22,7 @@ outputs objects of class "tt_lst").
 [tt_test()].
 
 Other habitat functions: \code{\link{fgeo_habitat}},
+  \code{\link{fgeo_topography}},
   \code{\link{to_df.tt_lst}}, \code{\link{tt_test}}
 }
 \author{

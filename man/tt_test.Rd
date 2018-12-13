@@ -113,6 +113,7 @@ to_df(tt_lst)
 [summary.tt_lst()], [to_df()], [fgeo_habitat()].
 
 Other habitat functions: \code{\link{fgeo_habitat}},
+  \code{\link{fgeo_topography}},
   \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}}
 }
 \author{

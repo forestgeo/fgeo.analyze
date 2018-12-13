@@ -4,7 +4,7 @@ describe("add_cluster", {
   elev_ls <- fgeo.x::elevation
   gridsize <- 20
   n <- 4
-  topo <- fgeo.tool::fgeo_topography(elev_ls, gridsize = gridsize)
+  topo <- fgeo_topography(elev_ls, gridsize = gridsize)
   clustered <- add_cluster(topo, n = n)
 
   it("has the expected structure", {
