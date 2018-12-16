@@ -1,3 +1,4 @@
+^\.buildignore$
 ^Rplots\.pdf$
 ^\.github$
 ^README\.Rmd$

@@ -8,9 +8,7 @@ abort_bad_class <- function(x) {
   abort(glue("Can't deal with data of class: {.class}."))
 }
 
-
-#' Round to multiple of any number. Copied from `plyr:::round_any.numeric()`.
-#' @noRd
+# Round to multiple of any number. Copied from `plyr:::round_any.numeric()`.
 round_any <- function(x, accuracy, f = round) {
   f(x / accuracy) * accuracy
 }

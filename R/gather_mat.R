@@ -15,29 +15,22 @@
 #' @param ... Arguments passed to gather_mats.
 #'
 #' @seealso `enframe()` (__tibble__ package) and `gather()` (__tidyr__ package).
-#'
-#' @family general functions to construct or restructure data
-#'
 #' @return
 #' * [gather_mat()]: A dataframe.
 #' * [gather_mats()]: A list of dataframes.
 #'
-#' @keywords internal
-#' @noRd
 #' @examples
 #'  mat <- matrix(1:6, 2, dimnames = list(LETTERS[1:2], letters[1:3]))
 #'  mat
-#'
 #'  gather_mats(mat)
-#'
 #'  gather_mat(mat)
-#'
 #'  gather_mat(mat, "metric", "sp")
-#'
 #'  mat <- matrix(1:6, 2)
 #'  mat
-#'
 #'  gather_mat(mat)
+#'
+#' @family general functions to construct or restructure data
+#' @noRd
 gather_mat <- function(mat,
                        rownm = "rownames",
                        colnm = "colnames",
@@ -48,9 +41,6 @@ gather_mat <- function(mat,
   )
 }
 
-#' @rdname gather_mat
-#' @keywords internal
-#' @noRd
 gather_mats <- function(mat,
                         rownm = "rownames",
                         colnm = "colnames",

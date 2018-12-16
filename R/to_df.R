@@ -15,11 +15,9 @@
 #' @param ... Other arguments passed to methods.
 #'
 #' @seealso [to_df.krig_lst()].
+#' @return A dataframe.
 #'
 #' @family fgeo generics
-#' @keywords internal
-#'
-#' @return A dataframe.
 #' @export
 to_df <- function(.x, ...) {
   UseMethod("to_df")
@@ -41,13 +39,7 @@ to_df.default <- function(.x, ...) {
 #' @param ... Other arguments passed to [to_df()].
 #'
 #' @seealso [to_df()].
-#'
-#' @family methods for fgeo generics
-#' @family habitat functions
-#'
 #' @return A dataframe.
-#'
-#' @export
 #'
 #' @examples
 #' \dontrun{
@@ -61,6 +53,9 @@ to_df.default <- function(.x, ...) {
 #'   to_df(tt_lst)
 #' }
 #' }
+#' @family habitat functions
+#' @family methods for fgeo generics
+#' @export
 to_df.tt_lst <- function(.x, ...) {
   long_df <- tt_gather(.x)
   out <- tt_create_df(tt_restructure(long_df))
@@ -117,7 +112,6 @@ tt_create_df <- function(tt_data) {
 #' The Rep.Agg.Neut columns for each habitat indicate whether the sp is
 #' significantly repelled (-1), aggregated (1), or neutraly distributed (0) on
 #' the habitat in question.
-#' @keywords internal
 #' @noRd
 explain_distribution <- function(x) {
   dplyr::mutate(x,
@@ -148,12 +142,7 @@ new_tt_df <- function(.x) {
 #' @param ... Other arguments passed to `to_df()`.
 #'
 #' @seealso [to_df()].
-#'
-#' @family methods for fgeo generics
-#' @family demography functions
-#'
 #' @return A (tibble) dataframe.
-#' @export
 #'
 #' @examples
 #' \dontrun{
@@ -168,6 +157,9 @@ new_tt_df <- function(.x) {
 #' head(to_df(.x))
 #' }
 #' }
+#' @family demography functions
+#' @family methods for fgeo generics
+#' @export
 to_df.demography_ctfs <- function(.x, ...) {
   malformed <- !is.null(attr(.x, "split2"))
   if (malformed) {

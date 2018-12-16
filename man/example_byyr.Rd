@@ -13,11 +13,11 @@ Example dataset with some columns of a ViewFullTable.
 }
 \examples{
 library(tibble)
-
 example_byyr
+
 }
 \seealso{
 Other datasets: \code{\link{luquillo_top3_sp}}
 }
 \concept{datasets}
-\keyword{internal}
+\keyword{datasets}

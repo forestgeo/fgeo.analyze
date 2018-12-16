@@ -108,6 +108,7 @@ Reduce(rbind, tt_lst)
 
 # A dataframe
 to_df(tt_lst)
+
 }
 \seealso{
 [summary.tt_lst()], [to_df()], [fgeo_habitat()].

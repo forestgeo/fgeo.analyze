@@ -51,8 +51,8 @@ basal
 \dontrun{
 # Convert units
 # This exmaple requires the following packages (see `?install.packages`):
-required_packages <- c("measurements", "purrr")
-not_installed <- !all(sapply(required_packages, requireNamespace, quietly = T))
+required <- c("measurements", "purrr")
+not_installed <- !all(sapply(required, requireNamespace, quietly = T))
 if (not_installed) {
   stop("To run this section please install the required packages.")
 } else {

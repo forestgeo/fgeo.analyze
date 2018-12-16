@@ -34,11 +34,11 @@ if (requireNamespace("fgeo.analyze")) {
 \seealso{
 [to_df()].
 
-Other methods for fgeo generics: \code{\link{to_df.demography_ctfs}}
-
 Other habitat functions: \code{\link{fgeo_habitat}},
   \code{\link{fgeo_topography}},
   \code{\link{summary.tt_lst}}, \code{\link{tt_test}}
+
+Other methods for fgeo generics: \code{\link{to_df.demography_ctfs}}
 }
 \concept{habitat functions}
 \concept{methods for fgeo generics}

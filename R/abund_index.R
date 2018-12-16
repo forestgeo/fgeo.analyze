@@ -18,14 +18,13 @@
 #' @return A dataframe where each quadrat-index is a column and each species
 #' is a rowname.
 #'
-#' @keywords internal
-#' @noRd
-#'
 #' @examples
 #' cns <- fgeo.x::tree6
 #' pdm <- c(1000, 500)
 #' gsz <- 20
 #' abund_index(cns, pdm, gsz)
+#'
+#' @family functions for abundance and basal area
 #' @noRd
 abund_index <- function(censdata, plotdim, gridsize) {
   stopifnot(!missing(censdata), !missing(plotdim), !missing(gridsize))

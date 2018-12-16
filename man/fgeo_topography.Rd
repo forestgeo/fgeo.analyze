@@ -68,15 +68,16 @@ fgeo_topography(elev_list, gridsize = 20)
 
 elev_df <- elev_list$col
 fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
+
 }
 \seealso{
 [fgeo_habitat()].
 
-Other functions to construct fgeo classes: \code{\link{fgeo_habitat}}
-
 Other habitat functions: \code{\link{fgeo_habitat}},
   \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}},
   \code{\link{tt_test}}
+
+Other functions to construct fgeo classes: \code{\link{fgeo_habitat}}
 }
 \author{
 Rick Condit.

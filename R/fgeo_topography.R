@@ -1,6 +1,7 @@
 #' Structure topography data with mean elevation, convexity, and slope.
 #'
 #' @inheritSection fgeo.tool::fgeo_elevation Input
+#' @inherit fgeo_habitat details
 #'
 #' @param elevation One of these:
 #'  * A list with at least three elements: `col` containing
@@ -17,22 +18,14 @@
 #' @param ... Other arguments passed to methods.
 #'
 #' @seealso [fgeo_habitat()].
-#' @family functions to construct fgeo classes
-#' @family habitat functions
+#' @return A dataframe of subclass fgeo_topography.
 #'
 #' @author Rick Condit.
 #' @section Source code:
 #' The main code of this function comes from [allquadratslopes()]
 #' ([source](http://bit.ly/2zikb3V)).
-#'
-#' @inherit fgeo_habitat details
-#'
-#' @return A dataframe of subclass fgeo_topography.
-#'
 #' @section Acknowledgment:
 #' Thanks to Jian Zhang for reporting a bug (issue 59).
-#'
-#' @export
 #'
 #' @examples
 #' elev_list <- fgeo.x::elevation
@@ -40,6 +33,10 @@
 #'
 #' elev_df <- elev_list$col
 #' fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
+#'
+#' @family habitat functions
+#' @family functions to construct fgeo classes
+#' @export
 fgeo_topography <- function(elevation, ...) {
   UseMethod("fgeo_topography")
 }
@@ -96,8 +93,6 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
   ydim %||% abort(msg)
 }
 
-# ctfs --------------------------------------------------------------------
-
 #' Calculates the slope of all quadrats in a plot.
 #'
 #' @details
@@ -107,6 +102,7 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
 #' neighbors.
 #'
 #' Helene Muller-Landau added a section to correct convexity in edge quadrats.
+#' @author Rick Condit, Suzanne Lao.
 #'
 #' @param plotdim The x and y dimensions of the plot.
 #' @param gridsize Side of the square quadrat.
@@ -115,12 +111,7 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
 #' @param edgecorrect Correct convexity in edge quadrats?
 #'
 #' @seealso [calcslope()], [quadslope()]
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #'
-#' @author Rick Condit, Suzanne Lao.
-#'
-#' @keywords internal
-#' @noRd
 #' @examples
 #' # The input to elev is very specific; you may need to tweak it.
 #' elev <- fgeo.x::elevation
@@ -132,6 +123,9 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
 #' )
 #' head(result)
 #' str(result)
+#'
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @noRd
 allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
   if (!"col" %in% names(elev)) {
     warning("Input to elev must be a list with one element named 'col'.")
@@ -218,11 +212,9 @@ warn_if_no_data_falls_on_half_gridsize <- function(elev, gridsize, edgecorrect) 
   }
 }
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
-#' @keywords internal
 #' @author Rick Condit, Suzanne Lao.
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @noRd
 findborderquads <- function(index, dist, gridsize, plotdim) {
   bound.index <- numeric(8)
   no.boundaries <- 0
@@ -244,11 +236,9 @@ findborderquads <- function(index, dist, gridsize, plotdim) {
   return(bound.index[bound.index > 0])
 }
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
-#' @keywords internal
 #' @author Rick Condit, Suzanne Lao.
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @noRd
 quadslope <- function(cornerelev, gridsize) {
   slope <- numeric(4)
   z <- numeric(3)
@@ -268,11 +258,9 @@ quadslope <- function(cornerelev, gridsize) {
   return(c(mean(slope), sqrt(stats::var(slope))))
 }
 
-#' Internal.
-#'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
-#' @keywords internal
 #' @author Rick Condit, Suzanne Lao.
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @noRd
 calcslope <- function(z, gridsize) {
   if (!equal(length(z), 3)) {
     stop("`z` must be of length 3, not ", length(z), ".", call. = FALSE)
@@ -300,6 +288,3 @@ calcslope <- function(z, gridsize) {
     return(180 * theta2 / pi)
   }
 }
-
-equal <- function(x, y) isTRUE(all.equal(x, y))
-

@@ -15,7 +15,6 @@
 #'
 #' @param x A dataframe. `basal_area()` requires a column named `dbh` (case
 #'   insensitive).
-#' @family functions for abundance and basal area
 #'
 #' @seealso [dplyr::n()], [group_by()].
 #'
@@ -94,9 +93,9 @@
 #' )
 #' ba
 #' }
+#' @family functions for abundance and basal area
 #' @name abundance
 NULL
-
 with_anycase_group_df <- function(.summary, side_effects) {
   function(x) {
     # Census and ViewFull tables have column names with different case. To
@@ -143,8 +142,6 @@ basal_area_dbl <- function(x) {
   1 / 4 * pi * (x)^2
 }
 
-# Helpers -----------------------------------------------------------------
-
 groups_lower <- function(x) {
   dplyr::grouped_df(x, tolower(dplyr::group_vars(x)))
 }
@@ -160,13 +157,11 @@ groups_lower <- function(x) {
 #' @param y A reference dataframe which gropus are not ok but have correct case.
 #'
 #' @examples
-#'
 #' out <- dplyr::grouped_df(tibble::tibble(x = 1, y = 1, z = 1), c("x", "y"))
 #' out
-#'
 #' ref <- dplyr::grouped_df(rlang::set_names(out, toupper), c("X"))
 #' group_vars_restore(out, ref)
-#' @keywords internal
+#'
 #' @noRd
 group_vars_restore <- function(x, y) {
   in_ref <- fgeo.tool::detect_insensitive(
@@ -185,8 +180,6 @@ restore_input_names_output_groups <- function(out, .data) {
   g <- group_vars_restore(out, .data)
   dplyr::grouped_df(ungroup(out), g)
 }
-
-# Checks ------------------------------------------------------------------
 
 # Only if data contains specific `name`s.
 warn_if_needed_plotname_censusid <- function(.x) {

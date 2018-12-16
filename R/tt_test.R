@@ -22,17 +22,16 @@
 #'   check that your habitat data is correct).
 #'
 #' @seealso [summary.tt_lst()], [to_df()], [fgeo_habitat()].
+#' @return A list of matrices. You can summarize the output with [summary()] and
+#'   convert it to a dataframe with [to_df()]. You can also view the
+#'   result with `View(your-result)`, and reduce it from a list of matrices to a
+#'   single matix with `Reduce(rbind, your-result)`. See examples.
 #'
 #' @author Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.
 #'
 #' @section Acknowledgments:
 #' Nestor Engone Obiang, David Kenfack, Jennifer Baltzer, and Rutuja
 #' Chitra-Tarak provided feedback. Daniel Zuleta provided guidance.
-#'
-#' @return A list of matrices. You can summarize the output with [summary()] and
-#'   convert it to a dataframe with [to_df()]. You can also view the
-#'   result with `View(your-result)`, and reduce it from a list of matrices to a
-#'   single matix with `Reduce(rbind, your-result)`. See examples.
 #'
 #' @section Interpretation of Output:
 #' * `N.Hab.1`: Count of stems of the focal species in habitat 1.
@@ -64,10 +63,6 @@
 #' Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 #' \url{https://doi.org/10.1007/s11104-018-3878-0}.
 #'
-#' @export
-#'
-#' @family habitat functions
-#'
 #' @examples
 #' library(dplyr)
 #'
@@ -97,6 +92,9 @@
 #'
 #' # A dataframe
 #' to_df(tt_lst)
+#'
+#' @family habitat functions
+#' @export
 tt_test <- function(census, sp, habitat, plotdim = NULL, gridsize = NULL) {
   stopifnot(is.data.frame(habitat))
   if (!inherits(habitat, "fgeo_habitat")) {
@@ -319,8 +317,7 @@ check_tt_test <- function(census, sp, habitat, plotdim, gridsize) {
   }
 }
 
-#' Warns that a comparison is invalid. Results from a division `NaN = 0/0`
-#' @noRd
+# Warns that a comparison is invalid. Results from a division `NaN = 0/0`
 warn_invalid_comparison <- function(spp, torus) {
   msg <- "Values can't be compared:\n"
   value <- paste0(
@@ -335,9 +332,7 @@ new_tt_lst <- function(.x) {
   structure(.x, class = c("tt_lst", class(.x)))
 }
 
-#' @keywords internal
 #' @export
-#' @noRd
 print.tt_lst <- function(x, ...) {
   print(unclass(x))
   invisible(x)

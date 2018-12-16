@@ -90,7 +90,7 @@
             <h3 class="subtitle">Given a number of tree species and habitat types in a plot, are species significantly aggregated within habitats?</h3>
                         <h4 class="author">Mauro Lepore</h4>
             
-            <h4 class="date">2018-12-12</h4>
+            <h4 class="date">2018-12-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/forestgeo/fgeo.analyze/blob/master/vignettes/siteonly/tt_test.Rmd"><code>vignettes/siteonly/tt_test.Rmd</code></a></small>
       <div class="hidden name"><code>tt_test.Rmd</code></div>
@@ -117,11 +117,18 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages --------------------------------------------- fgeo 0.0.0.9002 --</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages ---------------------------------------------------- fgeo 0.0.0.9002 --</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; v fgeo.tool    0.0.0.9005     v fgeo.map     0.0.0.9402</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo.data)</a></code></pre></div>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; -- Conflicts ------------------------------------------------------------ fgeo_conflicts() --</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; x fgeo.analyze::check_crucial_names() masks fgeo.tool::check_crucial_names()</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; x fgeo.tool::filter()                 masks dplyr::filter(), stats::filter()</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; x dplyr::intersect()                  masks base::intersect()</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; x dplyr::lag()                        masks stats::lag()</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt; x dplyr::setdiff()                    masks base::setdiff()</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; x dplyr::setequal()                   masks base::setequal()</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt; x dplyr::union()                      masks base::union()</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo.data)</a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># For reproducible results</span></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1014</span>)</a></code></pre></div>
 </div>

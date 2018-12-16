@@ -18,15 +18,10 @@
 #' @param ... Arguments passed to [fgeo_topography()].
 #'
 #' @seealso [fgeo.map::autoplot.fgeo_habitat()], [fgeo_topography()].
-#' @family functions to construct fgeo classes
 #'
 #' @return A dataframe of subclass fgeo_habitat, with columns `gx` and `gy`,
 #'   rounded with accuracy determined by `gridsize`, and column `habitats`, with
 #'   as many distinct integer values as determined by the argument `n`.
-#'
-#' @family habitat functions
-#'
-#' @export
 #'
 #' @examples
 #' # Input a ForestGEO-like elevation list
@@ -58,6 +53,9 @@
 #' hab2 <- fgeo_habitat(elev_df, gridsize = 20, n = 4, xdim = 320, ydim = 500)
 #' str(hab2)
 #' }
+#' @family habitat functions
+#' @family functions to construct fgeo classes
+#' @export
 fgeo_habitat <- function(elevation, gridsize, n, ...) {
   out <- add_cluster(fgeo_topography(elevation, gridsize, ...), n)
   names(out) <- sub("cluster", "habitats", names(out))

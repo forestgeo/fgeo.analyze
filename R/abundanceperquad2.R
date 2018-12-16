@@ -3,10 +3,11 @@
 #' @inheritParams ctfs::abundanceperquad
 #' @param type "abund". Other options are intentionally not possible.
 #'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
-#' @export
-#' @keywords internal
 #' @author Rick Condit, Suzanne Lao.
+#'
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @family functions for abundance and basal area
+#' @noRd
 abundanceperquad2 <- function(censdata,
                               mindbh = 10,
                               plotdim = c(1000, 500),
@@ -36,14 +37,13 @@ abundanceperquad2 <- function(censdata,
   result
 }
 
-# Internal ----------------------------------------------------------------
-
 #' A faster version of ctfs::abundance(), only for counts (not ba or agb).
 #'
-#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
-#' @keywords internal
-#' @noRd
 #' @author Rick Condit, Suzanne Lao.
+#'
+#' @family functions for abundance and basal area
+#' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
+#' @noRd
 abundance2 <- function(censdata,
                        type = "abund",
                        alivecode = c("A"),

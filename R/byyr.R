@@ -22,13 +22,8 @@
 #'   1980-01-01 to the present day in the format yyyy-mm-dd.
 #' @param ... Expressions to pick main stems of a specific `dbh` range.
 #'
-#' @family functions for abundance and basal area
-#'
 #' @seealso [fgeo.tool::pick_main_stem()].
-#'
 #' @return A dataframe.
-#'
-#' @export
 #'
 #' @examples
 #' library(fgeo.tool)
@@ -43,8 +38,8 @@
 #' \dontrun{
 #' # Convert units
 #' # This exmaple requires the following packages (see `?install.packages`):
-#' required_packages <- c("measurements", "purrr")
-#' not_installed <- !all(sapply(required_packages, requireNamespace, quietly = T))
+#' required <- c("measurements", "purrr")
+#' not_installed <- !all(sapply(required, requireNamespace, quietly = T))
 #' if (not_installed) {
 #'   stop("To run this section please install the required packages.")
 #' } else {
@@ -65,6 +60,8 @@
 #'   )
 #' }
 #' }
+#' @family functions for abundance and basal area
+#' @export
 abundance_byyr <- function(vft, ...) {
   low_nms  <- check_byyr(set_names(vft, tolower))
   crucial <- c("plotname", "tag")
@@ -102,8 +99,6 @@ basal_area_byyr <- function(vft, ...) {
   tidy_byyr_names(rename_matches(out, vft))
 }
 
-# Checks ------------------------------------------------------------------
-
 check_byyr <- function(vft) {
   stopifnot(is.data.frame(vft))
   crucial <- c(
@@ -127,8 +122,6 @@ check_byyr <- function(vft) {
 
   invisible(vft)
 }
-
-# Helpers -----------------------------------------------------------------
 
 pick_byyr <- function(vft, ...) {
   dots <- lowercase_var(..., .var = "dbh")
@@ -182,7 +175,7 @@ tidy_byyr_names <- function(x) {
 #' @param .flag Rlang flag funcitons: inform, warn, and abort.
 #' @param .var String of lenght one giving the name of the variable expected to
 #'   be referred in the expressions passed to `...`.
-#' @keywords internal
+#'
 #' @noRd
 flag_if_not_expression_of_var <- function(dots, .flag, .var) {
   .dots <- rlang::expr_deparse(dots)
@@ -196,9 +189,7 @@ flag_if_not_expression_of_var <- function(dots, .flag, .var) {
   invisible(dots)
 }
 
-#' For each expressions in `...`, lowercase the name of a given variable.
-#' @keywords internal
-#' @noRd
+# For each expressions in `...`, lowercase the name of a given variable.
 lowercase_var <- function(..., .var) {
   lowercase_each <- function(dots, .var) {
     dots <- gsub(.var, .var, rlang::expr_deparse(dots), ignore.case = TRUE)

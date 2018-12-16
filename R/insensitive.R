@@ -1,21 +1,12 @@
 #' Create a vector or dataframe with case insensitive name matching.
 #'
-#' @section Acknowledgment:
-#' Thanks to Neil Richardson for recommending this function
-#' (https://twitter.com/enpiar).
-#'
-#'
 #' @param x vector or dataframe to modify.
 #' @seealso `httr::insensitive()`.
 #'
-#' @family functions for developers
-#' @family general functions to deal with names
-#'
-#' @author Hadley Wickham (see `httr::insensitive()`).
-#' (https://twitter.com/hadleywickham)
-#'
-#' @keywords internal
-#' @noRd
+#' @author Hadley Wickham (see `?httr::insensitive()`).
+#' @section Acknowledgment:
+#' Thanks to Neil Richardson for recommending this function
+#' (https://twitter.com/enpiar).
 #'
 #' @examples
 #' x <- c("abc" = 1, "def" = 2)
@@ -39,6 +30,10 @@
 #' # Fails
 #' # transform(insensitive(vft), new = TreeID)
 #' # dplyr::mutate(insensitive(vft), new = TreeID)
+#'
+#' @family functions for developers
+#' @family general functions to deal with names
+#' @noRd
 insensitive <- function(x) {
   if (!rlang::is_named(x)) warning("`x` should be named.", call. = FALSE)
   names(x) <- tolower(names(x))

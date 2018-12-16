@@ -43,10 +43,6 @@
 #'
 #' @author Rick Condit, Suzanne Lao.
 #'
-#' @family demography functions
-#' @family functions for ForestGEO data.
-#' @family functions for fgeo census.
-#'
 #' @return
 #' Metrics of recruitment: Similar to metrics of mortality.
 #'
@@ -120,9 +116,11 @@
 #'   )
 #' }
 #' }
+#' @family demography functions
+#' @family functions for ForestGEO data.
+#' @family functions for fgeo census.
 #' @name demography_ctfs
 NULL
-
 #' @rdname demography_ctfs
 #' @export
 recruitment_ctfs <- function(census1,
@@ -254,10 +252,9 @@ mortality_ctfs <- function(census1,
   new_demography_ctfs(result, split2)
 }
 
-#' @keywords internal
+#' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
-#' @author Rick Condit, Suzanne Lao.
 mortality.calculation <- function(N, S, meantime) {
   lower.ci <- find.climits(N, (N - S), kind = "lower")
   upper.ci <- find.climits(N, (N - S), kind = "upper")
@@ -373,10 +370,9 @@ growth_ctfs <- function(census1,
   new_demography_ctfs(result, split2)
 }
 
-#' @keywords internal
+#' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
-#' @author Rick Condit, Suzanne Lao.
 trim.growth <- function(cens1,
                         cens2,
                         time,
@@ -411,8 +407,6 @@ trim.growth <- function(cens1,
   return(accept)
 }
 
-# Helpers -----------------------------------------------------------------
-
 new_demography_ctfs <- function(.x, split2, ...) {
   stopifnot(is.list(.x))
   .x <- structure(.x, class = c("demography_ctfs", class(.x)))
@@ -425,9 +419,7 @@ new_demography_ctfs <- function(.x, split2, ...) {
   .x
 }
 
-#' @keywords internal
 #' @export
-#' @noRd
 print.demography_ctfs <- function(x, ...) {
   print(unclass(x))
   invisible(x)
@@ -613,10 +605,9 @@ apply_mean   <- function(X, INDEX) tapply(X, INDEX, FUN = mean, na.rm = TRUE)
 apply_sd     <- function(X, INDEX) tapply(X, INDEX, FUN = sd,   na.rm = TRUE)
 apply_length <- function(X, INDEX) tapply(X, INDEX, FUN = length)
 
-#' @keywords internal
+#' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
-#' @author Rick Condit, Suzanne Lao.
 find.climits <- function(N, D, alpha = .05, kind = "upper") {
   if (kind == "lower") {
     result <- N * (1 - qbeta(1 - alpha / 2, shape1 = N - D + 1, shape2 = D + 1))
@@ -630,18 +621,16 @@ find.climits <- function(N, D, alpha = .05, kind = "upper") {
   return(result)
 }
 
-#' @keywords internal
+#' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
-#' @author Rick Condit, Suzanne Lao.
 drp <- function(x) {
   return(drop(as.matrix(x)))
 }
 
-#' @keywords internal
+#' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
-#' @author Rick Condit, Suzanne Lao.
 fill.dimension <- function(dataarray, class1, class2, fill = 0) {
   result <- matrix(fill, nrow = length(class1), ncol = length(class2))
   rownames(result) <- class1
@@ -652,8 +641,7 @@ fill.dimension <- function(dataarray, class1, class2, fill = 0) {
   return(result)
 }
 
-#' @keywords internal
+#' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
-#' @author Rick Condit, Suzanne Lao.
 rndown5 <- function(s) 5 * floor(s / 5)

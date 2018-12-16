@@ -7,13 +7,12 @@
 #' @param ... Other arguments passed to methods.
 #'
 #' @seealso [tt_test()].
-#'
-#' @family methods for common generics
-#' @family habitat functions
+#' @return A dataframe.
 #'
 #' @author Daniel Zuleta.
 #'
-#' @return A dataframe.
+#' @family habitat functions
+#' @family methods for common generics
 #' @export
 summary.tt_lst <- function(object, ...) {
   ttdf <- as.data.frame(do.call(rbind, object))

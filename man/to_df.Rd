@@ -31,4 +31,3 @@ __tibble__ package).
 [to_df.krig_lst()].
 }
 \concept{fgeo generics}
-\keyword{internal}

@@ -214,8 +214,8 @@ including dead, missing, and gone.</p>
 </div></span><span class='co'># NOT RUN {</span>
 <span class='co'># Convert units</span>
 <span class='co'># This exmaple requires the following packages (see `?install.packages`):</span>
-<span class='no'>required_packages</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>)
-<span class='no'>not_installed</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='no'>required_packages</span>, <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='no'>T</span>))
+<span class='no'>required</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>)
+<span class='no'>not_installed</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='no'>required</span>, <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='no'>T</span>))
 <span class='kw'>if</span> (<span class='no'>not_installed</span>) {
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"To run this section please install the required packages."</span>)
 } <span class='kw'>else</span> {

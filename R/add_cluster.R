@@ -16,6 +16,7 @@
 #' elev_ls <- fgeo.x::elevation
 #' topo <- fgeo_topography(elev_ls, gridsize = 20)
 #' add_cluster(topo, n = 4)
+#'
 #' @noRd
 add_cluster <- function(.data, n) {
   invalid_class <- !any(grepl("fgeo_topography", class(.data)))
