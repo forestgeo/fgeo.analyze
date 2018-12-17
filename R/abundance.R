@@ -111,14 +111,14 @@ with_anycase_group_df <- function(.summary, side_effects) {
   }
 }
 
-#' @export
 #' @rdname abundance
+#' @export
 abundance <- with_anycase_group_df(
   abundance_df, list(warn_if_needed_treeid, warn_if_needed_plotname_censusid)
 )
 
-#' @export
 #' @rdname abundance
+#' @export
 basal_area <- with_anycase_group_df(
   basal_area_df, list(warn_if_needed_stemid, warn_if_needed_plotname_censusid)
 )

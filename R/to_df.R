@@ -146,16 +146,12 @@ new_tt_df <- function(.x) {
 #'
 #' @examples
 #' \dontrun{
-#' if (!requireNamespace("fgeo.ctfs")) {
-#' library(fgeo.ctfs)
-#'
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
 #'
 #' by <- interaction(census1$sp, census1$quadrat, sep = "__")
 #' .x <- recruitment_ctfs(census1, census2, split1 = by)
 #' head(to_df(.x))
-#' }
 #' }
 #' @family demography functions
 #' @family methods for fgeo generics
