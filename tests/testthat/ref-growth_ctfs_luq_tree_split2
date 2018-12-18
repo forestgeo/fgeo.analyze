@@ -1,24 +1,24 @@
 $rate
   [1]        NA        NA        NA        NA        NA        NA        NA
-  [8]        NA        NA        NA        NA        NA        NA        NA
- [15]        NA        NA        NA        NA        NA        NA        NA
+  [8]        NA 0.0000000        NA        NA        NA        NA        NA
+ [15]        NA        NA        NA        NA        NA 0.4451554        NA
  [22]        NA        NA        NA        NA        NA        NA        NA
- [29]        NA        NA        NA        NA 1.5608974        NA        NA
+ [29]        NA        NA        NA        NA        NA        NA        NA
  [36]        NA        NA        NA        NA        NA        NA        NA
- [43]        NA 0.2240798        NA        NA        NA        NA        NA
- [50]        NA        NA        NA        NA        NA        NA        NA
- [57]        NA        NA        NA        NA        NA        NA 0.2192377
- [64]        NA        NA        NA        NA        NA        NA        NA
- [71]        NA        NA 3.3305471        NA        NA        NA        NA
+ [43]        NA        NA        NA        NA        NA        NA        NA
+ [50]        NA        NA 0.6657047        NA        NA        NA        NA
+ [57]        NA        NA        NA        NA        NA        NA        NA
+ [64]        NA        NA        NA        NA        NA        NA 0.0000000
+ [71]        NA        NA        NA        NA 1.7904412        NA        NA
  [78]        NA        NA        NA        NA        NA        NA        NA
  [85]        NA        NA        NA        NA        NA        NA        NA
  [92]        NA        NA        NA        NA        NA        NA        NA
  [99]        NA        NA
 
 $N
-  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
- [38] 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0
- [75] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  [1] 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ [38] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+ [75] 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 $clim
   [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
@@ -27,50 +27,47 @@ $clim
  [76] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 
 $dbhmean
-  [1]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [13]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [25]    NA    NA    NA    NA    NA    NA    NA    NA 106.0    NA    NA    NA
- [37]    NA    NA    NA    NA    NA    NA    NA  30.5    NA    NA    NA    NA
- [49]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [61]    NA    NA  73.0    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [73] 661.0    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [85]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [97]    NA    NA    NA    NA
+  [1]  NA  NA  NA  NA  NA  NA  NA  NA 240  NA  NA  NA  NA  NA  NA  NA  NA  NA
+ [19]  NA  67  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA
+ [37]  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA 150  NA  NA
+ [55]  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  50  NA  NA
+ [73]  NA  NA 228  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA
+ [91]  NA  NA  NA  NA  NA  NA  NA  NA  NA  NA
 
 $time
   [1]       NA       NA       NA       NA       NA       NA       NA       NA
-  [9]       NA       NA       NA       NA       NA       NA       NA       NA
- [17]       NA       NA       NA       NA       NA       NA       NA       NA
+  [9] 4.501027       NA       NA       NA       NA       NA       NA       NA
+ [17]       NA       NA       NA 4.492813       NA       NA       NA       NA
  [25]       NA       NA       NA       NA       NA       NA       NA       NA
- [33] 4.484600       NA       NA       NA       NA       NA       NA       NA
- [41]       NA       NA       NA 4.462697       NA       NA       NA       NA
- [49]       NA       NA       NA       NA       NA       NA       NA       NA
- [57]       NA       NA       NA       NA       NA       NA 4.561259       NA
- [65]       NA       NA       NA       NA       NA       NA       NA       NA
- [73] 4.503765       NA       NA       NA       NA       NA       NA       NA
+ [33]       NA       NA       NA       NA       NA       NA       NA       NA
+ [41]       NA       NA       NA       NA       NA       NA       NA       NA
+ [49]       NA       NA       NA 4.506502       NA       NA       NA       NA
+ [57]       NA       NA       NA       NA       NA       NA       NA       NA
+ [65]       NA       NA       NA       NA       NA 4.563997       NA       NA
+ [73]       NA       NA 4.468172       NA       NA       NA       NA       NA
  [81]       NA       NA       NA       NA       NA       NA       NA       NA
  [89]       NA       NA       NA       NA       NA       NA       NA       NA
  [97]       NA       NA       NA       NA
 
 $date1
-  [1]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [13]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [25]    NA    NA    NA    NA    NA    NA    NA    NA 18918    NA    NA    NA
- [37]    NA    NA    NA    NA    NA    NA    NA 18934    NA    NA    NA    NA
- [49]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [61]    NA    NA 18961    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [73] 19058    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+  [1]    NA    NA    NA    NA    NA    NA    NA    NA 18891    NA    NA    NA
+ [13]    NA    NA    NA    NA    NA    NA    NA 18914    NA    NA    NA    NA
+ [25]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+ [37]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+ [49]    NA    NA    NA 18897    NA    NA    NA    NA    NA    NA    NA    NA
+ [61]    NA    NA    NA    NA    NA    NA    NA    NA    NA 18849    NA    NA
+ [73]    NA    NA 18948    NA    NA    NA    NA    NA    NA    NA    NA    NA
  [85]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
  [97]    NA    NA    NA    NA
 
 $date2
-  [1]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [13]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [25]    NA    NA    NA    NA    NA    NA    NA    NA 20556    NA    NA    NA
- [37]    NA    NA    NA    NA    NA    NA    NA 20564    NA    NA    NA    NA
- [49]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [61]    NA    NA 20627    NA    NA    NA    NA    NA    NA    NA    NA    NA
- [73] 20703    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+  [1]    NA    NA    NA    NA    NA    NA    NA    NA 20535    NA    NA    NA
+ [13]    NA    NA    NA    NA    NA    NA    NA 20555    NA    NA    NA    NA
+ [25]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+ [37]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
+ [49]    NA    NA    NA 20543    NA    NA    NA    NA    NA    NA    NA    NA
+ [61]    NA    NA    NA    NA    NA    NA    NA    NA    NA 20516    NA    NA
+ [73]    NA    NA 20580    NA    NA    NA    NA    NA    NA    NA    NA    NA
  [85]    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
  [97]    NA    NA    NA    NA
 

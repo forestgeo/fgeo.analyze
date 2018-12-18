@@ -4,7 +4,7 @@ library(dplyr)
 library(purrr)
 
 expect_ref <- function(object, file) {
-  expect_known_output(object, file, print = TRUE, update = FALSE)
+  testthat::expect_known_output(object, file, print = TRUE, update = FALSE)
 }
 
 pick10sp <- function(.data) dplyr::filter(.data, sp %in% unique(.data$sp)[1:10])
@@ -470,8 +470,3 @@ test_that("mortality.calculation is type unstable which should be avoided", {
   expect_is(mortality.calculation(.matrix, .matrix, 1), "list")
 })
 
-test_that("trim.growth() is sensitive to `dbhunit`", {
-  out1 <- trim.growth(tiny1, tiny2, 1)
-  out2 <- trim.growth(tiny1, tiny2, 1, dbhunit = "cm")
-  expect_false(identical(out1, out2))
-})

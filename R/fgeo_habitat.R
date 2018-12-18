@@ -30,29 +30,24 @@
 #' str(habs)
 #'
 #' \dontrun{
-#' installed <- requireNamespace("fgeo.map", quietly = TRUE)
-#' if (installed) {
+#' if (requireNamespace("fgeo.map", quietly = TRUE)) {
 #'   library(fgeo.map)
 #'   autoplot(habs)
 #' }
-#'
-#' # A good use of habitat data is for calculating species-habitat associations
-#' installed <- requireNamespace("fgeo.analyze", quietly = TRUE)
-#' if (installed) {
-#'   library(fgeo.analyze)
-#'
-#'   elev_list <- fgeo.x::elevation
-#'   habitat <- fgeo_habitat(elev_list, gridsize = 20, n = 4)
-#'   census <- fgeo.analyze::luquillo_top3_sp
-#'   species <- unique(census$sp)
-#'   to_df(tt_test(census, species, habitat))
 #' }
+#' # A good use of habitat data is for calculating species-habitat associations
+#' elev_list <- fgeo.x::elevation
+#' habitat <- fgeo_habitat(elev_list, gridsize = 20, n = 4)
+#' census <- fgeo.x::tree6_3species
+#' species <- unique(census$sp)
+#' to_df(
+#'   tt_test(census, species, habitat)
+#' )
 #'
-#' # If working with elevation dataframe you must provide xdim and ydim
+#' # If elevation is not a list but a dataframe, you must provide xdim and ydim
 #' elev_df <- fgeo.x::elevation$col
 #' hab2 <- fgeo_habitat(elev_df, gridsize = 20, n = 4, xdim = 320, ydim = 500)
 #' str(hab2)
-#' }
 #' @family habitat functions
 #' @family functions to construct fgeo classes
 #' @export

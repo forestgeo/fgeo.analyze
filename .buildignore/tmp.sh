@@ -2,6 +2,8 @@ git checkout master
 git fetch upstream
 git reset --hard upstream/master
 
+git branch -D BRANCH-TO-DELETE
+
 message="Tidy documentation."
 git add .
 git commit -m "$message"

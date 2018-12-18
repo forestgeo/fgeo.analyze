@@ -83,7 +83,7 @@ Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 library(dplyr)
 
 # Example data
-tree <- luquillo_top3_sp
+tree <- fgeo.x::tree6_3species
 elevation <- fgeo.x::elevation
 
 # Pick alive trees, of 10 mm or more

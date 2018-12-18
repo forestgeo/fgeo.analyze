@@ -267,31 +267,31 @@ all calculations.</p>
 <span class='no'>census2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6</a></span>
 
 <span class='fu'>recruitment_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>)</div><div class='output co'>#&gt; <span class='message'>Detected dbh ranges:</span>
-#&gt; <span class='message'>  * `census1` = 14-661.</span>
-#&gt; <span class='message'>  * `census2` = 14.5-676.</span>
+#&gt; <span class='message'>  * `census1` = 10.9-323.</span>
+#&gt; <span class='message'>  * `census2` = 10.5-347.</span>
 #&gt; <span class='message'>Using dbh `mindbh = 0` and above.</span></div><div class='output co'>#&gt; $N2
-#&gt; [1] 25
+#&gt; [1] 29
 #&gt; 
 #&gt; $R
-#&gt; [1] 0
+#&gt; [1] 3
 #&gt; 
 #&gt; $rate
-#&gt; [1] 0
+#&gt; [1] 0.02413113
 #&gt; 
 #&gt; $lower
-#&gt; [1] 0
+#&gt; [1] 0.0084585
 #&gt; 
 #&gt; $upper
-#&gt; [1] 0.03132581
+#&gt; [1] 0.06812388
 #&gt; 
 #&gt; $time
-#&gt; [1] 4.529172
+#&gt; [1] 4.525246
 #&gt; 
 #&gt; $date1
-#&gt; [1] 18936.1
+#&gt; [1] 18937.96
 #&gt; 
 #&gt; $date2
-#&gt; [1] 20589.76
+#&gt; [1] 20600.72
 #&gt; </div><div class='input'>
 <span class='co'># Demography by any number of grouping variables via `interaction(...)`</span>
 <span class='no'>sp_quadrat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interaction'>interaction</a></span>(<span class='no'>census1</span>$<span class='no'>sp</span>, <span class='no'>census1</span>$<span class='no'>quadrat</span>)
@@ -302,104 +302,104 @@ all calculations.</p>
   <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>recruitment</span>, <span class='no'>head</span>)</div><div class='output co'>#&gt; $N2
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;           0           1           1           1           1           1 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;           1           1           1           1           1           1 
 #&gt; 
 #&gt; $R
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
 #&gt;           0           0           0           0           0           0 
 #&gt; 
 #&gt; $rate
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA           0           0           0           0           0 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;           0           0           0           0           0           0 
 #&gt; 
 #&gt; $lower
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA           0           0           0           0           0 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;           0           0           0           0           0           0 
 #&gt; 
 #&gt; $upper
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA   0.4112830   0.4133016   0.4043707   0.4095329   0.4120377 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;   0.4097820   0.4105311   0.4092841   0.4041281   0.4127951   0.4120377 
 #&gt; 
 #&gt; $time
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA    4.484600    4.462697    4.561259    4.503765    4.476386 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;    4.501027    4.492813    4.506502    4.563997    4.468172    4.476386 
 #&gt; 
 #&gt; $date1
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;       18792       18918       18934       18961       19058       19011 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;       18891       18914       18897       18849       18948       19011 
 #&gt; 
 #&gt; $date2
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA       20556       20564       20627       20703       20646 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;       20535       20555       20543       20516       20580       20646 
 #&gt; </div><div class='input'>
 <span class='no'>mortality</span> <span class='kw'>&lt;-</span> <span class='fu'>mortality_ctfs</span>(
   <span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>sp_quadrat</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>mortality</span>, <span class='no'>head</span>)</div><div class='output co'>#&gt; $N
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
 #&gt;           1           1           1           1           1           1 
 #&gt; 
 #&gt; $D
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;           1           0           0           0           0           0 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;           0           0           0           0           0           0 
 #&gt; 
 #&gt; $rate
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;         Inf           0           0           0           0           0 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;           0           0           0           0           0           0 
 #&gt; 
 #&gt; $lower
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;  0.03735197  0.00000000  0.00000000  0.00000000  0.00000000  0.00000000 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;           0           0           0           0           0           0 
 #&gt; 
 #&gt; $upper
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;         Inf   0.4112830   0.4133016   0.4043707   0.4095329   0.4120377 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;   0.4097820   0.4105311   0.4092841   0.4041281   0.4127951   0.4120377 
 #&gt; 
 #&gt; $time
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;    4.607803    4.484600    4.462697    4.561259    4.503765    4.476386 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;    4.501027    4.492813    4.506502    4.563997    4.468172    4.476386 
 #&gt; 
 #&gt; $date1
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;       18792       18918       18934       18961       19058       19011 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;       18891       18914       18897       18849       18948       19011 
 #&gt; 
 #&gt; $date2
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;       20475       20556       20564       20627       20703       20646 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;       20535       20555       20543       20516       20580       20646 
 #&gt; 
 #&gt; $dbhmean
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;        29.4       106.0        30.5        73.0       661.0        14.0 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;         240          67         150          50         228          14 
 #&gt; </div><div class='input'>
 <span class='no'>growth</span> <span class='kw'>&lt;-</span> <span class='fu'>growth_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>sp_quadrat</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>growth</span>, <span class='no'>head</span>)</div><div class='output co'>#&gt; $rate
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA   1.5608974   0.2240798   0.2192377   3.3305471   0.4467890 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;   0.0000000   0.4451554   0.6657047   0.0000000   1.7904412   0.4467890 
 #&gt; 
 #&gt; $N
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;           0           1           1           1           1           1 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;           1           1           1           1           1           1 
 #&gt; 
 #&gt; $clim
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
 #&gt;          NA          NA          NA          NA          NA          NA 
 #&gt; 
 #&gt; $dbhmean
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA       106.0        30.5        73.0       661.0        14.0 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;         240          67         150          50         228          14 
 #&gt; 
 #&gt; $time
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA    4.484600    4.462697    4.561259    4.503765    4.476386 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;    4.501027    4.492813    4.506502    4.563997    4.468172    4.476386 
 #&gt; 
 #&gt; $date1
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA       18918       18934       18961       19058       19011 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;       18891       18914       18897       18849       18948       19011 
 #&gt; 
 #&gt; $date2
-#&gt;  MIRGAR.102 PREMON.1110  INGLAU.115  IXOFER.117 BUCTET.1223 PSYBRA.1318 
-#&gt;          NA       20556       20564       20627       20703       20646 
+#&gt; MATDOM.1007 CASSYL.1010  SLOBER.110 SLOBER.1106 CECSCH.1114 PSYBRA.1318 
+#&gt;       20535       20555       20543       20516       20580       20646 
 #&gt; </div><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'># Convert to convenient dataframes -------------------------------------</span>

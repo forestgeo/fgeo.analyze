@@ -27,11 +27,13 @@ article](https://goo.gl/dQKEeg).
 ## Example
 
 ``` r
-library(fgeo)
-#> -- Attaching packages --------------------------------------------- fgeo 0.0.0.9002 --
-#> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003
-#> v fgeo.tool    0.0.0.9005     v fgeo.map     0.0.0.9402
+library(fgeo.tool)
 #> 
+#> Attaching package: 'fgeo.tool'
+#> The following object is masked from 'package:stats':
+#> 
+#>     filter
+library(fgeo.analyze)
 ```
 
 ### Abundance
@@ -58,12 +60,12 @@ same:
 ``` r
 nrow(vft)
 #> [1] 4
-dplyr::count(vft)
+count(vft)
 #> # A tibble: 1 x 1
 #>       n
 #>   <int>
 #> 1     4
-dplyr::summarize(vft, n = n())
+summarize(vft, n = n())
 #> # A tibble: 1 x 1
 #>       n
 #>   <int>
@@ -232,7 +234,7 @@ basal_area(ten_to_twenty)
 Example data.
 
 ``` r
-vft <- example_byyr
+vft <- fgeo.analyze::example_byyr
 vft
 #> # A tibble: 8 x 13
 #>   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate 
@@ -287,39 +289,39 @@ convenient dataframe with `to_df()`.
 ``` r
 recruitment_ctfs(census1, census2)
 #> Detected dbh ranges:
-#>   * `census1` = 14-661.
-#>   * `census2` = 14.5-676.
+#>   * `census1` = 10.9-323.
+#>   * `census2` = 10.5-347.
 #> Using dbh `mindbh = 0` and above.
 #> $N2
-#> [1] 25
+#> [1] 29
 #> 
 #> $R
-#> [1] 0
+#> [1] 3
 #> 
 #> $rate
-#> [1] 0
+#> [1] 0.02413113
 #> 
 #> $lower
-#> [1] 0
+#> [1] 0.0084585
 #> 
 #> $upper
-#> [1] 0.03132581
+#> [1] 0.06812388
 #> 
 #> $time
-#> [1] 4.529172
+#> [1] 4.525246
 #> 
 #> $date1
-#> [1] 18936.1
+#> [1] 18937.96
 #> 
 #> $date2
-#> [1] 20589.76
+#> [1] 20600.72
 to_df(
   recruitment_ctfs(census1, census2, quiet = TRUE)
 )
 #> # A tibble: 1 x 8
-#>      N2     R  rate lower  upper  time  date1  date2
-#>   <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl>  <dbl>  <dbl>
-#> 1    25     0     0     0 0.0313  4.53 18936. 20590.
+#>      N2     R   rate   lower  upper  time  date1  date2
+#>   <dbl> <dbl>  <dbl>   <dbl>  <dbl> <dbl>  <dbl>  <dbl>
+#> 1    29     3 0.0241 0.00846 0.0681  4.53 18938. 20601.
 ```
 
 Except if you use `split2`: This argument creates a complex data
@@ -357,18 +359,18 @@ recruitment <- recruitment_ctfs(
 )
 to_df(recruitment)
 #> # A tibble: 540 x 9
-#>    groups         N2     R  rate lower  upper  time date1 date2
-#>    <chr>       <dbl> <dbl> <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>
-#>  1 MIRGAR.102      0     0    NA    NA NA     NA    18792    NA
-#>  2 PREMON.1110     1     0     0     0  0.411  4.48 18918 20556
-#>  3 INGLAU.115      1     0     0     0  0.413  4.46 18934 20564
-#>  4 IXOFER.117      1     0     0     0  0.404  4.56 18961 20627
-#>  5 BUCTET.1223     1     0     0     0  0.410  4.50 19058 20703
-#>  6 PSYBRA.1318     1     0     0     0  0.412  4.48 19011 20646
-#>  7 MYRDEF.1321     1     0     0     0  0.410  4.50 19031 20676
-#>  8 HIRRUG.1402     1     0     0     0  0.398  4.64 18808 20502
-#>  9 MANBID.1502     0     0    NA    NA NA     NA    18812    NA
-#> 10 MATDOM.1505     1     0     0     0  0.404  4.56 18854 20521
+#>    groups         N2     R  rate lower upper  time date1 date2
+#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 MATDOM.1007     1     0     0     0 0.410  4.50 18891 20535
+#>  2 CASSYL.1010     1     0     0     0 0.411  4.49 18914 20555
+#>  3 SLOBER.110      1     0     0     0 0.409  4.51 18897 20543
+#>  4 SLOBER.1106     1     0     0     0 0.404  4.56 18849 20516
+#>  5 CECSCH.1114     1     0     0     0 0.413  4.47 18948 20580
+#>  6 PSYBRA.1318     1     0     0     0 0.412  4.48 19011 20646
+#>  7 HIRRUG.1403     1     0     0     0 0.403  4.58 18834 20506
+#>  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558
+#>  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622
+#> 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670
 #> # ... with 530 more rows
 ```
 
@@ -378,34 +380,34 @@ functions.
 ``` r
 to_df(mortality_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
 #> # A tibble: 540 x 10
-#>    groups          N     D  rate  lower   upper  time date1 date2 dbhmean
-#>    <chr>       <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl>   <dbl>
-#>  1 MIRGAR.102      1     1   Inf 0.0374 Inf      4.61 18792 20475    29.4
-#>  2 PREMON.1110     1     0     0 0        0.411  4.48 18918 20556   106  
-#>  3 INGLAU.115      1     0     0 0        0.413  4.46 18934 20564    30.5
-#>  4 IXOFER.117      1     0     0 0        0.404  4.56 18961 20627    73  
-#>  5 BUCTET.1223     1     0     0 0        0.410  4.50 19058 20703   661  
-#>  6 PSYBRA.1318     1     0     0 0        0.412  4.48 19011 20646    14  
-#>  7 MYRDEF.1321     1     0     0 0        0.410  4.50 19031 20676    30.5
-#>  8 HIRRUG.1402     1     0     0 0        0.398  4.64 18808 20502    30.4
-#>  9 MANBID.1502     1     1   Inf 0.0371 Inf      4.64 18812 20506    15.7
-#> 10 MATDOM.1505     1     0     0 0        0.404  4.56 18854 20521   210  
+#>    groups          N     D  rate lower upper  time date1 date2 dbhmean
+#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+#>  1 MATDOM.1007     1     0     0     0 0.410  4.50 18891 20535   240  
+#>  2 CASSYL.1010     1     0     0     0 0.411  4.49 18914 20555    67  
+#>  3 SLOBER.110      1     0     0     0 0.409  4.51 18897 20543   150  
+#>  4 SLOBER.1106     1     0     0     0 0.404  4.56 18849 20516    50  
+#>  5 CECSCH.1114     1     0     0     0 0.413  4.47 18948 20580   228  
+#>  6 PSYBRA.1318     1     0     0     0 0.412  4.48 19011 20646    14  
+#>  7 HIRRUG.1403     1     0     0     0 0.403  4.58 18834 20506    12.9
+#>  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558    13.1
+#>  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622    16.6
+#> 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670   108  
 #> # ... with 530 more rows
 growth <- to_df(growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
 growth
 #> # A tibble: 540 x 8
-#>    groups         rate     N  clim dbhmean  time date1 date2
-#>    <chr>         <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
-#>  1 MIRGAR.102   NA         0    NA    NA   NA       NA    NA
-#>  2 PREMON.1110   1.56      1    NA   106    4.48 18918 20556
-#>  3 INGLAU.115    0.224     1    NA    30.5  4.46 18934 20564
-#>  4 IXOFER.117    0.219     1    NA    73    4.56 18961 20627
-#>  5 BUCTET.1223   3.33      1    NA   661    4.50 19058 20703
-#>  6 PSYBRA.1318   0.447     1    NA    14    4.48 19011 20646
-#>  7 MYRDEF.1321   1.07      1    NA    30.5  4.50 19031 20676
-#>  8 HIRRUG.1402  -0.474     1    NA    30.4  4.64 18808 20502
-#>  9 MANBID.1502  NA         0    NA    NA   NA       NA    NA
-#> 10 MATDOM.1505   0.876     1    NA   210    4.56 18854 20521
+#>    groups        rate     N  clim dbhmean  time date1 date2
+#>    <chr>        <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
+#>  1 MATDOM.1007  0         1    NA   240    4.50 18891 20535
+#>  2 CASSYL.1010  0.445     1    NA    67    4.49 18914 20555
+#>  3 SLOBER.110   0.666     1    NA   150    4.51 18897 20543
+#>  4 SLOBER.1106  0         1    NA    50    4.56 18849 20516
+#>  5 CECSCH.1114  1.79      1    NA   228    4.47 18948 20580
+#>  6 PSYBRA.1318  0.447     1    NA    14    4.48 19011 20646
+#>  7 HIRRUG.1403  1.66      1    NA    12.9  4.58 18834 20506
+#>  8 CASSYL.1411 NA         0    NA    NA   NA       NA    NA
+#>  9 SLOBER.1414  1.40      1    NA    16.6  4.57 18952 20622
+#> 10 GUAGUI.1419 NA         0    NA    NA   NA       NA    NA
 #> # ... with 530 more rows
 ```
 
@@ -418,18 +420,18 @@ tidyr::separate(
   groups, into = c("species", "quadrats")
 )
 #> # A tibble: 540 x 9
-#>    species quadrats    rate     N  clim dbhmean  time date1 date2
-#>    <chr>   <chr>      <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
-#>  1 MIRGAR  102       NA         0    NA    NA   NA       NA    NA
-#>  2 PREMON  1110       1.56      1    NA   106    4.48 18918 20556
-#>  3 INGLAU  115        0.224     1    NA    30.5  4.46 18934 20564
-#>  4 IXOFER  117        0.219     1    NA    73    4.56 18961 20627
-#>  5 BUCTET  1223       3.33      1    NA   661    4.50 19058 20703
-#>  6 PSYBRA  1318       0.447     1    NA    14    4.48 19011 20646
-#>  7 MYRDEF  1321       1.07      1    NA    30.5  4.50 19031 20676
-#>  8 HIRRUG  1402      -0.474     1    NA    30.4  4.64 18808 20502
-#>  9 MANBID  1502      NA         0    NA    NA   NA       NA    NA
-#> 10 MATDOM  1505       0.876     1    NA   210    4.56 18854 20521
+#>    species quadrats   rate     N  clim dbhmean  time date1 date2
+#>    <chr>   <chr>     <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
+#>  1 MATDOM  1007      0         1    NA   240    4.50 18891 20535
+#>  2 CASSYL  1010      0.445     1    NA    67    4.49 18914 20555
+#>  3 SLOBER  110       0.666     1    NA   150    4.51 18897 20543
+#>  4 SLOBER  1106      0         1    NA    50    4.56 18849 20516
+#>  5 CECSCH  1114      1.79      1    NA   228    4.47 18948 20580
+#>  6 PSYBRA  1318      0.447     1    NA    14    4.48 19011 20646
+#>  7 HIRRUG  1403      1.66      1    NA    12.9  4.58 18834 20506
+#>  8 CASSYL  1411     NA         0    NA    NA   NA       NA    NA
+#>  9 SLOBER  1414      1.40      1    NA    16.6  4.57 18952 20622
+#> 10 GUAGUI  1419     NA         0    NA    NA   NA       NA    NA
 #> # ... with 530 more rows
 ```
 

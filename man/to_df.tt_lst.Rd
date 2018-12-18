@@ -15,21 +15,14 @@
 A dataframe.
 }
 \description{
-This method creates a dataframe from the output of `fgeo.analyze::tt_test()`
+This method creates a dataframe from the output of `tt_test()`
 (which is a list of class "tt_lst").
 }
 \examples{
-\dontrun{
-if (requireNamespace("fgeo.analyze")) {
-  library(fgeo.analyze)
-
-  cns <- fgeo.analyze::luquillo_top3_sp
-  hab <- fgeo.x::habitat
-
-  tt_lst <- tt_test(cns, unique(cns$sp), hab)
-  to_df(tt_lst)
-}
-}
+cns <- fgeo.x::tree6_3species
+hab <- fgeo.x::habitat
+tt_lst <- tt_test(cns, unique(cns$sp), hab)
+to_df(tt_lst)
 }
 \seealso{
 [to_df()].

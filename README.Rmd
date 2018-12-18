@@ -34,7 +34,8 @@ For details on how to install packages from GitHub, see [this article](https://g
 ## Example
 
 ```{r}
-library(fgeo)
+library(fgeo.tool)
+library(fgeo.analyze)
 ```
 
 ### Abundance
@@ -58,8 +59,8 @@ Fundamentally, `abundance()` counts rows. All of these results are the same:
 
 ```{r}
 nrow(vft)
-dplyr::count(vft)
-dplyr::summarize(vft, n = n())
+count(vft)
+summarize(vft, n = n())
 abundance(vft)
 ```
 
@@ -138,7 +139,7 @@ basal_area(ten_to_twenty)
 Example data.
 
 ```{r}
-vft <- example_byyr
+vft <- fgeo.analyze::example_byyr
 vft
 ```
 

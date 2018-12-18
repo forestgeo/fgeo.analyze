@@ -5,7 +5,7 @@ set.seed(123)
 library(dplyr)
 
 # Small dataset from Luquillo
-cns_luq <- luquillo_top3_sp
+cns_luq <- fgeo.x::tree6_3species
 sp_top3_luq <- unique(cns_luq$sp)
 hab_luq <- fgeo.x::habitat
 sp_top1_luq <- first(sp_top3_luq)

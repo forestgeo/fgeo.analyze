@@ -160,16 +160,12 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='kw'>if</span> (!<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"fgeo.ctfs"</span>)) {
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.ctfs</span>)
-
 <span class='no'>census1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree5</a></span>
 <span class='no'>census2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6</a></span>
 
 <span class='no'>by</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interaction'>interaction</a></span>(<span class='no'>census1</span>$<span class='no'>sp</span>, <span class='no'>census1</span>$<span class='no'>quadrat</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>)
 <span class='no'>.x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='demography_ctfs.html'>recruitment_ctfs</a></span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>by</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>.x</span>))
-}
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
