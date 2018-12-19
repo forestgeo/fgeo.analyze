@@ -187,20 +187,45 @@ including dead, missing, and gone.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.tool</span>)
 
-<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='no'>example_byyr</span>
-<span class='no'>vft</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 8 x 13</span><span>
-#&gt;   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate 
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;date&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'>1</span><span> luq             1      1    1.1 alive     10 Gn    spp         2001-01-01
-#&gt; </span><span style='color: #555555;'>2</span><span> luq             1      1    1.2 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2001-01-01
-#&gt; </span><span style='color: #555555;'>3</span><span> luq             1      2    2.1 alive     20 Gn    spp         2001-01-01
-#&gt; </span><span style='color: #555555;'>4</span><span> luq             1      2    2.2 alive     30 Gn    spp         2001-01-01
-#&gt; </span><span style='color: #555555;'>5</span><span> luq             2      1    1.1 alive     20 Gn    spp         2002-01-01
-#&gt; </span><span style='color: #555555;'>6</span><span> luq             2      1    1.2 gone      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-01
-#&gt; </span><span style='color: #555555;'>7</span><span> luq             2      2    2.1 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-01
-#&gt; </span><span style='color: #555555;'>8</span><span> luq             2      2    2.2 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-01
-#&gt; </span><span style='color: #555555;'># ... with 4 more variables: PlotCensusNumber </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, Family </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Tag </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
-#&gt; #   HOM </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'><span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>, <span class='no'>DBH</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 3</span><span>
+<span class='co'># Example data</span>
+<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+  <span class='kw'>PlotName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>),
+  <span class='kw'>CensusID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
+  <span class='kw'>TreeID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
+  <span class='kw'>StemID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span>, <span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span>),
+  <span class='kw'>Status</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"alive"</span>, <span class='st'>"dead"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"gone"</span>,
+    <span class='st'>"dead"</span>, <span class='st'>"dead"</span>),
+  <span class='kw'>DBH</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10L</span>, <span class='fl'>NA</span>, <span class='fl'>20L</span>, <span class='fl'>30L</span>, <span class='fl'>20L</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
+  <span class='kw'>Genus</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>),
+  <span class='kw'>SpeciesName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>),
+  <span class='kw'>ExactDate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>,
+    <span class='st'>"2002-01-01"</span>, <span class='st'>"2002-01-01"</span>, <span class='st'>"2002-01-01"</span>,
+    <span class='st'>"2002-01-01"</span>),
+  <span class='kw'>PlotCensusNumber</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
+  <span class='kw'>Family</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>),
+  <span class='kw'>Tag</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
+  <span class='kw'>HOM</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>),
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
+<span class='no'>vft</span></div><div class='output co'>#&gt;   PlotName CensusID TreeID StemID Status DBH Genus SpeciesName  ExactDate
+#&gt; 1      luq        1      1    1.1  alive  10    Gn         spp 2001-01-01
+#&gt; 2      luq        1      1    1.2   dead  NA    Gn         spp 2001-01-01
+#&gt; 3      luq        1      2    2.1  alive  20    Gn         spp 2001-01-01
+#&gt; 4      luq        1      2    2.2  alive  30    Gn         spp 2001-01-01
+#&gt; 5      luq        2      1    1.1  alive  20    Gn         spp 2002-01-01
+#&gt; 6      luq        2      1    1.2   gone  NA    Gn         spp 2002-01-01
+#&gt; 7      luq        2      2    2.1   dead  NA    Gn         spp 2002-01-01
+#&gt; 8      luq        2      2    2.2   dead  NA    Gn         spp 2002-01-01
+#&gt;   PlotCensusNumber Family Tag HOM
+#&gt; 1                1      f   1 130
+#&gt; 2                1      f   1 130
+#&gt; 3                1      f   2 130
+#&gt; 4                1      f   2 130
+#&gt; 5                2      f   1 130
+#&gt; 6                2      f   1 130
+#&gt; 7                2      f   2 130
+#&gt; 8                2      f   2 130</div><div class='input'>
+<span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>, <span class='no'>DBH</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 3</span><span>
 #&gt;   species family yr_2001
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            1</div><div class='input'><span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>

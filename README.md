@@ -117,7 +117,7 @@ If you have data from multiple censuses, then you can compute by census
 (or any other group).
 
 ``` r
-vft2 <- tibble::tribble(
+vft2 <- tribble(
   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
           1,     "1",   "1.1",   10,  130,
           1,     "1",   "1.2",   20,  130,  # Main stem
@@ -234,19 +234,37 @@ basal_area(ten_to_twenty)
 Example data.
 
 ``` r
-vft <- fgeo.analyze::example_byyr
+vft <- tibble(
+  PlotName = c("luq", "luq", "luq", "luq", "luq", "luq", "luq", "luq"),
+  CensusID = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
+  TreeID = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
+  StemID = c(1.1, 1.2, 2.1, 2.2, 1.1, 1.2, 2.1, 2.2),
+  Status = c("alive", "dead", "alive", "alive", "alive", "gone",
+    "dead", "dead"),
+  DBH = c(10L, NA, 20L, 30L, 20L, NA, NA, NA),
+  Genus = c("Gn", "Gn", "Gn", "Gn", "Gn", "Gn", "Gn", "Gn"),
+  SpeciesName = c("spp", "spp", "spp", "spp", "spp", "spp", "spp", "spp"),
+  ExactDate = c("2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01",
+    "2002-01-01", "2002-01-01", "2002-01-01",
+    "2002-01-01"),
+  PlotCensusNumber = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
+  Family = c("f", "f", "f", "f", "f", "f", "f", "f"),
+  Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
+  HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L)
+)
+
 vft
 #> # A tibble: 8 x 13
-#>   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate 
-#>   <chr>       <int>  <int>  <dbl> <chr>  <int> <chr> <chr>       <date>    
-#> 1 luq             1      1    1.1 alive     10 Gn    spp         2001-01-01
-#> 2 luq             1      1    1.2 dead      NA Gn    spp         2001-01-01
-#> 3 luq             1      2    2.1 alive     20 Gn    spp         2001-01-01
-#> 4 luq             1      2    2.2 alive     30 Gn    spp         2001-01-01
-#> 5 luq             2      1    1.1 alive     20 Gn    spp         2002-01-01
-#> 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-01
-#> 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-01
-#> 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-01
+#>   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate
+#>   <chr>       <int>  <int>  <dbl> <chr>  <int> <chr> <chr>       <chr>    
+#> 1 luq             1      1    1.1 alive     10 Gn    spp         2001-01-~
+#> 2 luq             1      1    1.2 dead      NA Gn    spp         2001-01-~
+#> 3 luq             1      2    2.1 alive     20 Gn    spp         2001-01-~
+#> 4 luq             1      2    2.2 alive     30 Gn    spp         2001-01-~
+#> 5 luq             2      1    1.1 alive     20 Gn    spp         2002-01-~
+#> 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-~
+#> 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-~
+#> 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-~
 #> # ... with 4 more variables: PlotCensusNumber <int>, Family <chr>,
 #> #   Tag <int>, HOM <int>
 ```
@@ -438,8 +456,9 @@ tidyr::separate(
 ### Species-habitat associations
 
 ``` r
-tree <- fgeo.data::luquillo_tree5_random
-elevation <- fgeo.data::luquillo_elevation
+
+tree <- fgeo.x::download_data("luquillo_tree5_random")
+elevation <- fgeo.x::download_data("luquillo_elevation")
 # Pick alive trees, of 10 mm or more
 census <- filter(tree, status == "A", dbh >= 10)
 # Pick sufficiently abundant species
@@ -529,40 +548,6 @@ to_df(tt_lst)
 
 ## Information
 
-EDIT: Run this chunk then delete it: TODO: Move files to .github/ but
-refer to (FILE.md), not (.github/FILE.md)
-
-    usethis::use_template("SUPPORT.md", package = "fgeo.template")
-    usethis::use_template("CONTRIBUTING.md", package = "fgeo.template")
-    usethis::use_template("CODE_OF_CONDUCT.md", package = "fgeo.template")
-    usethis::use_template("ISSUE_TEMPLATE.md", package = "fgeo.template")
-
   - [Getting help](SUPPORT.md).
   - [Contributing](CONTRIBUTING.md).
   - [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-
-## READ AND DELETE THIS SECTION
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-![](man/figures/README-pressure-1.png)<!-- -->
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!

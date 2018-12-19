@@ -28,8 +28,28 @@
 #' @examples
 #' library(fgeo.tool)
 #'
-#' vft <- example_byyr
+#' # Example data
+#' vft <- data.frame(
+#'   PlotName = c("luq", "luq", "luq", "luq", "luq", "luq", "luq", "luq"),
+#'   CensusID = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
+#'   TreeID = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
+#'   StemID = c(1.1, 1.2, 2.1, 2.2, 1.1, 1.2, 2.1, 2.2),
+#'   Status = c("alive", "dead", "alive", "alive", "alive", "gone",
+#'     "dead", "dead"),
+#'   DBH = c(10L, NA, 20L, 30L, 20L, NA, NA, NA),
+#'   Genus = c("Gn", "Gn", "Gn", "Gn", "Gn", "Gn", "Gn", "Gn"),
+#'   SpeciesName = c("spp", "spp", "spp", "spp", "spp", "spp", "spp", "spp"),
+#'   ExactDate = c("2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01",
+#'     "2002-01-01", "2002-01-01", "2002-01-01",
+#'     "2002-01-01"),
+#'   PlotCensusNumber = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
+#'   Family = c("f", "f", "f", "f", "f", "f", "f", "f"),
+#'   Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
+#'   HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L),
+#'   stringsAsFactors = FALSE
+#' )
 #' vft
+#'
 #' abundance_byyr(vft, DBH >= 10, DBH < 20)
 #' abundance_byyr(vft, DBH >= 10)
 #' basal <- basal_area_byyr(vft, DBH >= 10)
