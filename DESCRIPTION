@@ -45,7 +45,7 @@ Authors@R:
       person(given = "CTFS-ForestGEO",
              role = "cph",
              email = "ForestGEO@si.edu"))
-Description: Analyze ForestGEO data.
+Description: Analyze ForestGEO data (\url{http://www.forestgeo.si.edu/}).
 License: GPL-3
 URL: https://github.com/forestgeo/fgeo.analyze
 BugReports: https://github.com/forestgeo/fgeo.analyze/issues
@@ -75,10 +75,12 @@ Suggests:
     readr,
     rmarkdown,
     stringr,
-    testthat
+    testthat,
+    spelling
 Remotes: 
     forestgeo/fgeo.tool,
     forestgeo/fgeo.x
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Language: en-US

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="https://i.imgur.com/vTLlhbp.png" align="right" height=88 /> Analyze fgeo data
+# <img src="https://i.imgur.com/vTLlhbp.png" align="right" height=88 /> Analyze ForestGEO data
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis build
@@ -11,7 +11,8 @@ status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](htt
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
 
-The goal of **fgeo.analyze** is to analyze fgeo data.
+**fgeo.analyze** provides functions to analyze
+[ForestGEO](http://www.forestgeo.si.edu/) data.
 
 ## Installation
 
