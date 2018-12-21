@@ -2,7 +2,7 @@ git checkout master
 git fetch upstream
 git reset --hard upstream/master
 
-git branch -D BRANCH-TO-DELETE
+git remote prune origin
 
 message="Tidy documentation."
 git add .

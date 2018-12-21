@@ -262,7 +262,7 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
 
 sanitize_habitat_names_if_necessary <- function(habitat) {
   tryCatch(
-    fgeo.tool::check_crucial_names(habitat, c("x", "y")),
+    check_crucial_names(habitat, c("x", "y")),
     error = function(e) rename_to_xy(habitat)
   )
 }
