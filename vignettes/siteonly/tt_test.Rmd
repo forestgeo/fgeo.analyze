@@ -68,7 +68,7 @@ str(habitat)
 ```
 
 ```{r}
-fgeo.map::autoplot(habitat)
+fgeo.plot::autoplot(habitat)
 ```
 
 

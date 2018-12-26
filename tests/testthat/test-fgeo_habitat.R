@@ -23,8 +23,8 @@ describe("fgeo_habitat", {
   habitat <- fgeo_habitat(elev_ls, gridsize = 20, n = 4)
   it("plots with plot.fgeo_habitat()", {
     skip_if_not_installed("fgeo.analyze")
-    skip_if_not_installed("fgeo.map")
-    library(fgeo.map)
+    skip_if_not_installed("fgeo.plot")
+    library(fgeo.plot)
 
     p <- autoplot(habitat)
     expect_is(p, "ggplot")

@@ -55,8 +55,8 @@ habs <- fgeo_habitat(elev_list, n = 4, gridsize = 20)
 str(habs)
 
 \dontrun{
-if (requireNamespace("fgeo.map", quietly = TRUE)) {
-  library(fgeo.map)
+if (requireNamespace("fgeo.plot", quietly = TRUE)) {
+  library(fgeo.plot)
   autoplot(habs)
 }
 }
@@ -75,7 +75,7 @@ hab2 <- fgeo_habitat(elev_df, gridsize = 20, n = 4, xdim = 320, ydim = 500)
 str(hab2)
 }
 \seealso{
-[fgeo.map::autoplot.fgeo_habitat()], [fgeo_topography()].
+[fgeo.plot::autoplot.fgeo_habitat()], [fgeo_topography()].
 
 Other habitat functions: \code{\link{fgeo_topography}},
   \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}},

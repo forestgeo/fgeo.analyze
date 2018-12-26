@@ -17,7 +17,7 @@
 #'   argument `k` to [stats::cutree()]).
 #' @param ... Arguments passed to [fgeo_topography()].
 #'
-#' @seealso [fgeo.map::autoplot.fgeo_habitat()], [fgeo_topography()].
+#' @seealso [fgeo.plot::autoplot.fgeo_habitat()], [fgeo_topography()].
 #'
 #' @return A dataframe of subclass fgeo_habitat, with columns `gx` and `gy`,
 #'   rounded with accuracy determined by `gridsize`, and column `habitats`, with
@@ -30,8 +30,8 @@
 #' str(habs)
 #'
 #' \dontrun{
-#' if (requireNamespace("fgeo.map", quietly = TRUE)) {
-#'   library(fgeo.map)
+#' if (requireNamespace("fgeo.plot", quietly = TRUE)) {
+#'   library(fgeo.plot)
 #'   autoplot(habs)
 #' }
 #' }
