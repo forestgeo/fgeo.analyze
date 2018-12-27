@@ -65,7 +65,8 @@ Imports:
     stats,
     tibble,
     tidyr,
-    withr
+    withr,
+    splancs
 Suggests: 
     covr,
     ggplot2,

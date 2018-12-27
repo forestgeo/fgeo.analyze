@@ -2,7 +2,6 @@ agb
 Agg
 al
 allquadratslopes
-Arellano
 autoplot
 Baltzer
 Barona
@@ -11,14 +10,12 @@ censusid
 CensusID
 Chitra
 clim
-Condit
 ctfs
 CTFS
 cutree
 dbh
 DBH
 dbhmean
-Detto
 df
 dplyr
 edu
@@ -29,6 +26,7 @@ ExactDate
 fgeo
 forestgeo
 ForestGEO
+ggplot
 gridsize
 gx
 gy
@@ -39,18 +37,14 @@ http
 https
 Jian
 julian
-KangMin
 Kenfack
 krig
-Lepore
+lifecycle
 lst
 ly
 matix
-Matteo
 mindbh
-Ngo
 Obiang
-Overstreet
 PlotCensusNumber
 PlotName
 quadrat
@@ -77,4 +71,3 @@ ydim
 yyyy
 Zhang
 zikb
-Zuleta
