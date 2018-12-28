@@ -4,15 +4,15 @@
 \alias{tt_test}
 \title{Torus Translation Test to determine habitat associations of tree species.}
 \usage{
-tt_test(census, sp, habitat, plotdim = NULL, gridsize = NULL)
+tt_test(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL)
 }
 \arguments{
 \item{census}{A dataframe; a ForestGEO \emph{tree} table (see details).}
 
-\item{sp}{Character sting giving any number of species-names.}
-
 \item{habitat}{Object giving the habitat designation for each
 plot partition defined by \code{gridsize}. See \code{\link[=fgeo_habitat]{fgeo_habitat()}}.}
+
+\item{sp}{Character sting giving any number of species-names.}
 
 \item{plotdim, gridsize}{Plot dimensions and gridsize. If \code{NULL} (default)
 they will be guessed, and a message will inform you of the chosen values.
@@ -93,23 +93,23 @@ census <- filter(tree, status == "A", dbh >= 10)
 
 # Pick sufficiently abundant species
 pick <- filter(add_count(census, sp), n > 50)
-species <- unique(pick$sp)
 
 # Use your habitat data or create it from elevation data
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 
-# A list or matrices
-tt_lst <- tt_test(census, species, habitat)
-tt_lst
+# Defaults to using all species
+to_df(
+  tt_test(census, habitat)
+ )
+
+some_species <- c("CASARB", "PREMON")
+result <- tt_test(census, habitat, sp = some_species)
+result
+
+to_df(result)
 
 # A simple summary to help you interpret the results
-summary(tt_lst)
-
-# A combined matrix
-Reduce(rbind, tt_lst)
-
-# A dataframe
-to_df(tt_lst)
+summary(result)
 
 }
 \seealso{

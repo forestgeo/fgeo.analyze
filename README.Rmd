@@ -34,8 +34,7 @@ For details on how to install packages from GitHub, see [this article](https://g
 ## Example
 
 ```{r}
-library(fgeo.tool)
-library(fgeo.analyze)
+library(fgeo)
 ```
 
 ### Abundance
@@ -185,6 +184,7 @@ Demography functions output a list that you can convert to a more convenient dat
 
 ```{r}
 recruitment_ctfs(census1, census2)
+
 to_df(
   recruitment_ctfs(census1, census2, quiet = TRUE)
 )
@@ -193,68 +193,82 @@ to_df(
 Except if you use `split2`: This argument creates a complex data structure that `to_df()` cannot handle.
 
 ```{r, error=TRUE}
-not_recommended <- recruitment_ctfs(
-  census1, census2, 
-  split1 = census1$sp, 
-  split2 = census1$quadrat, 
-  quiet = TRUE
-)
 # Errs
-to_df(not_recommended)
+to_df(
+  recruitment_ctfs(
+    census1, census2, 
+    split1 = census1$sp, 
+    split2 = census1$quadrat,  # `to_df()` can't handle this
+    quiet = TRUE
+  )
+)
 ```
 
 Instead, pass the multiple grouping variables to `split` via `interaction()`. This approach allows you to use any number of grouping variables and the output always works with `to_df()`.
 
 ```{r}
 # Recommended
-sp_quadrat <- interaction(census1$sp, census1$quadrat)
-recruitment <- recruitment_ctfs(
-  census1, census2, 
-  split1 = sp_quadrat, 
-  quiet = TRUE
+by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
+
+to_df(
+  recruitment_ctfs(
+    census1, census2, 
+    split1 = by_sp_and_quadrat, 
+    quiet = TRUE
+  )
 )
-to_df(recruitment)
 ```
 
 The same applies for other demography functions.
 
 ```{r}
-to_df(mortality_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
-growth <- to_df(growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
-growth
+to_df(
+  mortality_ctfs(
+    census1, census2, 
+    split1 = by_sp_and_quadrat, 
+    quiet = TRUE
+  )
+)
 ```
 
 A simple way to separate the grouping variables is with `tidyr::separate()`.
 
+
 ```{r}
-tidyr::separate(
-  growth, 
-  groups, into = c("species", "quadrats")
+growth <- growth_ctfs(
+  census1, census2, 
+  split1 = by_sp_and_quadrat, 
+  quiet = TRUE
 )
+to_df(growth)
+
+to_df(growth) %>% 
+  tidyr::separate(groups, into = c("species", "quadrats"))
 ```
 
 ### Species-habitat associations
 
 ```{r}
-
-tree <- fgeo.x::download_data("luquillo_tree5_random")
-elevation <- fgeo.x::download_data("luquillo_elevation")
 # Pick alive trees, of 10 mm or more
+tree <- fgeo.x::download_data("luquillo_tree5_random")
 census <- filter(tree, status == "A", dbh >= 10)
 # Pick sufficiently abundant species
 pick <- filter(add_count(census, sp), n > 50)
-species <- unique(pick$sp)
+
 # Use your habitat data or create it from elevation data
+elevation <- fgeo.x::download_data("luquillo_elevation")
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
+
+tt_test_result <- tt_test(pick, habitat)
+
 # A list or matrices
-tt_lst <- tt_test(census, species, habitat)
-tt_lst
+tt_test_result
+
 # A simple summary to help you interpret the results
-summary(tt_lst)
-# A combined matrix
-Reduce(rbind, tt_lst)
+summary(tt_test_result)
+
 # A dataframe
-to_df(tt_lst)
+to_df(tt_test_result)
 ```
 
 [Get started with __fgeo__](https://forestgeo.github.io/fgeo/articles/fgeo.html)

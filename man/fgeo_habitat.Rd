@@ -53,32 +53,35 @@ or \code{x} and \code{y}.
 }
 
 \examples{
-# Input a ForestGEO-like elevation list
-elev_list <- fgeo.x::elevation
-habs <- fgeo_habitat(elev_list, n = 4, gridsize = 20)
-str(habs)
-
-\dontrun{
-fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
-if (fgeo_plot_is_installed) {
-  library(fgeo.plot)
-
-  autoplot(habs)
-}
-}
-# A good use of habitat data is for calculating species-habitat associations
-elev_list <- fgeo.x::elevation
-habitat <- fgeo_habitat(elev_list, gridsize = 20, n = 4)
-census <- fgeo.x::tree6_3species
-species <- unique(census$sp)
-to_df(
-  tt_test(census, species, habitat)
+# Input a ForestGEO-like elevation list or dataframe
+elevation_ls <- fgeo.x::elevation
+habitats <- fgeo_habitat(
+  elevation_ls, gridsize = 20, n = 4
+)
+# Or
+elevation_df <- fgeo.x::elevation$col
+habitats <- fgeo_habitat(
+  elevation_df, gridsize = 20, n = 4,
+  xdim = 320, ydim = 500
 )
 
-# If elevation is not a list but a dataframe, you must provide xdim and ydim
-elev_df <- fgeo.x::elevation$col
-hab2 <- fgeo_habitat(elev_df, gridsize = 20, n = 4, xdim = 320, ydim = 500)
-str(hab2)
+str(habitats)
+
+\dontrun{
+  fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
+  if (fgeo_plot_is_installed) {
+    library(fgeo.plot)
+
+    autoplot(habitats)
+  }
+}
+
+# Habitat data is useful for calculating species-habitat associations
+census <- fgeo.x::tree6_3species
+to_df(
+  tt_test(census, habitats)
+)
+
 }
 \seealso{
 \code{\link[fgeo.plot:autoplot.fgeo_habitat]{fgeo.plot::autoplot.fgeo_habitat()}}, \code{\link[=fgeo_topography]{fgeo_topography()}}.

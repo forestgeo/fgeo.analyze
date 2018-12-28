@@ -8,7 +8,7 @@ describe("summary.tt_test()", {
   species <- c("CASARB", "PREMON", "SLOBER")
 
   habitat <- fgeo.x::habitat
-  tt_lst <- tt_test(census, species, habitat)
+  tt_lst <- tt_test(census, habitat = habitat, sp = species)
 
 
 

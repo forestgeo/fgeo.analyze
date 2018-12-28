@@ -75,27 +75,27 @@
 #'
 #' # Pick sufficiently abundant species
 #' pick <- filter(add_count(census, sp), n > 50)
-#' species <- unique(pick$sp)
 #'
 #' # Use your habitat data or create it from elevation data
 #' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 #'
-#' # A list or matrices
-#' tt_lst <- tt_test(census, species, habitat)
-#' tt_lst
+#' # Defaults to using all species
+#' to_df(
+#'   tt_test(census, habitat)
+#'  )
+#'
+#' some_species <- c("CASARB", "PREMON")
+#' result <- tt_test(census, habitat, sp = some_species)
+#' result
+#'
+#' to_df(result)
 #'
 #' # A simple summary to help you interpret the results
-#' summary(tt_lst)
-#'
-#' # A combined matrix
-#' Reduce(rbind, tt_lst)
-#'
-#' # A dataframe
-#' to_df(tt_lst)
+#' summary(result)
 #'
 #' @family habitat functions
 #' @export
-tt_test <- function(census, sp, habitat, plotdim = NULL, gridsize = NULL) {
+tt_test <- function(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL) {
   stopifnot(is.data.frame(habitat))
   if (!inherits(habitat, "fgeo_habitat")) {
     warn(glue("
@@ -108,6 +108,7 @@ tt_test <- function(census, sp, habitat, plotdim = NULL, gridsize = NULL) {
   gridsize <- gridsize %||% fgeo.tool::extract_gridsize(habitat)
   inform_gridsize_plotdim(gridsize, plotdim)
 
+  sp <- sp %||% unique(census$sp)
   habitat <- sanitize_habitat_names_if_necessary(habitat)
   check_tt_test(census, sp, habitat, plotdim, gridsize)
 

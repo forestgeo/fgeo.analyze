@@ -132,28 +132,26 @@ ggplot(pick, aes(x = gx, y = gy)) +
 ## `tt_test()` and any number of species
 
 ```{r}
-all_sp <- unique(pick$sp)
-out <- tt_test(census, all_sp, habitat)
-out
+tt_test_result <- tt_test(pick, habitat)
+tt_test_result
 ```
 
 To help you interpret the results, you can use `summary()`.
 
 ```{r}
-summary(out)
+summary(tt_test_result)
 ```
 
 You may want to combine the output into a single matrix by row-binding each element of the results-list.
 
 ```{r}
-Reduce(rbind, out)
+Reduce(rbind, tt_test_result)
 ```
 
 You also can gather all results into a single dataframe -- this lets you use a wide range of tools for data manipulation and visualization.
 
 ```{r}
-tt_df <- to_df(out)
-tt_df
+to_df(tt_test_result)
 ```
 
 You can benefit from storing your results in a dataframe. Compared to a matrix, a dataframe fits better in common workflows for data manipulation and visualization. The dataframe is the most important data structure used in __dplyr__, __ggplot2__, and many other packages. Here are some examples of what you can do with our dataframe output. (The next few code chunks use [the pipe operator (`%>%`)](http://style.tidyverse.org/pipes.html) to avoid saving intermediary results and to make our code more expressive -- where each line is an imperative statement that communicates our intention.)
@@ -161,13 +159,14 @@ You can benefit from storing your results in a dataframe. Compared to a matrix, 
 * Pick interesting rows and sort them in a meaningful way.
 
 ```{r}
-tt_df %>% filter(sp == "CASARB")
+to_df(tt_test_result) %>% 
+  filter(sp == "CASARB")
 ```
 
 * Summarize
 
 ```{r}
-tt_df %>% 
+to_df(tt_test_result) %>% 
   group_by(sp, habitat) %>% 
   summarize(total_stem_count = sum(N.Hab))
 ```

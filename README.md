@@ -28,13 +28,12 @@ article](https://goo.gl/dQKEeg).
 ## Example
 
 ``` r
-library(fgeo.tool)
-#> 
-#> Attaching package: 'fgeo.tool'
-#> The following object is masked from 'package:stats':
-#> 
-#>     filter
-library(fgeo.analyze)
+library(fgeo)
+#> -- Attaching packages ----------------------------------------------------- fgeo 0.0.0.9002 --
+#> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003
+#> v fgeo.plot    0.0.0.9402     v fgeo.tool    0.0.0.9005
+#> -- Conflicts ------------------------------------------------------------- fgeo_conflicts() --
+#> x fgeo.tool::filter() masks stats::filter()
 ```
 
 ### Abundance
@@ -334,6 +333,7 @@ recruitment_ctfs(census1, census2)
 #> 
 #> $date2
 #> [1] 20600.72
+
 to_df(
   recruitment_ctfs(census1, census2, quiet = TRUE)
 )
@@ -347,18 +347,19 @@ Except if you use `split2`: This argument creates a complex data
 structure that `to_df()` cannot handle.
 
 ``` r
-not_recommended <- recruitment_ctfs(
-  census1, census2, 
-  split1 = census1$sp, 
-  split2 = census1$quadrat, 
-  quiet = TRUE
+# Errs
+to_df(
+  recruitment_ctfs(
+    census1, census2, 
+    split1 = census1$sp, 
+    split2 = census1$quadrat,  # `to_df()` can't handle this
+    quiet = TRUE
+  )
 )
 #> Warning: `split2` is deprecated.
 #> * Bad: `split1 = x1, split2 = x2`
 #> * Good: `split1 = interaction(x1, x2)`
 #> This warning is displayed once per session.
-# Errs
-to_df(not_recommended)
 #> Error:   Can't deal with data created with `split2` (deprecated).
 #>   * Bad: `split1 = x1, split2 = x2`
 #>   * Good: `split1 = interaction(x1, x2)`
@@ -370,13 +371,15 @@ variables and the output always works with `to_df()`.
 
 ``` r
 # Recommended
-sp_quadrat <- interaction(census1$sp, census1$quadrat)
-recruitment <- recruitment_ctfs(
-  census1, census2, 
-  split1 = sp_quadrat, 
-  quiet = TRUE
+by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
+
+to_df(
+  recruitment_ctfs(
+    census1, census2, 
+    split1 = by_sp_and_quadrat, 
+    quiet = TRUE
+  )
 )
-to_df(recruitment)
 #> # A tibble: 540 x 9
 #>    groups         N2     R  rate lower upper  time date1 date2
 #>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -393,11 +396,16 @@ to_df(recruitment)
 #> # ... with 530 more rows
 ```
 
-The same applies for other demography
-functions.
+The same applies for other demography functions.
 
 ``` r
-to_df(mortality_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
+to_df(
+  mortality_ctfs(
+    census1, census2, 
+    split1 = by_sp_and_quadrat, 
+    quiet = TRUE
+  )
+)
 #> # A tibble: 540 x 10
 #>    groups          N     D  rate lower upper  time date1 date2 dbhmean
 #>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
@@ -412,8 +420,18 @@ to_df(mortality_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
 #>  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622    16.6
 #> 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670   108  
 #> # ... with 530 more rows
-growth <- to_df(growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE))
-growth
+```
+
+A simple way to separate the grouping variables is with
+`tidyr::separate()`.
+
+``` r
+growth <- growth_ctfs(
+  census1, census2, 
+  split1 = by_sp_and_quadrat, 
+  quiet = TRUE
+)
+to_df(growth)
 #> # A tibble: 540 x 8
 #>    groups        rate     N  clim dbhmean  time date1 date2
 #>    <chr>        <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
@@ -428,16 +446,9 @@ growth
 #>  9 SLOBER.1414  1.40      1    NA    16.6  4.57 18952 20622
 #> 10 GUAGUI.1419 NA         0    NA    NA   NA       NA    NA
 #> # ... with 530 more rows
-```
 
-A simple way to separate the grouping variables is with
-`tidyr::separate()`.
-
-``` r
-tidyr::separate(
-  growth, 
-  groups, into = c("species", "quadrats")
-)
+to_df(growth) %>% 
+  tidyr::separate(groups, into = c("species", "quadrats"))
 #> # A tibble: 540 x 9
 #>    species quadrats   rate     N  clim dbhmean  time date1 date2
 #>    <chr>   <chr>     <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
@@ -457,91 +468,76 @@ tidyr::separate(
 ### Species-habitat associations
 
 ``` r
-
 tree <- fgeo.x::download_data("luquillo_tree5_random")
 elevation <- fgeo.x::download_data("luquillo_elevation")
 # Pick alive trees, of 10 mm or more
 census <- filter(tree, status == "A", dbh >= 10)
 # Pick sufficiently abundant species
 pick <- filter(add_count(census, sp), n > 50)
-species <- unique(pick$sp)
+
 # Use your habitat data or create it from elevation data
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
-# A list or matrices
-tt_lst <- tt_test(census, species, habitat)
+
+tt_test_result <- tt_test(pick, habitat)
 #> Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.
 #> Using `gridsize = 20`. To change this value see `?tt_test()`.
-tt_lst
+
+# A list or matrices
+tt_test_result
 #> [[1]]
 #>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
-#> CASARB      35     1508       90        2              0         0.9425
+#> CASARB      35     1313      282        5              0       0.820625
 #>        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2
-#> CASARB      24      433     1162        5              0       0.270625
+#> CASARB      24      394     1204        2              0        0.24625
 #>        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3
-#> CASARB      11      440     1157        3              0          0.275
+#> CASARB      11      482     1114        4              0        0.30125
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#> CASARB       8      774      824        2              0        0.48375
+#> CASARB       8     1217      377        6              0       0.760625
 #> 
 #> [[2]]
 #>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
-#> PREMON      94     1511       87        2              0       0.944375
+#> PREMON      94     1005      594        1              0       0.628125
 #>        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2
-#> PREMON      97     1403      196        1              0       0.876875
+#> PREMON      97     1478      120        2              0        0.92375
 #>        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3
-#> PREMON      39      212     1386        2              0         0.1325
+#> PREMON      39      230     1367        3              0        0.14375
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#> PREMON      15       64     1535        1              0           0.04
+#> PREMON      15      130     1465        5              0        0.08125
 #> 
 #> [[3]]
 #>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
-#> SLOBER      21      413     1183        4              0       0.258125
+#> SLOBER      21      270     1328        2              0        0.16875
 #>        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2
-#> SLOBER      25      558     1040        2              0        0.34875
+#> SLOBER      25      516     1082        2              0         0.3225
 #>        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3
-#> SLOBER      21     1289      309        2              0       0.805625
+#> SLOBER      21     1336      260        4              0          0.835
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#> SLOBER       8      833      764        3              0       0.520625
+#> SLOBER       8     1193      396       11              0       0.745625
+
 # A simple summary to help you interpret the results
-summary(tt_lst)
+summary(tt_test_result)
 #>   Species Habitat_1 Habitat_2 Habitat_3 Habitat_4
 #> 1  CASARB   neutral   neutral   neutral   neutral
 #> 2  PREMON   neutral   neutral   neutral   neutral
 #> 3  SLOBER   neutral   neutral   neutral   neutral
-# A combined matrix
-Reduce(rbind, tt_lst)
-#>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
-#> CASARB      35     1508       90        2              0       0.942500
-#> PREMON      94     1511       87        2              0       0.944375
-#> SLOBER      21      413     1183        4              0       0.258125
-#>        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2
-#> CASARB      24      433     1162        5              0       0.270625
-#> PREMON      97     1403      196        1              0       0.876875
-#> SLOBER      25      558     1040        2              0       0.348750
-#>        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3
-#> CASARB      11      440     1157        3              0       0.275000
-#> PREMON      39      212     1386        2              0       0.132500
-#> SLOBER      21     1289      309        2              0       0.805625
-#>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#> CASARB       8      774      824        2              0       0.483750
-#> PREMON      15       64     1535        1              0       0.040000
-#> SLOBER       8      833      764        3              0       0.520625
+
 # A dataframe
-to_df(tt_lst)
+to_df(tt_test_result)
 #> # A tibble: 12 x 8
 #>    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
 #>  * <chr>   <chr>  <dbl>  <dbl>  <dbl>  <dbl>        <dbl>        <dbl>
-#>  1 1       CASARB    35   1508     90      2            0        0.942
-#>  2 2       CASARB    24    433   1162      5            0        0.271
-#>  3 3       CASARB    11    440   1157      3            0        0.275
-#>  4 4       CASARB     8    774    824      2            0        0.484
-#>  5 1       PREMON    94   1511     87      2            0        0.944
-#>  6 2       PREMON    97   1403    196      1            0        0.877
-#>  7 3       PREMON    39    212   1386      2            0        0.132
-#>  8 4       PREMON    15     64   1535      1            0        0.04 
-#>  9 1       SLOBER    21    413   1183      4            0        0.258
-#> 10 2       SLOBER    25    558   1040      2            0        0.349
-#> 11 3       SLOBER    21   1289    309      2            0        0.806
-#> 12 4       SLOBER     8    833    764      3            0        0.521
+#>  1 1       CASARB    35   1313    282      5            0       0.821 
+#>  2 2       CASARB    24    394   1204      2            0       0.246 
+#>  3 3       CASARB    11    482   1114      4            0       0.301 
+#>  4 4       CASARB     8   1217    377      6            0       0.761 
+#>  5 1       PREMON    94   1005    594      1            0       0.628 
+#>  6 2       PREMON    97   1478    120      2            0       0.924 
+#>  7 3       PREMON    39    230   1367      3            0       0.144 
+#>  8 4       PREMON    15    130   1465      5            0       0.0812
+#>  9 1       SLOBER    21    270   1328      2            0       0.169 
+#> 10 2       SLOBER    25    516   1082      2            0       0.322 
+#> 11 3       SLOBER    21   1336    260      4            0       0.835 
+#> 12 4       SLOBER     8   1193    396     11            0       0.746
 ```
 
 [Get started with

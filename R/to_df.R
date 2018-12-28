@@ -41,10 +41,12 @@ to_df.default <- function(.x, ...) {
 #' @return A dataframe.
 #'
 #' @examples
-#' cns <- fgeo.x::tree6_3species
-#' hab <- fgeo.x::habitat
-#' tt_lst <- tt_test(cns, unique(cns$sp), hab)
-#' to_df(tt_lst)
+#' census <- fgeo.x::tree6_3species
+#' habitats <- fgeo.x::habitat
+#' tt_test_result <- tt_test(census, habitats)
+#'
+#' to_df(tt_test_result)
+#'
 #' @family habitat functions
 #' @family methods for fgeo generics
 #' @export

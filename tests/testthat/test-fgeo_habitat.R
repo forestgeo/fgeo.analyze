@@ -45,7 +45,9 @@ describe("fgeo_habitat", {
     census <- census[census$status == "A" & census$dbh >= 10, ]
     species <- c("CASARB", "PREMON", "SLOBER")
 
-    expect_silent(expect_message(tt_test(census, species, habitat)))
+    expect_silent(
+      expect_message(tt_test(census, habitat = habitat, sp = species))
+    )
   })
 
   it("outputs identical with elevation list or dataframe", {
@@ -58,7 +60,9 @@ describe("fgeo_habitat", {
       elev_df, gridsize = 20, n = 4, xdim = elev_ls$xdim, ydim = elev_ls$ydim
     )
     expect_identical(habitat_df, habitat)
-    expect_silent(expect_message(tt_test(census, species, habitat_df)))
+    expect_silent(
+      expect_message(tt_test(census, habitat = habitat_df, sp = species))
+    )
   })
 
   it("with data from pasoh, it outputs rows equal to number of quadrats", {

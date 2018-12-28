@@ -12,15 +12,24 @@ sp_top1_luq <- first(sp_top3_luq)
 
 
 
+test_that("works with `sp = NULL`", {
+  expect_error(tt_test(cns_luq, habitat = hab_luq), NA)
+})
+
 test_that("outputs the expected list", {
-  out <- expect_message(tt_test(cns_luq, sp_top1_luq, hab_luq), "Using")
+  out <- expect_message(
+    tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq),
+    "Using"
+  )
   expect_equal(class(out), c("tt_lst", "list"))
   expect_equal(dim(out[[1]]), c(1, 24))
   expect_equal(sp_top1_luq, rownames(out[[1]]))
 })
 
 test_that("prints as an unclassed list (i.e. doesn't show attr ...)", {
-  output <- capture_output(print(tt_test(cns_luq, sp_top1_luq, hab_luq)))
+  output <- capture_output(
+    print(tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq))
+  )
   expect_false(grepl("tt_lst", output))
 })
 
@@ -33,43 +42,49 @@ abnd <- abund_index(cns_luq, pdim_luq, gsize_luq)
 out_tt <- torusonesp.all(sp_top1_luq, hab_luq, abnd, pdim_luq, gsize_luq)
 
 test_that("outputs expected values", {
-  out_lst <- tt_test(cns_luq, sp_top1_luq, hab_luq)
+  out_lst <- tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq)
   expect_equal(unclass(out_lst[[1]]), unclass(out_tt))
 })
 
 test_that("species may be factor or character", {
   expect_true(
     identical(
-      tt_test(cns_luq, as.factor(sp_top1_luq), hab_luq),
-      tt_test(cns_luq, sp_top1_luq, hab_luq)
+      tt_test(cns_luq, sp = as.factor(sp_top1_luq), habitat = hab_luq),
+      tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq)
     )
   )
 })
 
 test_that("fails with informative message", {
   expect_error(
-    tt_test(cns_luq, 1, hab_luq),
+    tt_test(cns_luq, 1, habitat = hab_luq),
     "`sp` must be of class character or factor"
   )
-  expect_error(tt_test(cns_luq, "a", hab_luq), "All `sp` must be present")
   expect_error(
-    tt_test(cns_luq, c("SLOBER", "odd"), hab_luq),
+    tt_test(cns_luq, "a", habitat = hab_luq),
+    "All `sp` must be present"
+  )
+  expect_error(
+    tt_test(cns_luq, c("SLOBER", "odd"), habitat = hab_luq),
     "odd"
   )
 
   expect_error(
-    tt_test(census = 1, c("SLOBER", "PREMON"), hab_luq),
+    tt_test(census = 1, c("SLOBER", "PREMON"), habitat = hab_luq),
     "is not TRUE"
   )
 
   expect_error(tt_test(cns_luq, c("SLOBER", "PREMON"), 1), "is not TRUE")
-  expect_error(tt_test(cns_luq, c("SLOBER"), hab_luq, 1), "is not TRUE")
   expect_error(
-    tt_test(cns_luq, c("SLOBER"), hab_luq, pdim_luq, "a"),
+    tt_test(cns_luq, c("SLOBER"), habitat = hab_luq, 1),
+    "is not TRUE"
+  )
+  expect_error(
+    tt_test(cns_luq, c("SLOBER"), habitat = hab_luq, pdim_luq, "a"),
     "is not TRUE"
   )
   expect_warning(
-    tt_test(cns_luq, c("SLOBER"), hab_luq, pdim_luq, 12),
+    tt_test(cns_luq, c("SLOBER"), habitat = hab_luq, pdim_luq, 12),
     "Uncommon `gridsize`"
   )
 })
@@ -83,7 +98,7 @@ test_that("warns if census it not a tree table (#33)", {
   expect_warning(
     suppressMessages(tt_test(
       stem,
-      sp_top1_luq, hab_luq
+      sp = sp_top1_luq, habitat = hab_luq
     )),
     msg
   )
@@ -91,7 +106,7 @@ test_that("warns if census it not a tree table (#33)", {
   expect_silent(suppressMessages(
     tt_test(
       tree_table_throws_no_warning <- cns_luq,
-      sp_top1_luq, hab_luq
+      sp = sp_top1_luq, habitat = hab_luq
     )
   ))
 })
@@ -100,7 +115,7 @@ test_that("warns if habitat data isn't of class fgeo_habitat", {
   hab_luq2 <- hab_luq
   class(hab_luq2) <- setdiff(class(hab_luq2), "fgeo_habitat")
   msg <- "isn't of class 'fgeo_habitat'"
-  expect_warning(tt_test(cns_luq, sp_top1_luq, hab_luq2), msg)
+  expect_warning(tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq2), msg)
 })
 
 test_that("with habitat data with names gx,gy|x,y output is identical", {
@@ -108,8 +123,10 @@ test_that("with habitat data with names gx,gy|x,y output is identical", {
   class(hab_luq3) <- setdiff(class(hab_luq3), "fgeo_habitat")
   hab_luq3 <- setNames(hab_luq3, c("x", "y", "habitats"))
 
-  out_gxgy <- tt_test(cns_luq, sp_top1_luq, hab_luq)
-  out_xy <- suppressWarnings(tt_test(cns_luq, sp_top1_luq, hab_luq3))
+  out_gxgy <- tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq)
+  out_xy <- suppressWarnings(
+    tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq3)
+  )
   identical(out_xy, out_gxgy)
 })
 

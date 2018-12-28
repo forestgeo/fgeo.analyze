@@ -133,7 +133,7 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>sp</span>, <span class='no'>habitat</span>, <span class='kw'>plotdim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plotdim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,13 +143,13 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms.</p>
       <td><p>A dataframe; a ForestGEO <em>tree</em> table (see details).</p></td>
     </tr>
     <tr>
-      <th>sp</th>
-      <td><p>Character sting giving any number of species-names.</p></td>
-    </tr>
-    <tr>
       <th>habitat</th>
       <td><p>Object giving the habitat designation for each
 plot partition defined by <code>gridsize</code>. See <code><a href='fgeo_habitat.html'>fgeo_habitat()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>sp</th>
+      <td><p>Character sting giving any number of species-names.</p></td>
     </tr>
     <tr>
       <th>plotdim, gridsize</th>
@@ -244,13 +244,30 @@ species is aggregated on that habitat.</p>
 
 <span class='co'># Pick sufficiently abundant species</span>
 <span class='no'>pick</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='http://dplyr.tidyverse.org/reference/tally.html'>add_count</a></span>(<span class='no'>census</span>, <span class='no'>sp</span>), <span class='no'>n</span> <span class='kw'>&gt;</span> <span class='fl'>50</span>)
-<span class='no'>species</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unique'>unique</a></span>(<span class='no'>pick</span>$<span class='no'>sp</span>)
 
 <span class='co'># Use your habitat data or create it from elevation data</span>
 <span class='no'>habitat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fgeo_habitat.html'>fgeo_habitat</a></span>(<span class='no'>elevation</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
-<span class='co'># A list or matrices</span>
-<span class='no'>tt_lst</span> <span class='kw'>&lt;-</span> <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>species</span>, <span class='no'>habitat</span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'><span class='no'>tt_lst</span></div><div class='output co'>#&gt; [[1]]
+<span class='co'># Defaults to using all species</span>
+<span class='fu'><a href='to_df.html'>to_df</a></span>(
+  <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>)
+ )</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 12 x 8</span><span>
+#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
+#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1       CASARB    29   </span><span style='text-decoration: underline;'>1</span><span>242    356      2            0        0.776
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2       CASARB    20    390   </span><span style='text-decoration: underline;'>1</span><span>206      4            0        0.244
+#&gt; </span><span style='color: #555555;'> 3</span><span> 3       CASARB    12    778    817      5            0        0.486
+#&gt; </span><span style='color: #555555;'> 4</span><span> 4       CASARB     5    932    658     10            0        0.582
+#&gt; </span><span style='color: #555555;'> 5</span><span> 1       PREMON    91   </span><span style='text-decoration: underline;'>1</span><span>093    504      3            0        0.683
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2       PREMON    89   </span><span style='text-decoration: underline;'>1</span><span>254    344      2            0        0.784
+#&gt; </span><span style='color: #555555;'> 7</span><span> 3       PREMON    40    305   </span><span style='text-decoration: underline;'>1</span><span>292      3            0        0.191
+#&gt; </span><span style='color: #555555;'> 8</span><span> 4       PREMON    14    270   </span><span style='text-decoration: underline;'>1</span><span>322      8            0        0.169
+#&gt; </span><span style='color: #555555;'> 9</span><span> 1       SLOBER    18    273   </span><span style='text-decoration: underline;'>1</span><span>324      3            0        0.171
+#&gt; </span><span style='color: #555555;'>10</span><span> 2       SLOBER    24    810    788      2            0        0.506
+#&gt; </span><span style='color: #555555;'>11</span><span> 3       SLOBER    17   </span><span style='text-decoration: underline;'>1</span><span>155    440      5            0        0.722
+#&gt; </span><span style='color: #555555;'>12</span><span> 4       SLOBER     7   </span><span style='text-decoration: underline;'>1</span><span>292    303      5            0        0.808</div><div class='input'>
+<span class='no'>some_species</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"CASARB"</span>, <span class='st'>"PREMON"</span>)
+<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='no'>some_species</span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'><span class='no'>result</span></div><div class='output co'>#&gt; [[1]]
 #&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
 #&gt; CASARB      29     1242      356        2              0        0.77625      20
 #&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
@@ -269,55 +286,22 @@ species is aggregated on that habitat.</p>
 #&gt; PREMON      305     1292        3              0       0.190625      14
 #&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #&gt; PREMON      270     1322        8              0        0.16875
-#&gt; 
-#&gt; [[3]]
-#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
-#&gt; SLOBER      18      273     1324        3              0       0.170625      24
-#&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
-#&gt; SLOBER      810      788        2              0        0.50625      17
-#&gt;        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
-#&gt; SLOBER     1155      440        5              0       0.721875       7
-#&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#&gt; SLOBER     1292      303        5              0         0.8075
 #&gt; </div><div class='input'>
+<span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 8</span><span>
+#&gt;   habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
+#&gt; </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 1       CASARB    29   </span><span style='text-decoration: underline;'>1</span><span>242    356      2            0        0.776
+#&gt; </span><span style='color: #555555;'>2</span><span> 2       CASARB    20    390   </span><span style='text-decoration: underline;'>1</span><span>206      4            0        0.244
+#&gt; </span><span style='color: #555555;'>3</span><span> 3       CASARB    12    778    817      5            0        0.486
+#&gt; </span><span style='color: #555555;'>4</span><span> 4       CASARB     5    932    658     10            0        0.582
+#&gt; </span><span style='color: #555555;'>5</span><span> 1       PREMON    91   </span><span style='text-decoration: underline;'>1</span><span>093    504      3            0        0.683
+#&gt; </span><span style='color: #555555;'>6</span><span> 2       PREMON    89   </span><span style='text-decoration: underline;'>1</span><span>254    344      2            0        0.784
+#&gt; </span><span style='color: #555555;'>7</span><span> 3       PREMON    40    305   </span><span style='text-decoration: underline;'>1</span><span>292      3            0        0.191
+#&gt; </span><span style='color: #555555;'>8</span><span> 4       PREMON    14    270   </span><span style='text-decoration: underline;'>1</span><span>322      8            0        0.169</div><div class='input'>
 <span class='co'># A simple summary to help you interpret the results</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>tt_lst</span>)</div><div class='output co'>#&gt;   Species Habitat_1 Habitat_2 Habitat_3 Habitat_4
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt;   Species Habitat_1 Habitat_2 Habitat_3 Habitat_4
 #&gt; 1  CASARB   neutral   neutral   neutral   neutral
-#&gt; 2  PREMON   neutral   neutral   neutral   neutral
-#&gt; 3  SLOBER   neutral   neutral   neutral   neutral</div><div class='input'>
-<span class='co'># A combined matrix</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/funprog'>Reduce</a></span>(<span class='no'>rbind</span>, <span class='no'>tt_lst</span>)</div><div class='output co'>#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
-#&gt; CASARB      29     1242      356        2              0       0.776250      20
-#&gt; PREMON      91     1093      504        3              0       0.683125      89
-#&gt; SLOBER      18      273     1324        3              0       0.170625      24
-#&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
-#&gt; CASARB      390     1206        4              0        0.24375      12
-#&gt; PREMON     1254      344        2              0        0.78375      40
-#&gt; SLOBER      810      788        2              0        0.50625      17
-#&gt;        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
-#&gt; CASARB      778      817        5              0       0.486250       5
-#&gt; PREMON      305     1292        3              0       0.190625      14
-#&gt; SLOBER     1155      440        5              0       0.721875       7
-#&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#&gt; CASARB      932      658       10              0        0.58250
-#&gt; PREMON      270     1322        8              0        0.16875
-#&gt; SLOBER     1292      303        5              0        0.80750</div><div class='input'>
-<span class='co'># A dataframe</span>
-<span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>tt_lst</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 12 x 8</span><span>
-#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
-#&gt;  </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> 1       CASARB    29   </span><span style='text-decoration: underline;'>1</span><span>242    356      2            0        0.776
-#&gt; </span><span style='color: #555555;'> 2</span><span> 2       CASARB    20    390   </span><span style='text-decoration: underline;'>1</span><span>206      4            0        0.244
-#&gt; </span><span style='color: #555555;'> 3</span><span> 3       CASARB    12    778    817      5            0        0.486
-#&gt; </span><span style='color: #555555;'> 4</span><span> 4       CASARB     5    932    658     10            0        0.582
-#&gt; </span><span style='color: #555555;'> 5</span><span> 1       PREMON    91   </span><span style='text-decoration: underline;'>1</span><span>093    504      3            0        0.683
-#&gt; </span><span style='color: #555555;'> 6</span><span> 2       PREMON    89   </span><span style='text-decoration: underline;'>1</span><span>254    344      2            0        0.784
-#&gt; </span><span style='color: #555555;'> 7</span><span> 3       PREMON    40    305   </span><span style='text-decoration: underline;'>1</span><span>292      3            0        0.191
-#&gt; </span><span style='color: #555555;'> 8</span><span> 4       PREMON    14    270   </span><span style='text-decoration: underline;'>1</span><span>322      8            0        0.169
-#&gt; </span><span style='color: #555555;'> 9</span><span> 1       SLOBER    18    273   </span><span style='text-decoration: underline;'>1</span><span>324      3            0        0.171
-#&gt; </span><span style='color: #555555;'>10</span><span> 2       SLOBER    24    810    788      2            0        0.506
-#&gt; </span><span style='color: #555555;'>11</span><span> 3       SLOBER    17   </span><span style='text-decoration: underline;'>1</span><span>155    440      5            0        0.722
-#&gt; </span><span style='color: #555555;'>12</span><span> 4       SLOBER     7   </span><span style='text-decoration: underline;'>1</span><span>292    303      5            0        0.808</div><div class='input'>
+#&gt; 2  PREMON   neutral   neutral   neutral   neutral</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

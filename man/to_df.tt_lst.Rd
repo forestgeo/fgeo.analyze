@@ -19,10 +19,12 @@ This method creates a dataframe from the output of \code{tt_test()}
 (which is a list of class "tt_lst").
 }
 \examples{
-cns <- fgeo.x::tree6_3species
-hab <- fgeo.x::habitat
-tt_lst <- tt_test(cns, unique(cns$sp), hab)
-to_df(tt_lst)
+census <- fgeo.x::tree6_3species
+habitats <- fgeo.x::habitat
+tt_test_result <- tt_test(census, habitats)
+
+to_df(tt_test_result)
+
 }
 \seealso{
 \code{\link[=to_df]{to_df()}}.

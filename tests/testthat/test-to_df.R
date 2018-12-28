@@ -4,7 +4,7 @@ describe("to_df.tt_lst", {
   cns <- fgeo.x::tree6_3species
   spp <- unique(cns$sp)[1]
   hab_luq <- fgeo.x::habitat
-  tt_lst <- tt_test(cns, spp, hab_luq)
+  tt_lst <- tt_test(cns, habitat = hab_luq, sp = spp)
 
   it("outputs the expected dataframe", {
     expect_equal(class(tt_lst), c("tt_lst", "list"))
