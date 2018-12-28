@@ -20,10 +20,11 @@ This method creates a dataframe from the output of \code{tt_test()}
 }
 \examples{
 census <- fgeo.x::tree6_3species
-habitats <- fgeo.x::habitat
-tt_test_result <- tt_test(census, habitats)
+habitat <- fgeo.x::habitat
 
-to_df(tt_test_result)
+to_df(
+  tt_test(census, habitat)
+)
 
 }
 \seealso{

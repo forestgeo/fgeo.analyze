@@ -18,6 +18,15 @@ A dataframe.
 This method helps you to interpret the results of \code{tt_test()} (which
 outputs objects of class "tt_lst").
 }
+\examples{
+census <- fgeo.x::tree6_3species
+habitat <- fgeo.x::habitat
+
+summary(
+  tt_test(census, habitat)
+)
+
+}
 \seealso{
 \code{\link[=tt_test]{tt_test()}}.
 

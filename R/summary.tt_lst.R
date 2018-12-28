@@ -11,6 +11,14 @@
 #'
 #' @author Daniel Zuleta.
 #'
+#' @examples
+#' census <- fgeo.x::tree6_3species
+#' habitat <- fgeo.x::habitat
+#'
+#' summary(
+#'   tt_test(census, habitat)
+#' )
+#'
 #' @family habitat functions
 #' @family methods for common generics
 #' @export
