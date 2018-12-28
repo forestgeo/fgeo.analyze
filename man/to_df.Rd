@@ -16,18 +16,15 @@ A dataframe.
 }
 \description{
 Most of the popular, general-purpose tools for data science input objects of
-class "data.frame" (<https://www.tidyverse.org/>). However, several __fgeo__
+class "data.frame" (\url{https://www.tidyverse.org/}). However, several \strong{fgeo}
 functions (either inherited from the original CTFS R Package or contributed
 by ForestGEO partners) output data of different class. Taking as input
-different classes of __fgeo__ objects, `to_df()` provides a simple,
+different classes of \strong{fgeo} objects, \code{to_df()} provides a simple,
 consistent way to create dataframes.
 }
 \details{
 This generic provides methods for classes that cannot be correctly coerced
-simply with [base::as.data.frame()] (or similar functions from the
-__tibble__ package).
-}
-\seealso{
-[to_df.krig_lst()].
+simply with \code{\link[base:as.data.frame]{base::as.data.frame()}} (or similar functions from the
+\strong{tibble} package).
 }
 \concept{fgeo generics}

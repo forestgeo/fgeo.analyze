@@ -90,7 +90,7 @@
             <h3 class="subtitle">Given a number of tree species and habitat types in a plot, are species significantly aggregated within habitats?</h3>
                         <h4 class="author">Mauro Lepore</h4>
             
-            <h4 class="date">2018-12-20</h4>
+            <h4 class="date">2018-12-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/forestgeo/fgeo.analyze/blob/master/vignettes/siteonly/tt_test.Rmd"><code>vignettes/siteonly/tt_test.Rmd</code></a></small>
       <div class="hidden name"><code>tt_test.Rmd</code></div>
@@ -117,10 +117,10 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages ----------------------------------------- fgeo 0.0.0.9002 --</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages ---------------------------------------------- fgeo 0.0.0.9002 --</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; v fgeo.map     0.0.0.9402     v fgeo.tool    0.0.0.9005</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; -- Conflicts ------------------------------------------------- fgeo_conflicts() --</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; v fgeo.plot    0.0.0.9402     v fgeo.tool    0.0.0.9005</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; -- Conflicts ------------------------------------------------------ fgeo_conflicts() --</span></a>
 <a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; x fgeo.tool::filter() masks dplyr::filter(), stats::filter()</span></a>
 <a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; x dplyr::intersect()  masks base::intersect()</span></a>
 <a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; x dplyr::lag()        masks stats::lag()</span></a>
@@ -165,7 +165,7 @@
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;  $ gx      : num  0 0 0 0 0 0 0 0 0 0 ...</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  $ gy      : num  0 20 40 60 80 100 120 140 160 180 ...</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</span></a></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">fgeo.map<span class="op">::</span><span class="kw">autoplot</span>(habitat)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">fgeo.plot<span class="op">::</span><span class="kw">autoplot</span>(habitat)</a></code></pre></div>
 <p><img src="tt_test_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;"></p>
 <p>To load your own data, you may run something like this:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="st">"PATH/CENSUS_DATA.rdata"</span>)</a>

@@ -29,7 +29,7 @@
 #' library(fgeo.tool)
 #'
 #' # Example data
-#' vft <- data.frame(
+#' vft <- tibble(
 #'   PlotName = c("luq", "luq", "luq", "luq", "luq", "luq", "luq", "luq"),
 #'   CensusID = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
 #'   TreeID = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
@@ -45,40 +45,37 @@
 #'   PlotCensusNumber = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
 #'   Family = c("f", "f", "f", "f", "f", "f", "f", "f"),
 #'   Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
-#'   HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L),
-#'   stringsAsFactors = FALSE
+#'   HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L)
 #' )
+#'
 #' vft
 #'
 #' abundance_byyr(vft, DBH >= 10, DBH < 20)
+#'
 #' abundance_byyr(vft, DBH >= 10)
+#'
 #' basal <- basal_area_byyr(vft, DBH >= 10)
 #' basal
 #'
 #' \dontrun{
-#' # Convert units
-#' # This exmaple requires the following packages (see `?install.packages`):
-#' required <- c("measurements", "purrr")
-#' not_installed <- !all(sapply(required, requireNamespace, quietly = T))
-#' if (not_installed) {
-#'   stop("To run this section please install the required packages.")
-#' } else {
+#'   # Convert units
+#'   required <- c("measurements", "purrr")
+#'   not_installed <- !all(sapply(required, requireNamespace, quietly = T))
+#'   if (not_installed) {
+#'     stop("To run this section please install the required packages.")
+#'   }
+#'   library(purrr)
+#'   library(measurements)
+#'
 #'   years <- c("yr_2001", "yr_2002")
-#'   basal_he <- purrr::modify_at(
-#'     basal,
-#'     .at = years,
-#'     .f =  ~measurements::conv_unit(.x, from = "mm2", to = "hectare")
-#'   )
+#'   basal_he <- basal %>%
+#'     modify_at(years, ~conv_unit(.x, from = "mm2", to = "hectare"))
 #'   basal_he
 #'
 #'   # Standardize
 #'   number_of_hectares <- 50
-#'   purrr::map_at(
-#'     basal_he,
-#'     .at = years,
-#'     .f = ~.x / number_of_hectares
-#'   )
-#' }
+#'   basal_he %>%
+#'     map_at(years, ~.x / number_of_hectares)
 #' }
 #' @family functions for abundance and basal area
 #' @export

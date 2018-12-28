@@ -11,38 +11,40 @@ basal_area_byyr(vft, ...)
 }
 \arguments{
 \item{vft}{A ForestGEO-like dataframe; particularly a ViewFullTable. As such,
-it should contain columns `PlotName`, `CensusID`, `TreeID`, `StemID`,
-`Status`, `DBH`, `Genus`, `SpeciesName`, `ExactDate`, `PlotCensusNumber`,
-`Family`, `Tag`, and `HOM`. `ExactDate` should contain dates from
+it should contain columns \code{PlotName}, \code{CensusID}, \code{TreeID}, \code{StemID},
+\code{Status}, \code{DBH}, \code{Genus}, \code{SpeciesName}, \code{ExactDate}, \code{PlotCensusNumber},
+\code{Family}, \code{Tag}, and \code{HOM}. \code{ExactDate} should contain dates from
 1980-01-01 to the present day in the format yyyy-mm-dd.}
 
-\item{...}{Expressions to pick main stems of a specific `dbh` range.}
+\item{...}{Expressions to pick main stems of a specific \code{dbh} range.}
 }
 \value{
 A dataframe.
 }
 \description{
-* `abundance_byyr()` first picks the main stem of each tree (see
-?[fgeo.tool::pick_main_stem()] and then, for each species and each
+\itemize{
+\item \code{abundance_byyr()} first picks the main stem of each tree (see
+?\code{\link[fgeo.tool:pick_main_stem]{fgeo.tool::pick_main_stem()}} and then, for each species and each
 (round mean) year of measurement, counts the number of
-trees. The result includes __main stems__ within a given dbh range.
-* `basal_area_byyr()` first sums the basal basal area of all stems of each
+trees. The result includes \strong{main stems} within a given dbh range.
+\item \code{basal_area_byyr()} first sums the basal basal area of all stems of each
 tree, and then, for each species and each (round mean) year of measurement,
 sums the basal area of all trees. The result includes all stems within a
-given dbh range (notice the difference with `abundance_byyr()`).
+given dbh range (notice the difference with \code{abundance_byyr()}).
+}
 }
 \details{
 You don't need to pick stems by status before feeding data to these
 functions. Doing so may make your code more readable but it should not affect
-the result. This is because the expressions passed to `...` pick data by
-`dbh` and exclude missing the `dbh` values associated to non-alive stems,
+the result. This is because the expressions passed to \code{...} pick data by
+\code{dbh} and exclude missing the \code{dbh} values associated to non-alive stems,
 including dead, missing, and gone.
 }
 \examples{
 library(fgeo.tool)
 
 # Example data
-vft <- data.frame(
+vft <- tibble(
   PlotName = c("luq", "luq", "luq", "luq", "luq", "luq", "luq", "luq"),
   CensusID = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
   TreeID = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
@@ -58,44 +60,41 @@ vft <- data.frame(
   PlotCensusNumber = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
   Family = c("f", "f", "f", "f", "f", "f", "f", "f"),
   Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
-  HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L),
-  stringsAsFactors = FALSE
+  HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L)
 )
+
 vft
 
 abundance_byyr(vft, DBH >= 10, DBH < 20)
+
 abundance_byyr(vft, DBH >= 10)
+
 basal <- basal_area_byyr(vft, DBH >= 10)
 basal
 
 \dontrun{
-# Convert units
-# This exmaple requires the following packages (see `?install.packages`):
-required <- c("measurements", "purrr")
-not_installed <- !all(sapply(required, requireNamespace, quietly = T))
-if (not_installed) {
-  stop("To run this section please install the required packages.")
-} else {
+  # Convert units
+  required <- c("measurements", "purrr")
+  not_installed <- !all(sapply(required, requireNamespace, quietly = T))
+  if (not_installed) {
+    stop("To run this section please install the required packages.")
+  }
+  library(purrr)
+  library(measurements)
+
   years <- c("yr_2001", "yr_2002")
-  basal_he <- purrr::modify_at(
-    basal,
-    .at = years,
-    .f =  ~measurements::conv_unit(.x, from = "mm2", to = "hectare")
-  )
+  basal_he <- basal \%>\%
+    modify_at(years, ~conv_unit(.x, from = "mm2", to = "hectare"))
   basal_he
 
   # Standardize
   number_of_hectares <- 50
-  purrr::map_at(
-    basal_he,
-    .at = years,
-    .f = ~.x / number_of_hectares
-  )
-}
+  basal_he \%>\%
+    map_at(years, ~.x / number_of_hectares)
 }
 }
 \seealso{
-[fgeo.tool::pick_main_stem()].
+\code{\link[fgeo.tool:pick_main_stem]{fgeo.tool::pick_main_stem()}}.
 
 Other functions for abundance and basal area: \code{\link{abundance}}
 }

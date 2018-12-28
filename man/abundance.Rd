@@ -10,26 +10,25 @@ abundance(x)
 basal_area(x)
 }
 \arguments{
-\item{x}{A dataframe. `basal_area()` requires a column named `dbh` (case
+\item{x}{A dataframe. \code{\link[=basal_area]{basal_area()}} requires a column named \code{dbh} (case
 insensitive).}
 }
 \description{
-`abundance()` counts woods by counting the number of rows in a dataset,
-optionally by groups created with [group_by()] (similar to [dplyr::n()]). It
-warns if it detects duplicated values of treeid. `basal_area()` sums the
-basal area of all woods in a dataset, optionally by groups created with
-[group_by()]. It warns if it detects duplicated values of stemid. It does not
-convert units (but see examples). Both `abundance()` and
-`basal_area()` warn if they detect multiple censusid and multiple plots.
+\code{\link[=abundance]{abundance()}} counts the number of rows in a dataset, optionally by groups
+created with \code{\link[dplyr:group_by]{dplyr::group_by()}} (similar to \code{\link[dplyr:n]{dplyr::n()}}). It warns if it
+detects duplicated values of treeid. \code{\link[=basal_area]{basal_area()}} sums the basal area of
+all woods in a dataset, optionally by groups created with \code{\link[=group_by]{group_by()}}. It
+warns if it detects duplicated values of stemid. It does not convert units
+(but see examples). Both \code{\link[=abundance]{abundance()}} and \code{\link[=basal_area]{basal_area()}} warn if they detect
+multiple censusid and multiple plots.
 }
 \details{
 You may want to calculate the abundance or basal area for a specific subset
-of data (e.g. "alive" stems or stems which `dbh` is within some range).
-Subsetting data is not the job of these functions. Instead see [subset()],
-[dplyr::filter()], or `[`.
+of data (e.g. "alive" stems or stems which \code{dbh} is within some range).
+Subsetting data is not the job of these functions. Instead see
+\code{\link[base:subset]{base::subset()}}, \code{\link[dplyr:filter]{dplyr::filter()}}, or \code{[}, and \code{\link[fgeo.tool:pick]{fgeo.tool::pick()}}.
 }
 \examples{
-library(dplyr)
 library(fgeo.tool)
 
 # abundance() -------------------------------------------------------------
@@ -37,7 +36,7 @@ library(fgeo.tool)
 # Similar to dplyr::n()
 abundance(data.frame(1))
 
-vft <- tibble::tribble(
+vft <- tribble(
   ~PlotName, ~CensusID, ~TreeID, ~StemID, ~DBH,
         "p",         1,     "1",   "1.1",   10,
         "q",         2,     "1",   "1.1",   10
@@ -50,7 +49,7 @@ abundance(vft)
 # You should probably work with a single plotname.
 # Yet your data may have multiple stems per treeid and even multiple measures
 # per stemid (when trees have buttressess).
-vft2 <- tibble::tribble(
+vft2 <- tribble(
   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
           1,     "1",   "1.1",   88,  130,
           1,     "1",   "1.1",   10,  160,
@@ -62,7 +61,7 @@ vft2 <- tibble::tribble(
 (main_stem <- pick_main_stem(vft2))
 abundance(main_stem)
 
-vft3 <- tibble::tribble(
+vft3 <- tribble(
   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
           1,     "1",   "1.1",   20,  130,
           1,     "1",   "1.2",   10,  160,  # Main stem
@@ -92,20 +91,21 @@ basal_area(main_stemids)
 basal_area(by_census)
 
 \dontrun{
-# Convert units
-missing_measurements <- !requireNamespace("measurements", quietly = TRUE)
-if (missing_measurements) stop("Please run `install.packages('measurements')`")
-ba <- basal_area(by_census)
-ba$basal_area_he <- measurements::conv_unit(
-  ba$basal_area,
-  from = "mm2",
-  to = "hectare"
-)
-ba
+  # Convert units
+  missing_measurements <- !requireNamespace("measurements", quietly = TRUE)
+  if (missing_measurements) stop("Please run `install.packages('measurements')`")
+  ba <- basal_area(by_census)
+  ba$basal_area_he <- measurements::conv_unit(
+    ba$basal_area,
+    from = "mm2",
+    to = "hectare"
+  )
+  ba
 }
+
 }
 \seealso{
-[dplyr::n()], [group_by()].
+\code{\link[dplyr:n]{dplyr::n()}}, \code{\link[dplyr:group_by]{dplyr::group_by()}}.
 
 Other functions for abundance and basal area: \code{\link{abundance_byyr}}
 }

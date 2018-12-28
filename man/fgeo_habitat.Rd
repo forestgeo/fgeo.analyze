@@ -8,33 +8,37 @@ fgeo_habitat(elevation, gridsize, n, ...)
 }
 \arguments{
 \item{elevation}{One of these:
-* A list with at least three elements: `col` containing
-elevation data; and `xdim` and `ydim` giving plot dimensions; OR
-* A dataframe containing elevation data, in which
-case the parameters `xdim` and `ydim` must be provided. It may be the
-element `col` of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see [fgeo.tool::fgeo_elevation()]).}
+\itemize{
+\item A list with at least three elements: \code{col} containing
+elevation data; and \code{xdim} and \code{ydim} giving plot dimensions; OR
+\item A dataframe containing elevation data, in which
+case the parameters \code{xdim} and \code{ydim} must be provided. It may be the
+element \code{col} of a ForestGEO elevation-list or an object of class
+fgeo_elevation (see \code{\link[fgeo.tool:fgeo_elevation]{fgeo.tool::fgeo_elevation()}}).
+}}
 
 \item{gridsize}{Number giving the size of each quadrat for which a habitat
-is calculated. Commonly, `gridsize = 20`.}
+is calculated. Commonly, \code{gridsize = 20}.}
 
 \item{n}{Integer. Number of cluster-groups to construct (passed to the
-argument `k` to [stats::cutree()]).}
+argument \code{k} to \code{\link[stats:cutree]{stats::cutree()}}).}
 
-\item{...}{Arguments passed to [fgeo_topography()].}
+\item{...}{Arguments passed to \code{\link[=fgeo_topography]{fgeo_topography()}}.}
 }
 \value{
-A dataframe of subclass fgeo_habitat, with columns `gx` and `gy`,
-  rounded with accuracy determined by `gridsize`, and column `habitats`, with
-  as many distinct integer values as determined by the argument `n`.
+A dataframe of subclass fgeo_habitat, with columns \code{gx} and \code{gy},
+rounded with accuracy determined by \code{gridsize}, and column \code{habitats}, with
+as many distinct integer values as determined by the argument \code{n}.
 }
 \description{
 This function constructs habitat data based on elevation data. It calculates
 habitats in two steps:
-1. It calculates mean elevation, convexity and slope for each quadrat (via
-[fgeo_topography()])).
-2. It calculates habitats based on hierarchical clustering of the topographic
-metrics from step 1 (via [stats::hclust()]).
+\enumerate{
+\item It calculates mean elevation, convexity and slope for each quadrat (via
+\code{\link[=fgeo_topography]{fgeo_topography()}})).
+\item It calculates habitats based on hierarchical clustering of the topographic
+metrics from step 1 (via \code{\link[stats:hclust]{stats::hclust()}}).
+}
 }
 \section{Input}{
 
@@ -75,7 +79,7 @@ hab2 <- fgeo_habitat(elev_df, gridsize = 20, n = 4, xdim = 320, ydim = 500)
 str(hab2)
 }
 \seealso{
-[fgeo.plot::autoplot.fgeo_habitat()], [fgeo_topography()].
+\code{\link[fgeo.plot:autoplot.fgeo_habitat]{fgeo.plot::autoplot.fgeo_habitat()}}, \code{\link[=fgeo_topography]{fgeo_topography()}}.
 
 Other habitat functions: \code{\link{fgeo_topography}},
   \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}},

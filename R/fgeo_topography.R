@@ -20,10 +20,7 @@
 #' @seealso [fgeo_habitat()].
 #' @return A dataframe of subclass fgeo_topography.
 #'
-#' @author Rick Condit.
-#' @section Source code:
-#' The main code of this function comes from [allquadratslopes()]
-#' ([source](http://bit.ly/2zikb3V)).
+#' @author This function wraps code by Rick Condit.
 #' @section Acknowledgment:
 #' Thanks to Jian Zhang for reporting a bug (issue 59).
 #'

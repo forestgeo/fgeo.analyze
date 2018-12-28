@@ -9,7 +9,7 @@
 \arguments{
 \item{.x}{An object of class demography_ctfs.}
 
-\item{...}{Other arguments passed to `to_df()`.}
+\item{...}{Other arguments passed to \code{to_df()}.}
 }
 \value{
 A (tibble) dataframe.
@@ -28,7 +28,7 @@ head(to_df(.x))
 }
 }
 \seealso{
-[to_df()].
+\code{\link[=to_df]{to_df()}}.
 
 Other demography functions: \code{\link{demography_ctfs}}
 

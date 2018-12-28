@@ -9,13 +9,13 @@
 \arguments{
 \item{.x}{An object of class tt_lst.}
 
-\item{...}{Other arguments passed to [to_df()].}
+\item{...}{Other arguments passed to \code{\link[=to_df]{to_df()}}.}
 }
 \value{
 A dataframe.
 }
 \description{
-This method creates a dataframe from the output of `tt_test()`
+This method creates a dataframe from the output of \code{tt_test()}
 (which is a list of class "tt_lst").
 }
 \examples{
@@ -25,7 +25,7 @@ tt_lst <- tt_test(cns, unique(cns$sp), hab)
 to_df(tt_lst)
 }
 \seealso{
-[to_df()].
+\code{\link[=to_df]{to_df()}}.
 
 Other habitat functions: \code{\link{fgeo_habitat}},
   \code{\link{fgeo_topography}},

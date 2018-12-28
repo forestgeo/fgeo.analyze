@@ -163,12 +163,12 @@ sense at the scale of a tree than at the scale of stems.</p></td>
     <tr>
       <th>mindbh</th>
       <td><p>The minimum diameter above which the counts are done. Trees
-smaller than `mindbh` are excluded. If `NULL`, all living trees are
+smaller than <code>mindbh</code> are excluded. If <code>NULL</code>, all living trees are
 included.</p></td>
     </tr>
     <tr>
       <th>alivecode</th>
-      <td><p>Character, codes of the variable `status` that indicate the
+      <td><p>Character, codes of the variable <code>status</code> that indicate the
 tree is alive. The default 'A' is the standard CTFS designation for living
 trees or stems.</p></td>
     </tr>
@@ -180,22 +180,22 @@ entire census datasets.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p>Use `TRUE` to suppress messages.</p></td>
+      <td><p>Use <code>TRUE</code> to suppress messages.</p></td>
     </tr>
     <tr>
       <th>rounddown</th>
-      <td><p>If `TRUE`, all `dbh &lt; 55` are rounded down to the nearest
+      <td><p>If <code>TRUE</code>, all <code>dbh &lt; 55</code> are rounded down to the nearest
 multiple of 5.</p></td>
     </tr>
     <tr>
       <th>method</th>
       <td><p>Use "I" to calculate annual dbh increment as
-`(dbh2 - dbh1)/time`, or "E" to calculate the relative growth rate as
-`(log(dbh2) - log(dbh1)) / time`.</p></td>
+<code>(dbh2 - dbh1)/time</code>, or "E" to calculate the relative growth rate as
+<code>(log(dbh2) - log(dbh1)) / time</code>.</p></td>
     </tr>
     <tr>
       <th>stdev</th>
-      <td><p>Logical. Default (`FALSE`) returns confidence limits, otherwise
+      <td><p>Logical. Default (<code>FALSE</code>) returns confidence limits, otherwise
 returns the SD in growth rate per group.</p></td>
     </tr>
     <tr>
@@ -222,36 +222,40 @@ measures.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Metrics of recruitment: Similar to metrics of mortality.</p>
-<p>Metrics of mortality:
-* `N`: the number of individuals alive in the census 1 per category
-  selected.
-* `D`: the number of individuals no longer alive in census 2.
-* `rate`: the mean annualized mortality rate constant per category
-  selected, calculated as (log(N)-log(S))/time.
-* `upper`: upper confidence limit of mean rate.
-* `lower`: lower confidence limit of mean rate.
-* `time`: mean time interval in years.
-* `date1`: mean date included individuals were measured in census 1, as
-  julian object (R displays as date, but treats as integer).
-* `date2`: mean date in census 2.
-* `dbhmean`: mean dbh in census 1 of individuals included.</p>
-<p>Metrics of growth:
-* `rate`, the mean annualized growth rate per category selected, either dbh
-  increment, or relative growth
-* `N`, the number of individuals included in the mean (not counting any
-  excluded)
-* `clim` (or sd with `stdev = TRUE`), width of confidence interval; add this
-  number to the mean rate to get upper confidence limit, substract to get
-  lower
-* `dbhmean`, mean dbh in census 1 of individuals included
-* `time`, mean time interval in years
-* `date1`, mean date included individuals were measured in census 1, as
-  julian object (R displays as date, but treats as integer)
-* `date2`, mean date in census 2.</p>
+<p>Metrics of mortality:</p><ul>
+<li><p><code>N</code>: the number of individuals alive in the census 1 per category
+selected.</p></li>
+<li><p><code>D</code>: the number of individuals no longer alive in census 2.</p></li>
+<li><p><code>rate</code>: the mean annualized mortality rate constant per category
+selected, calculated as (log(N)-log(S))/time.</p></li>
+<li><p><code>upper</code>: upper confidence limit of mean rate.</p></li>
+<li><p><code>lower</code>: lower confidence limit of mean rate.</p></li>
+<li><p><code>time</code>: mean time interval in years.</p></li>
+<li><p><code>date1</code>: mean date included individuals were measured in census 1, as
+julian object (R displays as date, but treats as integer).</p></li>
+<li><p><code>date2</code>: mean date in census 2.</p></li>
+<li><p><code>dbhmean</code>: mean dbh in census 1 of individuals included.</p></li>
+</ul>
+
+<p>Metrics of growth:</p><ul>
+<li><p><code>rate</code>, the mean annualized growth rate per category selected, either dbh
+increment, or relative growth</p></li>
+<li><p><code>N</code>, the number of individuals included in the mean (not counting any
+excluded)</p></li>
+<li><p><code>clim</code> (or sd with <code>stdev = TRUE</code>), width of confidence interval; add this
+number to the mean rate to get upper confidence limit, substract to get
+lower</p></li>
+<li><p><code>dbhmean</code>, mean dbh in census 1 of individuals included</p></li>
+<li><p><code>time</code>, mean time interval in years</p></li>
+<li><p><code>date1</code>, mean date included individuals were measured in census 1, as
+julian object (R displays as date, but treats as integer)</p></li>
+<li><p><code>date2</code>, mean date in census 2.</p></li>
+</ul>
+
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Survivors are all individuals alive in both censuses, with `status == A` in
+    <p>Survivors are all individuals alive in both censuses, with <code>status == A</code> in
 the first census, and larger than the minimum dbh in the first census. The
 total population in the second census includes all those alive plus any other
 survivors. Individuals whose status is NA in either census are deleted from

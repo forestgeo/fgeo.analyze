@@ -146,13 +146,14 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>elevation</th>
-      <td><p>One of these:
-* A list with at least three elements: `col` containing
-elevation data; and `xdim` and `ydim` giving plot dimensions; OR
-* A dataframe containing elevation data, in which
-case the parameters `xdim` and `ydim` must be provided. It may be the
-element `col` of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see [fgeo.tool::fgeo_elevation()]).</p></td>
+      <td><p>One of these:</p><ul>
+<li><p>A list with at least three elements: <code>col</code> containing
+elevation data; and <code>xdim</code> and <code>ydim</code> giving plot dimensions; OR</p></li>
+<li><p>A dataframe containing elevation data, in which
+case the parameters <code>xdim</code> and <code>ydim</code> must be provided. It may be the
+element <code>col</code> of a ForestGEO elevation-list or an object of class
+fgeo_elevation (see <code><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/fgeo_elevation'>fgeo.tool::fgeo_elevation()</a></code>).</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>...</th>
@@ -161,11 +162,11 @@ fgeo_elevation (see [fgeo.tool::fgeo_elevation()]).</p></td>
     <tr>
       <th>gridsize</th>
       <td><p>Number giving the size of each quadrat for which a habitat
-is calculated. Commonly, `gridsize = 20`.</p></td>
+is calculated. Commonly, <code>gridsize = 20</code>.</p></td>
     </tr>
     <tr>
       <th>xdim, ydim</th>
-      <td><p>(If `elevation` is a dataframe) `x` and `y` dimensions of
+      <td><p>(If <code>elevation</code> is a dataframe) <code>x</code> and <code>y</code> dimensions of
 the plot.</p></td>
     </tr>
     <tr>
@@ -177,12 +178,6 @@ the plot.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A dataframe of subclass fgeo_topography.</p>
-    
-    <h2 class="hasAnchor" id="source-code"><a class="anchor" href="#source-code"></a>Source code</h2>
-
-    
-    <p>The main code of this function comes from [allquadratslopes()]
-([source](http://bit.ly/2zikb3V)).</p>
     
     <h2 class="hasAnchor" id="acknowledgment"><a class="anchor" href="#acknowledgment"></a>Acknowledgment</h2>
 
@@ -201,7 +196,7 @@ or <code>x</code> and <code>y</code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[fgeo_habitat()].</p>
+    <div class='dont-index'><p><code><a href='fgeo_habitat.html'>fgeo_habitat()</a></code>.</p>
 <p>Other habitat functions: <code><a href='fgeo_habitat.html'>fgeo_habitat</a></code>,
   <code><a href='summary.tt_lst.html'>summary.tt_lst</a></code>, <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code>,
   <code><a href='tt_test.html'>tt_test</a></code></p>
@@ -248,8 +243,6 @@ or <code>x</code> and <code>y</code>.</p>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#source-code">Source code</a></li>
-
       <li><a href="#acknowledgment">Acknowledgment</a></li>
 
       <li><a href="#input">Input</a></li>
@@ -260,7 +253,7 @@ or <code>x</code> and <code>y</code>.</p>
     </ul>
 
     <h2>Author</h2>
-    <p>Rick Condit.</p>
+    <p>This function wraps code by Rick Condit.</p>
   </div>
 </div>
 

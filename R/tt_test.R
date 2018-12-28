@@ -61,7 +61,7 @@
 #'
 #' @section References:
 #' Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
-#' \url{https://doi.org/10.1007/s11104-018-3878-0}.
+#' <https://doi.org/10.1007/s11104-018-3878-0>.
 #'
 #' @examples
 #' library(dplyr)

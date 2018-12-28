@@ -16,19 +16,21 @@ fgeo_topography(elevation, ...)
 }
 \arguments{
 \item{elevation}{One of these:
-* A list with at least three elements: `col` containing
-elevation data; and `xdim` and `ydim` giving plot dimensions; OR
-* A dataframe containing elevation data, in which
-case the parameters `xdim` and `ydim` must be provided. It may be the
-element `col` of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see [fgeo.tool::fgeo_elevation()]).}
+\itemize{
+\item A list with at least three elements: \code{col} containing
+elevation data; and \code{xdim} and \code{ydim} giving plot dimensions; OR
+\item A dataframe containing elevation data, in which
+case the parameters \code{xdim} and \code{ydim} must be provided. It may be the
+element \code{col} of a ForestGEO elevation-list or an object of class
+fgeo_elevation (see \code{\link[fgeo.tool:fgeo_elevation]{fgeo.tool::fgeo_elevation()}}).
+}}
 
 \item{...}{Other arguments passed to methods.}
 
 \item{gridsize}{Number giving the size of each quadrat for which a habitat
-is calculated. Commonly, `gridsize = 20`.}
+is calculated. Commonly, \code{gridsize = 20}.}
 
-\item{xdim, ydim}{(If `elevation` is a dataframe) `x` and `y` dimensions of
+\item{xdim, ydim}{(If \code{elevation} is a dataframe) \code{x} and \code{y} dimensions of
 the plot.}
 
 \item{edgecorrect}{Correct convexity in edge quadrats?}
@@ -39,12 +41,6 @@ A dataframe of subclass fgeo_topography.
 \description{
 Structure topography data with mean elevation, convexity, and slope.
 }
-\section{Source code}{
-
-The main code of this function comes from [allquadratslopes()]
-([source](http://bit.ly/2zikb3V)).
-}
-
 \section{Acknowledgment}{
 
 Thanks to Jian Zhang for reporting a bug (issue 59).
@@ -71,7 +67,7 @@ fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
 
 }
 \seealso{
-[fgeo_habitat()].
+\code{\link[=fgeo_habitat]{fgeo_habitat()}}.
 
 Other habitat functions: \code{\link{fgeo_habitat}},
   \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}},
@@ -80,7 +76,7 @@ Other habitat functions: \code{\link{fgeo_habitat}},
 Other functions to construct fgeo classes: \code{\link{fgeo_habitat}}
 }
 \author{
-Rick Condit.
+This function wraps code by Rick Condit.
 }
 \concept{functions to construct fgeo classes}
 \concept{habitat functions}

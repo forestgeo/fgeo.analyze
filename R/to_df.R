@@ -14,7 +14,6 @@
 #' @param .x An fgeo object of supported class.
 #' @param ... Other arguments passed to methods.
 #'
-#' @seealso [to_df.krig_lst()].
 #' @return A dataframe.
 #'
 #' @family fgeo generics

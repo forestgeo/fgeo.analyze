@@ -32,14 +32,16 @@
 
 <meta property="og:title" content="Create tables of abundance and basal area by year. — abundance_byyr" />
 
-<meta property="og:description" content="* `abundance_byyr()` first picks the main stem of each tree (see
-?[fgeo.tool::pick_main_stem()] and then, for each species and each
+<meta property="og:description" content="
+abundance_byyr() first picks the main stem of each tree (see
+?fgeo.tool::pick_main_stem() and then, for each species and each
 (round mean) year of measurement, counts the number of
-trees. The result includes __main stems__ within a given dbh range.
-* `basal_area_byyr()` first sums the basal basal area of all stems of each
+trees. The result includes main stems within a given dbh range.
+basal_area_byyr() first sums the basal basal area of all stems of each
 tree, and then, for each species and each (round mean) year of measurement,
 sums the basal area of all trees. The result includes all stems within a
-given dbh range (notice the difference with `abundance_byyr()`)." />
+given dbh range (notice the difference with abundance_byyr()).
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,14 +136,16 @@ given dbh range (notice the difference with `abundance_byyr()`)." />
 
     <div class="ref-description">
     
-    <p>* `abundance_byyr()` first picks the main stem of each tree (see
-?[fgeo.tool::pick_main_stem()] and then, for each species and each
+    <ul>
+<li><p><code>abundance_byyr()</code> first picks the main stem of each tree (see
+?<code><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>fgeo.tool::pick_main_stem()</a></code> and then, for each species and each
 (round mean) year of measurement, counts the number of
-trees. The result includes __main stems__ within a given dbh range.
-* `basal_area_byyr()` first sums the basal basal area of all stems of each
+trees. The result includes <strong>main stems</strong> within a given dbh range.</p></li>
+<li><p><code>basal_area_byyr()</code> first sums the basal basal area of all stems of each
 tree, and then, for each species and each (round mean) year of measurement,
 sums the basal area of all trees. The result includes all stems within a
-given dbh range (notice the difference with `abundance_byyr()`).</p>
+given dbh range (notice the difference with <code>abundance_byyr()</code>).</p></li>
+</ul>
     
     </div>
 
@@ -155,14 +159,14 @@ given dbh range (notice the difference with `abundance_byyr()`).</p>
     <tr>
       <th>vft</th>
       <td><p>A ForestGEO-like dataframe; particularly a ViewFullTable. As such,
-it should contain columns `PlotName`, `CensusID`, `TreeID`, `StemID`,
-`Status`, `DBH`, `Genus`, `SpeciesName`, `ExactDate`, `PlotCensusNumber`,
-`Family`, `Tag`, and `HOM`. `ExactDate` should contain dates from
+it should contain columns <code>PlotName</code>, <code>CensusID</code>, <code>TreeID</code>, <code>StemID</code>,
+<code>Status</code>, <code>DBH</code>, <code>Genus</code>, <code>SpeciesName</code>, <code>ExactDate</code>, <code>PlotCensusNumber</code>,
+<code>Family</code>, <code>Tag</code>, and <code>HOM</code>. <code>ExactDate</code> should contain dates from
 1980-01-01 to the present day in the format yyyy-mm-dd.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Expressions to pick main stems of a specific `dbh` range.</p></td>
+      <td><p>Expressions to pick main stems of a specific <code>dbh</code> range.</p></td>
     </tr>
     </table>
     
@@ -174,13 +178,13 @@ it should contain columns `PlotName`, `CensusID`, `TreeID`, `StemID`,
 
     <p>You don't need to pick stems by status before feeding data to these
 functions. Doing so may make your code more readable but it should not affect
-the result. This is because the expressions passed to `...` pick data by
-`dbh` and exclude missing the `dbh` values associated to non-alive stems,
+the result. This is because the expressions passed to <code>...</code> pick data by
+<code>dbh</code> and exclude missing the <code>dbh</code> values associated to non-alive stems,
 including dead, missing, and gone.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[fgeo.tool::pick_main_stem()].</p>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>fgeo.tool::pick_main_stem()</a></code>.</p>
 <p>Other functions for abundance and basal area: <code><a href='abundance.html'>abundance</a></code></p></div>
     
 
@@ -188,7 +192,7 @@ including dead, missing, and gone.</p>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.tool</span>)
 
 <span class='co'># Example data</span>
-<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(
+<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tibble</a></span>(
   <span class='kw'>PlotName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>),
   <span class='kw'>CensusID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
   <span class='kw'>TreeID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
@@ -204,62 +208,54 @@ including dead, missing, and gone.</p>
   <span class='kw'>PlotCensusNumber</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
   <span class='kw'>Family</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>),
   <span class='kw'>Tag</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>HOM</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>HOM</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>)
 )
-<span class='no'>vft</span></div><div class='output co'>#&gt;   PlotName CensusID TreeID StemID Status DBH Genus SpeciesName  ExactDate
-#&gt; 1      luq        1      1    1.1  alive  10    Gn         spp 2001-01-01
-#&gt; 2      luq        1      1    1.2   dead  NA    Gn         spp 2001-01-01
-#&gt; 3      luq        1      2    2.1  alive  20    Gn         spp 2001-01-01
-#&gt; 4      luq        1      2    2.2  alive  30    Gn         spp 2001-01-01
-#&gt; 5      luq        2      1    1.1  alive  20    Gn         spp 2002-01-01
-#&gt; 6      luq        2      1    1.2   gone  NA    Gn         spp 2002-01-01
-#&gt; 7      luq        2      2    2.1   dead  NA    Gn         spp 2002-01-01
-#&gt; 8      luq        2      2    2.2   dead  NA    Gn         spp 2002-01-01
-#&gt;   PlotCensusNumber Family Tag HOM
-#&gt; 1                1      f   1 130
-#&gt; 2                1      f   1 130
-#&gt; 3                1      f   2 130
-#&gt; 4                1      f   2 130
-#&gt; 5                2      f   1 130
-#&gt; 6                2      f   1 130
-#&gt; 7                2      f   2 130
-#&gt; 8                2      f   2 130</div><div class='input'>
-<span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>, <span class='no'>DBH</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 3</span><span>
+
+<span class='no'>vft</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 8 x 13</span><span>
+#&gt;   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'>1</span><span> luq             1      1    1.1 alive     10 Gn    spp         2001-01-~
+#&gt; </span><span style='color: #555555;'>2</span><span> luq             1      1    1.2 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2001-01-~
+#&gt; </span><span style='color: #555555;'>3</span><span> luq             1      2    2.1 alive     20 Gn    spp         2001-01-~
+#&gt; </span><span style='color: #555555;'>4</span><span> luq             1      2    2.2 alive     30 Gn    spp         2001-01-~
+#&gt; </span><span style='color: #555555;'>5</span><span> luq             2      1    1.1 alive     20 Gn    spp         2002-01-~
+#&gt; </span><span style='color: #555555;'>6</span><span> luq             2      1    1.2 gone      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-~
+#&gt; </span><span style='color: #555555;'>7</span><span> luq             2      2    2.1 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-~
+#&gt; </span><span style='color: #555555;'>8</span><span> luq             2      2    2.2 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-~
+#&gt; </span><span style='color: #555555;'># ... with 4 more variables: PlotCensusNumber </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, Family </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Tag </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,
+#&gt; #   HOM </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
+<span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>, <span class='no'>DBH</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 3</span><span>
 #&gt;   species family yr_2001
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            1</div><div class='input'><span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            1</div><div class='input'>
+<span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
 #&gt;   species family yr_2001 yr_2002
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            2       1</div><div class='input'><span class='no'>basal</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            2       1</div><div class='input'>
+<span class='no'>basal</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)
 <span class='no'>basal</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
 #&gt;   species family yr_2001 yr_2002
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div><div class='input'>
 </div></span><span class='co'># NOT RUN {</span>
-<span class='co'># Convert units</span>
-<span class='co'># This exmaple requires the following packages (see `?install.packages`):</span>
-<span class='no'>required</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>)
-<span class='no'>not_installed</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='no'>required</span>, <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='no'>T</span>))
-<span class='kw'>if</span> (<span class='no'>not_installed</span>) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"To run this section please install the required packages."</span>)
-} <span class='kw'>else</span> {
+  <span class='co'># Convert units</span>
+  <span class='no'>required</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>)
+  <span class='no'>not_installed</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='no'>required</span>, <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='no'>T</span>))
+  <span class='kw'>if</span> (<span class='no'>not_installed</span>) {
+    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"To run this section please install the required packages."</span>)
+  }
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>purrr</span>)
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>measurements</span>)
+
   <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
-  <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(
-    <span class='no'>basal</span>,
-    <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>,
-    <span class='kw'>.f</span> <span class='kw'>=</span>  ~<span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>)
-  )
+  <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='no'>basal</span> <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(<span class='no'>years</span>, ~<span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>))
   <span class='no'>basal_he</span>
 
   <span class='co'># Standardize</span>
   <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
-  <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(
-    <span class='no'>basal_he</span>,
-    <span class='kw'>.at</span> <span class='kw'>=</span> <span class='no'>years</span>,
-    <span class='kw'>.f</span> <span class='kw'>=</span> ~<span class='no'>.x</span> / <span class='no'>number_of_hectares</span>
-  )
-}
+  <span class='no'>basal_he</span> <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~<span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

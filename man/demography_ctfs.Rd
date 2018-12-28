@@ -25,10 +25,10 @@ commonly should use a tree table because demography analyses make more
 sense at the scale of a tree than at the scale of stems.}
 
 \item{mindbh}{The minimum diameter above which the counts are done. Trees
-smaller than `mindbh` are excluded. If `NULL`, all living trees are
+smaller than \code{mindbh} are excluded. If \code{NULL}, all living trees are
 included.}
 
-\item{alivecode}{Character, codes of the variable `status` that indicate the
+\item{alivecode}{Character, codes of the variable \code{status} that indicate the
 tree is alive. The default 'A' is the standard CTFS designation for living
 trees or stems.}
 
@@ -36,16 +36,16 @@ trees or stems.}
 dataframe) to aggregate results by. Defaults to aggregating across the
 entire census datasets.}
 
-\item{quiet}{Use `TRUE` to suppress messages.}
+\item{quiet}{Use \code{TRUE} to suppress messages.}
 
-\item{rounddown}{If `TRUE`, all `dbh < 55` are rounded down to the nearest
+\item{rounddown}{If \code{TRUE}, all \code{dbh < 55} are rounded down to the nearest
 multiple of 5.}
 
 \item{method}{Use "I" to calculate annual dbh increment as
-`(dbh2 - dbh1)/time`, or "E" to calculate the relative growth rate as
-`(log(dbh2) - log(dbh1)) / time`.}
+\code{(dbh2 - dbh1)/time}, or "E" to calculate the relative growth rate as
+\code{(log(dbh2) - log(dbh1)) / time}.}
 
-\item{stdev}{Logical. Default (`FALSE`) returns confidence limits, otherwise
+\item{stdev}{Logical. Default (\code{FALSE}) returns confidence limits, otherwise
 returns the SD in growth rate per group.}
 
 \item{dbhunit}{'cm' or 'mm'.}
@@ -63,32 +63,36 @@ measures.}
 Metrics of recruitment: Similar to metrics of mortality.
 
 Metrics of mortality:
-* `N`: the number of individuals alive in the census 1 per category
-  selected.
-* `D`: the number of individuals no longer alive in census 2.
-* `rate`: the mean annualized mortality rate constant per category
-  selected, calculated as (log(N)-log(S))/time.
-* `upper`: upper confidence limit of mean rate.
-* `lower`: lower confidence limit of mean rate.
-* `time`: mean time interval in years.
-* `date1`: mean date included individuals were measured in census 1, as
-  julian object (R displays as date, but treats as integer).
-* `date2`: mean date in census 2.
-* `dbhmean`: mean dbh in census 1 of individuals included.
+\itemize{
+\item \code{N}: the number of individuals alive in the census 1 per category
+selected.
+\item \code{D}: the number of individuals no longer alive in census 2.
+\item \code{rate}: the mean annualized mortality rate constant per category
+selected, calculated as (log(N)-log(S))/time.
+\item \code{upper}: upper confidence limit of mean rate.
+\item \code{lower}: lower confidence limit of mean rate.
+\item \code{time}: mean time interval in years.
+\item \code{date1}: mean date included individuals were measured in census 1, as
+julian object (R displays as date, but treats as integer).
+\item \code{date2}: mean date in census 2.
+\item \code{dbhmean}: mean dbh in census 1 of individuals included.
+}
 
 Metrics of growth:
-* `rate`, the mean annualized growth rate per category selected, either dbh
-  increment, or relative growth
-* `N`, the number of individuals included in the mean (not counting any
-  excluded)
-* `clim` (or sd with `stdev = TRUE`), width of confidence interval; add this
-  number to the mean rate to get upper confidence limit, substract to get
-  lower
-* `dbhmean`, mean dbh in census 1 of individuals included
-* `time`, mean time interval in years
-* `date1`, mean date included individuals were measured in census 1, as
-  julian object (R displays as date, but treats as integer)
-* `date2`, mean date in census 2.
+\itemize{
+\item \code{rate}, the mean annualized growth rate per category selected, either dbh
+increment, or relative growth
+\item \code{N}, the number of individuals included in the mean (not counting any
+excluded)
+\item \code{clim} (or sd with \code{stdev = TRUE}), width of confidence interval; add this
+number to the mean rate to get upper confidence limit, substract to get
+lower
+\item \code{dbhmean}, mean dbh in census 1 of individuals included
+\item \code{time}, mean time interval in years
+\item \code{date1}, mean date included individuals were measured in census 1, as
+julian object (R displays as date, but treats as integer)
+\item \code{date2}, mean date in census 2.
+}
 }
 \description{
 These functions are inherited from the the CTFS-R package. Compared to the
@@ -98,7 +102,7 @@ feature formal tests, bug fixes, additional assertions, and improved
 messages.
 }
 \details{
-Survivors are all individuals alive in both censuses, with `status == A` in
+Survivors are all individuals alive in both censuses, with \code{status == A} in
 the first census, and larger than the minimum dbh in the first census. The
 total population in the second census includes all those alive plus any other
 survivors. Individuals whose status is NA in either census are deleted from

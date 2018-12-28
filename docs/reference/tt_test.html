@@ -140,7 +140,7 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>census</th>
-      <td><p>A dataframe; a ForestGEO _tree_ table (see details).</p></td>
+      <td><p>A dataframe; a ForestGEO <em>tree</em> table (see details).</p></td>
     </tr>
     <tr>
       <th>sp</th>
@@ -149,11 +149,11 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms.</p>
     <tr>
       <th>habitat</th>
       <td><p>Object giving the habitat designation for each
-plot partition defined by `gridsize`. See [`fgeo_habitat()`].</p></td>
+plot partition defined by <code>gridsize</code>. See <code><a href='fgeo_habitat.html'>fgeo_habitat()</a></code>.</p></td>
     </tr>
     <tr>
       <th>plotdim, gridsize</th>
-      <td><p>Plot dimensions and gridsize. If `NULL` (default)
+      <td><p>Plot dimensions and gridsize. If <code>NULL</code> (default)
 they will be guessed, and a message will inform you of the chosen values.
 If the guess is wrong, you should provide the correct values manually (and
 check that your habitat data is correct).</p></td>
@@ -162,10 +162,10 @@ check that your habitat data is correct).</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of matrices. You can summarize the output with [summary()] and
-  convert it to a dataframe with [to_df()]. You can also view the
-  result with `View(your-result)`, and reduce it from a list of matrices to a
-  single matix with `Reduce(rbind, your-result)`. See examples.</p>
+    <p>A list of matrices. You can summarize the output with <code><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary()</a></code> and
+convert it to a dataframe with <code><a href='to_df.html'>to_df()</a></code>. You can also view the
+result with <code><a href='https://www.rdocumentation.org/packages/utils/topics/View'>View(your-result)</a></code>, and reduce it from a list of matrices to a
+single matix with <code><a href='https://www.rdocumentation.org/packages/base/topics/funprog'>Reduce(rbind, your-result)</a></code>. See examples.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -187,27 +187,29 @@ Chitra-Tarak provided feedback. Daniel Zuleta provided guidance.</p>
     <h2 class="hasAnchor" id="interpretation-of-output"><a class="anchor" href="#interpretation-of-output"></a>Interpretation of Output</h2>
 
     
-    <p>* `N.Hab.1`: Count of stems of the focal species in habitat 1.
-* `Gr.Hab.1`: Count of instances the observed relative density of the focal
+    <ul>
+<li><p><code>N.Hab.1</code>: Count of stems of the focal species in habitat 1.</p></li>
+<li><p><code>Gr.Hab.1</code>: Count of instances the observed relative density of the focal
 species on habitat 1 was greater than the relative density based on the TT
-habitat map.
-* `Ls.Hab.1`: Count of instances the observed relative density of the focal
+habitat map.</p></li>
+<li><p><code>Ls.Hab.1</code>: Count of instances the observed relative density of the focal
 species on habitat 1 was less than the relative density based on the TT
-habitat map.
-* `Eq.Hab.1`: Count of instances the observed relative density of the focal
+habitat map.</p></li>
+<li><p><code>Eq.Hab.1</code>: Count of instances the observed relative density of the focal
 species on habitat 1 was equal to the relative density based on the TT
 habitat map.
-The sum of the `Gr.Hab.x`, `Ls.Hab.x`, and `Eq.Hab.x` columns for one habitat
+The sum of the <code>Gr.Hab.x</code>, <code>Ls.Hab.x</code>, and <code>Eq.Hab.x</code> columns for one habitat
 equals the number of 20 x20 quads in the plot.
-The `Rep.Agg.Neut` columns for each habitat indicate whether the species is
+The <code>Rep.Agg.Neut</code> columns for each habitat indicate whether the species is
 significantly repelled (-1), aggregated (1), or neutrally distributed (0) on
-the habitat in question.</p>
-<p>The probabilities associated with the test for whether these patterns are
-statistically significant are in the `Obs.Quantile` columns for each habitat.
+the habitat in question.</p></li>
+</ul>
+    <p>The probabilities associated with the test for whether these patterns are
+statistically significant are in the <code>Obs.Quantile</code> columns for each habitat.
 Note that to calculate the probability for repelled, it is the value given,
 but to calculate the probability for aggregated, it is 1 - the value given.</p>
-<p>Values of the `Obs.Quantile` &lt; 0.025 means that the species is repelled from
-that habitat, while values of the `Obs.Quantile` &gt; 0.975 means that the
+<p>Values of the <code>Obs.Quantile</code> &lt; 0.025 means that the species is repelled from
+that habitat, while values of the <code>Obs.Quantile</code> &gt; 0.975 means that the
 species is aggregated on that habitat.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -218,15 +220,21 @@ species is aggregated on that habitat.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[summary.tt_lst()], [to_df()], [fgeo_habitat()].</p>
+    <div class='dont-index'><p><code><a href='summary.tt_lst.html'>summary.tt_lst()</a></code>, <code><a href='to_df.html'>to_df()</a></code>, <code><a href='fgeo_habitat.html'>fgeo_habitat()</a></code>.</p>
 <p>Other habitat functions: <code><a href='fgeo_habitat.html'>fgeo_habitat</a></code>,
   <code><a href='fgeo_topography.html'>fgeo_topography</a></code>,
   <code><a href='summary.tt_lst.html'>summary.tt_lst</a></code>, <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)
-
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:testthat':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
 <span class='co'># Example data</span>
 <span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6_3species</a></span>
 <span class='no'>elevation</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>elevation</a></span>

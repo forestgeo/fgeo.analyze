@@ -7,7 +7,7 @@
 \method{summary}{tt_lst}(object, ...)
 }
 \arguments{
-\item{object}{The output of [tt_test()], i.e. an S3 object of class tt_lst.}
+\item{object}{The output of \code{\link[=tt_test]{tt_test()}}, i.e. an S3 object of class tt_lst.}
 
 \item{...}{Other arguments passed to methods.}
 }
@@ -15,11 +15,11 @@
 A dataframe.
 }
 \description{
-This method helps you to interpret the results of `tt_test()` (which
+This method helps you to interpret the results of \code{tt_test()} (which
 outputs objects of class "tt_lst").
 }
 \seealso{
-[tt_test()].
+\code{\link[=tt_test]{tt_test()}}.
 
 Other habitat functions: \code{\link{fgeo_habitat}},
   \code{\link{fgeo_topography}},

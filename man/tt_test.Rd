@@ -7,23 +7,23 @@
 tt_test(census, sp, habitat, plotdim = NULL, gridsize = NULL)
 }
 \arguments{
-\item{census}{A dataframe; a ForestGEO _tree_ table (see details).}
+\item{census}{A dataframe; a ForestGEO \emph{tree} table (see details).}
 
 \item{sp}{Character sting giving any number of species-names.}
 
 \item{habitat}{Object giving the habitat designation for each
-plot partition defined by `gridsize`. See [`fgeo_habitat()`].}
+plot partition defined by \code{gridsize}. See \code{\link[=fgeo_habitat]{fgeo_habitat()}}.}
 
-\item{plotdim, gridsize}{Plot dimensions and gridsize. If `NULL` (default)
+\item{plotdim, gridsize}{Plot dimensions and gridsize. If \code{NULL} (default)
 they will be guessed, and a message will inform you of the chosen values.
 If the guess is wrong, you should provide the correct values manually (and
 check that your habitat data is correct).}
 }
 \value{
-A list of matrices. You can summarize the output with [summary()] and
-  convert it to a dataframe with [to_df()]. You can also view the
-  result with `View(your-result)`, and reduce it from a list of matrices to a
-  single matix with `Reduce(rbind, your-result)`. See examples.
+A list of matrices. You can summarize the output with \code{\link[=summary]{summary()}} and
+convert it to a dataframe with \code{\link[=to_df]{to_df()}}. You can also view the
+result with \code{View(your-result)}, and reduce it from a list of matrices to a
+single matix with \code{Reduce(rbind, your-result)}. See examples.
 }
 \description{
 Determine habitat-species associations with code developed by Sabrina Russo,
@@ -47,29 +47,31 @@ Chitra-Tarak provided feedback. Daniel Zuleta provided guidance.
 
 \section{Interpretation of Output}{
 
-* `N.Hab.1`: Count of stems of the focal species in habitat 1.
-* `Gr.Hab.1`: Count of instances the observed relative density of the focal
+\itemize{
+\item \code{N.Hab.1}: Count of stems of the focal species in habitat 1.
+\item \code{Gr.Hab.1}: Count of instances the observed relative density of the focal
 species on habitat 1 was greater than the relative density based on the TT
 habitat map.
-* `Ls.Hab.1`: Count of instances the observed relative density of the focal
+\item \code{Ls.Hab.1}: Count of instances the observed relative density of the focal
 species on habitat 1 was less than the relative density based on the TT
 habitat map.
-* `Eq.Hab.1`: Count of instances the observed relative density of the focal
+\item \code{Eq.Hab.1}: Count of instances the observed relative density of the focal
 species on habitat 1 was equal to the relative density based on the TT
 habitat map.
-The sum of the `Gr.Hab.x`, `Ls.Hab.x`, and `Eq.Hab.x` columns for one habitat
+The sum of the \code{Gr.Hab.x}, \code{Ls.Hab.x}, and \code{Eq.Hab.x} columns for one habitat
 equals the number of 20 x20 quads in the plot.
-The `Rep.Agg.Neut` columns for each habitat indicate whether the species is
+The \code{Rep.Agg.Neut} columns for each habitat indicate whether the species is
 significantly repelled (-1), aggregated (1), or neutrally distributed (0) on
 the habitat in question.
+}
 
 The probabilities associated with the test for whether these patterns are
-statistically significant are in the `Obs.Quantile` columns for each habitat.
+statistically significant are in the \code{Obs.Quantile} columns for each habitat.
 Note that to calculate the probability for repelled, it is the value given,
 but to calculate the probability for aggregated, it is 1 - the value given.
 
-Values of the `Obs.Quantile` < 0.025 means that the species is repelled from
-that habitat, while values of the `Obs.Quantile` > 0.975 means that the
+Values of the \code{Obs.Quantile} < 0.025 means that the species is repelled from
+that habitat, while values of the \code{Obs.Quantile} > 0.975 means that the
 species is aggregated on that habitat.
 }
 
@@ -111,7 +113,7 @@ to_df(tt_lst)
 
 }
 \seealso{
-[summary.tt_lst()], [to_df()], [fgeo_habitat()].
+\code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=to_df]{to_df()}}, \code{\link[=fgeo_habitat]{fgeo_habitat()}}.
 
 Other habitat functions: \code{\link{fgeo_habitat}},
   \code{\link{fgeo_topography}},

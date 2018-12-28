@@ -32,13 +32,13 @@
 
 <meta property="og:title" content="Abundance and basal area, optionally by groups. — abundance" />
 
-<meta property="og:description" content="`abundance()` counts woods by counting the number of rows in a dataset,
-optionally by groups created with [group_by()] (similar to [dplyr::n()]). It
-warns if it detects duplicated values of treeid. `basal_area()` sums the
-basal area of all woods in a dataset, optionally by groups created with
-[group_by()]. It warns if it detects duplicated values of stemid. It does not
-convert units (but see examples). Both `abundance()` and
-`basal_area()` warn if they detect multiple censusid and multiple plots." />
+<meta property="og:description" content="abundance() counts the number of rows in a dataset, optionally by groups
+created with dplyr::group_by() (similar to dplyr::n()). It warns if it
+detects duplicated values of treeid. basal_area() sums the basal area of
+all woods in a dataset, optionally by groups created with group_by(). It
+warns if it detects duplicated values of stemid. It does not convert units
+(but see examples). Both abundance() and basal_area() warn if they detect
+multiple censusid and multiple plots." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -133,13 +133,13 @@ convert units (but see examples). Both `abundance()` and
 
     <div class="ref-description">
     
-    <p>`abundance()` counts woods by counting the number of rows in a dataset,
-optionally by groups created with [group_by()] (similar to [dplyr::n()]). It
-warns if it detects duplicated values of treeid. `basal_area()` sums the
-basal area of all woods in a dataset, optionally by groups created with
-[group_by()]. It warns if it detects duplicated values of stemid. It does not
-convert units (but see examples). Both `abundance()` and
-`basal_area()` warn if they detect multiple censusid and multiple plots.</p>
+    <p><code>abundance()</code> counts the number of rows in a dataset, optionally by groups
+created with <code><a href='http://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> (similar to <code><a href='http://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>). It warns if it
+detects duplicated values of treeid. <code>basal_area()</code> sums the basal area of
+all woods in a dataset, optionally by groups created with <code>group_by()</code>. It
+warns if it detects duplicated values of stemid. It does not convert units
+(but see examples). Both <code>abundance()</code> and <code>basal_area()</code> warn if they detect
+multiple censusid and multiple plots.</p>
     
     </div>
 
@@ -152,7 +152,7 @@ convert units (but see examples). Both `abundance()` and
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A dataframe. `basal_area()` requires a column named `dbh` (case
+      <td><p>A dataframe. <code>basal_area()</code> requires a column named <code>dbh</code> (case
 insensitive).</p></td>
     </tr>
     </table>
@@ -160,25 +160,18 @@ insensitive).</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>You may want to calculate the abundance or basal area for a specific subset
-of data (e.g. "alive" stems or stems which `dbh` is within some range).
-Subsetting data is not the job of these functions. Instead see [subset()],
-[dplyr::filter()], or `[`.</p>
+of data (e.g. "alive" stems or stems which <code>dbh</code> is within some range).
+Subsetting data is not the job of these functions. Instead see
+<code><a href='https://www.rdocumentation.org/packages/base/topics/subset'>base::subset()</a></code>, <code><a href='http://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code>, or <code>[</code>, and <code><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick'>fgeo.tool::pick()</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>[dplyr::n()], [group_by()].</p>
+    <div class='dont-index'><p><code><a href='http://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>, <code><a href='http://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p>
 <p>Other functions for abundance and basal area: <code><a href='abundance_byyr.html'>abundance_byyr</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:testthat':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.tool</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.tool</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: 'fgeo.tool'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:testthat':</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:stats':</span>
@@ -191,7 +184,7 @@ Subsetting data is not the job of these functions. Instead see [subset()],
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     1</div><div class='input'>
-<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/tribble'>tribble</a></span>(
+<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
   ~<span class='no'>PlotName</span>, ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
         <span class='st'>"p"</span>,         <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>10</span>,
         <span class='st'>"q"</span>,         <span class='fl'>2</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>10</span>
@@ -206,7 +199,7 @@ Subsetting data is not the job of these functions. Instead see [subset()],
 <span class='co'># You should probably work with a single plotname.</span>
 <span class='co'># Yet your data may have multiple stems per treeid and even multiple measures</span>
 <span class='co'># per stemid (when trees have buttressess).</span>
-<span class='no'>vft2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/tribble'>tribble</a></span>(
+<span class='no'>vft2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
   ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>, ~<span class='no'>HOM</span>,
           <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>88</span>,  <span class='fl'>130</span>,
           <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>10</span>,  <span class='fl'>160</span>,
@@ -223,7 +216,7 @@ Subsetting data is not the job of these functions. Instead see [subset()],
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
-<span class='no'>vft3</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>tibble</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/tribble'>tribble</a></span>(
+<span class='no'>vft3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
   ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>, ~<span class='no'>HOM</span>,
           <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>20</span>,  <span class='fl'>130</span>,
           <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.2"</span>,   <span class='fl'>10</span>,  <span class='fl'>160</span>,  <span class='co'># Main stem</span>
@@ -275,17 +268,18 @@ Subsetting data is not the job of these functions. Instead see [subset()],
 #&gt; </span><span style='color: #555555;'>1</span><span>        1       393.
 #&gt; </span><span style='color: #555555;'>2</span><span>        2       493.</div><div class='input'>
 </div></span><span class='co'># NOT RUN {</span>
-<span class='co'># Convert units</span>
-<span class='no'>missing_measurements</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw'>if</span> (<span class='no'>missing_measurements</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"Please run `install.packages('measurements')`"</span>)
-<span class='no'>ba</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area</span>(<span class='no'>by_census</span>)
-<span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(
-  <span class='no'>ba</span>$<span class='no'>basal_area</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>,
-  <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>
-)
-<span class='no'>ba</span>
-<span class='co'># }</span></pre>
+  <span class='co'># Convert units</span>
+  <span class='no'>missing_measurements</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>if</span> (<span class='no'>missing_measurements</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"Please run `install.packages('measurements')`"</span>)
+  <span class='no'>ba</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area</span>(<span class='no'>by_census</span>)
+  <span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(
+    <span class='no'>ba</span>$<span class='no'>basal_area</span>,
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>,
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>
+  )
+  <span class='no'>ba</span>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
