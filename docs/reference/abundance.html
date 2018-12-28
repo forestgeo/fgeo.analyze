@@ -268,16 +268,20 @@ Subsetting data is not the job of these functions. Instead see
 #&gt; </span><span style='color: #555555;'>1</span><span>        1       393.
 #&gt; </span><span style='color: #555555;'>2</span><span>        2       493.</div><div class='input'>
 </div></span><span class='co'># NOT RUN {</span>
+<span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='kw'>if</span> (<span class='no'>measurements_is_installed</span>) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>measurements</span>)
+
   <span class='co'># Convert units</span>
-  <span class='no'>missing_measurements</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-  <span class='kw'>if</span> (<span class='no'>missing_measurements</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"Please run `install.packages('measurements')`"</span>)
   <span class='no'>ba</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area</span>(<span class='no'>by_census</span>)
-  <span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(
+  <span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(
     <span class='no'>ba</span>$<span class='no'>basal_area</span>,
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>
   )
+
   <span class='no'>ba</span>
+}
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

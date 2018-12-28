@@ -73,15 +73,13 @@ basal <- basal_area_byyr(vft, DBH >= 10)
 basal
 
 \dontrun{
-  # Convert units
-  required <- c("measurements", "purrr")
-  not_installed <- !all(sapply(required, requireNamespace, quietly = T))
-  if (not_installed) {
-    stop("To run this section please install the required packages.")
-  }
+measurements_and_purr_are_installed <-
+  all(sapply(c("measurements", "purrr"), requireNamespace, quietly = TRUE))
+if (measurements_and_purr_are_installed) {
   library(purrr)
   library(measurements)
 
+  # Convert units
   years <- c("yr_2001", "yr_2002")
   basal_he <- basal \%>\%
     modify_at(years, ~conv_unit(.x, from = "mm2", to = "hectare"))
@@ -91,6 +89,7 @@ basal
   number_of_hectares <- 50
   basal_he \%>\%
     map_at(years, ~.x / number_of_hectares)
+}
 }
 }
 \seealso{

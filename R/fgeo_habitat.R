@@ -30,8 +30,10 @@
 #' str(habs)
 #'
 #' \dontrun{
-#' if (requireNamespace("fgeo.plot", quietly = TRUE)) {
+#' fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
+#' if (fgeo_plot_is_installed) {
 #'   library(fgeo.plot)
+#'
 #'   autoplot(habs)
 #' }
 #' }

@@ -78,9 +78,11 @@
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
 #'
-#' recruitment_ctfs(census1, census2)
+#' to_df(
+#'   recruitment_ctfs(census1, census2)
+#' )
 #'
-#' # Demography by any number of grouping variables via `interaction(...)`
+#' # Use `interaction(...)` to aggregate by any number of grouping variables
 #' sp_quadrat <- interaction(census1$sp, census1$quadrat)
 #'
 #' recruitment <- recruitment_ctfs(
@@ -88,40 +90,27 @@
 #'   split1 = sp_quadrat,
 #'   quiet = TRUE
 #' )
-#' lapply(recruitment, head)
+#' to_df(recruitment)
 #'
 #' mortality <- mortality_ctfs(
 #'   census1, census2, split1 = sp_quadrat, quiet = TRUE
 #' )
-#' lapply(mortality, head)
+#' to_df(mortality)
 #'
 #' growth <- growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE)
-#' lapply(growth, head)
+#' to_df(growth)
 #'
-#' \dontrun{
-#' # Convert to convenient dataframes -------------------------------------
-#' is_installed <- requireNamespace("tidyr")
-#' if (is_installed) {
+#' # Easy way to separate grouping variables
+#' tidyr_is_installed <- requireNamespace("tidyr", quietly = TRUE)
+#' if (tidyr_is_installed) {
 #'   library(tidyr)
 #'
-#'   to_df(
-#'     recruitment_ctfs(census1, census2, quiet = TRUE)
-#'   )
-#'
-#'   to_df(mortality)
-#'
-#'   separate(
-#'     to_df(growth),
-#'     groups, into = c("sp", "quadrat")
-#'   )
-#' }
+#'   to_df(growth) %>%
+#'     separate(groups, into = c("sp", "quadrat"))
 #' }
 #' @family demography functions
 #' @family functions for ForestGEO data.
 #' @family functions for fgeo census.
-#' @name demography_ctfs
-NULL
-#' @rdname demography_ctfs
 #' @export
 recruitment_ctfs <- function(census1,
                              census2,
@@ -189,7 +178,7 @@ recruitment_ctfs <- function(census1,
   new_demography_ctfs(result, split2)
 }
 
-#' @rdname demography_ctfs
+#' @rdname recruitment_ctfs
 #' @export
 mortality_ctfs <- function(census1,
                            census2,
@@ -285,7 +274,7 @@ mortality.calculation <- function(N, S, meantime) {
   result
 }
 
-#' @rdname demography_ctfs
+#' @rdname recruitment_ctfs
 #' @export
 growth_ctfs <- function(census1,
                         census2,

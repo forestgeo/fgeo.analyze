@@ -91,16 +91,20 @@ basal_area(main_stemids)
 basal_area(by_census)
 
 \dontrun{
+measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
+if (measurements_is_installed) {
+  library(measurements)
+
   # Convert units
-  missing_measurements <- !requireNamespace("measurements", quietly = TRUE)
-  if (missing_measurements) stop("Please run `install.packages('measurements')`")
   ba <- basal_area(by_census)
-  ba$basal_area_he <- measurements::conv_unit(
+  ba$basal_area_he <- conv_unit(
     ba$basal_area,
     from = "mm2",
     to = "hectare"
   )
+
   ba
+}
 }
 
 }

@@ -209,8 +209,10 @@ or <code>x</code> and <code>y</code>.</p>
 #&gt;  $ gy      : num  0 20 40 60 80 100 120 140 160 180 ...
 #&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'>
 </div><span class='co'># NOT RUN {</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"fgeo.plot"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+<span class='no'>fgeo_plot_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"fgeo.plot"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='kw'>if</span> (<span class='no'>fgeo_plot_is_installed</span>) {
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.plot</span>)
+
   <span class='fu'><a href='https://forestgeo.github.io/fgeo.plot//reference/reexports.html'>autoplot</a></span>(<span class='no'>habs</span>)
 }
 <span class='co'># }</span><div class='input'><span class='co'># A good use of habitat data is for calculating species-habitat associations</span>

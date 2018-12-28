@@ -154,19 +154,38 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='to_df.html'>to_df()</a></code>.</p>
-<p>Other demography functions: <code><a href='demography_ctfs.html'>demography_ctfs</a></code></p>
+<p>Other demography functions: <code><a href='recruitment_ctfs.html'>recruitment_ctfs</a></code></p>
 <p>Other methods for fgeo generics: <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>census1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree5</a></span>
+    <pre class="examples"><div class='input'><span class='no'>census1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree5</a></span>
 <span class='no'>census2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6</a></span>
+<span class='no'>by_sp_and_quadrat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interaction'>interaction</a></span>(<span class='no'>census1</span>$<span class='no'>sp</span>, <span class='no'>census1</span>$<span class='no'>quadrat</span>)
 
-<span class='no'>by</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/interaction'>interaction</a></span>(<span class='no'>census1</span>$<span class='no'>sp</span>, <span class='no'>census1</span>$<span class='no'>quadrat</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"__"</span>)
-<span class='no'>.x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='demography_ctfs.html'>recruitment_ctfs</a></span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>by</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>.x</span>))
-<span class='co'># }</span></pre>
+<span class='no'>demography_result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='recruitment_ctfs.html'>recruitment_ctfs</a></span>(
+  <span class='no'>census1</span>,
+  <span class='no'>census2</span>,
+  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>by_sp_and_quadrat</span>
+)</div><div class='output co'>#&gt; <span class='message'>Detected dbh ranges:</span>
+#&gt; <span class='message'>  * `census1` = 10.9-323.</span>
+#&gt; <span class='message'>  * `census2` = 10.5-347.</span>
+#&gt; <span class='message'>Using dbh `mindbh = 0` and above.</span></div><div class='input'>
+<span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>demography_result</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 540 x 9</span><span>
+#&gt;    groups         N2     R  rate lower upper  time date1 date2
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> MATDOM.1007     1     0     0     0 0.410  4.50 </span><span style='text-decoration: underline;'>18</span><span>891 </span><span style='text-decoration: underline;'>20</span><span>535
+#&gt; </span><span style='color: #555555;'> 2</span><span> CASSYL.1010     1     0     0     0 0.411  4.49 </span><span style='text-decoration: underline;'>18</span><span>914 </span><span style='text-decoration: underline;'>20</span><span>555
+#&gt; </span><span style='color: #555555;'> 3</span><span> SLOBER.110      1     0     0     0 0.409  4.51 </span><span style='text-decoration: underline;'>18</span><span>897 </span><span style='text-decoration: underline;'>20</span><span>543
+#&gt; </span><span style='color: #555555;'> 4</span><span> SLOBER.1106     1     0     0     0 0.404  4.56 </span><span style='text-decoration: underline;'>18</span><span>849 </span><span style='text-decoration: underline;'>20</span><span>516
+#&gt; </span><span style='color: #555555;'> 5</span><span> CECSCH.1114     1     0     0     0 0.413  4.47 </span><span style='text-decoration: underline;'>18</span><span>948 </span><span style='text-decoration: underline;'>20</span><span>580
+#&gt; </span><span style='color: #555555;'> 6</span><span> PSYBRA.1318     1     0     0     0 0.412  4.48 </span><span style='text-decoration: underline;'>19</span><span>011 </span><span style='text-decoration: underline;'>20</span><span>646
+#&gt; </span><span style='color: #555555;'> 7</span><span> HIRRUG.1403     1     0     0     0 0.403  4.58 </span><span style='text-decoration: underline;'>18</span><span>834 </span><span style='text-decoration: underline;'>20</span><span>506
+#&gt; </span><span style='color: #555555;'> 8</span><span> CASSYL.1411     1     0     0     0 0.414  4.45 </span><span style='text-decoration: underline;'>18</span><span>931 </span><span style='text-decoration: underline;'>20</span><span>558
+#&gt; </span><span style='color: #555555;'> 9</span><span> SLOBER.1414     1     0     0     0 0.403  4.57 </span><span style='text-decoration: underline;'>18</span><span>952 </span><span style='text-decoration: underline;'>20</span><span>622
+#&gt; </span><span style='color: #555555;'>10</span><span> GUAGUI.1419     1     0     0     0 0.406  4.54 </span><span style='text-decoration: underline;'>19</span><span>012 </span><span style='text-decoration: underline;'>20</span><span>670
+#&gt; </span><span style='color: #555555;'># ... with 530 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

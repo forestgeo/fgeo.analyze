@@ -10,9 +10,6 @@
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/abundance_byyr.html</loc>
   </url>
   <url>
-    <loc>https://forestgeo.github.io/fgeo.analyze//reference/demography_ctfs.html</loc>
-  </url>
-  <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/fgeo.analyze-package.html</loc>
   </url>
   <url>
@@ -23,6 +20,9 @@
   </url>
   <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://forestgeo.github.io/fgeo.analyze//reference/recruitment_ctfs.html</loc>
   </url>
   <url>
     <loc>https://forestgeo.github.io/fgeo.analyze//reference/summary.tt_lst.html</loc>

@@ -18,19 +18,23 @@ A (tibble) dataframe.
 Dataframe objects of class "demography_ctfs".
 }
 \examples{
-\dontrun{
 census1 <- fgeo.x::tree5
 census2 <- fgeo.x::tree6
+by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
 
-by <- interaction(census1$sp, census1$quadrat, sep = "__")
-.x <- recruitment_ctfs(census1, census2, split1 = by)
-head(to_df(.x))
-}
+demography_result <- recruitment_ctfs(
+  census1,
+  census2,
+  split1 = by_sp_and_quadrat
+)
+
+to_df(demography_result)
+
 }
 \seealso{
 \code{\link[=to_df]{to_df()}}.
 
-Other demography functions: \code{\link{demography_ctfs}}
+Other demography functions: \code{\link{recruitment_ctfs}}
 
 Other methods for fgeo generics: \code{\link{to_df.tt_lst}}
 }

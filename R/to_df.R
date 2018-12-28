@@ -137,14 +137,18 @@ new_tt_df <- function(.x) {
 #' @return A (tibble) dataframe.
 #'
 #' @examples
-#' \dontrun{
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
+#' by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
 #'
-#' by <- interaction(census1$sp, census1$quadrat, sep = "__")
-#' .x <- recruitment_ctfs(census1, census2, split1 = by)
-#' head(to_df(.x))
-#' }
+#' demography_result <- recruitment_ctfs(
+#'   census1,
+#'   census2,
+#'   split1 = by_sp_and_quadrat
+#' )
+#'
+#' to_df(demography_result)
+#'
 #' @family demography functions
 #' @family methods for fgeo generics
 #' @export

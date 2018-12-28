@@ -238,15 +238,13 @@ including dead, missing, and gone.</p>
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div><div class='input'>
 </div></span><span class='co'># NOT RUN {</span>
-  <span class='co'># Convert units</span>
-  <span class='no'>required</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>)
-  <span class='no'>not_installed</span> <span class='kw'>&lt;-</span> !<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='no'>required</span>, <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='no'>T</span>))
-  <span class='kw'>if</span> (<span class='no'>not_installed</span>) {
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/stop'>stop</a></span>(<span class='st'>"To run this section please install the required packages."</span>)
-  }
+<span class='no'>measurements_and_purr_are_installed</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>), <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
+<span class='kw'>if</span> (<span class='no'>measurements_and_purr_are_installed</span>) {
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>purrr</span>)
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>measurements</span>)
 
+  <span class='co'># Convert units</span>
   <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
   <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='no'>basal</span> <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(<span class='no'>years</span>, ~<span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>))
@@ -256,6 +254,7 @@ including dead, missing, and gone.</p>
   <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
   <span class='no'>basal_he</span> <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~<span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
+}
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
