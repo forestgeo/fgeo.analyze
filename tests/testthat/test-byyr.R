@@ -1,3 +1,5 @@
+library(dplyr)
+
 context("byyr")
 
 vft <- readr::read_csv(test_path("data-byyr_toy_vft.csv"))
@@ -33,10 +35,12 @@ test_that("basal_area_byyr and abundance_byyr fail with informative errors", {
 describe("basal_area_byyr and abundance_byyr work with different datasets", {
   # DRY helpers
   byyr <- function(.data, plot, .f) {
-    luq <- suppressMessages(fgeo.tool::pick_plotname(.data, plot))
     # Fix seed to reproduce random-sampling
-    out <- withr::with_seed(123, sample_n(luq, 10))
+    out <- withr::with_seed(123, sample_n(choose_plot(.data, plot), 10))
     .f(out, dbh > 0)
+  }
+  choose_plot <- function(.data, plot) {
+    .data[.data$PlotName %in% plot, , drop = FALSE]
   }
 
   expect_dataframe <- function(x) expect_is(x, "data.frame")
