@@ -35,7 +35,7 @@
 <meta property="og:description" content="abundance() counts the number of rows in a dataset, optionally by groups
 created with dplyr::group_by() (similar to dplyr::n()). It warns if it
 detects duplicated values of treeid. basal_area() sums the basal area of
-all woods in a dataset, optionally by groups created with group_by(). It
+all stems in a dataset, optionally by groups created with group_by(). It
 warns if it detects duplicated values of stemid. It does not convert units
 (but see examples). Both abundance() and basal_area() warn if they detect
 multiple censusid and multiple plots." />
@@ -136,7 +136,7 @@ multiple censusid and multiple plots." />
     <p><code>abundance()</code> counts the number of rows in a dataset, optionally by groups
 created with <code><a href='http://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> (similar to <code><a href='http://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>). It warns if it
 detects duplicated values of treeid. <code>basal_area()</code> sums the basal area of
-all woods in a dataset, optionally by groups created with <code>group_by()</code>. It
+all stems in a dataset, optionally by groups created with <code>group_by()</code>. It
 warns if it detects duplicated values of stemid. It does not convert units
 (but see examples). Both <code>abundance()</code> and <code>basal_area()</code> warn if they detect
 multiple censusid and multiple plots.</p>
@@ -179,11 +179,43 @@ Subsetting data is not the job of these functions. Instead see
 #&gt; <span class='message'>    filter</span></div><div class='input'>
 <span class='co'># abundance() -------------------------------------------------------------</span>
 
-<span class='co'># Similar to dplyr::n()</span>
 <span class='fu'>abundance</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     1</div><div class='input'>
+<span class='co'># One stem per tree</span>
+<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
+  ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
+      <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>11</span>,
+      <span class='st'>"2"</span>,   <span class='st'>"2.1"</span>,   <span class='fl'>21</span>
+)
+
+<span class='fu'>abundance</span>(<span class='no'>tree</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
+#&gt;       n
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
+<span class='co'># One tree with multiple stems</span>
+<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
+  ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
+      <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>11</span>,
+      <span class='st'>"1"</span>,   <span class='st'>"1.2"</span>,   <span class='fl'>12</span>
+)
+
+<span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
+#&gt;       n
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
+<span class='co'># Similar but more realistic</span>
+<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/download_data'>download_data</a></span>(<span class='st'>"luquillo_stem5_random"</span>)
+
+<span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
+#&gt;       n
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>320</div><div class='input'>
+<span class='fu'>abundance</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>pick_main_stem</a></span>(<span class='no'>stem</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
+#&gt;       n
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>000</div><div class='input'>
 <span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
   ~<span class='no'>PlotName</span>, ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
         <span class='st'>"p"</span>,         <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>10</span>,
@@ -212,7 +244,8 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;   CensusID TreeID StemID   DBH   HOM
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>        1 1      1.1       10   160
-#&gt; </span><span style='color: #555555;'>2</span><span>        1 2      2.2       30   130</div><div class='input'><span class='fu'>abundance</span>(<span class='no'>main_stem</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span>        1 2      2.2       30   130</div><div class='input'>
+<span class='fu'>abundance</span>(<span class='no'>main_stem</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
@@ -231,7 +264,8 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;   CensusID TreeID StemID   DBH   HOM
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>        1 1      1.2       10   160
-#&gt; </span><span style='color: #555555;'>2</span><span>        2 1      1.2       22   130</div><div class='input'><span class='fu'>abundance</span>(<span class='no'>main_stems_by_census</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 2</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 1      1.2       22   130</div><div class='input'>
+<span class='fu'>abundance</span>(<span class='no'>main_stems_by_census</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 2</span><span>
 #&gt; </span><span style='color: #555555;'># Groups:   CensusID [2]</span><span>
 #&gt;   CensusID     n
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
@@ -256,7 +290,8 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>        1 1      1.1       10   160
 #&gt; </span><span style='color: #555555;'>2</span><span>        1 2      2.1       20   130
-#&gt; </span><span style='color: #555555;'>3</span><span>        1 2      2.2       30   130</div><div class='input'><span class='fu'>basal_area</span>(<span class='no'>main_stemids</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span>        1 2      2.2       30   130</div><div class='input'>
+<span class='fu'>basal_area</span>(<span class='no'>main_stemids</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;   basal_area
 #&gt;        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>      </span><span style='text-decoration: underline;'>1</span><span>100.</div><div class='input'>

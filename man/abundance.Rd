@@ -17,7 +17,7 @@ insensitive).}
 \code{\link[=abundance]{abundance()}} counts the number of rows in a dataset, optionally by groups
 created with \code{\link[dplyr:group_by]{dplyr::group_by()}} (similar to \code{\link[dplyr:n]{dplyr::n()}}). It warns if it
 detects duplicated values of treeid. \code{\link[=basal_area]{basal_area()}} sums the basal area of
-all woods in a dataset, optionally by groups created with \code{\link[=group_by]{group_by()}}. It
+all stems in a dataset, optionally by groups created with \code{\link[=group_by]{group_by()}}. It
 warns if it detects duplicated values of stemid. It does not convert units
 (but see examples). Both \code{\link[=abundance]{abundance()}} and \code{\link[=basal_area]{basal_area()}} warn if they detect
 multiple censusid and multiple plots.
@@ -33,8 +33,32 @@ library(fgeo.tool)
 
 # abundance() -------------------------------------------------------------
 
-# Similar to dplyr::n()
 abundance(data.frame(1))
+
+# One stem per tree
+tree <- tribble(
+  ~TreeID, ~StemID, ~DBH,
+      "1",   "1.1",   11,
+      "2",   "2.1",   21
+)
+
+abundance(tree)
+
+# One tree with multiple stems
+stem <- tribble(
+  ~TreeID, ~StemID, ~DBH,
+      "1",   "1.1",   11,
+      "1",   "1.2",   12
+)
+
+abundance(stem)
+
+# Similar but more realistic
+stem <- fgeo.x::download_data("luquillo_stem5_random")
+
+abundance(stem)
+
+abundance(pick_main_stem(stem))
 
 vft <- tribble(
   ~PlotName, ~CensusID, ~TreeID, ~StemID, ~DBH,
@@ -59,6 +83,7 @@ vft2 <- tribble(
 
 # You should count only the main stem of each tree
 (main_stem <- pick_main_stem(vft2))
+
 abundance(main_stem)
 
 vft3 <- tribble(
@@ -72,6 +97,7 @@ vft3 <- tribble(
 # You can compute by groups
 by_census <- group_by(vft3, CensusID)
 (main_stems_by_census <- pick_main_stem(by_census))
+
 abundance(main_stems_by_census)
 
 # basal_area() ------------------------------------------------------------
@@ -85,6 +111,7 @@ basal_area(vft)
 
 # First you may pick the main stemid of each stem
 (main_stemids <- pick_main_stemid(vft2))
+
 basal_area(main_stemids)
 
 # You can compute by groups
