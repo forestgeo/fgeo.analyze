@@ -65,34 +65,33 @@
 #'
 #' @examples
 #' library(dplyr)
-#'
+#' 
 #' # Example data
 #' tree <- fgeo.x::tree6_3species
 #' elevation <- fgeo.x::elevation
-#'
+#' 
 #' # Pick alive trees, of 10 mm or more
 #' census <- filter(tree, status == "A", dbh >= 10)
-#'
+#' 
 #' # Pick sufficiently abundant species
 #' pick <- filter(add_count(census, sp), n > 50)
-#'
+#' 
 #' # Use your habitat data or create it from elevation data
 #' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
-#'
+#' 
 #' # Defaults to using all species
 #' to_df(
 #'   tt_test(census, habitat)
-#'  )
-#'
+#' )
+#' 
 #' some_species <- c("CASARB", "PREMON")
 #' result <- tt_test(census, habitat, sp = some_species)
 #' result
-#'
+#' 
 #' to_df(result)
-#'
+#' 
 #' # A simple summary to help you interpret the results
 #' summary(result)
-#'
 #' @family habitat functions
 #' @export
 tt_test <- function(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL) {
@@ -166,8 +165,8 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
 
   fixed_nan <- FALSE
 
-  for (i in 1:num.habs) # Creates names for columns of output matrix.
-  {
+  # Creates names for columns of output matrix.
+  for (i in 1:num.habs) {
     if (i == 1) {
       cols <- c(paste("N.Hab.", i, sep = ""), paste("Gr.Hab.", i, sep = ""), paste("Ls.Hab.", i, sep = ""), paste("Eq.Hab.", i, sep = ""), paste("Rep.Agg.Neut.", i, sep = ""), paste("Obs.Quantile.", i, sep = ""))
     }
@@ -262,12 +261,7 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
           fixed_nan <- TRUE
         }
 
-        for (i in 1:num.habs)
-        {
-          if (is.na(spprophab[i] > Torspprophab[i])) {
-            # FIXME: No longer needed?
-            warn_invalid_comparison(spprophab[i], Torspprophab[i])
-          }
+        for (i in 1:num.habs) {
           if (spprophab[i] > Torspprophab[i]) {
             # If rel. dens. of focal sp. in focal habitat of true map is greater
             # than rel. dens. of focal sp. in focal habitat of torus-based map,
@@ -275,11 +269,17 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
             GrLsEq[1, (6 * i) - 4] <- GrLsEq[1, (6 * i) - 4] + 1
           }
 
-          if (spprophab[i] < Torspprophab[i]) { # If rel. dens. of focal sp. in focal habitat of true map is less than rel. dens. of focal sp. in focal habitat of torus-based map, then add one to "less than" count.
+          if (spprophab[i] < Torspprophab[i]) {
+            # If rel. dens. of focal sp. in focal habitat of true map is less
+            # than rel. dens. of focal sp. in focal habitat of torus-based map,
+            # then add one to "less than" count.
             GrLsEq[1, (6 * i) - 3] <- GrLsEq[1, (6 * i) - 3] + 1
           }
 
-          if (spprophab[i] == Torspprophab[i]) { # If rel. dens. of focal sp. in focal habitat of true map is equal to rel. dens. of focal sp. in focal habitat of torus-based map, then add one to "equal to" count.
+          if (spprophab[i] == Torspprophab[i]) {
+            # If rel. dens. of focal sp. in focal habitat of true map is equal
+            # to rel. dens. of focal sp. in focal habitat of torus-based map,
+            # then add one to "equal to" count.
             GrLsEq[1, (6 * i) - 2] <- GrLsEq[1, (6 * i) - 2] + 1
           }
         }
@@ -300,9 +300,8 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   }
 
   result <- GrLsEq
-  attr(result,  "fixed_nan") <- fixed_nan
+  attr(result, "fixed_nan") <- fixed_nan
   result
-
 }
 
 sanitize_habitat_names_if_necessary <- function(habitat) {

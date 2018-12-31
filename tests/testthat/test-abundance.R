@@ -80,7 +80,6 @@ describe("abundance", {
     expect_true(is_grouped_df(abundance(group_by(tree, CensusID))))
     expect_true(is_grouped_df(basal_area(group_by(tree, CensusID))))
   })
-
 })
 
 
@@ -119,7 +118,6 @@ describe("basal_area", {
       basal_area(group_by(tree, sp))$basal_area,
       ba_ctfs(tree, split1 = tree$sp) * offset
     )
-
   })
 
   it("warns duplicated stemid", {
@@ -200,4 +198,3 @@ test_that("tricky objects in global environment cause no scoping issues", {
 test_that("with cero-lenght dataframe returns a dataframe and result it 0", {
   expect_equal(abundance(tibble()), tibble(n = 0L))
 })
-

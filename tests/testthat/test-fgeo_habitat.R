@@ -57,7 +57,8 @@ describe("fgeo_habitat", {
 
     elev_df <- fgeo.x::elevation$col
     habitat_df <- fgeo_habitat(
-      elev_df, gridsize = 20, n = 4, xdim = elev_ls$xdim, ydim = elev_ls$ydim
+      elev_df,
+      gridsize = 20, n = 4, xdim = elev_ls$xdim, ydim = elev_ls$ydim
     )
     expect_identical(habitat_df, habitat)
     expect_silent(

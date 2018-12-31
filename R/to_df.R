@@ -43,11 +43,10 @@ to_df.default <- function(.x, ...) {
 #' @examples
 #' census <- fgeo.x::tree6_3species
 #' habitat <- fgeo.x::habitat
-#'
+#' 
 #' to_df(
 #'   tt_test(census, habitat)
 #' )
-#'
 #' @family habitat functions
 #' @family methods for fgeo generics
 #' @export
@@ -64,7 +63,7 @@ tt_gather <- function(.x) {
 
 tt_restructure <- function(.x) {
   with_habitat <- spread_metric_value(separate_habitat_metric(.x))
-  metrics <- purrr::map(with_habitat, ~.x["metric", ])[1][[1]]
+  metrics <- purrr::map(with_habitat, ~ .x["metric", ])[1][[1]]
   list(with_habitat = with_habitat, metrics = metrics)
 }
 
@@ -83,17 +82,17 @@ separate_habitat_sp <- function(x) {
   )
 }
 
-spread_metric_value <- function(with_habitat){
+spread_metric_value <- function(with_habitat) {
   with_habitat %>%
     split(interaction(with_habitat$sp, with_habitat$habitat)) %>%
-    purrr::map(~.x[c("metric", "value")]) %>%
+    purrr::map(~ .x[c("metric", "value")]) %>%
     purrr::map(t)
 }
 
 tt_create_df <- function(tt_data) {
   out <- tt_data$with_habitat %>%
-    purrr::map(~.x["value", ]) %>%
-    purrr::imap(~c(.y, .x)) %>%
+    purrr::map(~ .x["value", ]) %>%
+    purrr::imap(~ c(.y, .x)) %>%
     purrr::reduce(rbind) %>%
     tibble::as_tibble() %>%
     rlang::set_names(c("species_habitat", tt_data$metrics)) %>%
@@ -143,15 +142,14 @@ new_tt_df <- function(.x) {
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
 #' by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
-#'
+#' 
 #' demography_result <- recruitment_ctfs(
 #'   census1,
 #'   census2,
 #'   split1 = by_sp_and_quadrat
 #' )
-#'
+#' 
 #' to_df(demography_result)
-#'
 #' @family demography functions
 #' @family methods for fgeo generics
 #' @export
@@ -176,4 +174,3 @@ to_df.demography_ctfs <- function(.x, ...) {
   rownames(result) <- NULL
   tibble::as_tibble(result)
 }
-

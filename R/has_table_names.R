@@ -8,7 +8,6 @@
 #' tree <- data.frame(x = 1, z = 1)
 #' has_table_names(stem)(stem)
 #' has_table_names(stem)(tree)
-#'
 #' @family general predicates
 #' @noRd
 has_table_names <- function(reference) {

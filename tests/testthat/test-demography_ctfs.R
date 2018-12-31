@@ -56,9 +56,9 @@ test_that("output is equal if aggregated via `split2` or `interaction()`", {
 })
 
 test_that("objects created with split2 have split2 attribute", {
-
   out <- recruitment_ctfs(
-    tiny1, tiny2, split1 = tiny1$sp, split2 = tiny1$quadrat
+    tiny1, tiny2,
+    split1 = tiny1$sp, split2 = tiny1$quadrat
   )
   expect_true(attr(out, "split2"))
 })
@@ -71,7 +71,8 @@ test_that("without split2, doesn't have attribute split2", {
 test_that("using `mindbh` prints a message after extracting desired `mindbh`", {
   expect_message(
     recruitment_ctfs(
-      pick10sp(fgeo.x::tree5), pick10sp(fgeo.x::tree6), mindbh = 100
+      pick10sp(fgeo.x::tree5), pick10sp(fgeo.x::tree6),
+      mindbh = 100
     ),
     "Using dbh.*and above"
   )
@@ -84,7 +85,6 @@ test_that("growth_ctfs() outputs differently with different `method`s", {
 })
 
 describe("recruitment_ctfs(), mortality_ctfs(), and growth_ctfs()", {
-
   it("output S3 objects of class demography_ctfs", {
     out1 <- recruitment_ctfs(tiny1, tiny2, quiet = TRUE)
     expect_is(out1, "demography_ctfs")
@@ -96,15 +96,18 @@ describe("recruitment_ctfs(), mortality_ctfs(), and growth_ctfs()", {
     expect_is(out1, "demography_ctfs")
 
     out1 <- recruitment_ctfs(
-      tiny1, tiny2, split1 = tiny1$sp, quiet = TRUE
+      tiny1, tiny2,
+      split1 = tiny1$sp, quiet = TRUE
     )
     expect_is(out1, "demography_ctfs")
     out1 <- mortality_ctfs(
-      tiny1, tiny2, split1 = tiny1$sp, quiet = TRUE
+      tiny1, tiny2,
+      split1 = tiny1$sp, quiet = TRUE
     )
     expect_is(out1, "demography_ctfs")
     out1 <- growth_ctfs(
-      tiny1, tiny2, split1 = tiny1$sp, quiet = TRUE
+      tiny1, tiny2,
+      split1 = tiny1$sp, quiet = TRUE
     )
     expect_is(out1, "demography_ctfs")
   })
@@ -113,14 +116,16 @@ describe("recruitment_ctfs(), mortality_ctfs(), and growth_ctfs()", {
     skip_if_not_installed("ctfs")
 
     out1 <- recruitment_ctfs(
-      tiny1, tiny2, split1 = tiny1$sp, quiet = TRUE
+      tiny1, tiny2,
+      split1 = tiny1$sp, quiet = TRUE
     )
     expect_is(out1, "demography_ctfs")
     out2 <- ctfs::recruitment(tiny1, tiny2, split1 = tiny1$sp)
     expect_equivalent(out1, out2)
 
     out1 <- mortality_ctfs(
-      tiny1, tiny2, split1 = tiny1$sp, quiet = TRUE
+      tiny1, tiny2,
+      split1 = tiny1$sp, quiet = TRUE
     )
     out2 <- ctfs::mortality(tiny1, tiny2, split1 = tiny1$sp)
     expect_equivalent(out1, out2)
@@ -469,4 +474,3 @@ test_that("mortality.calculation is type unstable which should be avoided", {
   .matrix <- matrix(1)
   expect_is(mortality.calculation(.matrix, .matrix, 1), "list")
 })
-

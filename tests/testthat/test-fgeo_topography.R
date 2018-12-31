@@ -20,7 +20,9 @@ describe("fgeo_topography", {
     expect_silent(topo)
     expect_silent(
       out_df <- fgeo_topography(
-        elev_ls$col, gridsize, xdim = elev_ls$xdim, ydim = elev_ls$ydim)
+        elev_ls$col, gridsize,
+        xdim = elev_ls$xdim, ydim = elev_ls$ydim
+      )
     )
     expect_identical(topo, out_df)
   })
@@ -42,7 +44,9 @@ describe("fgeo_topography", {
 
     expect_silent(
       out_df <- fgeo_topography(
-        elev_ls2$col, gridsize, xdim = elev_ls2$xdim, ydim = elev_ls2$ydim)
+        elev_ls2$col, gridsize,
+        xdim = elev_ls2$xdim, ydim = elev_ls2$ydim
+      )
     )
     expect_identical(topo2, out_df)
   })
@@ -160,13 +164,14 @@ context("warn_if_no_data_falls_on_half_gridsize")
 
 test_that("does what it promises", {
   col <- tibble::tribble(
-    ~x,  ~y, ~elev,
-    0,   0,     0,
-    15,  15,     0,
+    ~x, ~y, ~elev,
+    0, 0, 0,
+    15, 15, 0,
   )
   expect_warning(
     warn_if_no_data_falls_on_half_gridsize(
-      list(col = col), gridsize = 20, edgecorrect = TRUE
+      list(col = col),
+      gridsize = 20, edgecorrect = TRUE
     ),
     "elevation.*too coarse"
   )

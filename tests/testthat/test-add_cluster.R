@@ -22,6 +22,5 @@ describe("add_cluster", {
     expect_error(add_cluster(tibble(x = 1)), "Can't deal with data of class")
     expect_error(add_cluster(1), "Can't deal with data of class")
     expect_error(add_cluster(topo, "a"), "`n` must be numeric")
-
   })
 })

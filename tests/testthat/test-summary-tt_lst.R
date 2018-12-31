@@ -27,5 +27,5 @@ test_that("outputs has the expected (lowercase) names", {
   result %>%
     expect_named(
       c("species", "habitat_1", "habitat_2", "habitat_3", "habitat_4")
-  )
+    )
 })

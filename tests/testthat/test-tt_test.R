@@ -137,10 +137,10 @@ test_that("warns if fixed NaN", {
   tree <- fgeo.x::tree5 %>%
     filter(sp %in% species)
 
-    expect_warning(
-      tt_test(tree, fgeo.x::habitat),
-      "zero.*where.*`Tortotstcnthab` and `Torspstcnthab` are zero"
-    )
+  expect_warning(
+    tt_test(tree, fgeo.x::habitat),
+    "zero.*where.*`Tortotstcnthab` and `Torspstcnthab` are zero"
+  )
 })
 
 
@@ -189,4 +189,22 @@ test_that("tt_test() with rutuja's data warns that `habitat` is problematic", {
   expect_error(
     expect_warning(tt_test(rutu$pick, rutu$few_sp, rutu$habitat2), msg)
   )
+})
+
+# Regression --------------------------------------------------------------
+
+test_that("tt_test() outputs equivalent to the original implementation", {
+  source(test_path("ref-torusonesp.all.R"))
+
+  pdim_luq <- c(320, 500)
+  gsize_luq <- 20
+
+  abnd <- abund_index(cns_luq, pdim_luq, gsize_luq)
+  out_tt <- fgeo.analyze:::torusonesp.all(
+    sp_top1_luq, hab_luq, abnd, pdim_luq, gsize_luq
+  )
+  out_original <- torusonesp.all_original(
+    sp_top1_luq, hab_luq, abnd, pdim_luq, gsize_luq
+  )
+  expect_equivalent(out_tt, out_original)
 })

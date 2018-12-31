@@ -8,7 +8,7 @@ test_that("outputs equal to reference from ctfs", {
     mindbh = 10,
     plotdim = c(300, 500),
     gridsize = 20,
-    type = 'abund'
+    type = "abund"
   )
 
   act <- abundanceperquad2(
@@ -16,7 +16,7 @@ test_that("outputs equal to reference from ctfs", {
     mindbh = 10,
     plotdim = c(300, 500),
     gridsize = 20,
-    type = 'abund'
+    type = "abund"
   )
 
   expect_equal(act$abund, ref$abund)

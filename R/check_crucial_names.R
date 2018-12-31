@@ -7,10 +7,9 @@
 #' @examples
 #' v <- c(x = 1)
 #' check_crucial_names(v, "x")
-#'
+#' 
 #' dfm <- data.frame(x = 1)
 #' check_crucial_names(dfm, "x")
-#'
 #' @family functions for developers
 #' @noRd
 check_crucial_names <- function(x, nms) {
@@ -24,6 +23,6 @@ check_crucial_names <- function(x, nms) {
 
   stop(
     "Ensure your data set has these variables:\n", commas(nms),
-      call. = FALSE
+    call. = FALSE
   )
 }

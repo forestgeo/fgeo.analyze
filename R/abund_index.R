@@ -23,7 +23,6 @@
 #' pdm <- c(1000, 500)
 #' gsz <- 20
 #' abund_index(cns, pdm, gsz)
-#'
 #' @family functions for abundance and basal area
 #' @noRd
 abund_index <- function(censdata, plotdim, gridsize) {
@@ -32,4 +31,3 @@ abund_index <- function(censdata, plotdim, gridsize) {
     censdata = censdata, plotdim = plotdim, gridsize = gridsize, mindbh = 0
   )$abund
 }
-

@@ -20,15 +20,14 @@
 #' * [gather_mats()]: A list of dataframes.
 #'
 #' @examples
-#'  mat <- matrix(1:6, 2, dimnames = list(LETTERS[1:2], letters[1:3]))
-#'  mat
-#'  gather_mats(mat)
-#'  gather_mat(mat)
-#'  gather_mat(mat, "metric", "sp")
-#'  mat <- matrix(1:6, 2)
-#'  mat
-#'  gather_mat(mat)
-#'
+#' mat <- matrix(1:6, 2, dimnames = list(LETTERS[1:2], letters[1:3]))
+#' mat
+#' gather_mats(mat)
+#' gather_mat(mat)
+#' gather_mat(mat, "metric", "sp")
+#' mat <- matrix(1:6, 2)
+#' mat
+#' gather_mat(mat)
 #' @family general functions to construct or restructure data
 #' @noRd
 gather_mat <- function(mat,

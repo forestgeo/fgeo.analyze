@@ -30,7 +30,8 @@ test_that("with split2 errs with informative message", {
   skip("Quarentine")
   expect_warning(
     out <- recruitment_ctfs(
-      census1, census2, split1 = census1$sp,
+      census1, census2,
+      split1 = census1$sp,
       split2 = census1$quadrat
     ), "split2.*deprecated"
   )
@@ -62,4 +63,3 @@ test_that("With no split, or `split1`, outputs consistent dataframe", {
   expect_is(to_df(.x), "data.frame")
   expect_named(to_df(.x), c("groups", nms))
 })
-
