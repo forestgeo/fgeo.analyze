@@ -29,7 +29,6 @@ demography_result <- recruitment_ctfs(
 )
 
 to_df(demography_result)
-
 }
 \seealso{
 \code{\link[=to_df]{to_df()}}.

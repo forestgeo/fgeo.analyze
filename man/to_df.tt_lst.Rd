@@ -25,7 +25,6 @@ habitat <- fgeo.x::habitat
 to_df(
   tt_test(census, habitat)
 )
-
 }
 \seealso{
 \code{\link[=to_df]{to_df()}}.

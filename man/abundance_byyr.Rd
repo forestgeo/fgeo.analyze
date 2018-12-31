@@ -49,14 +49,18 @@ vft <- tibble(
   CensusID = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
   TreeID = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
   StemID = c(1.1, 1.2, 2.1, 2.2, 1.1, 1.2, 2.1, 2.2),
-  Status = c("alive", "dead", "alive", "alive", "alive", "gone",
-    "dead", "dead"),
+  Status = c(
+    "alive", "dead", "alive", "alive", "alive", "gone",
+    "dead", "dead"
+  ),
   DBH = c(10L, NA, 20L, 30L, 20L, NA, NA, NA),
   Genus = c("Gn", "Gn", "Gn", "Gn", "Gn", "Gn", "Gn", "Gn"),
   SpeciesName = c("spp", "spp", "spp", "spp", "spp", "spp", "spp", "spp"),
-  ExactDate = c("2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01",
+  ExactDate = c(
+    "2001-01-01", "2001-01-01", "2001-01-01", "2001-01-01",
     "2002-01-01", "2002-01-01", "2002-01-01",
-    "2002-01-01"),
+    "2002-01-01"
+  ),
   PlotCensusNumber = c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),
   Family = c("f", "f", "f", "f", "f", "f", "f", "f"),
   Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
@@ -71,7 +75,6 @@ abundance_byyr(vft, DBH >= 10)
 
 basal <- basal_area_byyr(vft, DBH >= 10)
 basal
-
 \dontrun{
 measurements_and_purr_are_installed <-
   all(sapply(c("measurements", "purrr"), requireNamespace, quietly = TRUE))
@@ -82,13 +85,13 @@ if (measurements_and_purr_are_installed) {
   # Convert units
   years <- c("yr_2001", "yr_2002")
   basal_he <- basal \%>\%
-    modify_at(years, ~conv_unit(.x, from = "mm2", to = "hectare"))
+    modify_at(years, ~ conv_unit(.x, from = "mm2", to = "hectare"))
   basal_he
 
   # Standardize
   number_of_hectares <- 50
   basal_he \%>\%
-    map_at(years, ~.x / number_of_hectares)
+    map_at(years, ~ .x / number_of_hectares)
 }
 }
 }

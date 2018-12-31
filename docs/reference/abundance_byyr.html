@@ -197,14 +197,18 @@ including dead, missing, and gone.</p>
   <span class='kw'>CensusID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
   <span class='kw'>TreeID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
   <span class='kw'>StemID</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span>, <span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span>),
-  <span class='kw'>Status</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"alive"</span>, <span class='st'>"dead"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"gone"</span>,
-    <span class='st'>"dead"</span>, <span class='st'>"dead"</span>),
+  <span class='kw'>Status</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+    <span class='st'>"alive"</span>, <span class='st'>"dead"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"gone"</span>,
+    <span class='st'>"dead"</span>, <span class='st'>"dead"</span>
+  ),
   <span class='kw'>DBH</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10L</span>, <span class='fl'>NA</span>, <span class='fl'>20L</span>, <span class='fl'>30L</span>, <span class='fl'>20L</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
   <span class='kw'>Genus</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>),
   <span class='kw'>SpeciesName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>),
-  <span class='kw'>ExactDate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>,
+  <span class='kw'>ExactDate</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+    <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>,
     <span class='st'>"2002-01-01"</span>, <span class='st'>"2002-01-01"</span>, <span class='st'>"2002-01-01"</span>,
-    <span class='st'>"2002-01-01"</span>),
+    <span class='st'>"2002-01-01"</span>
+  ),
   <span class='kw'>PlotCensusNumber</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
   <span class='kw'>Family</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>),
   <span class='kw'>Tag</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
@@ -236,8 +240,7 @@ including dead, missing, and gone.</p>
 <span class='no'>basal</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
 #&gt;   species family yr_2001 yr_2002
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div><div class='input'>
-</div></span><span class='co'># NOT RUN {</span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div></span><span class='co'># NOT RUN {</span>
 <span class='no'>measurements_and_purr_are_installed</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>), <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
 <span class='kw'>if</span> (<span class='no'>measurements_and_purr_are_installed</span>) {
@@ -247,13 +250,13 @@ including dead, missing, and gone.</p>
   <span class='co'># Convert units</span>
   <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
   <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='no'>basal</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(<span class='no'>years</span>, ~<span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>))
+    <span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(<span class='no'>years</span>, ~ <span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>))
   <span class='no'>basal_he</span>
 
   <span class='co'># Standardize</span>
   <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
   <span class='no'>basal_he</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~<span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
+    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~ <span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
 }
 <span class='co'># }</span></pre>
   </div>

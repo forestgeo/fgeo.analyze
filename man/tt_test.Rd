@@ -100,7 +100,7 @@ habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 # Defaults to using all species
 to_df(
   tt_test(census, habitat)
- )
+)
 
 some_species <- c("CASARB", "PREMON")
 result <- tt_test(census, habitat, sp = some_species)
@@ -110,7 +110,6 @@ to_df(result)
 
 # A simple summary to help you interpret the results
 summary(result)
-
 }
 \seealso{
 \code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=to_df]{to_df()}}, \code{\link[=fgeo_habitat]{fgeo_habitat()}}.

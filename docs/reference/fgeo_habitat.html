@@ -204,26 +204,27 @@ or <code>x</code> and <code>y</code>.</p>
     <pre class="examples"><div class='input'><span class='co'># Input a ForestGEO-like elevation list or dataframe</span>
 <span class='no'>elevation_ls</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>elevation</a></span>
 <span class='no'>habitats</span> <span class='kw'>&lt;-</span> <span class='fu'>fgeo_habitat</span>(
-  <span class='no'>elevation_ls</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>
+  <span class='no'>elevation_ls</span>,
+  <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>
 )
 <span class='co'># Or</span>
 <span class='no'>elevation_df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>elevation</a></span>$<span class='no'>col</span>
 <span class='no'>habitats</span> <span class='kw'>&lt;-</span> <span class='fu'>fgeo_habitat</span>(
-  <span class='no'>elevation_df</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='no'>elevation_df</span>,
+  <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
   <span class='kw'>xdim</span> <span class='kw'>=</span> <span class='fl'>320</span>, <span class='kw'>ydim</span> <span class='kw'>=</span> <span class='fl'>500</span>
 )
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>habitats</span>)</div><div class='output co'>#&gt; Classes 'fgeo_habitat', 'tbl_df', 'tbl' and 'data.frame':	400 obs. of  3 variables:
 #&gt;  $ gx      : num  0 0 0 0 0 0 0 0 0 0 ...
 #&gt;  $ gy      : num  0 20 40 60 80 100 120 140 160 180 ...
-#&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'>
-</div><span class='co'># NOT RUN {</span>
-  <span class='no'>fgeo_plot_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"fgeo.plot"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-  <span class='kw'>if</span> (<span class='no'>fgeo_plot_is_installed</span>) {
-    <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.plot</span>)
+#&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</div><span class='co'># NOT RUN {</span>
+<span class='no'>fgeo_plot_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"fgeo.plot"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='kw'>if</span> (<span class='no'>fgeo_plot_is_installed</span>) {
+  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.plot</span>)
 
-    <span class='fu'><a href='https://forestgeo.github.io/fgeo.plot//reference/reexports.html'>autoplot</a></span>(<span class='no'>habitats</span>)
-  }
+  <span class='fu'><a href='https://forestgeo.github.io/fgeo.plot//reference/reexports.html'>autoplot</a></span>(<span class='no'>habitats</span>)
+}
 <span class='co'># }</span><div class='input'>
 <span class='co'># Habitat data is useful for calculating species-habitat associations</span>
 <span class='no'>census</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6_3species</a></span>
@@ -243,8 +244,7 @@ or <code>x</code> and <code>y</code>.</p>
 #&gt; </span><span style='color: #555555;'> 9</span><span> 1       SLOBER    18    273   </span><span style='text-decoration: underline;'>1</span><span>324      3            0        0.171
 #&gt; </span><span style='color: #555555;'>10</span><span> 2       SLOBER    24    810    788      2            0        0.506
 #&gt; </span><span style='color: #555555;'>11</span><span> 3       SLOBER    17   </span><span style='text-decoration: underline;'>1</span><span>155    440      5            0        0.722
-#&gt; </span><span style='color: #555555;'>12</span><span> 4       SLOBER     7   </span><span style='text-decoration: underline;'>1</span><span>292    303      5            0        0.808</div><div class='input'>
-</div></span></pre>
+#&gt; </span><span style='color: #555555;'>12</span><span> 4       SLOBER     7   </span><span style='text-decoration: underline;'>1</span><span>292    303      5            0        0.808</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -65,36 +65,40 @@
 #'
 #' @examples
 #' library(dplyr)
-#' 
+#'
 #' # Example data
 #' tree <- fgeo.x::tree6_3species
 #' elevation <- fgeo.x::elevation
-#' 
+#'
 #' # Pick alive trees, of 10 mm or more
 #' census <- filter(tree, status == "A", dbh >= 10)
-#' 
+#'
 #' # Pick sufficiently abundant species
 #' pick <- filter(add_count(census, sp), n > 50)
-#' 
+#'
 #' # Use your habitat data or create it from elevation data
 #' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
-#' 
+#'
 #' # Defaults to using all species
 #' to_df(
 #'   tt_test(census, habitat)
 #' )
-#' 
+#'
 #' some_species <- c("CASARB", "PREMON")
 #' result <- tt_test(census, habitat, sp = some_species)
 #' result
-#' 
+#'
 #' to_df(result)
-#' 
+#'
 #' # A simple summary to help you interpret the results
 #' summary(result)
 #' @family habitat functions
 #' @export
-tt_test <- function(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL) {
+tt_test <- function(census,
+                    habitat,
+                    sp = NULL,
+                    plotdim = NULL,
+                    gridsize = NULL) {
   stopifnot(is.data.frame(habitat))
   if (!inherits(habitat, "fgeo_habitat")) {
     warn(glue("
@@ -129,7 +133,6 @@ tt_test <- function(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL)
 }
 
 fixed_nan <- function(x) {
-  # purrr::map_lgl(lapply(x, attributes), "fixed_nan")
   vapply(
     lapply(x, attributes),
     function(x) x[["fixed_nan"]],
@@ -149,8 +152,6 @@ warn_fixed_nan <- function() {
   "))
 }
 
-
-
 torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) {
   # Calculates no. of x-axis quadrats of plot. (x is the long axis of plot in
   # the case of Pasoh)
@@ -163,18 +164,35 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   GrLsEq <- matrix(0, 1, num.habs * 6) # Creates empty matrix for output.
   rownames(GrLsEq) <- species # Names single row of output matrix.
 
+  # Will be `TRUE` if `NaN` must be replaced by zero (`0`)
   fixed_nan <- FALSE
 
   # Creates names for columns of output matrix.
   for (i in 1:num.habs) {
     if (i == 1) {
-      cols <- c(paste("N.Hab.", i, sep = ""), paste("Gr.Hab.", i, sep = ""), paste("Ls.Hab.", i, sep = ""), paste("Eq.Hab.", i, sep = ""), paste("Rep.Agg.Neut.", i, sep = ""), paste("Obs.Quantile.", i, sep = ""))
+      cols <- c(
+          paste("N.Hab.", i, sep = ""),
+          paste("Gr.Hab.", i, sep = ""),
+          paste("Ls.Hab.", i, sep = ""),
+          paste("Eq.Hab.", i, sep = ""),
+          paste("Rep.Agg.Neut.", i, sep = ""),
+          paste("Obs.Quantile.", i, sep = "")
+        )
     }
     if (i > 1) {
-      cols <- c(cols, paste("N.Hab.", i, sep = ""), paste("Gr.Hab.", i, sep = ""), paste("Ls.Hab.", i, sep = ""), paste("Eq.Hab.", i, sep = ""), paste("Rep.Agg.Neut.", i, sep = ""), paste("Obs.Quantile.", i, sep = ""))
+      cols <- c(
+          cols,
+          paste("N.Hab.", i, sep = ""),
+          paste("Gr.Hab.", i, sep = ""),
+          paste("Ls.Hab.", i, sep = ""),
+          paste("Eq.Hab.", i, sep = ""),
+          paste("Rep.Agg.Neut.", i, sep = ""),
+          paste("Obs.Quantile.", i, sep = "")
+        )
     }
   }
-  colnames(GrLsEq) <- cols # Names columns of output matrix.
+  # Names columns of output matrix.
+  colnames(GrLsEq) <- cols
 
   # CALCULATIONS FOR OBSERVED RELATIVE DENSITIES ON THE TRUE HABITAT MAP
 
@@ -182,24 +200,41 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   allabund20.sp <- allabund20[which(rownames(allabund20) == species), ]
   # Fills a matrix, with no. rows = plotdimqy (dim 2) and no. columns =
   # plotdimqx (dim 1), with the indiv. counts per quadrat of one species.
-  spmat <- matrix(as.numeric(allabund20.sp), nrow = plotdimqy, plotdimqx, byrow = F)
-  # calculates total number of stems in each quad for all species and puts in matrix
-  totmat <- matrix(apply(allabund20, MARGIN = 2, FUN = "sum"), plotdimqy, plotdimqx, byrow = F)
+  spmat <- matrix(
+    as.numeric(allabund20.sp),
+    nrow = plotdimqy, plotdimqx, byrow = FALSE
+  )
+  # calculates total number of stems in each quad for all species and puts in
+  # matrix
+  totmat <- matrix(
+    apply(allabund20, MARGIN = 2, FUN = "sum"),
+    plotdimqy, plotdimqx, byrow = FALSE
+  )
 
   # fills matrix with habitat types, oriented in the same way as the species and
   # total matrices above
-  habmat <- matrix(hab.index20$habitats, nrow = plotdimqy, ncol = plotdimqx, byrow = F)
+  habmat <- matrix(
+    hab.index20$habitats,
+    nrow = plotdimqy, ncol = plotdimqx, byrow = FALSE
+  )
 
-  spstcnthab <- numeric() # Creates empty vector for stem counts per sp. per habitat.
-  totstcnthab <- numeric() # Creates empty vector for tot. stem counts per habitat.
+  # FIXME: Super slow. Should be as long as the output
+  # Creates empty vector for stem counts per sp. per habitat.
+  spstcnthab <- numeric()
+  # FIXME: Super slow. Should be as long as the output
+  # Creates empty vector for tot. stem counts per habitat.
+  totstcnthab <- numeric()
 
-  for (i in 1:num.habs)
-  {
-    totstcnthab[i] <- sum(totmat[habmat == i]) # Determines tot. no. stems per habitat of the true map.
-    spstcnthab[i] <- sum(spmat[habmat == i]) # Determines tot. no. stems for focal sp. per habitat of the true map.
+  for (i in 1:num.habs) {
+    # Determines tot. no. stems per habitat of the true map.
+    totstcnthab[i] <- sum(totmat[habmat == i])
+    # Determines tot. no. stems for focal sp. per habitat of the true map.
+    spstcnthab[i] <- sum(spmat[habmat == i])
   }
 
-  spprophab <- spstcnthab / totstcnthab # Calculates observed relative stem density of focal sp. per habitat of the true map.
+  # Calculates observed relative stem density of focal sp. per habitat of the
+  # true map.
+  spprophab <- spstcnthab / totstcnthab
 
   # CALCULATIONS FOR RELATIVE DENSITIES ON THE TORUS-BASED HABITAT MAPS
   habmat.template <- habmat
@@ -215,37 +250,52 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
 
     # CALCULATIONS FOR RELATIVE DENSITIES ON THE TORUS-BASED HABITAT MAPS
 
-    for (x in 0:(plotdimqx - 1)) # Opens "for loop" through all 20-m translations along x-axis.
-    {
-      for (y in 0:(plotdimqy - 1)) # Opens "for loop" through all 20-m translations along y-axis.
-      {
-        newhab <- matrix(0, plotdimqy, plotdimqx) # Creates empty matrix of quadrats' habitat designations.
+    # Opens "for loop" through all 20-m translations along x-axis.
+    for (x in 0:(plotdimqx - 1)) {
+      # Opens "for loop" through all 20-m translations along y-axis.
+      for (y in 0:(plotdimqy - 1)) {
+        # FIXME: Super slow. Should be as long as the output
+        # Creates empty matrix of quadrats' habitat designations.
+        newhab <- matrix(0, plotdimqy, plotdimqx)
 
-
-        # The following "if" statements create the x,y torus-translation of the habitat map.
-
+        # The following "if" statements create the x,y torus-translation of the
+        # habitat map.
         if (y == 0 & x == 0) {
           newhab <- habmat
         }
 
         if (y == 0 & x > 0) {
-          newhab <- habmat[c(1:plotdimqy), c((plotdimqx - x + 1):plotdimqx, 1:(plotdimqx - x))]
+          newhab <- habmat[
+            c(1:plotdimqy),
+            c((plotdimqx - x + 1):plotdimqx, 1:(plotdimqx - x))
+          ]
         }
 
         if (x == 0 & y > 0) {
-          newhab <- habmat[c((plotdimqy - y + 1):plotdimqy, 1:(plotdimqy - y)), c(1:plotdimqx)]
+          newhab <- habmat[
+            c((plotdimqy - y + 1):plotdimqy, 1:(plotdimqy - y)),
+            c(1:plotdimqx)
+          ]
         }
 
         if (x > 0 & y > 0) {
-          newhab <- habmat[c((plotdimqy - y + 1):plotdimqy, 1:(plotdimqy - y)), c((plotdimqx - x + 1):plotdimqx, 1:(plotdimqx - x))]
+          newhab <- habmat[
+            # TODO: DRY
+            c((plotdimqy - y + 1):plotdimqy, 1:(plotdimqy - y)),
+            # TODO: DRY
+            c((plotdimqx - x + 1):plotdimqx, 1:(plotdimqx - x))
+          ]
         }
 
+        # FIXME: Super slow. Should be as long as the output
+        # Creates empty vector for stem counts per sp. per habitat in
+        # torus-based maps.
+        Torspstcnthab <- numeric()
+        # Creates empty vector for tot. stem counts per habitat in torus-based
+        # maps.
+        Tortotstcnthab <- numeric()
 
-        Torspstcnthab <- numeric() # Creates empty vector for stem counts per sp. per habitat in torus-based maps.
-        Tortotstcnthab <- numeric() # Creates empty vector for tot. stem counts per habitat in torus-based maps.
-
-        for (i in 1:num.habs)
-        {
+        for (i in 1:num.habs) {
           # Determines tot. no. stems per habitat of the focal torus-based map.
           Tortotstcnthab[i] <- sum(totmat[newhab == i])
           # Determines tot. no. stems for focal sp. per habitat of the focal
@@ -288,20 +338,36 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   } # Closes for loop through mirrors and rotations (j)
 
 
-  for (i in 1:num.habs)
-  {
-    GrLsEq[1, (6 * i) - 5] <- spstcnthab[i] # add counts of No. stems in each habitat
+  for (i in 1:num.habs) {
+    # add counts of No. stems in each habitat
+    GrLsEq[1, (6 * i) - 5] <- spstcnthab[i]
 
-    if (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) <= 0.025) GrLsEq[1, (6 * i) - 1] <- -1 # if rel.dens. of sp in true map is greater than rel. dens. in torus map less than 2.5% of the time, then repelled
-    if (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) >= 0.975) GrLsEq[1, (6 * i) - 1] <- 1 # if rel.dens. of sp in true map is greater than rel. dens. in torus map more than 97.5% of the time, then aggregated
-    if ((GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) < 0.975) & (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) > 0.025)) GrLsEq[1, (6 * i) - 1] <- 0 # otherwise it's neutral (not different from random dist)
+    # if rel.dens. of sp in true map is greater than rel. dens. in torus map
+    # less than 2.5% of the time, then repelled
+    if (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) <= 0.025) {
+      GrLsEq[1, (6 * i) - 1] <- -1
+    }
 
-    GrLsEq[1, (6 * i)] <- GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) # quantile in the TT distribtution of relative densities of the true relative density
+    # if rel.dens. of sp in true map is greater than rel. dens. in torus map
+    # more than 97.5% of the time, then aggregated
+    if (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) >= 0.975) {
+      GrLsEq[1, (6 * i) - 1] <- 1
+    }
+
+    # otherwise it's neutral (not different from random dist)
+    if ((GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) < 0.975) &
+        (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) > 0.025)) {
+      GrLsEq[1, (6 * i) - 1] <- 0
+    }
+
+    # quantile in the TT distribtution of relative densities of the true
+    # relative density
+    GrLsEq[1, (6 * i)] <- GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy))
   }
 
-  result <- GrLsEq
-  attr(result, "fixed_nan") <- fixed_nan
-  result
+  # Flag if had to fix `NaN` to throw a warning from higher level
+  attr(GrLsEq, "fixed_nan") <- fixed_nan
+  GrLsEq
 }
 
 sanitize_habitat_names_if_necessary <- function(habitat) {

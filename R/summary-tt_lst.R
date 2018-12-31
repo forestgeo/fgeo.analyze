@@ -25,9 +25,13 @@
 summary.tt_lst <- function(object, ...) {
   ttdf <- as.data.frame(do.call(rbind, object))
   habitats_n <- dim(ttdf)[2] / 6
-  out <- data.frame()
 
+  # FIXME: Super slow. Should be as long as the output
+  result <- data.frame()
+
+  # FIXME: seq_along() is safer than 1:length(x)
   for (species in 1:dim(ttdf)[1]) {
+    # FIXME: seq_along() is safer than 1:length(x)
     for (habitat in 1:habitats_n) {
       lhs <- ttdf[species, (habitat * 6) - 1]
       rhs <- ttdf[species,  habitat * 6]
@@ -38,7 +42,8 @@ summary.tt_lst <- function(object, ...) {
       cond3 <- lhs == -1 &      (rhs)  <  limit
       cond4 <- lhs == -1 &      (rhs)  >= limit
 
-      out[species, habitat] <- ifelse(
+      # TODO: Nested ifelse() are diffucult to read. Try different approach
+      result[species, habitat] <- ifelse(
         cond1, "aggregated", ifelse(
           cond2, "agg_nonsignificant", ifelse(
             cond3, "repelled", ifelse(
@@ -46,9 +51,8 @@ summary.tt_lst <- function(object, ...) {
     }
   }
 
-  out <- data.frame(cbind(Species = row.names(ttdf), out))
-  out[] <- lapply(out, as.character)
+  result <- as_tibble(dplyr::bind_cols(species = row.names(ttdf), result))
+  result[] <- lapply(result, as.character)
 
-  names(out) <- tolower(c("Species", paste0("Habitat_", seq_len(habitats_n))))
-  tibble::as_tibble(out)
+  set_names(result, c("species", paste0("habitat_", seq_len(habitats_n))))
 }
