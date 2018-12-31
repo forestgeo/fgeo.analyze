@@ -26,7 +26,7 @@ multiple censusid and multiple plots.
 You may want to calculate the abundance or basal area for a specific subset
 of data (e.g. "alive" stems or stems which \code{dbh} is within some range).
 Subsetting data is not the job of these functions. Instead see
-\code{\link[base:subset]{base::subset()}}, \code{\link[dplyr:filter]{dplyr::filter()}}, or \code{[}, and \code{\link[fgeo.tool:pick]{fgeo.tool::pick()}}.
+\code{\link[base:subset]{base::subset()}}, \code{\link[dplyr:filter]{dplyr::filter()}}, or \code{[}.
 }
 \examples{
 library(fgeo.tool)

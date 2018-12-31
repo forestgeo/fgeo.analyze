@@ -11,7 +11,7 @@
 #' You may want to calculate the abundance or basal area for a specific subset
 #' of data (e.g. "alive" stems or stems which `dbh` is within some range).
 #' Subsetting data is not the job of these functions. Instead see
-#' [base::subset()], [dplyr::filter()], or `[`, and [fgeo.tool::pick()].
+#' [base::subset()], [dplyr::filter()], or `[`.
 #'
 #' @param x A dataframe. [basal_area()] requires a column named `dbh` (case
 #'   insensitive).
