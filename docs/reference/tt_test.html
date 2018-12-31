@@ -276,6 +276,8 @@ species is aggregated on that habitat.</p>
 #&gt; CASARB      778      817        5              0        0.48625       5
 #&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #&gt; CASARB      932      658       10              0         0.5825
+#&gt; attr(,"fixed_nan")
+#&gt; [1] FALSE
 #&gt; 
 #&gt; [[2]]
 #&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
@@ -286,6 +288,8 @@ species is aggregated on that habitat.</p>
 #&gt; PREMON      305     1292        3              0       0.190625      14
 #&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #&gt; PREMON      270     1322        8              0        0.16875
+#&gt; attr(,"fixed_nan")
+#&gt; [1] FALSE
 #&gt; </div><div class='input'>
 <span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 8</span><span>
 #&gt;   habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
@@ -299,9 +303,11 @@ species is aggregated on that habitat.</p>
 #&gt; </span><span style='color: #555555;'>7</span><span> 3       PREMON    40    305   </span><span style='text-decoration: underline;'>1</span><span>292      3            0        0.191
 #&gt; </span><span style='color: #555555;'>8</span><span> 4       PREMON    14    270   </span><span style='text-decoration: underline;'>1</span><span>322      8            0        0.169</div><div class='input'>
 <span class='co'># A simple summary to help you interpret the results</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt;   Species Habitat_1 Habitat_2 Habitat_3 Habitat_4
-#&gt; 1  CASARB   neutral   neutral   neutral   neutral
-#&gt; 2  PREMON   neutral   neutral   neutral   neutral</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 5</span><span>
+#&gt;   species habitat_1 habitat_2 habitat_3 habitat_4
+#&gt; </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'>1</span><span> CASARB  neutral   neutral   neutral   neutral  
+#&gt; </span><span style='color: #555555;'>2</span><span> PREMON  neutral   neutral   neutral   neutral  </div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

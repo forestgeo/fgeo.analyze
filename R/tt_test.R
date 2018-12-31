@@ -113,7 +113,7 @@ tt_test <- function(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL)
   check_tt_test(census, sp, habitat, plotdim, gridsize)
 
   abundance <- abund_index(census, plotdim, gridsize)
-  out <- lapply(
+  result <- lapply(
     X = sp,
     FUN = torusonesp.all,
     allabund20 = abundance,
@@ -121,8 +121,36 @@ tt_test <- function(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL)
     plotdim = plotdim,
     gridsize = gridsize
   )
-  new_tt_lst(out)
+
+  if (any(fixed_nan(result))) {
+    warn_fixed_nan()
+  }
+
+  new_tt_lst(result)
 }
+
+fixed_nan <- function(x) {
+  # purrr::map_lgl(lapply(x, attributes), "fixed_nan")
+  vapply(
+    lapply(x, attributes),
+    function(x) x[["fixed_nan"]],
+    FUN.VALUE = logical(1)
+  )
+}
+
+warn_fixed_nan <- function() {
+  warn(glue("
+    Using zero (`0`) where the relative stem density of focal species
+    per habitat of the focal torus-based map can't be calculated
+    because `Tortotstcnthab` and `Torspstcnthab` are zero:
+    * `Tortotstcnthab` determines total number of stems per habitat of the
+      focal torus-based map.
+    * `Torspstcnthab` determines tot. no. stems for focal sp. per habitat of
+      the focal torus-based map.
+  "))
+}
+
+
 
 torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) {
   # Calculates no. of x-axis quadrats of plot. (x is the long axis of plot in
@@ -136,6 +164,7 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   GrLsEq <- matrix(0, 1, num.habs * 6) # Creates empty matrix for output.
   rownames(GrLsEq) <- species # Names single row of output matrix.
 
+  fixed_nan <- FALSE
 
   for (i in 1:num.habs) # Creates names for columns of output matrix.
   {
@@ -147,7 +176,6 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
     }
   }
   colnames(GrLsEq) <- cols # Names columns of output matrix.
-
 
   # CALCULATIONS FOR OBSERVED RELATIVE DENSITIES ON THE TRUE HABITAT MAP
 
@@ -219,18 +247,31 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
 
         for (i in 1:num.habs)
         {
-          Tortotstcnthab[i] <- sum(totmat[newhab == i]) # Determines tot. no. stems per habitat of the focal torus-based map.
-          Torspstcnthab[i] <- sum(spmat[newhab == i]) # Determines tot. no. stems for focal sp. per habitat of the focal torus-based map.
+          # Determines tot. no. stems per habitat of the focal torus-based map.
+          Tortotstcnthab[i] <- sum(totmat[newhab == i])
+          # Determines tot. no. stems for focal sp. per habitat of the focal
+          # torus-based map.
+          Torspstcnthab[i] <- sum(spmat[newhab == i])
         }
 
-        Torspprophab <- Torspstcnthab / Tortotstcnthab # Calculates relative stem density of focal sp. per habitat of the focal torus-based map.
+        # Calculates relative stem density of focal sp. per habitat of the focal
+        # torus-based map.
+        Torspprophab <- Torspstcnthab / Tortotstcnthab
+        if (any(is.nan(Torspprophab))) {
+          Torspprophab[is.nan(Torspprophab)] <- 0
+          fixed_nan <- TRUE
+        }
 
         for (i in 1:num.habs)
         {
           if (is.na(spprophab[i] > Torspprophab[i])) {
+            # FIXME: No longer needed?
             warn_invalid_comparison(spprophab[i], Torspprophab[i])
           }
-          if (spprophab[i] > Torspprophab[i]) { # If rel. dens. of focal sp. in focal habitat of true map is greater than rel. dens. of focal sp. in focal habitat of torus-based map, then add one to "greater than" count.
+          if (spprophab[i] > Torspprophab[i]) {
+            # If rel. dens. of focal sp. in focal habitat of true map is greater
+            # than rel. dens. of focal sp. in focal habitat of torus-based map,
+            # then add one to "greater than" count.
             GrLsEq[1, (6 * i) - 4] <- GrLsEq[1, (6 * i) - 4] + 1
           }
 
@@ -258,7 +299,10 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
     GrLsEq[1, (6 * i)] <- GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) # quantile in the TT distribtution of relative densities of the true relative density
   }
 
-  return(GrLsEq)
+  result <- GrLsEq
+  attr(result,  "fixed_nan") <- fixed_nan
+  result
+
 }
 
 sanitize_habitat_names_if_necessary <- function(habitat) {

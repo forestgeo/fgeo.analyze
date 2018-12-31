@@ -49,6 +49,6 @@ summary.tt_lst <- function(object, ...) {
   out <- data.frame(cbind(Species = row.names(ttdf), out))
   out[] <- lapply(out, as.character)
 
-  names(out) <- c("Species", paste0("Habitat_", seq_len(habitats_n)))
-  out
+  names(out) <- tolower(c("Species", paste0("Habitat_", seq_len(habitats_n))))
+  tibble::as_tibble(out)
 }

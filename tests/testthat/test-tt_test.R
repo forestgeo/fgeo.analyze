@@ -130,9 +130,22 @@ test_that("with habitat data with names gx,gy|x,y output is identical", {
   identical(out_xy, out_gxgy)
 })
 
+# Bug fixes ---------------------------------------------------------------
+
+test_that("warns if fixed NaN", {
+  species <- c("CASARB", "PREMON", "SLOBER")
+  tree <- fgeo.x::tree5 %>%
+    filter(sp %in% species)
+
+    expect_warning(
+      tt_test(tree, fgeo.x::habitat),
+      "zero.*where.*`Tortotstcnthab` and `Torspstcnthab` are zero"
+    )
+})
 
 
-# Issue 30, Sabrina Russo ----------------------------------------------------
+
+# Issue 30, Sabrina Russo
 
 # Original explanation of the error:
 # The observed quantile for habitat 2 (Obs.Quantile.2) is 0.0094, so that's <
@@ -164,7 +177,7 @@ if (can_access_private_data) {
 
 
 
-# @RutujaCT #44 ------------------------------------------------------------
+# @RutujaCT #44
 
 test_that("tt_test() with rutuja's data warns that `habitat` is problematic", {
   can_access_private_data <- dir.exists(test_path("private"))
