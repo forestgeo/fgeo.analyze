@@ -194,8 +194,8 @@ or <code>x</code> and <code>y</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://forestgeo.github.io/fgeo.plot//reference/autoplot.fgeo_habitat.html'>fgeo.plot::autoplot.fgeo_habitat()</a></code>, <code><a href='fgeo_topography.html'>fgeo_topography()</a></code>.</p>
-<p>Other habitat functions: <code><a href='fgeo_topography.html'>fgeo_topography</a></code>,
-  <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code>, <code><a href='tt_test.html'>tt_test</a></code></p>
+<p>Other habitat functions: <code><a href='as_tibble.tt_lst.html'>as_tibble.tt_lst</a></code>,
+  <code><a href='fgeo_topography.html'>fgeo_topography</a></code>, <code><a href='tt_test.html'>tt_test</a></code></p>
 <p>Other functions to construct fgeo classes: <code><a href='fgeo_topography.html'>fgeo_topography</a></code></p></div>
     
 
@@ -214,7 +214,7 @@ or <code>x</code> and <code>y</code>.</p>
   <span class='kw'>xdim</span> <span class='kw'>=</span> <span class='fl'>320</span>, <span class='kw'>ydim</span> <span class='kw'>=</span> <span class='fl'>500</span>
 )
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>habitats</span>)</div><div class='output co'>#&gt; Classes 'fgeo_habitat', 'tbl_df', 'tbl' and 'data.frame':	400 obs. of  3 variables:
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>habitats</span>)</div><div class='output co'>#&gt; Classes 'fgeo_habitat', 'fgeo_topography', 'tbl_df', 'tbl' and 'data.frame':	400 obs. of  3 variables:
 #&gt;  $ gx      : num  0 0 0 0 0 0 0 0 0 0 ...
 #&gt;  $ gy      : num  0 20 40 60 80 100 120 140 160 180 ...
 #&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</div><span class='co'># NOT RUN {</span>
@@ -227,7 +227,7 @@ or <code>x</code> and <code>y</code>.</p>
 <span class='co'># }</span><div class='input'>
 <span class='co'># Habitat data is useful for calculating species-habitat associations</span>
 <span class='no'>census</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6_3species</a></span>
-<span class='fu'><a href='to_df.html'>to_df</a></span>(
+<span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(
   <span class='fu'><a href='tt_test.html'>tt_test</a></span>(<span class='no'>census</span>, <span class='no'>habitats</span>)
 )</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 12 x 8</span><span>
 #&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile

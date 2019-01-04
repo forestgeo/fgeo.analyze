@@ -95,7 +95,7 @@ pick <- filter(dplyr::add_count(census, sp), n > 50)
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 
 # Defaults to using all species
-to_df(
+as_tibble(
   tt_test(census, habitat)
 )
 
@@ -105,15 +105,16 @@ some_species <- c("CASARB", "PREMON")
 result <- tt_test(census, habitat, sp = some_species)
 result
 
-to_df(result)
+as_tibble(result)
 
 summary(result)
 }
 \seealso{
-\code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=summary.tt_df]{summary.tt_df()}}, \code{\link[=to_df]{to_df()}}, \code{\link[=fgeo_habitat]{fgeo_habitat()}}.
+\code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=summary.tt_df]{summary.tt_df()}}, \code{\link[=as_tibble]{as_tibble()}},
+\code{\link[=fgeo_habitat]{fgeo_habitat()}}.
 
-Other habitat functions: \code{\link{fgeo_habitat}},
-  \code{\link{fgeo_topography}}, \code{\link{to_df.tt_lst}}
+Other habitat functions: \code{\link{as_tibble.tt_lst}},
+  \code{\link{fgeo_habitat}}, \code{\link{fgeo_topography}}
 }
 \author{
 Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.

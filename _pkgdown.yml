@@ -54,7 +54,3 @@ reference:
     contents:
     - has_concept("habitat functions")
 
-  - title: Generic functions
-    contents:
-    - has_concept("fgeo generics")
-

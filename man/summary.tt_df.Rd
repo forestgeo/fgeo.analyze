@@ -28,11 +28,11 @@ tt_result <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
 summary(tt_result)
 
 # Same
-summary(to_df(tt_result))
+summary(as_tibble(tt_result))
 
 # You may want to add the explanation to the result of `tt_test()`
 
-dplyr::left_join(to_df(tt_result), summary(tt_result))
+dplyr::left_join(as_tibble(tt_result), summary(tt_result))
 
 # You may prefer a wide matrix
 Reduce(rbind, tt_result)
@@ -42,6 +42,9 @@ tidyr::spread(summary(tt_result), "habitat", "association")
 }
 \seealso{
 \code{\link[=tt_test]{tt_test()}}, \code{\link[base:summary]{base::summary()}}.
+
+Other methods for common generics: \code{\link{as_tibble.demography_ctfs}},
+  \code{\link{as_tibble.tt_lst}}
 }
 \author{
 Adapted from code contributed by Daniel Zuleta.

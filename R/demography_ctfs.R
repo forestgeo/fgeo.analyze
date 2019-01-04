@@ -78,7 +78,7 @@
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
 #'
-#' to_df(
+#' as_tibble(
 #'   recruitment_ctfs(census1, census2)
 #' )
 #'
@@ -90,22 +90,22 @@
 #'   split1 = sp_quadrat,
 #'   quiet = TRUE
 #' )
-#' to_df(recruitment)
+#' as_tibble(recruitment)
 #'
 #' mortality <- mortality_ctfs(
 #'   census1, census2, split1 = sp_quadrat, quiet = TRUE
 #' )
-#' to_df(mortality)
+#' as_tibble(mortality)
 #'
 #' growth <- growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE)
-#' to_df(growth)
+#' as_tibble(growth)
 #'
 #' # Easy way to separate grouping variables
 #' tidyr_is_installed <- requireNamespace("tidyr", quietly = TRUE)
 #' if (tidyr_is_installed) {
 #'   library(tidyr)
 #'
-#'   to_df(growth) %>%
+#'   as_tibble(growth) %>%
 #'     separate(groups, into = c("sp", "quadrat"))
 #' }
 #' @family demography functions
@@ -400,7 +400,7 @@ new_demography_ctfs <- function(.x, split2, ...) {
   stopifnot(is.list(.x))
   .x <- structure(.x, class = c("demography_ctfs", class(.x)))
 
-  # Flag deprecated argument to be used in to_df()
+  # Flag deprecated argument to be used in as_tibble()
   if (!is.null(split2)) {
     attr(.x, "split2") <- TRUE
   }

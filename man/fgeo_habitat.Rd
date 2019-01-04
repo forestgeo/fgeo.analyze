@@ -79,15 +79,15 @@ if (fgeo_plot_is_installed) {
 
 # Habitat data is useful for calculating species-habitat associations
 census <- fgeo.x::tree6_3species
-to_df(
+as_tibble(
   tt_test(census, habitats)
 )
 }
 \seealso{
 \code{\link[fgeo.plot:autoplot.fgeo_habitat]{fgeo.plot::autoplot.fgeo_habitat()}}, \code{\link[=fgeo_topography]{fgeo_topography()}}.
 
-Other habitat functions: \code{\link{fgeo_topography}},
-  \code{\link{to_df.tt_lst}}, \code{\link{tt_test}}
+Other habitat functions: \code{\link{as_tibble.tt_lst}},
+  \code{\link{fgeo_topography}}, \code{\link{tt_test}}
 
 Other functions to construct fgeo classes: \code{\link{fgeo_topography}}
 }

@@ -29,10 +29,10 @@ article](https://goo.gl/dQKEeg).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages --------------------------------------------- fgeo 0.0.0.9002 --
+#> -- Attaching packages --------------------------------------- fgeo 0.0.0.9002 --
 #> v fgeo.analyze 0.0.0.9003     v fgeo.tool    0.0.0.9005
 #> v fgeo.plot    0.0.0.9402     v fgeo.x       0.0.0.9000
-#> -- Conflicts ----------------------------------------------------- fgeo_conflicts() --
+#> -- Conflicts ----------------------------------------------- fgeo_conflicts() --
 #> x fgeo.tool::filter() masks stats::filter()
 ```
 
@@ -302,7 +302,7 @@ census2 <- fgeo.x::tree6
 ```
 
 Demography functions output a list that you can convert to a more
-convenient dataframe with `to_df()`.
+convenient dataframe with `as_tibble()`.
 
 ``` r
 recruitment_ctfs(census1, census2)
@@ -334,7 +334,7 @@ recruitment_ctfs(census1, census2)
 #> $date2
 #> [1] 20600.72
 
-to_df(
+as_tibble(
   recruitment_ctfs(census1, census2, quiet = TRUE)
 )
 #> # A tibble: 1 x 8
@@ -344,15 +344,15 @@ to_df(
 ```
 
 Except if you use `split2`: This argument creates a complex data
-structure that `to_df()` cannot handle.
+structure that `as_tibble()` cannot handle.
 
 ``` r
 # Errs
-to_df(
+as_tibble(
   recruitment_ctfs(
     census1, census2, 
     split1 = census1$sp, 
-    split2 = census1$quadrat,  # `to_df()` can't handle this
+    split2 = census1$quadrat,  # `as_tibble()` can't handle this
     quiet = TRUE
   )
 )
@@ -367,13 +367,13 @@ to_df(
 
 Instead, pass the multiple grouping variables to `split` via
 `interaction()`. This approach allows you to use any number of grouping
-variables and the output always works with `to_df()`.
+variables and the output always works with `as_tibble()`.
 
 ``` r
 # Recommended
 by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
 
-to_df(
+as_tibble(
   recruitment_ctfs(
     census1, census2, 
     split1 = by_sp_and_quadrat, 
@@ -399,7 +399,7 @@ to_df(
 The same applies for other demography functions.
 
 ``` r
-to_df(
+as_tibble(
   mortality_ctfs(
     census1, census2, 
     split1 = by_sp_and_quadrat, 
@@ -431,7 +431,7 @@ growth <- growth_ctfs(
   split1 = by_sp_and_quadrat, 
   quiet = TRUE
 )
-to_df(growth)
+as_tibble(growth)
 #> # A tibble: 540 x 8
 #>    groups        rate     N  clim dbhmean  time date1 date2
 #>    <chr>        <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
@@ -447,7 +447,7 @@ to_df(growth)
 #> 10 GUAGUI.1419 NA         0    NA    NA   NA       NA    NA
 #> # ... with 530 more rows
 
-to_df(growth) %>% 
+as_tibble(growth) %>% 
   tidyr::separate(groups, into = c("species", "quadrats"))
 #> # A tibble: 540 x 9
 #>    species quadrats   rate     N  clim dbhmean  time date1 date2
@@ -521,7 +521,7 @@ tt_test_result
 #> [1] FALSE
 
 # A dataframe
-to_df(tt_test_result)
+as_tibble(tt_test_result)
 #> # A tibble: 12 x 8
 #>    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
 #>  * <chr>   <chr>  <dbl>  <dbl>  <dbl>  <dbl>        <dbl>        <dbl>

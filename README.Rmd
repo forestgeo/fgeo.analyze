@@ -180,37 +180,37 @@ census1 <- fgeo.x::tree5
 census2 <- fgeo.x::tree6
 ```
 
-Demography functions output a list that you can convert to a more convenient dataframe with `to_df()`.
+Demography functions output a list that you can convert to a more convenient dataframe with `as_tibble()`.
 
 ```{r}
 recruitment_ctfs(census1, census2)
 
-to_df(
+as_tibble(
   recruitment_ctfs(census1, census2, quiet = TRUE)
 )
 ```
 
-Except if you use `split2`: This argument creates a complex data structure that `to_df()` cannot handle.
+Except if you use `split2`: This argument creates a complex data structure that `as_tibble()` cannot handle.
 
 ```{r, error=TRUE}
 # Errs
-to_df(
+as_tibble(
   recruitment_ctfs(
     census1, census2, 
     split1 = census1$sp, 
-    split2 = census1$quadrat,  # `to_df()` can't handle this
+    split2 = census1$quadrat,  # `as_tibble()` can't handle this
     quiet = TRUE
   )
 )
 ```
 
-Instead, pass the multiple grouping variables to `split` via `interaction()`. This approach allows you to use any number of grouping variables and the output always works with `to_df()`.
+Instead, pass the multiple grouping variables to `split` via `interaction()`. This approach allows you to use any number of grouping variables and the output always works with `as_tibble()`.
 
 ```{r}
 # Recommended
 by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
 
-to_df(
+as_tibble(
   recruitment_ctfs(
     census1, census2, 
     split1 = by_sp_and_quadrat, 
@@ -222,7 +222,7 @@ to_df(
 The same applies for other demography functions.
 
 ```{r}
-to_df(
+as_tibble(
   mortality_ctfs(
     census1, census2, 
     split1 = by_sp_and_quadrat, 
@@ -240,9 +240,9 @@ growth <- growth_ctfs(
   split1 = by_sp_and_quadrat, 
   quiet = TRUE
 )
-to_df(growth)
+as_tibble(growth)
 
-to_df(growth) %>% 
+as_tibble(growth) %>% 
   tidyr::separate(groups, into = c("species", "quadrats"))
 ```
 
@@ -265,7 +265,7 @@ tt_test_result <- tt_test(pick, habitat)
 tt_test_result
 
 # A dataframe
-to_df(tt_test_result)
+as_tibble(tt_test_result)
 
 # A simple summary to help you interpret the results
 summary(tt_test_result)

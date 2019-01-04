@@ -37,20 +37,20 @@
 #'   gridsize = 20, n = 4,
 #'   xdim = 320, ydim = 500
 #' )
-#' 
+#'
 #' str(habitats)
 #' \dontrun{
 #' fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
 #' if (fgeo_plot_is_installed) {
 #'   library(fgeo.plot)
-#' 
+#'
 #'   autoplot(habitats)
 #' }
 #' }
-#' 
+#'
 #' # Habitat data is useful for calculating species-habitat associations
 #' census <- fgeo.x::tree6_3species
-#' to_df(
+#' as_tibble(
 #'   tt_test(census, habitats)
 #' )
 #' @family habitat functions

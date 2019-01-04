@@ -111,7 +111,7 @@ all calculations.
 census1 <- fgeo.x::tree5
 census2 <- fgeo.x::tree6
 
-to_df(
+as_tibble(
   recruitment_ctfs(census1, census2)
 )
 
@@ -123,27 +123,27 @@ recruitment <- recruitment_ctfs(
   split1 = sp_quadrat,
   quiet = TRUE
 )
-to_df(recruitment)
+as_tibble(recruitment)
 
 mortality <- mortality_ctfs(
   census1, census2, split1 = sp_quadrat, quiet = TRUE
 )
-to_df(mortality)
+as_tibble(mortality)
 
 growth <- growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE)
-to_df(growth)
+as_tibble(growth)
 
 # Easy way to separate grouping variables
 tidyr_is_installed <- requireNamespace("tidyr", quietly = TRUE)
 if (tidyr_is_installed) {
   library(tidyr)
 
-  to_df(growth) \%>\%
+  as_tibble(growth) \%>\%
     separate(groups, into = c("sp", "quadrat"))
 }
 }
 \seealso{
-Other demography functions: \code{\link{to_df.demography_ctfs}}
+Other demography functions: \code{\link{as_tibble.demography_ctfs}}
 }
 \author{
 Rick Condit, Suzanne Lao.

@@ -17,11 +17,11 @@
 #' summary(tt_result)
 #'
 #' # Same
-#' summary(to_df(tt_result))
+#' summary(as_tibble(tt_result))
 #'
 #' # You may want to add the explanation to the result of `tt_test()`
 #'
-#' dplyr::left_join(to_df(tt_result), summary(tt_result))
+#' dplyr::left_join(as_tibble(tt_result), summary(tt_result))
 #'
 #' # You may prefer a wide matrix
 #' Reduce(rbind, tt_result)
@@ -50,7 +50,7 @@ summary.tt_df <- function(object, ...) {
 #' @rdname summary.tt_df
 #' @export
 summary.tt_lst <- function(object, ...) {
-  summary.tt_df(to_df(object))
+  summary.tt_df(as_tibble(object))
 }
 
 #' @export

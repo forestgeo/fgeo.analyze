@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dataframe objects of class "demography_ctfs". — to_df.demography_ctfs • fgeo.analyze</title>
+<title>Coerce objects of class "demography_ctfs" to "data.frame" and "tbl" (tibble). — as_tibble.demography_ctfs • fgeo.analyze</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Dataframe objects of class "demography_ctfs". — to_df.demography_ctfs" />
+<meta property="og:title" content="Coerce objects of class "demography_ctfs" to "data.frame" and "tbl" (tibble). — as_tibble.demography_ctfs" />
 
-<meta property="og:description" content="Dataframe objects of class &quot;demography_ctfs&quot;." />
+<meta property="og:description" content="Coerce objects of class &quot;demography_ctfs&quot; to &quot;data.frame&quot; and &quot;tbl&quot; (tibble)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,30 +120,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dataframe objects of class "demography_ctfs".</h1>
-    <small class="dont-index">Source: <a href='https://github.com/forestgeo/fgeo.analyze/blob/master/R/to_df.R'><code>R/to_df.R</code></a></small>
-    <div class="hidden name"><code>to_df.demography_ctfs.Rd</code></div>
+    <h1>Coerce objects of class "demography_ctfs" to "data.frame" and "tbl" (tibble).</h1>
+    <small class="dont-index">Source: <a href='https://github.com/forestgeo/fgeo.analyze/blob/master/R/as_tibble.R'><code>R/as_tibble.R</code></a></small>
+    <div class="hidden name"><code>as_tibble.demography_ctfs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Dataframe objects of class "demography_ctfs".</p>
+    <p>Coerce objects of class "demography_ctfs" to "data.frame" and "tbl" (tibble).</p>
     
     </div>
 
     <pre class="usage"><span class='co'># S3 method for demography_ctfs</span>
-<span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>.x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for demography_ctfs</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.x</th>
+      <th>x</th>
       <td><p>An object of class demography_ctfs.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments passed to <code><a href='to_df.html'>to_df()</a></code>.</p></td>
+      <td><p>Not used.</p></td>
     </tr>
     </table>
     
@@ -153,9 +156,10 @@
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='to_df.html'>to_df()</a></code>.</p>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble()</a></code>.</p>
 <p>Other demography functions: <code><a href='recruitment_ctfs.html'>recruitment_ctfs</a></code></p>
-<p>Other methods for fgeo generics: <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code></p></div>
+<p>Other methods for common generics: <code><a href='as_tibble.tt_lst.html'>as_tibble.tt_lst</a></code>,
+  <code><a href='summary.tt_df.html'>summary.tt_df</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -171,7 +175,7 @@
 #&gt; <span class='message'>  * `census1` = 10.9-323.</span>
 #&gt; <span class='message'>  * `census2` = 10.5-347.</span>
 #&gt; <span class='message'>Using dbh `mindbh = 0` and above.</span></div><div class='input'>
-<span class='fu'><a href='to_df.html'>to_df</a></span>(<span class='no'>demography_result</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 540 x 9</span><span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></span>(<span class='no'>demography_result</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 540 x 9</span><span>
 #&gt;    groups         N2     R  rate lower upper  time date1 date2
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'> 1</span><span> MATDOM.1007     1     0     0     0 0.410  4.50 </span><span style='text-decoration: underline;'>18</span><span>891 </span><span style='text-decoration: underline;'>20</span><span>535

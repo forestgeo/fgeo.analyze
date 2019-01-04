@@ -13,18 +13,6 @@ pluck_n <- function(.x, n) lapply(.x, function(x) x[1:n])
 tiny1 <- fgeo.x::tree5
 tiny2 <- fgeo.x::tree6
 
-test_that("warns that `split2` is deprecated, but only once", {
-  expect_warning(
-    recruitment_ctfs(tiny1, tiny2, split1 = tiny1$sp, split2 = tiny1$quadrat),
-    "split2.*is deprecated.*once per session"
-  )
-  # No longer warns
-  expect_warning(
-    recruitment_ctfs(tiny1, tiny2, split1 = tiny1$sp, split2 = tiny1$quadrat),
-    NA
-  )
-})
-
 test_that("output is equal if aggregated via `split2` or `interaction()`", {
   # Toy groups
   tiny1$g1 <- sample(c("a", "b"), nrow(tiny1), replace = TRUE)

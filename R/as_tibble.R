@@ -1,68 +1,61 @@
-#' Create objects of class "data.frame" from other fgeo classes.
+#' Coerce objects of different fgeo classes to "data.frame" and "tbl" (tibble).
 #'
-#' Most of the popular, general-purpose tools for data science input objects of
-#' class "data.frame" (<https://www.tidyverse.org/>). However, several __fgeo__
-#' functions (either inherited from the original CTFS R Package or contributed
-#' by ForestGEO partners) output data of different class. Taking as input
-#' different classes of __fgeo__ objects, `to_df()` provides a simple,
-#' consistent way to create dataframes.
-#'
-#' This generic provides methods for classes that cannot be correctly coerced
-#' simply with [base::as.data.frame()] (or similar functions from the
-#' __tibble__ package).
-#'
-#' @param .x An fgeo object of supported class.
+#' @param x An fgeo object of supported class.
 #' @param ... Other arguments passed to methods.
 #'
-#' @return A dataframe.
+#' @return
+#'     * `as.data.drame` returns an object of class "data.frame"
+#'     * `as_tibble` returns an object of class "tibble".
 #'
-#' @family fgeo generics
+#' @seealso [base::as.data.frame()], [as_tibble()].
+#' @importFrom tibble as_tibble
 #' @export
-to_df <- function(.x, ...) {
-  UseMethod("to_df")
-}
+tibble::as_tibble
 
-#' @export
-to_df.default <- function(.x, ...) {
-  abort(glue("Can't deal with data of class {class(.x)}"))
-}
+# Methods for class tt_lst --------------------------------------------------
 
-# Class tt_lst ------------------------------------------------------------
-
-#' Dataframe objects of class "tt_lst".
+#' Coerce objects of class "tt_lst" to "data.frame" and "tbl" (tibble).
 #'
 #' This method creates a dataframe from the output of `tt_test()`
 #' (which is a list of class "tt_lst").
 #'
-#' @param .x An object of class tt_lst.
-#' @param ... Other arguments passed to [to_df()].
+#' @param x An object of class tt_lst.
+#' @param ... Not used.
 #'
-#' @seealso [to_df()].
+#' @seealso [as_tibble()].
 #' @return A dataframe.
 #'
 #' @examples
 #' census <- fgeo.x::tree6_3species
 #' habitat <- fgeo.x::habitat
 #'
-#' to_df(
+#' as_tibble(
 #'   tt_test(census, habitat)
 #' )
 #' @family habitat functions
-#' @family methods for fgeo generics
+#' @family methods for common generics
 #' @export
-to_df.tt_lst <- function(.x, ...) {
-  long_df <- tt_gather(.x)
+as_tibble.tt_lst <- function(x, ...) {
+  long_df <- tt_gather(x)
   out <- tt_create_df(tt_restructure(long_df))
   new_tt_df(out)
 }
 
-tt_gather <- function(.x) {
-  flip <- t(Reduce(rbind, .x))
+#' @export
+#' @rdname as_tibble.tt_lst
+as.data.frame.tt_lst <- function(x, ...) {
+  as.data.frame(
+    unclass(as_tibble.tt_lst(x))
+  )
+}
+
+tt_gather <- function(x) {
+  flip <- t(Reduce(rbind, x))
   as.tibble(gather_mat(flip, "metric", "sp", "value"))
 }
 
-tt_restructure <- function(.x) {
-  with_habitat <- spread_metric_value(separate_habitat_metric(.x))
+tt_restructure <- function(x) {
+  with_habitat <- spread_metric_value(separate_habitat_metric(x))
   metrics <- purrr::map(with_habitat, ~ .x["metric", ])[1][[1]]
   list(with_habitat = with_habitat, metrics = metrics)
 }
@@ -102,40 +95,24 @@ tt_create_df <- function(tt_data) {
   separate_habitat_sp(out)[c("habitat", "sp", tt_data$metrics)]
 }
 
-#' Form the authors of tt_test().
-#' The Rep.Agg.Neut columns for each habitat indicate whether the sp is
-#' significantly repelled (-1), aggregated (1), or neutraly distributed (0) on
-#' the habitat in question.
-#' @noRd
-explain_association <- function(x) {
-  dplyr::mutate(x,
-    association = dplyr::case_when(
-      .data$association == 1 ~ "aggregated",
-      .data$association == -1 ~ "repelled",
-      .data$association == 0 ~ "neutral",
-      TRUE ~ NA_character_
-    )
-  )
-}
-
 reorganize_columns <- function(x) {
   first <- c("habitat", "sp", "association", "stem_count")
   x[c(first, setdiff(names(x), first))]
 }
 
-new_tt_df <- function(.x) {
-  stopifnot(is.data.frame(.x))
-  structure(.x, class = c("tt_df", class(.x)))
+new_tt_df <- function(x) {
+  stopifnot(is.data.frame(x))
+  structure(x, class = c("tt_df", class(x)))
 }
 
-# Class demography_ctfs ---------------------------------------------------
+# Methods for class demography_ctfs ----------------------------------------
 
-#' Dataframe objects of class "demography_ctfs".
+#' Coerce objects of class "demography_ctfs" to "data.frame" and "tbl" (tibble).
 #'
-#' @param .x An object of class demography_ctfs.
-#' @param ... Other arguments passed to `to_df()`.
+#' @param x An object of class demography_ctfs.
+#' @param ... Not used.
 #'
-#' @seealso [to_df()].
+#' @seealso [as_tibble()].
 #' @return A (tibble) dataframe.
 #'
 #' @examples
@@ -149,12 +126,12 @@ new_tt_df <- function(.x) {
 #'   split1 = by_sp_and_quadrat
 #' )
 #'
-#' to_df(demography_result)
+#' as_tibble(demography_result)
 #' @family demography functions
-#' @family methods for fgeo generics
+#' @family methods for common generics
 #' @export
-to_df.demography_ctfs <- function(.x, ...) {
-  malformed <- !is.null(attr(.x, "split2"))
+as_tibble.demography_ctfs <- function(x, ...) {
+  malformed <- !is.null(attr(x, "split2"))
   if (malformed) {
     abort(glue("
       Can't deal with data created with `split2` (deprecated).
@@ -163,8 +140,8 @@ to_df.demography_ctfs <- function(.x, ...) {
     "))
   }
 
-  result <- as.data.frame(Reduce(cbind, .x), stringsAsFactors = FALSE)
-  result <- stats::setNames(result, names(.x))
+  result <- as.data.frame(Reduce(cbind, x), stringsAsFactors = FALSE)
+  result <- stats::setNames(result, names(x))
 
   has_groups <- nrow(result) > 1
   if (has_groups) {
@@ -173,4 +150,12 @@ to_df.demography_ctfs <- function(.x, ...) {
   }
   rownames(result) <- NULL
   tibble::as_tibble(result)
+}
+
+#' @export
+#' @rdname as_tibble.demography_ctfs
+as.data.frame.demography_ctfs <- function(x, ...) {
+  as.data.frame(
+    unclass(as_tibble(x))
+  )
 }

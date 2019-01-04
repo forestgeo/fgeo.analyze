@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary objects of class "tt_lst". — summary.tt_lst • fgeo.analyze</title>
+<title>Coerce objects of different fgeo classes to "data.frame" and "tbl" (tibble). — reexports • fgeo.analyze</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,13 @@
 
 
 
-<meta property="og:title" content="Summary objects of class "tt_lst". — summary.tt_lst" />
+<meta property="og:title" content="Coerce objects of different fgeo classes to "data.frame" and "tbl" (tibble). — reexports" />
 
-<meta property="og:description" content="This method helps you to interpret the results of tt_test() (which
-outputs objects of class &quot;tt_lst&quot;)." />
+<meta property="og:description" content="These objects are imported from other packages. Follow the links
+below to see their documentation.
+
+  tibbleas_tibble
+" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,27 +124,28 @@ outputs objects of class &quot;tt_lst&quot;)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Summary objects of class "tt_lst".</h1>
-    <small class="dont-index">Source: <a href='https://github.com/forestgeo/fgeo.analyze/blob/master/R/summary-tt_lst.R'><code>R/summary-tt_lst.R</code></a></small>
-    <div class="hidden name"><code>summary.tt_lst.Rd</code></div>
+    <h1>Coerce objects of different fgeo classes to "data.frame" and "tbl" (tibble).</h1>
+    <small class="dont-index">Source: <a href='https://github.com/forestgeo/fgeo.analyze/blob/master/R/as_tibble.R'><code>R/as_tibble.R</code></a></small>
+    <div class="hidden name"><code>reexports.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This method helps you to interpret the results of <code><a href='tt_test.html'>tt_test()</a></code> (which
-outputs objects of class "tt_lst").</p>
+    <p>These objects are imported from other packages. Follow the links
+below to see their documentation.</p>
+<dl class='dl-horizontal'>
+  <dt>tibble</dt><dd><p><code><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble</a></code></p></dd>
+</dl>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for tt_lst</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>The output of <code><a href='tt_test.html'>tt_test()</a></code>, i.e. an S3 object of class tt_lst.</p></td>
+      <th>x</th>
+      <td><p>An fgeo object of supported class.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -151,29 +155,17 @@ outputs objects of class "tt_lst").</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A dataframe.</p>
+    
+<pre>* `as.data.drame` returns an object of class "data.frame"
+* `as_tibble` returns an object of class "tibble".
+</pre>
+
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='tt_test.html'>tt_test()</a></code>.</p>
-<p>Other habitat functions: <code><a href='fgeo_habitat.html'>fgeo_habitat</a></code>,
-  <code><a href='fgeo_topography.html'>fgeo_topography</a></code>,
-  <code><a href='to_df.tt_lst.html'>to_df.tt_lst</a></code>, <code><a href='tt_test.html'>tt_test</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>base::as.data.frame()</a></code>, <code><a href='https://www.rdocumentation.org/packages/tibble/topics/as_tibble'>as_tibble()</a></code>.</p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>census</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6_3species</a></span>
-<span class='no'>habitat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>habitat</a></span>
-
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(
-  <span class='fu'><a href='tt_test.html'>tt_test</a></span>(<span class='no'>census</span>, <span class='no'>habitat</span>)
-)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 3 x 5</span><span>
-#&gt;   species habitat_1 habitat_2 habitat_3 habitat_4
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
-#&gt; </span><span style='color: #555555;'>1</span><span> CASARB  neutral   neutral   neutral   neutral  
-#&gt; </span><span style='color: #555555;'>2</span><span> PREMON  neutral   neutral   neutral   neutral  
-#&gt; </span><span style='color: #555555;'>3</span><span> SLOBER  neutral   neutral   neutral   neutral  </div><div class='input'>
-</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -183,12 +175,8 @@ outputs objects of class "tt_lst").</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
-    <h2>Author</h2>
-    <p>Daniel Zuleta.</p>
   </div>
 </div>
 

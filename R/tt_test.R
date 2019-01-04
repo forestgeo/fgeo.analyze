@@ -21,7 +21,9 @@
 #'   If the guess is wrong, you should provide the correct values manually (and
 #'   check that your habitat data is correct).
 #'
-#' @seealso [summary.tt_lst()], [summary.tt_df()], [to_df()], [fgeo_habitat()].
+#' @seealso [summary.tt_lst()], [summary.tt_df()], [as_tibble()],
+#'   [fgeo_habitat()].
+#'
 #' @return A list of matrices.
 #'
 #' @author Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.
@@ -77,7 +79,7 @@
 #' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 #'
 #' # Defaults to using all species
-#' to_df(
+#' as_tibble(
 #'   tt_test(census, habitat)
 #' )
 #'
@@ -87,7 +89,7 @@
 #' result <- tt_test(census, habitat, sp = some_species)
 #' result
 #'
-#' to_df(result)
+#' as_tibble(result)
 #'
 #' summary(result)
 #' @family habitat functions

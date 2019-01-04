@@ -16,8 +16,8 @@ expect_printed_output <- function(object, update = FALSE) {
 tt_result <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
 
 test_that("summary.tt_df returns the expected data structure", {
-  expect_is(summary(to_df(tt_result)), "tbl_df")
-  expect_named(summary(to_df(tt_result)), c("sp", "habitat", "association"))
+  expect_is(summary(as_tibble(tt_result)), "tbl_df")
+  expect_named(summary(as_tibble(tt_result)), c("sp", "habitat", "association"))
 })
 
 test_that("summary.tt_df errs with expected message", {
@@ -30,7 +30,7 @@ context("summary.tt_lst")
 
 test_that("summary.tt_df returns the expected data structure", {
   expect_is(summary(tt_result), "tbl_df")
-  expect_named(summary(to_df(tt_result)), c("sp", "habitat", "association"))
+  expect_named(summary(as_tibble(tt_result)), c("sp", "habitat", "association"))
 })
 
 test_that("summary.tt_lst returns the expected output", {
@@ -55,7 +55,7 @@ test_that("summary.tt_lst outputs a `sp` column with the species names", {
 context("explain")
 
 test_that("summary.tt_lst and summary.tt_df return equal", {
-  tt_lst <- summary(to_df(tt_result)) %>%
+  tt_lst <- summary(as_tibble(tt_result)) %>%
     select(habitat, sp, association) %>%
     arrange(sp, habitat) %>%
     purrr::modify(as.character)
