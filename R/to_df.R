@@ -43,7 +43,7 @@ to_df.default <- function(.x, ...) {
 #' @examples
 #' census <- fgeo.x::tree6_3species
 #' habitat <- fgeo.x::habitat
-#' 
+#'
 #' to_df(
 #'   tt_test(census, habitat)
 #' )
@@ -107,19 +107,19 @@ tt_create_df <- function(tt_data) {
 #' significantly repelled (-1), aggregated (1), or neutraly distributed (0) on
 #' the habitat in question.
 #' @noRd
-explain_distribution <- function(x) {
+explain_association <- function(x) {
   dplyr::mutate(x,
-    distribution = dplyr::case_when(
-      .data$distribution == 1 ~ "aggregated",
-      .data$distribution == -1 ~ "repelled",
-      .data$distribution == 0 ~ "neutral",
+    association = dplyr::case_when(
+      .data$association == 1 ~ "aggregated",
+      .data$association == -1 ~ "repelled",
+      .data$association == 0 ~ "neutral",
       TRUE ~ NA_character_
     )
   )
 }
 
 reorganize_columns <- function(x) {
-  first <- c("habitat", "sp", "distribution", "stem_count")
+  first <- c("habitat", "sp", "association", "stem_count")
   x[c(first, setdiff(names(x), first))]
 }
 
@@ -142,13 +142,13 @@ new_tt_df <- function(.x) {
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
 #' by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
-#' 
+#'
 #' demography_result <- recruitment_ctfs(
 #'   census1,
 #'   census2,
 #'   split1 = by_sp_and_quadrat
 #' )
-#' 
+#'
 #' to_df(demography_result)
 #' @family demography functions
 #' @family methods for fgeo generics

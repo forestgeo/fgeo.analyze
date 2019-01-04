@@ -87,8 +87,7 @@ to_df(
 \code{\link[fgeo.plot:autoplot.fgeo_habitat]{fgeo.plot::autoplot.fgeo_habitat()}}, \code{\link[=fgeo_topography]{fgeo_topography()}}.
 
 Other habitat functions: \code{\link{fgeo_topography}},
-  \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}},
-  \code{\link{tt_test}}
+  \code{\link{to_df.tt_lst}}, \code{\link{tt_test}}
 
 Other functions to construct fgeo classes: \code{\link{fgeo_topography}}
 }

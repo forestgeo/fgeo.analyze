@@ -90,7 +90,7 @@
             <h3 class="subtitle">Given a number of tree species and habitat types in a plot, are species significantly aggregated within habitats?</h3>
                         <h4 class="author">Mauro Lepore</h4>
             
-            <h4 class="date">2018-12-31</h4>
+            <h4 class="date">2019-01-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/forestgeo/fgeo.analyze/blob/master/vignettes/siteonly/tt_test.Rmd"><code>vignettes/siteonly/tt_test.Rmd</code></a></small>
       <div class="hidden name"><code>tt_test.Rmd</code></div>
@@ -117,10 +117,10 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages --------------------------------------------------------------- fgeo 0.0.0.9002 --</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages --------------------------------------- fgeo 0.0.0.9002 --</span></a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; v fgeo.analyze 0.0.0.9003     v fgeo.tool    0.0.0.9005</span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; v fgeo.plot    0.0.0.9402     v fgeo.x       0.0.0.9000</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; -- Conflicts ----------------------------------------------------------------------- fgeo_conflicts() --</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; -- Conflicts ----------------------------------------------- fgeo_conflicts() --</span></a>
 <a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; x fgeo.tool::filter() masks dplyr::filter(), stats::filter()</span></a>
 <a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; x dplyr::intersect()  masks base::intersect()</span></a>
 <a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; x dplyr::lag()        masks stats::lag()</span></a>
@@ -265,12 +265,21 @@
 <a class="sourceLine" id="cb11-39" data-line-number="39"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
 <p>To help you interpret the results, you can use <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code>.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(tt_test_result)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; # A tibble: 3 x 5</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;   species habitat_1 habitat_2 habitat_3 habitat_4</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; * &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    </span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; 1 CASARB  neutral   neutral   neutral   neutral  </span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; 2 PREMON  neutral   neutral   neutral   neutral  </span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; 3 SLOBER  neutral   neutral   neutral   neutral</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;    sp     habitat association</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      </span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt;  1 CASARB 1       neutral    </span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt;  2 CASARB 2       neutral    </span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt;  3 CASARB 3       neutral    </span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt;  4 CASARB 4       neutral    </span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt;  5 PREMON 1       neutral    </span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;  6 PREMON 2       neutral    </span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt;  7 PREMON 3       neutral    </span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt;  8 PREMON 4       neutral    </span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt;  9 SLOBER 1       neutral    </span></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; 10 SLOBER 2       neutral    </span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; 11 SLOBER 3       neutral    </span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; 12 SLOBER 4       neutral</span></a></code></pre></div>
 <p>You may want to combine the output into a single matrix by row-binding each element of the results-list.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/funprog">Reduce</a></span>(rbind, tt_test_result)</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>

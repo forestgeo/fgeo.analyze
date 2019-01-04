@@ -70,8 +70,7 @@ fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
 \code{\link[=fgeo_habitat]{fgeo_habitat()}}.
 
 Other habitat functions: \code{\link{fgeo_habitat}},
-  \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}},
-  \code{\link{tt_test}}
+  \code{\link{to_df.tt_lst}}, \code{\link{tt_test}}
 
 Other functions to construct fgeo classes: \code{\link{fgeo_habitat}}
 }

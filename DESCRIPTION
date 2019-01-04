@@ -65,7 +65,8 @@ Imports:
     stats,
     tibble,
     tidyr,
-    withr
+    withr,
+    generics
 Suggests: 
     covr,
     ggplot2,

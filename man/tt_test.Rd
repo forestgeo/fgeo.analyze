@@ -20,10 +20,7 @@ If the guess is wrong, you should provide the correct values manually (and
 check that your habitat data is correct).}
 }
 \value{
-A list of matrices. You can summarize the output with \code{\link[=summary]{summary()}} and
-convert it to a dataframe with \code{\link[=to_df]{to_df()}}. You can also view the
-result with \code{View(your-result)}, and reduce it from a list of matrices to a
-single matix with \code{Reduce(rbind, your-result)}. See examples.
+A list of matrices.
 }
 \description{
 Determine habitat-species associations with code developed by Sabrina Russo,
@@ -82,7 +79,7 @@ Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 }
 
 \examples{
-library(dplyr)
+library(fgeo.tool)
 
 # Example data
 tree <- fgeo.x::tree6_3species
@@ -92,7 +89,7 @@ elevation <- fgeo.x::elevation
 census <- filter(tree, status == "A", dbh >= 10)
 
 # Pick sufficiently abundant species
-pick <- filter(add_count(census, sp), n > 50)
+pick <- filter(dplyr::add_count(census, sp), n > 50)
 
 # Use your habitat data or create it from elevation data
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
@@ -102,21 +99,21 @@ to_df(
   tt_test(census, habitat)
 )
 
+Reduce(rbind, tt_test(census, habitat))
+
 some_species <- c("CASARB", "PREMON")
 result <- tt_test(census, habitat, sp = some_species)
 result
 
 to_df(result)
 
-# A simple summary to help you interpret the results
 summary(result)
 }
 \seealso{
-\code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=to_df]{to_df()}}, \code{\link[=fgeo_habitat]{fgeo_habitat()}}.
+\code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=summary.tt_df]{summary.tt_df()}}, \code{\link[=to_df]{to_df()}}, \code{\link[=fgeo_habitat]{fgeo_habitat()}}.
 
 Other habitat functions: \code{\link{fgeo_habitat}},
-  \code{\link{fgeo_topography}},
-  \code{\link{summary.tt_lst}}, \code{\link{to_df.tt_lst}}
+  \code{\link{fgeo_topography}}, \code{\link{to_df.tt_lst}}
 }
 \author{
 Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.

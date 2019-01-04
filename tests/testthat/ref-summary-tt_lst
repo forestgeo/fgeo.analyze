@@ -1,6 +1,0 @@
-# A tibble: 3 x 5
-  species habitat_1 habitat_2 habitat_3 habitat_4
-  <chr>   <chr>     <chr>     <chr>     <chr>    
-1 CASARB  neutral   neutral   neutral   neutral  
-2 PREMON  neutral   neutral   neutral   neutral  
-3 SLOBER  neutral   neutral   neutral   neutral  

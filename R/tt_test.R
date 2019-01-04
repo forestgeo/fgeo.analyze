@@ -21,11 +21,8 @@
 #'   If the guess is wrong, you should provide the correct values manually (and
 #'   check that your habitat data is correct).
 #'
-#' @seealso [summary.tt_lst()], [to_df()], [fgeo_habitat()].
-#' @return A list of matrices. You can summarize the output with [summary()] and
-#'   convert it to a dataframe with [to_df()]. You can also view the
-#'   result with `View(your-result)`, and reduce it from a list of matrices to a
-#'   single matix with `Reduce(rbind, your-result)`. See examples.
+#' @seealso [summary.tt_lst()], [summary.tt_df()], [to_df()], [fgeo_habitat()].
+#' @return A list of matrices.
 #'
 #' @author Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.
 #'
@@ -64,7 +61,7 @@
 #' <https://doi.org/10.1007/s11104-018-3878-0>.
 #'
 #' @examples
-#' library(dplyr)
+#' library(fgeo.tool)
 #'
 #' # Example data
 #' tree <- fgeo.x::tree6_3species
@@ -74,7 +71,7 @@
 #' census <- filter(tree, status == "A", dbh >= 10)
 #'
 #' # Pick sufficiently abundant species
-#' pick <- filter(add_count(census, sp), n > 50)
+#' pick <- filter(dplyr::add_count(census, sp), n > 50)
 #'
 #' # Use your habitat data or create it from elevation data
 #' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
@@ -84,13 +81,14 @@
 #'   tt_test(census, habitat)
 #' )
 #'
+#' Reduce(rbind, tt_test(census, habitat))
+#'
 #' some_species <- c("CASARB", "PREMON")
 #' result <- tt_test(census, habitat, sp = some_species)
 #' result
 #'
 #' to_df(result)
 #'
-#' # A simple summary to help you interpret the results
 #' summary(result)
 #' @family habitat functions
 #' @export

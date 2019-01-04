@@ -1,0 +1,59 @@
+#' Summary of `tt_test()` results.
+#'
+#' @param object An object of a valid S3 class (see usage).
+#' @param ... Other arguments passed to methods.
+#'     * `<tt_df>`: Unused.
+#'     * `<tt_lst>`: Unused.
+#'
+#' @author Adapted from code contributed by Daniel Zuleta.
+#'
+#' @return A tibble.
+#'
+#' @seealso [tt_test()], [base::summary()].
+#'
+#' @examples
+#' tt_result <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
+#'
+#' summary(tt_result)
+#'
+#' # Same
+#' summary(to_df(tt_result))
+#'
+#' # You may want to add the explanation to the result of `tt_test()`
+#'
+#' dplyr::left_join(to_df(tt_result), summary(tt_result))
+#'
+#' # You may prefer a wide matrix
+#' Reduce(rbind, tt_result)
+#'
+#' # You may prefer a wide dataframe
+#' tidyr::spread(summary(tt_result), "habitat", "association")
+#' @family methods for common generics
+#' @export
+summary.tt_df <- function(object, ...) {
+  out <- mutate(
+    object,
+    # Short alias to fit in screen-width
+    obs = .data$Obs.Quantile,
+    association =   dplyr::case_when(
+      (.data$obs - 1) ==  1 & (1 - (.data$obs)) <  0.05 ~ "aggregated",
+      (.data$obs - 1) ==  1 & (1 - (.data$obs)) >= 0.05 ~ "agg_nonsignificant",
+      (.data$obs - 1) == -1 &      (.data$obs)  <  0.05 ~ "repelled",
+      (.data$obs - 1) == -1 &      (.data$obs)  >= 0.05 ~ "rep_nonsignificant",
+      TRUE                                              ~ "neutral"
+    )
+  )
+
+  arrange(out, .data$sp, .data$habitat)[c("sp", "habitat", "association")]
+}
+
+#' @rdname summary.tt_df
+#' @export
+summary.tt_lst <- function(object, ...) {
+  summary.tt_df(to_df(object))
+}
+
+#' @export
+summary.default <- function(object, ...) {
+  abort_bad_class(object)
+}

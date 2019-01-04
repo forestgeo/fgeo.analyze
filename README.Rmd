@@ -264,11 +264,11 @@ tt_test_result <- tt_test(pick, habitat)
 # A list or matrices
 tt_test_result
 
-# A simple summary to help you interpret the results
-summary(tt_test_result)
-
 # A dataframe
 to_df(tt_test_result)
+
+# A simple summary to help you interpret the results
+summary(tt_test_result)
 ```
 
 [Get started with __fgeo__](https://forestgeo.github.io/fgeo/articles/fgeo.html)

@@ -29,10 +29,10 @@ article](https://goo.gl/dQKEeg).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages ----------------------------------------------------- fgeo 0.0.0.9002 --
-#> v fgeo.x       0.0.0.9000     v fgeo.analyze 0.0.0.9003
-#> v fgeo.plot    0.0.0.9402     v fgeo.tool    0.0.0.9005
-#> -- Conflicts ------------------------------------------------------------- fgeo_conflicts() --
+#> -- Attaching packages --------------------------------------------- fgeo 0.0.0.9002 --
+#> v fgeo.analyze 0.0.0.9003     v fgeo.tool    0.0.0.9005
+#> v fgeo.plot    0.0.0.9402     v fgeo.x       0.0.0.9000
+#> -- Conflicts ----------------------------------------------------- fgeo_conflicts() --
 #> x fgeo.tool::filter() masks stats::filter()
 ```
 
@@ -468,14 +468,14 @@ to_df(growth) %>%
 ### Species-habitat associations
 
 ``` r
-tree <- fgeo.x::download_data("luquillo_tree5_random")
-elevation <- fgeo.x::download_data("luquillo_elevation")
 # Pick alive trees, of 10 mm or more
+tree <- fgeo.x::download_data("luquillo_tree5_random")
 census <- filter(tree, status == "A", dbh >= 10)
 # Pick sufficiently abundant species
 pick <- filter(add_count(census, sp), n > 50)
 
 # Use your habitat data or create it from elevation data
+elevation <- fgeo.x::download_data("luquillo_elevation")
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 
 tt_test_result <- tt_test(pick, habitat)
@@ -493,6 +493,8 @@ tt_test_result
 #> CASARB      11      482     1114        4              0        0.30125
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #> CASARB       8     1217      377        6              0       0.760625
+#> attr(,"fixed_nan")
+#> [1] FALSE
 #> 
 #> [[2]]
 #>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
@@ -503,6 +505,8 @@ tt_test_result
 #> PREMON      39      230     1367        3              0        0.14375
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #> PREMON      15      130     1465        5              0        0.08125
+#> attr(,"fixed_nan")
+#> [1] FALSE
 #> 
 #> [[3]]
 #>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
@@ -513,13 +517,8 @@ tt_test_result
 #> SLOBER      21     1336      260        4              0          0.835
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #> SLOBER       8     1193      396       11              0       0.745625
-
-# A simple summary to help you interpret the results
-summary(tt_test_result)
-#>   Species Habitat_1 Habitat_2 Habitat_3 Habitat_4
-#> 1  CASARB   neutral   neutral   neutral   neutral
-#> 2  PREMON   neutral   neutral   neutral   neutral
-#> 3  SLOBER   neutral   neutral   neutral   neutral
+#> attr(,"fixed_nan")
+#> [1] FALSE
 
 # A dataframe
 to_df(tt_test_result)
@@ -538,6 +537,24 @@ to_df(tt_test_result)
 #> 10 2       SLOBER    25    516   1082      2            0       0.322 
 #> 11 3       SLOBER    21   1336    260      4            0       0.835 
 #> 12 4       SLOBER     8   1193    396     11            0       0.746
+
+# A simple summary to help you interpret the results
+summary(tt_test_result)
+#> # A tibble: 12 x 3
+#>    sp     habitat association
+#>    <chr>  <chr>   <chr>      
+#>  1 CASARB 1       neutral    
+#>  2 CASARB 2       neutral    
+#>  3 CASARB 3       neutral    
+#>  4 CASARB 4       neutral    
+#>  5 PREMON 1       neutral    
+#>  6 PREMON 2       neutral    
+#>  7 PREMON 3       neutral    
+#>  8 PREMON 4       neutral    
+#>  9 SLOBER 1       neutral    
+#> 10 SLOBER 2       neutral    
+#> 11 SLOBER 3       neutral    
+#> 12 SLOBER 4       neutral
 ```
 
 [Get started with

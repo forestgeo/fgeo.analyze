@@ -107,10 +107,10 @@ devtools::install_github("forestgeo/fgeo.analyze")</a></code></pre>
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; -- Attaching packages --------------------------------------------------------------- fgeo 0.0.0.9002 --</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; -- Attaching packages --------------------------------------- fgeo 0.0.0.9002 --</span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; v fgeo.analyze 0.0.0.9003     v fgeo.tool    0.0.0.9005</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; v fgeo.plot    0.0.0.9402     v fgeo.x       0.0.0.9000</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; -- Conflicts ----------------------------------------------------------------------- fgeo_conflicts() --</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; -- Conflicts ----------------------------------------------- fgeo_conflicts() --</span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; x fgeo.tool::filter() masks stats::filter()</span></a></code></pre></div>
 <div id="abundance" class="section level3">
 <h3 class="hasAnchor">
@@ -516,32 +516,41 @@ devtools::install_github("forestgeo/fgeo.analyze")</a></code></pre>
 <a class="sourceLine" id="cb21-50" data-line-number="50"><span class="co">#&gt; attr(,"fixed_nan")</span></a>
 <a class="sourceLine" id="cb21-51" data-line-number="51"><span class="co">#&gt; [1] FALSE</span></a>
 <a class="sourceLine" id="cb21-52" data-line-number="52"></a>
-<a class="sourceLine" id="cb21-53" data-line-number="53"><span class="co"># A simple summary to help you interpret the results</span></a>
-<a class="sourceLine" id="cb21-54" data-line-number="54"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(tt_test_result)</a>
-<a class="sourceLine" id="cb21-55" data-line-number="55"><span class="co">#&gt; # A tibble: 3 x 5</span></a>
-<a class="sourceLine" id="cb21-56" data-line-number="56"><span class="co">#&gt;   species habitat_1 habitat_2 habitat_3 habitat_4</span></a>
-<a class="sourceLine" id="cb21-57" data-line-number="57"><span class="co">#&gt; * &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    </span></a>
-<a class="sourceLine" id="cb21-58" data-line-number="58"><span class="co">#&gt; 1 CASARB  neutral   neutral   neutral   neutral  </span></a>
-<a class="sourceLine" id="cb21-59" data-line-number="59"><span class="co">#&gt; 2 PREMON  neutral   neutral   neutral   neutral  </span></a>
-<a class="sourceLine" id="cb21-60" data-line-number="60"><span class="co">#&gt; 3 SLOBER  neutral   neutral   neutral   neutral</span></a>
-<a class="sourceLine" id="cb21-61" data-line-number="61"></a>
-<a class="sourceLine" id="cb21-62" data-line-number="62"><span class="co"># A dataframe</span></a>
-<a class="sourceLine" id="cb21-63" data-line-number="63"><span class="kw"><a href="reference/to_df.html">to_df</a></span>(tt_test_result)</a>
-<a class="sourceLine" id="cb21-64" data-line-number="64"><span class="co">#&gt; # A tibble: 12 x 8</span></a>
-<a class="sourceLine" id="cb21-65" data-line-number="65"><span class="co">#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>
-<a class="sourceLine" id="cb21-66" data-line-number="66"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb21-67" data-line-number="67"><span class="co">#&gt;  1 1       CASARB    35   1313    282      5            0       0.821 </span></a>
-<a class="sourceLine" id="cb21-68" data-line-number="68"><span class="co">#&gt;  2 2       CASARB    24    394   1204      2            0       0.246 </span></a>
-<a class="sourceLine" id="cb21-69" data-line-number="69"><span class="co">#&gt;  3 3       CASARB    11    482   1114      4            0       0.301 </span></a>
-<a class="sourceLine" id="cb21-70" data-line-number="70"><span class="co">#&gt;  4 4       CASARB     8   1217    377      6            0       0.761 </span></a>
-<a class="sourceLine" id="cb21-71" data-line-number="71"><span class="co">#&gt;  5 1       PREMON    94   1005    594      1            0       0.628 </span></a>
-<a class="sourceLine" id="cb21-72" data-line-number="72"><span class="co">#&gt;  6 2       PREMON    97   1478    120      2            0       0.924 </span></a>
-<a class="sourceLine" id="cb21-73" data-line-number="73"><span class="co">#&gt;  7 3       PREMON    39    230   1367      3            0       0.144 </span></a>
-<a class="sourceLine" id="cb21-74" data-line-number="74"><span class="co">#&gt;  8 4       PREMON    15    130   1465      5            0       0.0812</span></a>
-<a class="sourceLine" id="cb21-75" data-line-number="75"><span class="co">#&gt;  9 1       SLOBER    21    270   1328      2            0       0.169 </span></a>
-<a class="sourceLine" id="cb21-76" data-line-number="76"><span class="co">#&gt; 10 2       SLOBER    25    516   1082      2            0       0.322 </span></a>
-<a class="sourceLine" id="cb21-77" data-line-number="77"><span class="co">#&gt; 11 3       SLOBER    21   1336    260      4            0       0.835 </span></a>
-<a class="sourceLine" id="cb21-78" data-line-number="78"><span class="co">#&gt; 12 4       SLOBER     8   1193    396     11            0       0.746</span></a></code></pre></div>
+<a class="sourceLine" id="cb21-53" data-line-number="53"><span class="co"># A dataframe</span></a>
+<a class="sourceLine" id="cb21-54" data-line-number="54"><span class="kw"><a href="reference/to_df.html">to_df</a></span>(tt_test_result)</a>
+<a class="sourceLine" id="cb21-55" data-line-number="55"><span class="co">#&gt; # A tibble: 12 x 8</span></a>
+<a class="sourceLine" id="cb21-56" data-line-number="56"><span class="co">#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>
+<a class="sourceLine" id="cb21-57" data-line-number="57"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb21-58" data-line-number="58"><span class="co">#&gt;  1 1       CASARB    35   1313    282      5            0       0.821 </span></a>
+<a class="sourceLine" id="cb21-59" data-line-number="59"><span class="co">#&gt;  2 2       CASARB    24    394   1204      2            0       0.246 </span></a>
+<a class="sourceLine" id="cb21-60" data-line-number="60"><span class="co">#&gt;  3 3       CASARB    11    482   1114      4            0       0.301 </span></a>
+<a class="sourceLine" id="cb21-61" data-line-number="61"><span class="co">#&gt;  4 4       CASARB     8   1217    377      6            0       0.761 </span></a>
+<a class="sourceLine" id="cb21-62" data-line-number="62"><span class="co">#&gt;  5 1       PREMON    94   1005    594      1            0       0.628 </span></a>
+<a class="sourceLine" id="cb21-63" data-line-number="63"><span class="co">#&gt;  6 2       PREMON    97   1478    120      2            0       0.924 </span></a>
+<a class="sourceLine" id="cb21-64" data-line-number="64"><span class="co">#&gt;  7 3       PREMON    39    230   1367      3            0       0.144 </span></a>
+<a class="sourceLine" id="cb21-65" data-line-number="65"><span class="co">#&gt;  8 4       PREMON    15    130   1465      5            0       0.0812</span></a>
+<a class="sourceLine" id="cb21-66" data-line-number="66"><span class="co">#&gt;  9 1       SLOBER    21    270   1328      2            0       0.169 </span></a>
+<a class="sourceLine" id="cb21-67" data-line-number="67"><span class="co">#&gt; 10 2       SLOBER    25    516   1082      2            0       0.322 </span></a>
+<a class="sourceLine" id="cb21-68" data-line-number="68"><span class="co">#&gt; 11 3       SLOBER    21   1336    260      4            0       0.835 </span></a>
+<a class="sourceLine" id="cb21-69" data-line-number="69"><span class="co">#&gt; 12 4       SLOBER     8   1193    396     11            0       0.746</span></a>
+<a class="sourceLine" id="cb21-70" data-line-number="70"></a>
+<a class="sourceLine" id="cb21-71" data-line-number="71"><span class="co"># A simple summary to help you interpret the results</span></a>
+<a class="sourceLine" id="cb21-72" data-line-number="72"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(tt_test_result)</a>
+<a class="sourceLine" id="cb21-73" data-line-number="73"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
+<a class="sourceLine" id="cb21-74" data-line-number="74"><span class="co">#&gt;    sp     habitat association</span></a>
+<a class="sourceLine" id="cb21-75" data-line-number="75"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      </span></a>
+<a class="sourceLine" id="cb21-76" data-line-number="76"><span class="co">#&gt;  1 CASARB 1       neutral    </span></a>
+<a class="sourceLine" id="cb21-77" data-line-number="77"><span class="co">#&gt;  2 CASARB 2       neutral    </span></a>
+<a class="sourceLine" id="cb21-78" data-line-number="78"><span class="co">#&gt;  3 CASARB 3       neutral    </span></a>
+<a class="sourceLine" id="cb21-79" data-line-number="79"><span class="co">#&gt;  4 CASARB 4       neutral    </span></a>
+<a class="sourceLine" id="cb21-80" data-line-number="80"><span class="co">#&gt;  5 PREMON 1       neutral    </span></a>
+<a class="sourceLine" id="cb21-81" data-line-number="81"><span class="co">#&gt;  6 PREMON 2       neutral    </span></a>
+<a class="sourceLine" id="cb21-82" data-line-number="82"><span class="co">#&gt;  7 PREMON 3       neutral    </span></a>
+<a class="sourceLine" id="cb21-83" data-line-number="83"><span class="co">#&gt;  8 PREMON 4       neutral    </span></a>
+<a class="sourceLine" id="cb21-84" data-line-number="84"><span class="co">#&gt;  9 SLOBER 1       neutral    </span></a>
+<a class="sourceLine" id="cb21-85" data-line-number="85"><span class="co">#&gt; 10 SLOBER 2       neutral    </span></a>
+<a class="sourceLine" id="cb21-86" data-line-number="86"><span class="co">#&gt; 11 SLOBER 3       neutral    </span></a>
+<a class="sourceLine" id="cb21-87" data-line-number="87"><span class="co">#&gt; 12 SLOBER 4       neutral</span></a></code></pre></div>
 <p><a href="https://forestgeo.github.io/fgeo/articles/fgeo.html">Get started with <strong>fgeo</strong></a></p>
 </div>
 </div>
