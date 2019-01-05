@@ -4,19 +4,18 @@
 \name{reexports}
 \alias{reexports}
 \alias{as_tibble}
-\title{Coerce objects of different fgeo classes to "data.frame" and "tbl" (tibble).}
+\title{Coerce objects different fgeo classes "data.frame" or "tbl" (tibble).}
 \arguments{
-\item{x}{An fgeo object of supported class.}
+\item{x}{An object of class tt_lst.}
 
-\item{...}{Other arguments passed to methods.}
+\item{...}{Arguments passed on to \code{\link[base:as.data.frame]{base::as.data.frame()}} (not used in
+\code{\link[=as_tibble]{as_tibble()}}).}
 }
 \value{
-\preformatted{* `as.data.drame` returns an object of class "data.frame"
-* `as_tibble` returns an object of class "tibble".
-}
+A \code{\link[base:data.frame]{base::data.frame()}} or \code{\link[tibble:tibble]{tibble::tibble()}}.
 }
 \seealso{
-\code{\link[base:as.data.frame]{base::as.data.frame()}}, \code{\link[=as_tibble]{as_tibble()}}.
+\code{\link[base:data.frame]{base::data.frame()}}, \code{\link[tibble:as_tibble]{tibble::as_tibble()}}.
 }
 \keyword{internal}
 \description{

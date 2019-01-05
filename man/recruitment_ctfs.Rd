@@ -142,9 +142,6 @@ if (tidyr_is_installed) {
     separate(groups, into = c("sp", "quadrat"))
 }
 }
-\seealso{
-Other demography functions: \code{\link{as_tibble.demography_ctfs}}
-}
 \author{
 Rick Condit, Suzanne Lao.
 }

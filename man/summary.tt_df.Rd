@@ -42,9 +42,6 @@ tidyr::spread(summary(tt_result), "habitat", "association")
 }
 \seealso{
 \code{\link[=tt_test]{tt_test()}}, \code{\link[base:summary]{base::summary()}}.
-
-Other methods for common generics: \code{\link{as_tibble.demography_ctfs}},
-  \code{\link{as_tibble.tt_lst}}
 }
 \author{
 Adapted from code contributed by Daniel Zuleta.

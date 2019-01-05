@@ -26,6 +26,16 @@ test_that("as.data.frame.tt_lst outputs the expected dataframe", {
   )
 })
 
+test_that("as.data.frame.tt_lst takes arguments via `...`", {
+  tt_lst <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
+  expect_is(as.data.frame(tt_lst)[["sp"]], "factor")
+
+  expect_is(
+    as.data.frame(tt_lst, stringsAsFactors = FALSE)[["sp"]],
+    "character"
+  )
+})
+
 
 
 context("as_tibble.demography_ctfs")
@@ -105,3 +115,51 @@ test_that("as_tibble.demography_ctfs and as.data.frame.* output equal", {
     as.data.frame(result)
   )
 })
+
+
+
+context("as.data.frame.tt_lst")
+
+test_that("as.data.frame.demography_ctfs takes arguments via `...`", {
+  result <- recruitment_ctfs(
+    fgeo.x::tree5, fgeo.x::tree6, split1 = fgeo.x::tree5$sp
+  )
+
+  expect_is(
+    as.data.frame(result)[["groups"]],
+    "factor"
+  )
+  expect_is(
+    as.data.frame(result, stringsAsFactors = FALSE)[["groups"]],
+    "character"
+  )
+})
+
+# test_that("as.data.frame.tt_lst takes arguments via `...`", {
+#   tt_lst <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
+#   expect_is(as.data.frame(tt_lst)[["sp"]], "factor")
+#
+#   expect_is(
+#     as.data.frame(tt_lst, stringsAsFactors = FALSE)[["sp"]],
+#     "character"
+#   )
+# })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

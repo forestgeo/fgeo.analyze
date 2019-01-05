@@ -1,37 +1,18 @@
-#' Coerce objects of different fgeo classes to "data.frame" and "tbl" (tibble).
+#' Coerce objects different fgeo classes "data.frame" or "tbl" (tibble).
 #'
-#' @param x An fgeo object of supported class.
-#' @param ... Other arguments passed to methods.
+#' @param x An object of class tt_lst.
+#' @param ... Arguments passed on to [base::as.data.frame()] (not used in
+#'   [as_tibble()]).
 #'
-#' @return
-#'     * `as.data.drame` returns an object of class "data.frame"
-#'     * `as_tibble` returns an object of class "tibble".
+#' @seealso [base::data.frame()], [tibble::as_tibble()].
+#' @return A [base::data.frame()] or [tibble::tibble()].
 #'
-#' @seealso [base::as.data.frame()], [as_tibble()].
 #' @importFrom tibble as_tibble
 #' @export
 tibble::as_tibble
 
 # Methods for class tt_lst --------------------------------------------------
 
-#' Coerce objects of class "tt_lst" to "data.frame" and "tbl" (tibble).
-#'
-#' This method creates a dataframe from the output of `tt_test()`
-#' (which is a list of class "tt_lst").
-#'
-#' @param x An object of class tt_lst.
-#' @param ... Not used.
-#'
-#' @seealso [as_tibble()].
-#' @return A dataframe.
-#'
-#' @examples
-#' census <- fgeo.x::tree6_3species
-#' habitat <- fgeo.x::habitat
-#'
-#' as_tibble(
-#'   tt_test(census, habitat)
-#' )
 #' @family habitat functions
 #' @family methods for common generics
 #' @export
@@ -41,12 +22,11 @@ as_tibble.tt_lst <- function(x, ...) {
   new_tt_df(out)
 }
 
+#' @family habitat functions
+#' @family methods for common generics
 #' @export
-#' @rdname as_tibble.tt_lst
 as.data.frame.tt_lst <- function(x, ...) {
-  as.data.frame(
-    unclass(as_tibble.tt_lst(x))
-  )
+  as.data.frame(unclass(as_tibble.tt_lst(x)), ...)
 }
 
 tt_gather <- function(x) {
@@ -107,26 +87,6 @@ new_tt_df <- function(x) {
 
 # Methods for class demography_ctfs ----------------------------------------
 
-#' Coerce objects of class "demography_ctfs" to "data.frame" and "tbl" (tibble).
-#'
-#' @param x An object of class demography_ctfs.
-#' @param ... Not used.
-#'
-#' @seealso [as_tibble()].
-#' @return A (tibble) dataframe.
-#'
-#' @examples
-#' census1 <- fgeo.x::tree5
-#' census2 <- fgeo.x::tree6
-#' by_sp_and_quadrat <- interaction(census1$sp, census1$quadrat)
-#'
-#' demography_result <- recruitment_ctfs(
-#'   census1,
-#'   census2,
-#'   split1 = by_sp_and_quadrat
-#' )
-#'
-#' as_tibble(demography_result)
 #' @family demography functions
 #' @family methods for common generics
 #' @export
@@ -152,10 +112,9 @@ as_tibble.demography_ctfs <- function(x, ...) {
   tibble::as_tibble(result)
 }
 
+#' @family demography functions
+#' @family methods for common generics
 #' @export
-#' @rdname as_tibble.demography_ctfs
 as.data.frame.demography_ctfs <- function(x, ...) {
-  as.data.frame(
-    unclass(as_tibble(x))
-  )
+  as.data.frame(unclass(as_tibble(x)), ...)
 }
