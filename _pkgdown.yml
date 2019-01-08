@@ -54,3 +54,7 @@ reference:
     contents:
     - has_concept("habitat functions")
 
+  - title: Methods for common generics
+    contents:
+    - has_concept("methods for common generics")
+

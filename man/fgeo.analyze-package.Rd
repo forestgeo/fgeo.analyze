@@ -6,7 +6,7 @@
 \alias{fgeo.analyze-package}
 \title{fgeo.analyze: Analyze ForestGEO Data}
 \description{
-Analyze ForestGEO data (\url{http://www.forestgeo.si.edu/}).
+Analyze ForestGEO data (<http://www.forestgeo.si.edu/>).
 }
 \seealso{
 Useful links:
