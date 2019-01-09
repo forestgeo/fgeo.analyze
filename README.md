@@ -28,10 +28,10 @@ step](https://forestgeo.github.io/fgeo/index.html#installation).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages --------------------------------------------- fgeo 0.0.0.9002 --
+#> -- Attaching packages ----------------------------------------------- fgeo 0.0.0.9002 --
 #> v fgeo.analyze 0.0.0.9003     v fgeo.tool    0.0.0.9005
-#> v fgeo.plot    0.0.0.9402     v fgeo.x       0.0.0.9000
-#> -- Conflicts ----------------------------------------------------- fgeo_conflicts() --
+#> v fgeo.plot    0.0.0.9402     v fgeo.x       1.0.0
+#> -- Conflicts ------------------------------------------------------- fgeo_conflicts() --
 #> x fgeo.tool::filter() masks stats::filter()
 ```
 
@@ -556,8 +556,7 @@ summary(tt_test_result)
 #> 12 SLOBER 4       neutral
 ```
 
-[Get started with
-**fgeo**](https://forestgeo.github.io/fgeo/articles/fgeo.html)
+[Get started with **fgeo**](https://forestgeo.github.io/fgeo)
 
 ## Information
 

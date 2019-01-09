@@ -271,7 +271,7 @@ as_tibble(tt_test_result)
 summary(tt_test_result)
 ```
 
-[Get started with __fgeo__](https://forestgeo.github.io/fgeo/articles/fgeo.html)
+[Get started with __fgeo__](https://forestgeo.github.io/fgeo)
 
 ## Information
 
