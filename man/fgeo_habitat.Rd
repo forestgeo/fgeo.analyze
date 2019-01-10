@@ -40,18 +40,6 @@ habitats in two steps:
 metrics from step 1 (via \code{\link[stats:hclust]{stats::hclust()}}).
 }
 }
-\section{Input}{
-
-
-The main input can be either the elevation list that ForestGEO delivers, or
-the element \code{col} of such list -- which is a dataframe containing the
-elevation data. Notice that the required arguments vary according to the main
-input (the elevation list or the elevation dataframe). Whatever the input,
-the dataframe containing the elevation data must have columns \code{gx} and \code{gy}
-or \code{x} and \code{y}.
-
-}
-
 \examples{
 # Input a ForestGEO-like elevation list or dataframe
 elevation_ls <- fgeo.x::elevation

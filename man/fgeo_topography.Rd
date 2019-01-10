@@ -46,18 +46,6 @@ Structure topography data with mean elevation, convexity, and slope.
 Thanks to Jian Zhang for reporting a bug (issue 59).
 }
 
-\section{Input}{
-
-
-The main input can be either the elevation list that ForestGEO delivers, or
-the element \code{col} of such list -- which is a dataframe containing the
-elevation data. Notice that the required arguments vary according to the main
-input (the elevation list or the elevation dataframe). Whatever the input,
-the dataframe containing the elevation data must have columns \code{gx} and \code{gy}
-or \code{x} and \code{y}.
-
-}
-
 \examples{
 elev_list <- fgeo.x::elevation
 fgeo_topography(elev_list, gridsize = 20)
