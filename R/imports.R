@@ -25,4 +25,4 @@ NULL
 NULL
 
 # Avoid CMD check warnings
-utils::globalVariables(c(".data", "n"))
+utils::globalVariables(c(".data", ".", "n"))

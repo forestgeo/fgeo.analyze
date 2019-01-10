@@ -1,3 +1,5 @@
+^cran-comments\.md$
+^vignettes$
 ^\.buildignore$
 ^Rplots\.pdf$
 ^\.github$

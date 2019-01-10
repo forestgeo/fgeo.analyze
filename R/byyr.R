@@ -27,7 +27,7 @@
 #'
 #' @examples
 #' library(fgeo.tool)
-#' 
+#'
 #' # Example data
 #' vft <- tibble(
 #'   PlotName = c("luq", "luq", "luq", "luq", "luq", "luq", "luq", "luq"),
@@ -51,13 +51,13 @@
 #'   Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
 #'   HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L)
 #' )
-#' 
+#'
 #' vft
-#' 
+#'
 #' abundance_byyr(vft, DBH >= 10, DBH < 20)
-#' 
+#'
 #' abundance_byyr(vft, DBH >= 10)
-#' 
+#'
 #' basal <- basal_area_byyr(vft, DBH >= 10)
 #' basal
 #' \dontrun{
@@ -66,13 +66,13 @@
 #' if (measurements_and_purr_are_installed) {
 #'   library(purrr)
 #'   library(measurements)
-#' 
+#'
 #'   # Convert units
 #'   years <- c("yr_2001", "yr_2002")
 #'   basal_he <- basal %>%
 #'     modify_at(years, ~ conv_unit(.x, from = "mm2", to = "hectare"))
 #'   basal_he
-#' 
+#'
 #'   # Standardize
 #'   number_of_hectares <- 50
 #'   basal_he %>%
@@ -133,9 +133,9 @@ check_byyr <- function(vft) {
     )
   }
 
-  too_early <- lubridate::ymd(dates) < lubridate::ymd("1980-01-01")
-  too_late <- lubridate::ymd(dates) > lubridate::today()
-  if (any(too_early || too_late)) {
+  too_early <- any(lubridate::ymd(dates) < lubridate::ymd("1980-01-01"))
+  too_late <- any(lubridate::ymd(dates) > lubridate::today())
+  if (too_early || too_late) {
     warn("Dates should be from 1980-present and have format yyy-mm-dd.")
   }
 

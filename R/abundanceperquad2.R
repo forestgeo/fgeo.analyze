@@ -26,9 +26,10 @@ abundanceperquad2 <- function(censdata,
   allspp <- unique(censdata$sp)
   maxquad <- floor(plotdim[1] / gridsize) * floor(plotdim[2] / gridsize)
   allquad <- 1:maxquad
-  if (dim(result[[type]])[1] < length(allspp) | dim(result[[type]])[2] <
-    length(allquad)) {
-    result[[type]] <- fill.dimension(result[[type]],
+  if (dim(result[[type]])[1] < length(allspp) |
+      dim(result[[type]])[2] < length(allquad)) {
+    result[[type]] <- fill.dimension(
+      result[[type]],
       class1 = allspp,
       class2 = allquad, fill = 0
     )
@@ -52,11 +53,10 @@ abundance2 <- function(censdata,
                        split1 = NULL,
                        split2 = NULL) {
   if (!equal(type, "abund")) {
-    stop(
-      "`type` must be 'abund'; other types are deprecated.\n",
-      "Maybe you want `abundance()` of the original CTFSRPackage?",
-      call. = FALSE
-    )
+    abort(glue("
+      `type` must be 'abund'; other types are deprecated.
+      Maybe you want `abundance()` of the original CTFSRPackage?
+    "))
   }
 
   if (is.null(split1)) {

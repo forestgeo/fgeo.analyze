@@ -99,6 +99,14 @@ tt_test <- function(census,
                     sp = NULL,
                     plotdim = NULL,
                     gridsize = NULL) {
+  stopifnot(is.data.frame(census))
+
+  n_row <- nrow(dplyr::filter_all(census, dplyr::all_vars(is.na(.))))
+  if (n_row > 0) {
+    warn(glue("Dropping {n_row} row(s) full of missing values"))
+    census <- dplyr::filter_all(census, dplyr::any_vars(!is.na(.)))
+  }
+
   stopifnot(is.data.frame(habitat))
   if (!inherits(habitat, "fgeo_habitat")) {
     warn(glue("
@@ -111,9 +119,9 @@ tt_test <- function(census,
   gridsize <- gridsize %||% fgeo.tool::extract_gridsize(habitat)
   inform_gridsize_plotdim(gridsize, plotdim)
 
-  sp <- sp %||% unique(census$sp)
+  sp <- sp %||% unique(census$sp)[!is.na(unique(census$sp))]
   habitat <- sanitize_habitat_names_if_necessary(habitat)
-  check_tt_test(census, sp, habitat, plotdim, gridsize)
+  check_tt_test(census, habitat, sp, plotdim, gridsize)
 
   abundance <- abund_index(census, plotdim, gridsize)
   result <- lapply(
@@ -153,6 +161,8 @@ warn_fixed_nan <- function() {
 }
 
 torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) {
+  stopifnot(!is.na(species), !is.null(species))
+
   # Calculates no. of x-axis quadrats of plot. (x is the long axis of plot in
   # the case of Pasoh)
   plotdimqx <- plotdim[1] / gridsize
@@ -312,6 +322,7 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
         }
 
         for (i in 1:num.habs) {
+          # FIXME: May be NA?
           if (spprophab[i] > Torspprophab[i]) {
             # If rel. dens. of focal sp. in focal habitat of true map is greater
             # than rel. dens. of focal sp. in focal habitat of torus-based map,
@@ -390,24 +401,10 @@ rename_to_xy <- function(x) {
   .x
 }
 
-check_tt_test <- function(census, sp, habitat, plotdim, gridsize) {
-  stopifnot(
-    is.data.frame(census),
-    is.numeric(plotdim),
-    length(plotdim) == 2,
-    is.numeric(gridsize),
-    length(gridsize) == 1
-  )
-
-  has_tree_names <-
-    !has_table_names(fgeo.x::tree6)(census)
+check_tt_test <- function(census, habitat, sp, plotdim, gridsize) {
+  has_stem_names <- !has_table_names(fgeo.x::tree6)(census)
   msg <- "Is `census` a tree table (not a stem table)? See `?tt_test()`."
-  if (has_tree_names) warn(msg)
-
-  common_gridsize <- gridsize %in% c(5, 10, 20)
-  if (!common_gridsize) {
-    rlang::warn(paste("Uncommon `gridsize`:", gridsize, "\nIs this expected?"))
-  }
+  if (has_stem_names) warn(msg)
 
   if (!any(is.character(sp) || is.factor(sp))) {
     msg <- paste0(
@@ -417,13 +414,24 @@ check_tt_test <- function(census, sp, habitat, plotdim, gridsize) {
     rlang::abort(msg)
   }
 
-  valid_sp <- sp %in% unique(census$sp)
+  valid_sp <- sp %in% unique(census$sp)[!is.na(unique(census$sp))]
   if (!all(valid_sp)) {
     msg <- paste0(
       "All `sp` must be present in `census`.\n",
       "Odd: ", commas(sp[!valid_sp])
     )
     abort(msg)
+  }
+
+  stopifnot(
+    is.numeric(plotdim),
+    length(plotdim) == 2,
+    is.numeric(gridsize),
+    length(gridsize) == 1
+  )
+  common_gridsize <- gridsize %in% c(5, 10, 20)
+  if (!common_gridsize) {
+    rlang::warn(paste("Uncommon `gridsize`:", gridsize, "\nIs this expected?"))
   }
 }
 

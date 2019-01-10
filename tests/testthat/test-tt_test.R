@@ -6,56 +6,73 @@ library(dplyr)
 
 # Small dataset from Luquillo
 cns_luq <- fgeo.x::tree6_3species
-sp_top3_luq <- unique(cns_luq$sp)
 hab_luq <- fgeo.x::habitat
-sp_top1_luq <- first(sp_top3_luq)
+sp_top3_luq <- unique(fgeo.x::tree6_3species$sp)
+pdim_luq <- c(320, 500)
+gsize_luq <- 20
 
 
+
+test_that("tt_test drops rows full of NA with a warning", {
+  library(dplyr)
+
+  census <- dplyr::filter(fgeo.x::tree6_3species, status == "A", dbh >= 10)
+
+  # Insert row full of missing values
+  census <- rbind(census, rep(NA, ncol(census)))
+
+  expect_warning(
+    tt_test(census, habitat = fgeo.x::habitat),
+    "Dropping.*row.*full of missing values"
+  )
+})
 
 test_that("works with `sp = NULL`", {
-  expect_error(tt_test(cns_luq, habitat = hab_luq), NA)
+  expect_error(tt_test(fgeo.x::tree6_3species, habitat = fgeo.x::habitat), NA)
 })
 
 test_that("outputs the expected list", {
   out <- expect_message(
-    tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq),
+    tt_test(fgeo.x::tree6_3species, sp = "CASARB", habitat = fgeo.x::habitat),
     "Using"
   )
   expect_equal(class(out), c("tt_lst", "list"))
   expect_equal(dim(out[[1]]), c(1, 24))
-  expect_equal(sp_top1_luq, rownames(out[[1]]))
+  expect_equal("CASARB", rownames(out[[1]]))
 })
 
 test_that("prints as an unclassed list (i.e. doesn't show attr ...)", {
   output <- capture_output(
-    print(tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq))
+    print(
+      tt_test(fgeo.x::tree6_3species, habitat = fgeo.x::habitat, sp = "CASARB"))
   )
   expect_false(grepl("tt_lst", output))
 })
 
-
-
-pdim_luq <- c(320, 500)
-gsize_luq <- 20
-
-abnd <- abund_index(cns_luq, pdim_luq, gsize_luq)
-out_tt <- torusonesp.all(sp_top1_luq, hab_luq, abnd, pdim_luq, gsize_luq)
-
 test_that("outputs expected values", {
-  out_lst <- tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq)
+  out_lst <- tt_test(cns_luq, sp = "CASARB", habitat = hab_luq)
+
+  abnd <- abund_index(fgeo.x::tree6_3species, pdim_luq, gsize_luq)
+  out_tt <- torusonesp.all("CASARB", hab_luq, abnd, pdim_luq, gsize_luq)
+
   expect_equal(unclass(out_lst[[1]]), unclass(out_tt))
 })
 
 test_that("species may be factor or character", {
   expect_true(
     identical(
-      tt_test(cns_luq, sp = as.factor(sp_top1_luq), habitat = hab_luq),
-      tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq)
+      tt_test(cns_luq, sp = as.factor("CASARB"), habitat = hab_luq),
+      tt_test(cns_luq, sp = "CASARB", habitat = hab_luq)
     )
   )
 })
 
-test_that("fails with informative message", {
+test_that("tt_test fails gracefully with bad input", {
+  expect_error(
+    tt_test(census = 1, c("SLOBER", "PREMON"), habitat = hab_luq),
+    "data.frame.*census.*is not TRUE"
+  )
+
   expect_error(
     tt_test(cns_luq, 1, habitat = hab_luq),
     "`sp` must be of class character or factor"
@@ -70,21 +87,16 @@ test_that("fails with informative message", {
   )
 
   expect_error(
-    tt_test(census = 1, c("SLOBER", "PREMON"), habitat = hab_luq),
-    "is not TRUE"
+    tt_test(cns_luq, habitat = hab_luq, sp = 1),
+    "`sp` must be of class character or factor"
   )
 
-  expect_error(tt_test(cns_luq, c("SLOBER", "PREMON"), 1), "is not TRUE")
   expect_error(
-    tt_test(cns_luq, c("SLOBER"), habitat = hab_luq, 1),
-    "is not TRUE"
-  )
-  expect_error(
-    tt_test(cns_luq, c("SLOBER"), habitat = hab_luq, pdim_luq, "a"),
-    "is not TRUE"
+    tt_test(cns_luq, habitat = hab_luq, gridsize = "a"),
+    "numeric.*gridsize.*is not TRUE"
   )
   expect_warning(
-    tt_test(cns_luq, c("SLOBER"), habitat = hab_luq, pdim_luq, 12),
+    tt_test(cns_luq, habitat = hab_luq, gridsize = 12),
     "Uncommon `gridsize`"
   )
 })
@@ -98,7 +110,7 @@ test_that("warns if census it not a tree table (#33)", {
   expect_warning(
     suppressMessages(tt_test(
       stem,
-      sp = sp_top1_luq, habitat = hab_luq
+      sp = "CASARB", habitat = hab_luq
     )),
     msg
   )
@@ -106,7 +118,7 @@ test_that("warns if census it not a tree table (#33)", {
   expect_silent(suppressMessages(
     tt_test(
       tree_table_throws_no_warning <- cns_luq,
-      sp = sp_top1_luq, habitat = hab_luq
+      sp = "CASARB", habitat = hab_luq
     )
   ))
 })
@@ -115,7 +127,7 @@ test_that("warns if habitat data isn't of class fgeo_habitat", {
   hab_luq2 <- hab_luq
   class(hab_luq2) <- setdiff(class(hab_luq2), "fgeo_habitat")
   msg <- "isn't of class 'fgeo_habitat'"
-  expect_warning(tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq2), msg)
+  expect_warning(tt_test(cns_luq, sp = "CASARB", habitat = hab_luq2), msg)
 })
 
 test_that("with habitat data with names gx,gy|x,y output is identical", {
@@ -123,9 +135,9 @@ test_that("with habitat data with names gx,gy|x,y output is identical", {
   class(hab_luq3) <- setdiff(class(hab_luq3), "fgeo_habitat")
   hab_luq3 <- setNames(hab_luq3, c("x", "y", "habitats"))
 
-  out_gxgy <- tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq)
+  out_gxgy <- tt_test(cns_luq, sp = "CASARB", habitat = hab_luq)
   out_xy <- suppressWarnings(
-    tt_test(cns_luq, sp = sp_top1_luq, habitat = hab_luq3)
+    tt_test(cns_luq, sp = "CASARB", habitat = hab_luq3)
   )
   identical(out_xy, out_gxgy)
 })
@@ -198,13 +210,15 @@ test_that("tt_test() outputs equivalent to the original implementation", {
 
   pdim_luq <- c(320, 500)
   gsize_luq <- 20
+  abnd <- abund_index(fgeo.x::tree6_3species, pdim_luq, gsize_luq)
 
-  abnd <- abund_index(cns_luq, pdim_luq, gsize_luq)
   out_tt <- fgeo.analyze:::torusonesp.all(
-    sp_top1_luq, hab_luq, abnd, pdim_luq, gsize_luq
+    "CASARB",  fgeo.x::habitat, abnd, pdim_luq, gsize_luq
   )
+  abnd <- abund_index(cns_luq, pdim_luq, gsize_luq)
+
   out_original <- torusonesp.all_original(
-    sp_top1_luq, hab_luq, abnd, pdim_luq, gsize_luq
+    "CASARB",  fgeo.x::habitat, abnd, pdim_luq, gsize_luq
   )
   expect_equivalent(out_tt, out_original)
 })

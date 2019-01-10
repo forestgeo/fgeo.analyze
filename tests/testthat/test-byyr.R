@@ -1,6 +1,6 @@
-library(dplyr)
-
 context("byyr")
+
+library(dplyr)
 
 vft <- readr::read_csv(test_path("data-byyr_toy_vft.csv"))
 ba_10 <- basal_area_dbl(10)
@@ -12,7 +12,17 @@ test_that("basal_area_byyr and abundance_byyr fail with informative errors", {
 
   msg <- "All expressions.*must refer to `dbh`"
 
+
+
+
+
+
   expect_error(abundance_byyr(vft, exactdate > 0), msg)
+
+
+
+
+
   expect_silent(abundance_byyr(vft, DBH > 0))
   expect_silent(abundance_byyr(vft, exactdate > 0, dbh > 0))
 

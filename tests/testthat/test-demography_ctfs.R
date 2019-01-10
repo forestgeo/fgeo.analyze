@@ -18,7 +18,10 @@ test_that("output is equal if aggregated via `split2` or `interaction()`", {
   tiny1$g1 <- sample(c("a", "b"), nrow(tiny1), replace = TRUE)
   tiny1$g2 <- sample(1:2, nrow(tiny1), replace = TRUE)
 
-  spl <- recruitment_ctfs(tiny1, tiny2, split1 = tiny1$g1, split2 = tiny1$g2)
+  # Suppress "This warning is displayed once per session."
+  spl <- suppressWarnings(
+    recruitment_ctfs(tiny1, tiny2, split1 = tiny1$g1, split2 = tiny1$g2)
+  )
   int <- recruitment_ctfs(tiny1, tiny2, split1 = interaction(tiny1$g1, tiny1$g2))
   expect_equal(
     map(spl, as.vector),

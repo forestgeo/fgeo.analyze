@@ -53,7 +53,3 @@ summary.tt_lst <- function(object, ...) {
   summary.tt_df(as_tibble(object))
 }
 
-#' @export
-summary.default <- function(object, ...) {
-  abort_bad_class(object)
-}

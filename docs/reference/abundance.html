@@ -96,6 +96,9 @@ multiple censusid and multiple plots." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -204,18 +207,14 @@ Subsetting data is not the job of these functions. Instead see
 <span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div></span><span class='co'># NOT RUN {</span>
 <span class='co'># Similar but more realistic</span>
 <span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/download_data'>download_data</a></span>(<span class='st'>"luquillo_stem5_random"</span>)
 
-<span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
-#&gt;       n
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>320</div><div class='input'>
-<span class='fu'>abundance</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>pick_main_stem</a></span>(<span class='no'>stem</span>))</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
-#&gt;       n
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>000</div><div class='input'>
+<span class='fu'>abundance</span>(<span class='no'>stem</span>)
+
+<span class='fu'>abundance</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>pick_main_stem</a></span>(<span class='no'>stem</span>))
+<span class='co'># }</span><div class='input'>
 <span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
   ~<span class='no'>PlotName</span>, ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
         <span class='st'>"p"</span>,         <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>10</span>,
@@ -224,7 +223,7 @@ Subsetting data is not the job of these functions. Instead see
 
 <span class='co'># * Warns if it detects multiple values of censusid or plotname</span>
 <span class='co'># * Also warns if it detects duplicated values of treeid</span>
-<span class='fu'>abundance</span>(<span class='no'>vft</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `censusid`: Multiple values were detected. Do you need to group by censusid?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `plotname`: Multiple values were detected. Do you need to pick a single plot?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
+<span class='fu'>abundance</span>(<span class='no'>vft</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `censusid`: Multiple values were detected. Do you need to group by censusid?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `plotname`: Multiple values were detected. Do you need to pick a single plot?</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>

@@ -42,13 +42,14 @@
 #' )
 #'
 #' abundance(stem)
-#'
+#' \dontrun{
 #' # Similar but more realistic
 #' stem <- fgeo.x::download_data("luquillo_stem5_random")
 #'
 #' abundance(stem)
 #'
 #' abundance(pick_main_stem(stem))
+#' }
 #'
 #' vft <- tribble(
 #'   ~PlotName, ~CensusID, ~TreeID, ~StemID, ~DBH,

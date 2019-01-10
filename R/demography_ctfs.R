@@ -391,9 +391,8 @@ trim.growth <- function(cens1,
     accept[cens1$stemID != cens2$stemID] <- FALSE
   }
   accept[cens1$dbh < mindbh] <- FALSE
-  accept[is.na(cens1$dbh) | is.na(cens2$dbh) | cens2$dbh <=
-      0] <- FALSE
-  return(accept)
+  accept[is.na(cens1$dbh) | is.na(cens2$dbh) | cens2$dbh <= 0] <- FALSE
+  accept
 }
 
 new_demography_ctfs <- function(.x, split2, ...) {
@@ -417,11 +416,11 @@ print.demography_ctfs <- function(x, ...) {
 # Wrap code shared by recruitment_ctfs() and mortality_ctfs() including what's
 # also shared by growth_ctfs.
 wrap_prepare_recruitment_mortality <- function(census1,
-  census2,
-  split1,
-  split2,
-  quiet,
-  mindbh) {
+                                               census2,
+                                               split1,
+                                               split2,
+                                               quiet,
+                                               mindbh) {
   prep1 <- prepare_demography(census1, census2, split1, split2, quiet, mindbh)
   prep2 <- prepare_recr_mort(
     prep1$census1, prep1$census2, prep1$split1, prep1$split2
@@ -509,11 +508,11 @@ time_diff <- function(census1, census2) {
 }
 
 check_prepare_demography <- function(census1,
-  census2,
-  mindbh,
-  split1,
-  split2,
-  quiet) {
+                                     census2,
+                                     mindbh,
+                                     split1,
+                                     split2,
+                                     quiet) {
   crucial <- c("dbh", "hom", "status", "date")
   check_crucial_names(census1, crucial)
   check_crucial_names(census2, crucial)
@@ -607,14 +606,14 @@ find.climits <- function(N, D, alpha = .05, kind = "upper") {
     result[D == N] <- N[D == N]
   }
 
-  return(result)
+  result
 }
 
 #' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 drp <- function(x) {
-  return(drop(as.matrix(x)))
+  drop(as.matrix(x))
 }
 
 #' @author Rick Condit, Suzanne Lao.
@@ -623,14 +622,17 @@ drp <- function(x) {
 fill.dimension <- function(dataarray, class1, class2, fill = 0) {
   result <- matrix(fill, nrow = length(class1), ncol = length(class2))
   rownames(result) <- class1
+
   result <- data.frame(result, stringsAsFactors = FALSE)
   names(result) <- class2
   result[rownames(dataarray), colnames(dataarray)] <- dataarray
   result[is.na(result)] <- fill
-  return(result)
+  result
 }
 
 #' @author Rick Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
-rndown5 <- function(s) 5 * floor(s / 5)
+rndown5 <- function(s) {
+  5 * floor(s / 5)
+}

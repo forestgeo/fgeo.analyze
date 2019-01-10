@@ -20,10 +20,6 @@ test_that("summary.tt_df returns the expected data structure", {
   expect_named(summary(as_tibble(tt_result)), c("sp", "habitat", "association"))
 })
 
-test_that("summary.tt_df errs with expected message", {
-  expect_error(summary(1), "Can't deal with data")
-})
-
 
 
 context("summary.tt_lst")
