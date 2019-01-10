@@ -63,7 +63,7 @@ Imports:
     lubridate,
     magrittr,
     MASS,
-    rlang (>= 0.1.2),
+    rlang,
     stats,
     tibble,
     tidyr,

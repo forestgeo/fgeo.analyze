@@ -7,7 +7,13 @@
 #' 2. It calculates habitats based on hierarchical clustering of the topographic
 #' metrics from step 1 (via [stats::hclust()]).
 #'
-#' @inheritSection fgeo.tool::fgeo_elevation Input
+#' @section Input:
+#' The main input can be either the elevation list that ForestGEO delivers, or
+#' the element `col` of such list -- which is a dataframe containing the
+#' elevation data. Notice that the required arguments vary according to the main
+#' input (the elevation list or the elevation dataframe). Whatever the input,
+#' the dataframe containing the elevation data must have columns `gx` and `gy`
+#' or `x` and `y`.
 #'
 #' @author Rick Condit.
 #'

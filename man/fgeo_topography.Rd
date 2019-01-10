@@ -22,7 +22,7 @@ elevation data; and \code{xdim} and \code{ydim} giving plot dimensions; OR
 \item A dataframe containing elevation data, in which
 case the parameters \code{xdim} and \code{ydim} must be provided. It may be the
 element \code{col} of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see \code{\link[fgeo.tool:fgeo_elevation]{fgeo.tool::fgeo_elevation()}}).
+fgeo_elevation (see \code{?fgeo.tool::fgeo_elevation()}).
 }}
 
 \item{...}{Other arguments passed to methods.}
@@ -41,6 +41,16 @@ A dataframe of subclass fgeo_topography.
 \description{
 Structure topography data with mean elevation, convexity, and slope.
 }
+\section{Input}{
+
+The main input can be either the elevation list that ForestGEO delivers, or
+the element \code{col} of such list -- which is a dataframe containing the
+elevation data. Notice that the required arguments vary according to the main
+input (the elevation list or the elevation dataframe). Whatever the input,
+the dataframe containing the elevation data must have columns \code{gx} and \code{gy}
+or \code{x} and \code{y}.
+}
+
 \section{Acknowledgment}{
 
 Thanks to Jian Zhang for reporting a bug (issue 59).
