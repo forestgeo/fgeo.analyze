@@ -79,7 +79,7 @@ Suggests:
     testthat,
     spelling
 Remotes: 
-    forestgeo/fgeo.tool,
+    forestgeo/fgeo.tool@*release,
     forestgeo/fgeo.x@*release
 Encoding: UTF-8
 LazyData: true

@@ -117,10 +117,10 @@
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
 <a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
 <a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages ----------------------------------------------- fgeo 0.0.0.9002 --</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; v fgeo.analyze 0.0.0.9003     v fgeo.tool    0.0.0.9005</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; -- Attaching packages ------------------------------------------- fgeo 0.0.0.9002 --</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; v fgeo.analyze 0.0.0.9003     v fgeo.tool    1.0.0     </span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; v fgeo.plot    0.0.0.9402     v fgeo.x       1.0.0</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; -- Conflicts ------------------------------------------------------- fgeo_conflicts() --</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; -- Conflicts --------------------------------------------------- fgeo_conflicts() --</span></a>
 <a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; x fgeo.tool::filter() masks dplyr::filter(), stats::filter()</span></a>
 <a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; x dplyr::intersect()  masks base::intersect()</span></a>
 <a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; x dplyr::lag()        masks stats::lag()</span></a>
@@ -299,7 +299,7 @@
 <a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt; PREMON      14      270     1322        8              0          0.169</span></a>
 <a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt; SLOBER       7     1292      303        5              0          0.807</span></a></code></pre></div>
 <p>You also can gather all results into a single dataframe – this lets you use a wide range of tools for data manipulation and visualization.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/as_tibble">as_tibble</a></span>(tt_test_result)</a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(tt_test_result)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; # A tibble: 12 x 8</span></a>
 <a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co">#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span></a>
@@ -319,7 +319,7 @@
 <ul>
 <li>Pick interesting rows and sort them in a meaningful way.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/as_tibble">as_tibble</a></span>(tt_test_result) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(tt_test_result) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(sp <span class="op">==</span><span class="st"> "CASARB"</span>)</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co">#&gt; # A tibble: 4 x 8</span></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">#&gt;   habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>
@@ -331,7 +331,7 @@
 <ul>
 <li>Summarize</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/tibble/topics/as_tibble">as_tibble</a></span>(tt_test_result) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(tt_test_result) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(sp, habitat) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_stem_count =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(N.Hab))</a>
 <a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
