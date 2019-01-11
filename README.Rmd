@@ -22,6 +22,13 @@ __fgeo.analyze__ provides functions to analyze [ForestGEO](http://www.forestgeo.
 
 ## Installation
 
+Install the latest GitHub release of **fgeo.analyze** with:
+
+```r
+# install.packages("devtools")
+devtools::install_github("forestgeo/fgeo.analyze@*release")
+```
+
 Install the development version of **fgeo.analyze** with:
 
 ```

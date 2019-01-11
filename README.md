@@ -16,6 +16,13 @@ status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-proje
 
 ## Installation
 
+Install the latest GitHub release of **fgeo.analyze** with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("forestgeo/fgeo.analyze@*release")
+```
+
 Install the development version of **fgeo.analyze** with:
 
     # install.packages("devtools")
@@ -28,10 +35,10 @@ step](https://forestgeo.github.io/fgeo/index.html#installation).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages ----------------------------------------------- fgeo 0.0.0.9002 --
-#> v fgeo.analyze 0.0.0.9003     v fgeo.tool    0.0.0.9005
+#> -- Attaching packages ------------------------------------------------- fgeo 0.0.0.9002 --
+#> v fgeo.analyze 1.0.0          v fgeo.tool    1.0.0     
 #> v fgeo.plot    0.0.0.9402     v fgeo.x       1.0.0
-#> -- Conflicts ------------------------------------------------------- fgeo_conflicts() --
+#> -- Conflicts --------------------------------------------------------- fgeo_conflicts() --
 #> x fgeo.tool::filter() masks stats::filter()
 ```
 
