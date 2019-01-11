@@ -1,4 +1,4 @@
-# fgeo.analyze 1.0.0.9000 (development version)
+# fgeo.analyze (development version)
 
 * Work in progress.
 
