@@ -169,14 +169,15 @@ check that your habitat data is correct).</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>You should only try to determine the habitat association for sufficiently
+    <p>This test only makes sense at the population level. We are interested in
+knowing whether or not individuals of a species are aggregated on a habitat.
+Multiple stems of an individual do not represent population level processes
+but individual level processes. Thus, you should use data of individual trees
+-- i.e. use a <em>tree</em> table, and not a <em>stem</em> table with potentially multiple
+stems per tree.</p>
+<p>You should only try to determine the habitat association for sufficiently
 abundant species. In a 50-ha plot, a minimum abundance of 50 trees/species
-has been used. Also, you should use data of individual trees (i.e. a tree
-table, and not a stem table with potentially multiple stems per tree. This
-test only makes sense at the population level. We are interested in knowing
-whether or not individuals of a species are aggregated on a habitat. Multiple
-stems of an individual do not represent population level processes but
-individual level processes.</p>
+has been used.</p>
     
     <h2 class="hasAnchor" id="acknowledgments"><a class="anchor" href="#acknowledgments"></a>Acknowledgments</h2>
 
@@ -206,10 +207,11 @@ the habitat in question.</p></li>
 </ul>
     <p>The probabilities associated with the test for whether these patterns are
 statistically significant are in the <code>Obs.Quantile</code> columns for each habitat.
-Note that to calculate the probability for repelled, it is the value given,
-but to calculate the probability for aggregated, it is 1 - the value given.</p>
-<p>Values of the <code>Obs.Quantile</code> &lt; 0.025 means that the species is repelled from
-that habitat, while values of the <code>Obs.Quantile</code> &gt; 0.975 means that the
+Note that to calculate the probability for <em>repelled</em>, it is <em>the value
+given</em>, but to calculate the probability for <em>aggregated</em>, it is <em>one minus
+the value given</em>.</p>
+<p>Values of the <code>Obs.Quantile &lt; 0.025</code> means that the species is repelled from
+that habitat, while values of the <code>Obs.Quantile &gt; 0.975</code> means that the
 species is aggregated on that habitat.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>

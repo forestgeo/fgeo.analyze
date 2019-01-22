@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Recruitment, mortality, and growth. — recruitment_ctfs" />
 
-<meta property="og:description" content="These functions are inherited from the the CTFS-R package. Compared to the
+<meta property="og:description" content="These functions are adapted from the CTFS-R package. Compared to the
 original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
 feature formal tests, bug fixes, additional assertions, and improved
@@ -134,7 +134,7 @@ messages." />
 
     <div class="ref-description">
     
-    <p>These functions are inherited from the the CTFS-R package. Compared to the
+    <p>These functions are adapted from the CTFS-R package. Compared to the
 original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
 feature formal tests, bug fixes, additional assertions, and improved
@@ -158,28 +158,28 @@ messages.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>census1, census2</th>
-      <td><p>Two census tables, each being a dataframe and in
-particular, a ForestGEO tree table. You may use a stem table, but you more
-commonly should use a tree table because demography analyses make more
-sense at the scale of a tree than at the scale of stems.</p></td>
+      <td><p>Two census tables, each being a ForestGEO-like <em>tree</em>
+table (dataframe). A <em>stem</em> table won't fail, but you should use a <em>tree</em>
+table because demography analyses make more sense at the scale of trees
+than at the scale of stems.</p></td>
     </tr>
     <tr>
       <th>mindbh</th>
       <td><p>The minimum diameter above which the counts are done. Trees
-smaller than <code>mindbh</code> are excluded. If <code>NULL</code>, all living trees are
-included.</p></td>
+smaller than <code>mindbh</code> are excluded. By default all living trees of any size
+are included.</p></td>
     </tr>
     <tr>
       <th>alivecode</th>
-      <td><p>Character, codes of the variable <code>status</code> that indicate the
-tree is alive. The default 'A' is the standard CTFS designation for living
+      <td><p>Character; valid values of <code>status</code> indicating that a tree
+is alive. The default, 'A', is the standard CTFS designation for living
 trees or stems.</p></td>
     </tr>
     <tr>
       <th>split1, split2</th>
-      <td><p>Optional vectors (column of any one the census
-dataframe) to aggregate results by. Defaults to aggregating across the
-entire census datasets.</p></td>
+      <td><p>Optional vector(s) to aggregate results by. Each vector
+should be a column of either <code>census1</code> or <code>census2</code>. The default aggregates
+the result across the entire census datasets.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
@@ -192,33 +192,31 @@ multiple of 5.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>Use "I" to calculate annual dbh increment as
-<code>(dbh2 - dbh1)/time</code>, or "E" to calculate the relative growth rate as
-<code>(log(dbh2) - log(dbh1)) / time</code>.</p></td>
+      <td><p>Either "I" or "E":</p><ul>
+<li><p>Use "I" to calculate annual dbh increment as <code>(dbh2 - dbh1)/time</code></p></li>
+<li><p>Use "E" to calculate the relative growth rate as
+<code>(log(dbh2) - log(dbh1)) / time</code></p></li>
+</ul></td>
     </tr>
     <tr>
       <th>stdev</th>
-      <td><p>Logical. Default (<code>FALSE</code>) returns confidence limits, otherwise
-returns the SD in growth rate per group.</p></td>
+      <td><p>Logical:</p><ul>
+<li><p><code>FALSE</code> returns confidence limits.</p></li>
+<li><p><code>TRUE</code> returns the SD in growth rate per group.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>dbhunit</th>
-      <td><p>'cm' or 'mm'.</p></td>
+      <td><p>"cm" or "mm".</p></td>
     </tr>
     <tr>
       <th>growthcol</th>
-      <td><p>defines how growth is measured, either 'dbh' or 'agb'
-(above ground biomass).</p></td>
+      <td><p>Either "dbh" or "agb" to define how growth is measured.</p></td>
     </tr>
     <tr>
-      <th>err.limit</th>
-      <td><p>A number. Numbers such as 10000 are high and will return all
-measures.</p></td>
-    </tr>
-    <tr>
-      <th>maxgrow</th>
-      <td><p>A number. Numbers such as 10000 are high and will return all
-measures.</p></td>
+      <th>err.limit, maxgrow</th>
+      <td><p>A number. Numbers such as 10000 are high and will
+return all measures.</p></td>
     </tr>
     </table>
     
@@ -242,16 +240,16 @@ julian object (R displays as date, but treats as integer).</p></li>
 
 <p>Metrics of growth:</p><ul>
 <li><p><code>rate</code>, the mean annualized growth rate per category selected, either dbh
-increment, or relative growth</p></li>
+increment, or relative growth.</p></li>
 <li><p><code>N</code>, the number of individuals included in the mean (not counting any
-excluded)</p></li>
+excluded).</p></li>
 <li><p><code>clim</code> (or sd with <code>stdev = TRUE</code>), width of confidence interval; add this
 number to the mean rate to get upper confidence limit, substract to get
-lower</p></li>
-<li><p><code>dbhmean</code>, mean dbh in census 1 of individuals included</p></li>
-<li><p><code>time</code>, mean time interval in years</p></li>
+lower.</p></li>
+<li><p><code>dbhmean</code>, mean dbh in census 1 of individuals included.</p></li>
+<li><p><code>time</code>, mean time interval in years.</p></li>
 <li><p><code>date1</code>, mean date included individuals were measured in census 1, as
-julian object (R displays as date, but treats as integer)</p></li>
+julian object (R displays as date, but treats as integer).</p></li>
 <li><p><code>date2</code>, mean date in census 2.</p></li>
 </ul>
 
@@ -259,10 +257,10 @@ julian object (R displays as date, but treats as integer)</p></li>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Survivors are all individuals alive in both censuses, with <code>status == A</code> in
-the first census, and larger than the minimum dbh in the first census. The
-total population in the second census includes all those alive plus any other
-survivors. Individuals whose status is NA in either census are deleted from
-all calculations.</p>
+the first census, and a diameter greater than <code>mindbh</code> in the first census.
+The total population in the second census includes all those alive plus any
+other survivors. Individuals whose status is <code>NA</code> in either census are
+deleted from all calculations.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

@@ -2,19 +2,18 @@
 % Please edit documentation in R/fgeo_habitat.R
 \name{fgeo_habitat}
 \alias{fgeo_habitat}
-\title{Structure habitat data from measures of topography.}
+\title{Create habitat data from measures of topography.}
 \usage{
 fgeo_habitat(elevation, gridsize, n, ...)
 }
 \arguments{
 \item{elevation}{One of these:
 \itemize{
-\item A list with at least three elements: \code{col} containing
-elevation data; and \code{xdim} and \code{ydim} giving plot dimensions; OR
-\item A dataframe containing elevation data, in which
-case the parameters \code{xdim} and \code{ydim} must be provided. It may be the
-element \code{col} of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see \code{?fgeo.tool::fgeo_elevation()}).
+\item A dataframe containing elevation data, with columns \code{gx} and \code{gy} or \code{x}
+and \code{y} (e.g. \code{fgeo.x::elevation$col}).
+\item A ForestGEO-like elevation list with elements
+\code{xdim} and \code{ydim} giving plot dimensions, and element \code{col} containing a
+dataframe as described in the previous item (e.g. \code{fgeo.x::elevation}).
 }}
 
 \item{gridsize}{Number giving the size of each quadrat for which a habitat
@@ -34,22 +33,11 @@ as many distinct integer values as determined by the argument \code{n}.
 This function constructs habitat data based on elevation data. It calculates
 habitats in two steps:
 \enumerate{
-\item It calculates mean elevation, convexity and slope for each quadrat (via
-\code{\link[=fgeo_topography]{fgeo_topography()}})).
+\item It calculates mean elevation, convexity and slope for each quadrat.
 \item It calculates habitats based on hierarchical clustering of the topographic
-metrics from step 1 (via \code{\link[stats:hclust]{stats::hclust()}}).
+metrics from step 1.
 }
 }
-\section{Input}{
-
-The main input can be either the elevation list that ForestGEO delivers, or
-the element \code{col} of such list -- which is a dataframe containing the
-elevation data. Notice that the required arguments vary according to the main
-input (the elevation list or the elevation dataframe). Whatever the input,
-the dataframe containing the elevation data must have columns \code{gx} and \code{gy}
-or \code{x} and \code{y}.
-}
-
 \examples{
 # Input a ForestGEO-like elevation list or dataframe
 elevation_ls <- fgeo.x::elevation
@@ -57,6 +45,7 @@ habitats <- fgeo_habitat(
   elevation_ls,
   gridsize = 20, n = 4
 )
+
 # Or
 elevation_df <- fgeo.x::elevation$col
 habitats <- fgeo_habitat(
@@ -66,6 +55,7 @@ habitats <- fgeo_habitat(
 )
 
 str(habitats)
+
 \dontrun{
 fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
 if (fgeo_plot_is_installed) {
@@ -77,6 +67,7 @@ if (fgeo_plot_is_installed) {
 
 # Habitat data is useful for calculating species-habitat associations
 census <- fgeo.x::tree6_3species
+
 as_tibble(
   tt_test(census, habitats)
 )

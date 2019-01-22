@@ -34,12 +34,12 @@
 
 <meta property="og:description" content="
 abundance_byyr() first picks the main stem of each tree (see
-?fgeo.tool::pick_main_stem() and then, for each species and each
-(round mean) year of measurement, counts the number of
-trees. The result includes main stems within a given dbh range.
+?fgeo.tool::pick_main_stem()). Then, for each species and each
+round-mean-year of measurement, it counts the number of trees. The result
+includes main stems within a given dbh range.
 basal_area_byyr() first sums the basal basal area of all stems of each
-tree, and then, for each species and each (round mean) year of measurement,
-sums the basal area of all trees. The result includes all stems within a
+tree. Then, for each species and each round-mean-year of measurement,
+it sums the basal area of all trees. The result includes all stems within a
 given dbh range (notice the difference with abundance_byyr()).
 " />
 <meta name="twitter:card" content="summary" />
@@ -141,12 +141,12 @@ given dbh range (notice the difference with abundance_byyr()).
     
     <ul>
 <li><p><code>abundance_byyr()</code> first picks the main stem of each tree (see
-?<code><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>fgeo.tool::pick_main_stem()</a></code> and then, for each species and each
-(round mean) year of measurement, counts the number of
-trees. The result includes <strong>main stems</strong> within a given dbh range.</p></li>
+?<code><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>fgeo.tool::pick_main_stem()</a></code>). Then, for each species and each
+round-mean-year of measurement, it counts the number of trees. The result
+includes <strong>main stems</strong> within a given dbh range.</p></li>
 <li><p><code>basal_area_byyr()</code> first sums the basal basal area of all stems of each
-tree, and then, for each species and each (round mean) year of measurement,
-sums the basal area of all trees. The result includes all stems within a
+tree. Then, for each species and each round-mean-year of measurement,
+it sums the basal area of all trees. The result includes all stems within a
 given dbh range (notice the difference with <code>abundance_byyr()</code>).</p></li>
 </ul>
     
@@ -169,7 +169,8 @@ it should contain columns <code>PlotName</code>, <code>CensusID</code>, <code>Tr
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Expressions to pick main stems of a specific <code>dbh</code> range.</p></td>
+      <td><p>Expressions to pick main stems of a specific <code>dbh</code> range (e.g.
+<code>DBH &gt;= 10</code> or <code>DBH &gt;= 10, DBH &lt; 20</code>, or <code>DBH &gt;= 10 &amp; DBH &lt; 20</code>).</p></td>
     </tr>
     </table>
     
@@ -182,8 +183,8 @@ it should contain columns <code>PlotName</code>, <code>CensusID</code>, <code>Tr
     <p>You don't need to pick stems by status before feeding data to these
 functions. Doing so may make your code more readable but it should not affect
 the result. This is because the expressions passed to <code>...</code> pick data by
-<code>dbh</code> and exclude missing the <code>dbh</code> values associated to non-alive stems,
-including dead, missing, and gone.</p>
+<code>dbh</code> and exclude the missing <code>dbh</code> values associated to non-alive stems,
+including dead, missing, and gone stems.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -243,7 +244,8 @@ including dead, missing, and gone.</p>
 <span class='no'>basal</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
 #&gt;   species family yr_2001 yr_2002
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div></span><span class='co'># NOT RUN {</span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div><div class='input'>
+</div></span><span class='co'># NOT RUN {</span>
 <span class='no'>measurements_and_purr_are_installed</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>), <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
 <span class='kw'>if</span> (<span class='no'>measurements_and_purr_are_installed</span>) {

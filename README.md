@@ -25,8 +25,10 @@ devtools::install_github("forestgeo/fgeo.analyze@*release")
 
 Install the development version of **fgeo.analyze** with:
 
-    # install.packages("devtools")
-    devtools::install_github("forestgeo/fgeo.analyze")
+``` r
+# install.packages("devtools")
+devtools::install_github("forestgeo/fgeo.analyze")
+```
 
 Or [install all **fgeo** packages in one
 step](https://forestgeo.github.io/fgeo/index.html#installation).
@@ -35,10 +37,10 @@ step](https://forestgeo.github.io/fgeo/index.html#installation).
 
 ``` r
 library(fgeo)
-#> -- Attaching packages ------------------------------------------------------- fgeo 0.0.0.9002 --
-#> v fgeo.analyze 1.0.0          v fgeo.tool    1.0.0.9000
-#> v fgeo.plot    1.0.0.9000     v fgeo.x       1.0.0.9000
-#> -- Conflicts --------------------------------------------------------------- fgeo_conflicts() --
+#> -- Attaching packages ----------------------------------------------- fgeo 1.0.0.9000 --
+#> v fgeo.analyze 1.0.0.9000     v fgeo.tool    1.0.0     
+#> v fgeo.plot    1.0.0.9000     v fgeo.x       1.0.0
+#> -- Conflicts ------------------------------------------------------- fgeo_conflicts() --
 #> x fgeo.tool::filter() masks stats::filter()
 ```
 

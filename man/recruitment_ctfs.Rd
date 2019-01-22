@@ -18,45 +18,47 @@ growth_ctfs(census1, census2, rounddown = FALSE, method = "I",
   quiet = FALSE)
 }
 \arguments{
-\item{census1, census2}{Two census tables, each being a dataframe and in
-particular, a ForestGEO tree table. You may use a stem table, but you more
-commonly should use a tree table because demography analyses make more
-sense at the scale of a tree than at the scale of stems.}
+\item{census1, census2}{Two census tables, each being a ForestGEO-like \emph{tree}
+table (dataframe). A \emph{stem} table won't fail, but you should use a \emph{tree}
+table because demography analyses make more sense at the scale of trees
+than at the scale of stems.}
 
 \item{mindbh}{The minimum diameter above which the counts are done. Trees
-smaller than \code{mindbh} are excluded. If \code{NULL}, all living trees are
-included.}
+smaller than \code{mindbh} are excluded. By default all living trees of any size
+are included.}
 
-\item{alivecode}{Character, codes of the variable \code{status} that indicate the
-tree is alive. The default 'A' is the standard CTFS designation for living
+\item{alivecode}{Character; valid values of \code{status} indicating that a tree
+is alive. The default, 'A', is the standard CTFS designation for living
 trees or stems.}
 
-\item{split1, split2}{Optional vectors (column of any one the census
-dataframe) to aggregate results by. Defaults to aggregating across the
-entire census datasets.}
+\item{split1, split2}{Optional vector(s) to aggregate results by. Each vector
+should be a column of either \code{census1} or \code{census2}. The default aggregates
+the result across the entire census datasets.}
 
 \item{quiet}{Use \code{TRUE} to suppress messages.}
 
 \item{rounddown}{If \code{TRUE}, all \code{dbh < 55} are rounded down to the nearest
 multiple of 5.}
 
-\item{method}{Use "I" to calculate annual dbh increment as
-\code{(dbh2 - dbh1)/time}, or "E" to calculate the relative growth rate as
-\code{(log(dbh2) - log(dbh1)) / time}.}
+\item{method}{Either "I" or "E":
+\itemize{
+\item Use "I" to calculate annual dbh increment as \code{(dbh2 - dbh1)/time}
+\item Use "E" to calculate the relative growth rate as
+\code{(log(dbh2) - log(dbh1)) / time}
+}}
 
-\item{stdev}{Logical. Default (\code{FALSE}) returns confidence limits, otherwise
-returns the SD in growth rate per group.}
+\item{stdev}{Logical:
+\itemize{
+\item \code{FALSE} returns confidence limits.
+\item \code{TRUE} returns the SD in growth rate per group.
+}}
 
-\item{dbhunit}{'cm' or 'mm'.}
+\item{dbhunit}{"cm" or "mm".}
 
-\item{growthcol}{defines how growth is measured, either 'dbh' or 'agb'
-(above ground biomass).}
+\item{growthcol}{Either "dbh" or "agb" to define how growth is measured.}
 
-\item{err.limit}{A number. Numbers such as 10000 are high and will return all
-measures.}
-
-\item{maxgrow}{A number. Numbers such as 10000 are high and will return all
-measures.}
+\item{err.limit, maxgrow}{A number. Numbers such as 10000 are high and will
+return all measures.}
 }
 \value{
 Metrics of recruitment: Similar to metrics of mortality.
@@ -80,21 +82,21 @@ julian object (R displays as date, but treats as integer).
 Metrics of growth:
 \itemize{
 \item \code{rate}, the mean annualized growth rate per category selected, either dbh
-increment, or relative growth
+increment, or relative growth.
 \item \code{N}, the number of individuals included in the mean (not counting any
-excluded)
+excluded).
 \item \code{clim} (or sd with \code{stdev = TRUE}), width of confidence interval; add this
 number to the mean rate to get upper confidence limit, substract to get
-lower
-\item \code{dbhmean}, mean dbh in census 1 of individuals included
-\item \code{time}, mean time interval in years
+lower.
+\item \code{dbhmean}, mean dbh in census 1 of individuals included.
+\item \code{time}, mean time interval in years.
 \item \code{date1}, mean date included individuals were measured in census 1, as
-julian object (R displays as date, but treats as integer)
+julian object (R displays as date, but treats as integer).
 \item \code{date2}, mean date in census 2.
 }
 }
 \description{
-These functions are inherited from the the CTFS-R package. Compared to the
+These functions are adapted from the CTFS-R package. Compared to the
 original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
 feature formal tests, bug fixes, additional assertions, and improved
@@ -102,10 +104,10 @@ messages.
 }
 \details{
 Survivors are all individuals alive in both censuses, with \code{status == A} in
-the first census, and larger than the minimum dbh in the first census. The
-total population in the second census includes all those alive plus any other
-survivors. Individuals whose status is NA in either census are deleted from
-all calculations.
+the first census, and a diameter greater than \code{mindbh} in the first census.
+The total population in the second census includes all those alive plus any
+other survivors. Individuals whose status is \code{NA} in either census are
+deleted from all calculations.
 }
 \examples{
 census1 <- fgeo.x::tree5

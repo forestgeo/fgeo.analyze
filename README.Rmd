@@ -24,14 +24,14 @@ __fgeo.analyze__ provides functions to analyze [ForestGEO](http://www.forestgeo.
 
 Install the latest stable version of **fgeo.analyze** with:
 
-```r
+```R
 # install.packages("devtools")
 devtools::install_github("forestgeo/fgeo.analyze@*release")
 ```
 
 Install the development version of **fgeo.analyze** with:
 
-```
+```R
 # install.packages("devtools")
 devtools::install_github("forestgeo/fgeo.analyze")
 ```

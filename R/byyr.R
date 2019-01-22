@@ -1,26 +1,27 @@
 #' Create tables of abundance and basal area by year.
 #'
 #' * `abundance_byyr()` first picks the main stem of each tree (see
-#' ?[fgeo.tool::pick_main_stem()] and then, for each species and each
-#' (round mean) year of measurement, counts the number of
-#' trees. The result includes __main stems__ within a given dbh range.
+#' ?[fgeo.tool::pick_main_stem()]). Then, for each species and each
+#' round-mean-year of measurement, it counts the number of trees. The result
+#' includes __main stems__ within a given dbh range.
 #' * `basal_area_byyr()` first sums the basal basal area of all stems of each
-#' tree, and then, for each species and each (round mean) year of measurement,
-#' sums the basal area of all trees. The result includes all stems within a
+#' tree. Then, for each species and each round-mean-year of measurement,
+#' it sums the basal area of all trees. The result includes all stems within a
 #' given dbh range (notice the difference with `abundance_byyr()`).
 #'
 #' You don't need to pick stems by status before feeding data to these
 #' functions. Doing so may make your code more readable but it should not affect
 #' the result. This is because the expressions passed to `...` pick data by
-#' `dbh` and exclude missing the `dbh` values associated to non-alive stems,
-#' including dead, missing, and gone.
+#' `dbh` and exclude the missing `dbh` values associated to non-alive stems,
+#' including dead, missing, and gone stems.
 #'
 #' @param vft A ForestGEO-like dataframe; particularly a ViewFullTable. As such,
 #'   it should contain columns `PlotName`, `CensusID`, `TreeID`, `StemID`,
 #'   `Status`, `DBH`, `Genus`, `SpeciesName`, `ExactDate`, `PlotCensusNumber`,
 #'   `Family`, `Tag`, and `HOM`. `ExactDate` should contain dates from
 #'   1980-01-01 to the present day in the format yyyy-mm-dd.
-#' @param ... Expressions to pick main stems of a specific `dbh` range.
+#' @param ... Expressions to pick main stems of a specific `dbh` range (e.g.
+#'   `DBH >= 10` or `DBH >= 10, DBH < 20`, or `DBH >= 10 & DBH < 20`).
 #'
 #' @seealso [fgeo.tool::pick_main_stem()].
 #' @return A dataframe.
@@ -60,6 +61,7 @@
 #'
 #' basal <- basal_area_byyr(vft, DBH >= 10)
 #' basal
+#'
 #' \dontrun{
 #' measurements_and_purr_are_installed <-
 #'   all(sapply(c("measurements", "purrr"), requireNamespace, quietly = TRUE))

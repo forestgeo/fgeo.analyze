@@ -10,11 +10,9 @@
 \method{summary}{tt_lst}(object, ...)
 }
 \arguments{
-\item{object}{An object of a valid S3 class (see usage).}
+\item{object}{An object of class "tt_df" or "tt_lst".}
 
-\item{...}{Other arguments passed to methods.
-* \code{<tt_df>}: Unused.
-* \code{<tt_lst>}: Unused.}
+\item{...}{Not used (included only for compatibility with \code{summary}).}
 }
 \value{
 A tibble.

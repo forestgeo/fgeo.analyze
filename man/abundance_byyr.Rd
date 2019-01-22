@@ -16,7 +16,8 @@ it should contain columns \code{PlotName}, \code{CensusID}, \code{TreeID}, \code
 \code{Family}, \code{Tag}, and \code{HOM}. \code{ExactDate} should contain dates from
 1980-01-01 to the present day in the format yyyy-mm-dd.}
 
-\item{...}{Expressions to pick main stems of a specific \code{dbh} range.}
+\item{...}{Expressions to pick main stems of a specific \code{dbh} range (e.g.
+\code{DBH >= 10} or \code{DBH >= 10, DBH < 20}, or \code{DBH >= 10 & DBH < 20}).}
 }
 \value{
 A dataframe.
@@ -24,12 +25,12 @@ A dataframe.
 \description{
 \itemize{
 \item \code{abundance_byyr()} first picks the main stem of each tree (see
-?\code{\link[fgeo.tool:pick_main_stem]{fgeo.tool::pick_main_stem()}} and then, for each species and each
-(round mean) year of measurement, counts the number of
-trees. The result includes \strong{main stems} within a given dbh range.
+?\code{\link[fgeo.tool:pick_main_stem]{fgeo.tool::pick_main_stem()}}). Then, for each species and each
+round-mean-year of measurement, it counts the number of trees. The result
+includes \strong{main stems} within a given dbh range.
 \item \code{basal_area_byyr()} first sums the basal basal area of all stems of each
-tree, and then, for each species and each (round mean) year of measurement,
-sums the basal area of all trees. The result includes all stems within a
+tree. Then, for each species and each round-mean-year of measurement,
+it sums the basal area of all trees. The result includes all stems within a
 given dbh range (notice the difference with \code{abundance_byyr()}).
 }
 }
@@ -37,8 +38,8 @@ given dbh range (notice the difference with \code{abundance_byyr()}).
 You don't need to pick stems by status before feeding data to these
 functions. Doing so may make your code more readable but it should not affect
 the result. This is because the expressions passed to \code{...} pick data by
-\code{dbh} and exclude missing the \code{dbh} values associated to non-alive stems,
-including dead, missing, and gone.
+\code{dbh} and exclude the missing \code{dbh} values associated to non-alive stems,
+including dead, missing, and gone stems.
 }
 \examples{
 library(fgeo.tool)
@@ -75,6 +76,7 @@ abundance_byyr(vft, DBH >= 10)
 
 basal <- basal_area_byyr(vft, DBH >= 10)
 basal
+
 \dontrun{
 measurements_and_purr_are_installed <-
   all(sapply(c("measurements", "purrr"), requireNamespace, quietly = TRUE))

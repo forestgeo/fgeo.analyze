@@ -32,12 +32,17 @@
 
 <meta property="og:title" content="Abundance and basal area, optionally by groups. — abundance" />
 
-<meta property="og:description" content="abundance() counts the number of rows in a dataset, optionally by groups
+<meta property="og:description" content="
+abundance() counts the number of rows in a dataset, optionally by groups
 created with dplyr::group_by() (similar to dplyr::n()). It warns if it
-detects duplicated values of treeid. basal_area() sums the basal area of
+detects duplicated values of treeid.
+basal_area() sums the basal area of
 all stems in a dataset, optionally by groups created with group_by(). It
 warns if it detects duplicated values of stemid. It does not convert units
-(but see examples). Both abundance() and basal_area() warn if they detect
+(but see examples).
+" />
+
+<meta property="og:description" content="Both abundance() and basal_area() warn if they detect
 multiple censusid and multiple plots." />
 <meta name="twitter:card" content="summary" />
 
@@ -136,12 +141,17 @@ multiple censusid and multiple plots." />
 
     <div class="ref-description">
     
-    <p><code>abundance()</code> counts the number of rows in a dataset, optionally by groups
+    <ul>
+<li><p><code>abundance()</code> counts the number of rows in a dataset, optionally by groups
 created with <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> (similar to <code><a href='https://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>). It warns if it
-detects duplicated values of treeid. <code>basal_area()</code> sums the basal area of
+detects duplicated values of treeid.</p></li>
+<li><p><code>basal_area()</code> sums the basal area of
 all stems in a dataset, optionally by groups created with <code>group_by()</code>. It
 warns if it detects duplicated values of stemid. It does not convert units
-(but see examples). Both <code>abundance()</code> and <code>basal_area()</code> warn if they detect
+(but see examples).</p></li>
+</ul>
+
+    <p>Both <code>abundance()</code> and <code>basal_area()</code> warn if they detect
 multiple censusid and multiple plots.</p>
     
     </div>
@@ -207,7 +217,8 @@ Subsetting data is not the job of these functions. Instead see
 <span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>     2</div></span><span class='co'># NOT RUN {</span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
+</div></span><span class='co'># NOT RUN {</span>
 <span class='co'># Similar but more realistic</span>
 <span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/download_data'>download_data</a></span>(<span class='st'>"luquillo_stem5_random"</span>)
 
@@ -227,9 +238,8 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;       n
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
-<span class='co'># You should probably work with a single plotname.</span>
-<span class='co'># Yet your data may have multiple stems per treeid and even multiple measures</span>
-<span class='co'># per stemid (when trees have buttressess).</span>
+<span class='co'># If trees have buttressess, the data may have multiple stems per treeid or</span>
+<span class='co'># multiple measures per stemid.</span>
 <span class='no'>vft2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
   ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>, ~<span class='no'>HOM</span>,
           <span class='fl'>1</span>,     <span class='st'>"1"</span>,   <span class='st'>"1.1"</span>,   <span class='fl'>88</span>,  <span class='fl'>130</span>,

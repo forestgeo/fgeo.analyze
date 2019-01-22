@@ -1,9 +1,7 @@
 #' Summary of `tt_test()` results.
 #'
-#' @param object An object of a valid S3 class (see usage).
-#' @param ... Other arguments passed to methods.
-#'     * `<tt_df>`: Unused.
-#'     * `<tt_lst>`: Unused.
+#' @param object An object of class "tt_df" or "tt_lst".
+#' @param ... Not used (included only for compatibility with `summary`).
 #'
 #' @author Adapted from code contributed by Daniel Zuleta.
 #'

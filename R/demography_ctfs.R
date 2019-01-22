@@ -1,45 +1,44 @@
 #' Recruitment, mortality, and growth.
 #'
-#' These functions are inherited from the the CTFS-R package. Compared to the
+#' These functions are adapted from the CTFS-R package. Compared to the
 #' original functions, these ones have a similar interface but use more
 #' conservative defaults and allow suppressing messages. These functions also
 #' feature formal tests, bug fixes, additional assertions, and improved
 #' messages.
 #'
 #' Survivors are all individuals alive in both censuses, with `status == A` in
-#' the first census, and larger than the minimum dbh in the first census. The
-#' total population in the second census includes all those alive plus any other
-#' survivors. Individuals whose status is NA in either census are deleted from
-#' all calculations.
+#' the first census, and a diameter greater than `mindbh` in the first census.
+#' The total population in the second census includes all those alive plus any
+#' other survivors. Individuals whose status is `NA` in either census are
+#' deleted from all calculations.
 #'
-#' @param quiet Use `TRUE` to suppress messages.
-#' @param census1,census2 Two census tables, each being a dataframe and in
-#'   particular, a ForestGEO tree table. You may use a stem table, but you more
-#'   commonly should use a tree table because demography analyses make more
-#'   sense at the scale of a tree than at the scale of stems.
-#' @param split1,split2 Optional vectors (column of any one the census
-#'   dataframe) to aggregate results by. Defaults to aggregating across the
-#'   entire census datasets.
-#' @param alivecode Character, codes of the variable `status` that indicate the
-#'   tree is alive. The default 'A' is the standard CTFS designation for living
-#'   trees or stems.
+#' @param census1,census2 Two census tables, each being a ForestGEO-like _tree_
+#'   table (dataframe). A _stem_ table won't fail, but you should use a _tree_
+#'   table because demography analyses make more sense at the scale of trees
+#'   than at the scale of stems.
 #' @param mindbh The minimum diameter above which the counts are done. Trees
-#'   smaller than `mindbh` are excluded. If `NULL`, all living trees are
-#'   included.
+#'   smaller than `mindbh` are excluded. By default all living trees of any size
+#'   are included.
+#' @param alivecode Character; valid values of `status` indicating that a tree
+#'   is alive. The default, 'A', is the standard CTFS designation for living
+#'   trees or stems.
+#' @param split1,split2 Optional vector(s) to aggregate results by. Each vector
+#'   should be a column of either `census1` or `census2`. The default aggregates
+#'   the result across the entire census datasets.
+#' @param quiet Use `TRUE` to suppress messages.
 #' @param rounddown If `TRUE`, all `dbh < 55` are rounded down to the nearest
 #'   multiple of 5.
-#' @param method Use "I" to calculate annual dbh increment as
-#'   `(dbh2 - dbh1)/time`, or "E" to calculate the relative growth rate as
-#'   `(log(dbh2) - log(dbh1)) / time`.
-#' @param stdev Logical. Default (`FALSE`) returns confidence limits, otherwise
-#'   returns the SD in growth rate per group.
-#' @param dbhunit 'cm' or 'mm'.
-#' @param growthcol defines how growth is measured, either 'dbh' or 'agb'
-#'   (above ground biomass).
-#' @param err.limit A number. Numbers such as 10000 are high and will return all
-#'   measures.
-#' @param maxgrow A number. Numbers such as 10000 are high and will return all
-#'   measures.
+#' @param method Either "I" or "E":
+#'   * Use "I" to calculate annual dbh increment as `(dbh2 - dbh1)/time`
+#'   * Use "E" to calculate the relative growth rate as
+#'   `(log(dbh2) - log(dbh1)) / time`
+#' @param stdev Logical:
+#'    * `FALSE` returns confidence limits.
+#'    * `TRUE` returns the SD in growth rate per group.
+#' @param dbhunit "cm" or "mm".
+#' @param growthcol Either "dbh" or "agb" to define how growth is measured.
+#' @param err.limit,maxgrow A number. Numbers such as 10000 are high and will
+#'   return all measures.
 #'
 #' @author Rick Condit, Suzanne Lao.
 #'
@@ -62,16 +61,16 @@
 #'
 #' Metrics of growth:
 #' * `rate`, the mean annualized growth rate per category selected, either dbh
-#'   increment, or relative growth
+#'   increment, or relative growth.
 #' * `N`, the number of individuals included in the mean (not counting any
-#'   excluded)
+#'   excluded).
 #' * `clim` (or sd with `stdev = TRUE`), width of confidence interval; add this
 #'   number to the mean rate to get upper confidence limit, substract to get
-#'   lower
-#' * `dbhmean`, mean dbh in census 1 of individuals included
-#' * `time`, mean time interval in years
+#'   lower.
+#' * `dbhmean`, mean dbh in census 1 of individuals included.
+#' * `time`, mean time interval in years.
 #' * `date1`, mean date included individuals were measured in census 1, as
-#'   julian object (R displays as date, but treats as integer)
+#'   julian object (R displays as date, but treats as integer).
 #' * `date2`, mean date in census 2.
 #'
 #' @examples

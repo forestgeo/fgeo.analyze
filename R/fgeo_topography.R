@@ -1,26 +1,17 @@
-#' Structure topography data with mean elevation, convexity, and slope.
+#' Create topography data: convexity, slope, and mean elevation.
 #'
 #' @inherit fgeo_habitat details
 #'
-#' @section Input:
-#' The main input can be either the elevation list that ForestGEO delivers, or
-#' the element `col` of such list -- which is a dataframe containing the
-#' elevation data. Notice that the required arguments vary according to the main
-#' input (the elevation list or the elevation dataframe). Whatever the input,
-#' the dataframe containing the elevation data must have columns `gx` and `gy`
-#' or `x` and `y`.
-#'
 #' @param elevation One of these:
-#'  * A list with at least three elements: `col` containing
-#'  elevation data; and `xdim` and `ydim` giving plot dimensions; OR
-#'  * A dataframe containing elevation data, in which
-#'  case the parameters `xdim` and `ydim` must be provided. It may be the
-#'  element `col` of a ForestGEO elevation-list or an object of class
-#'  fgeo_elevation (see `?fgeo.tool::fgeo_elevation()`).
+#'  * A dataframe containing elevation data, with columns `gx` and `gy` or `x`
+#'  and `y` (e.g. `fgeo.x::elevation$col`).
+#'  * A ForestGEO-like elevation list with elements
+#'  `xdim` and `ydim` giving plot dimensions, and element `col` containing a
+#'  dataframe as described in the previous item (e.g. `fgeo.x::elevation`).
 #' @param gridsize Number giving the size of each quadrat for which a habitat
 #'   is calculated. Commonly, `gridsize = 20`.
-#' @param xdim,ydim (If `elevation` is a dataframe) `x` and `y` dimensions of
-#'   the plot.
+#' @param xdim,ydim (Required if `elevation` is a dataframe) `x` and `y`
+#'   dimensions of the plot.
 #' @param edgecorrect Correct convexity in edge quadrats?
 #' @param ... Other arguments passed to methods.
 #'

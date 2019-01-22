@@ -4,7 +4,7 @@
 \alias{fgeo_topography}
 \alias{fgeo_topography.data.frame}
 \alias{fgeo_topography.list}
-\title{Structure topography data with mean elevation, convexity, and slope.}
+\title{Create topography data: convexity, slope, and mean elevation.}
 \usage{
 fgeo_topography(elevation, ...)
 
@@ -17,12 +17,11 @@ fgeo_topography(elevation, ...)
 \arguments{
 \item{elevation}{One of these:
 \itemize{
-\item A list with at least three elements: \code{col} containing
-elevation data; and \code{xdim} and \code{ydim} giving plot dimensions; OR
-\item A dataframe containing elevation data, in which
-case the parameters \code{xdim} and \code{ydim} must be provided. It may be the
-element \code{col} of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see \code{?fgeo.tool::fgeo_elevation()}).
+\item A dataframe containing elevation data, with columns \code{gx} and \code{gy} or \code{x}
+and \code{y} (e.g. \code{fgeo.x::elevation$col}).
+\item A ForestGEO-like elevation list with elements
+\code{xdim} and \code{ydim} giving plot dimensions, and element \code{col} containing a
+dataframe as described in the previous item (e.g. \code{fgeo.x::elevation}).
 }}
 
 \item{...}{Other arguments passed to methods.}
@@ -30,8 +29,8 @@ fgeo_elevation (see \code{?fgeo.tool::fgeo_elevation()}).
 \item{gridsize}{Number giving the size of each quadrat for which a habitat
 is calculated. Commonly, \code{gridsize = 20}.}
 
-\item{xdim, ydim}{(If \code{elevation} is a dataframe) \code{x} and \code{y} dimensions of
-the plot.}
+\item{xdim, ydim}{(Required if \code{elevation} is a dataframe) \code{x} and \code{y}
+dimensions of the plot.}
 
 \item{edgecorrect}{Correct convexity in edge quadrats?}
 }
@@ -39,18 +38,8 @@ the plot.}
 A dataframe of subclass fgeo_topography.
 }
 \description{
-Structure topography data with mean elevation, convexity, and slope.
+Create topography data: convexity, slope, and mean elevation.
 }
-\section{Input}{
-
-The main input can be either the elevation list that ForestGEO delivers, or
-the element \code{col} of such list -- which is a dataframe containing the
-elevation data. Notice that the required arguments vary according to the main
-input (the elevation list or the elevation dataframe). Whatever the input,
-the dataframe containing the elevation data must have columns \code{gx} and \code{gy}
-or \code{x} and \code{y}.
-}
-
 \section{Acknowledgment}{
 
 Thanks to Jian Zhang for reporting a bug (issue 59).

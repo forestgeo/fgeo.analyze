@@ -27,14 +27,16 @@ Determine habitat-species associations with code developed by Sabrina Russo,
 Daniel Zuleta, Matteo Detto, and Kyle Harms.
 }
 \details{
+This test only makes sense at the population level. We are interested in
+knowing whether or not individuals of a species are aggregated on a habitat.
+Multiple stems of an individual do not represent population level processes
+but individual level processes. Thus, you should use data of individual trees
+-- i.e. use a \emph{tree} table, and not a \emph{stem} table with potentially multiple
+stems per tree.
+
 You should only try to determine the habitat association for sufficiently
 abundant species. In a 50-ha plot, a minimum abundance of 50 trees/species
-has been used. Also, you should use data of individual trees (i.e. a tree
-table, and not a stem table with potentially multiple stems per tree. This
-test only makes sense at the population level. We are interested in knowing
-whether or not individuals of a species are aggregated on a habitat. Multiple
-stems of an individual do not represent population level processes but
-individual level processes.
+has been used.
 }
 \section{Acknowledgments}{
 
@@ -64,11 +66,12 @@ the habitat in question.
 
 The probabilities associated with the test for whether these patterns are
 statistically significant are in the \code{Obs.Quantile} columns for each habitat.
-Note that to calculate the probability for repelled, it is the value given,
-but to calculate the probability for aggregated, it is 1 - the value given.
+Note that to calculate the probability for \emph{repelled}, it is \emph{the value
+given}, but to calculate the probability for \emph{aggregated}, it is \emph{one minus
+the value given}.
 
-Values of the \code{Obs.Quantile} < 0.025 means that the species is repelled from
-that habitat, while values of the \code{Obs.Quantile} > 0.975 means that the
+Values of the \code{Obs.Quantile < 0.025} means that the species is repelled from
+that habitat, while values of the \code{Obs.Quantile > 0.975} means that the
 species is aggregated on that habitat.
 }
 

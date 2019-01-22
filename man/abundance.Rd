@@ -14,12 +14,17 @@ basal_area(x)
 insensitive).}
 }
 \description{
-\code{\link[=abundance]{abundance()}} counts the number of rows in a dataset, optionally by groups
+\itemize{
+\item \code{\link[=abundance]{abundance()}} counts the number of rows in a dataset, optionally by groups
 created with \code{\link[dplyr:group_by]{dplyr::group_by()}} (similar to \code{\link[dplyr:n]{dplyr::n()}}). It warns if it
-detects duplicated values of treeid. \code{\link[=basal_area]{basal_area()}} sums the basal area of
+detects duplicated values of treeid.
+\item \code{\link[=basal_area]{basal_area()}} sums the basal area of
 all stems in a dataset, optionally by groups created with \code{\link[=group_by]{group_by()}}. It
 warns if it detects duplicated values of stemid. It does not convert units
-(but see examples). Both \code{\link[=abundance]{abundance()}} and \code{\link[=basal_area]{basal_area()}} warn if they detect
+(but see examples).
+}
+
+Both \code{\link[=abundance]{abundance()}} and \code{\link[=basal_area]{basal_area()}} warn if they detect
 multiple censusid and multiple plots.
 }
 \details{
@@ -52,6 +57,7 @@ stem <- tribble(
 )
 
 abundance(stem)
+
 \dontrun{
 # Similar but more realistic
 stem <- fgeo.x::download_data("luquillo_stem5_random")
@@ -71,9 +77,8 @@ vft <- tribble(
 # * Also warns if it detects duplicated values of treeid
 abundance(vft)
 
-# You should probably work with a single plotname.
-# Yet your data may have multiple stems per treeid and even multiple measures
-# per stemid (when trees have buttressess).
+# If trees have buttressess, the data may have multiple stems per treeid or
+# multiple measures per stemid.
 vft2 <- tribble(
   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
           1,     "1",   "1.1",   88,  130,

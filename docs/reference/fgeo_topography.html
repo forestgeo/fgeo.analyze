@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Structure topography data with mean elevation, convexity, and slope. — fgeo_topography • fgeo.analyze</title>
+<title>Create topography data: convexity, slope, and mean elevation. — fgeo_topography • fgeo.analyze</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Structure topography data with mean elevation, convexity, and slope. — fgeo_topography" />
+<meta property="og:title" content="Create topography data: convexity, slope, and mean elevation. — fgeo_topography" />
 
-<meta property="og:description" content="Structure topography data with mean elevation, convexity, and slope." />
+<meta property="og:description" content="Create topography data: convexity, slope, and mean elevation." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,14 +123,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Structure topography data with mean elevation, convexity, and slope.</h1>
+    <h1>Create topography data: convexity, slope, and mean elevation.</h1>
     <small class="dont-index">Source: <a href='https://github.com/forestgeo/fgeo.analyze/blob/master/R/fgeo_topography.R'><code>R/fgeo_topography.R</code></a></small>
     <div class="hidden name"><code>fgeo_topography.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Structure topography data with mean elevation, convexity, and slope.</p>
+    <p>Create topography data: convexity, slope, and mean elevation.</p>
     
     </div>
 
@@ -150,12 +150,11 @@
     <tr>
       <th>elevation</th>
       <td><p>One of these:</p><ul>
-<li><p>A list with at least three elements: <code>col</code> containing
-elevation data; and <code>xdim</code> and <code>ydim</code> giving plot dimensions; OR</p></li>
-<li><p>A dataframe containing elevation data, in which
-case the parameters <code>xdim</code> and <code>ydim</code> must be provided. It may be the
-element <code>col</code> of a ForestGEO elevation-list or an object of class
-fgeo_elevation (see <code>?fgeo.tool::fgeo_elevation()</code>).</p></li>
+<li><p>A dataframe containing elevation data, with columns <code>gx</code> and <code>gy</code> or <code>x</code>
+and <code>y</code> (e.g. <code>fgeo.x::elevation$col</code>).</p></li>
+<li><p>A ForestGEO-like elevation list with elements
+<code>xdim</code> and <code>ydim</code> giving plot dimensions, and element <code>col</code> containing a
+dataframe as described in the previous item (e.g. <code><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>fgeo.x::elevation</a></code>).</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -169,8 +168,8 @@ is calculated. Commonly, <code>gridsize = 20</code>.</p></td>
     </tr>
     <tr>
       <th>xdim, ydim</th>
-      <td><p>(If <code>elevation</code> is a dataframe) <code>x</code> and <code>y</code> dimensions of
-the plot.</p></td>
+      <td><p>(Required if <code>elevation</code> is a dataframe) <code>x</code> and <code>y</code>
+dimensions of the plot.</p></td>
     </tr>
     <tr>
       <th>edgecorrect</th>
@@ -181,16 +180,6 @@ the plot.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A dataframe of subclass fgeo_topography.</p>
-    
-    <h2 class="hasAnchor" id="input"><a class="anchor" href="#input"></a>Input</h2>
-
-    
-    <p>The main input can be either the elevation list that ForestGEO delivers, or
-the element <code>col</code> of such list -- which is a dataframe containing the
-elevation data. Notice that the required arguments vary according to the main
-input (the elevation list or the elevation dataframe). Whatever the input,
-the dataframe containing the elevation data must have columns <code>gx</code> and <code>gy</code>
-or <code>x</code> and <code>y</code>.</p>
     
     <h2 class="hasAnchor" id="acknowledgment"><a class="anchor" href="#acknowledgment"></a>Acknowledgment</h2>
 
@@ -244,8 +233,6 @@ or <code>x</code> and <code>y</code>.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#input">Input</a></li>
 
       <li><a href="#acknowledgment">Acknowledgment</a></li>
 
