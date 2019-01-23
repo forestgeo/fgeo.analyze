@@ -24,4 +24,4 @@ Safely ignoring these NOTES and WARNINGS
 
 ## Downstream dependencies
 
-The package fgeo depends on this package. fgeo is on GitHub -- not on CRAN.
+There are currently no downstream dependencies on CRAN for this package.
