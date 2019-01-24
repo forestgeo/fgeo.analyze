@@ -2,6 +2,10 @@
 
 * Work in progress.
 
+# fgeo.analyze 1.0.2 (GitHub release)
+
+* Tidy dependencies.
+
 # fgeo.analyze 1.0.1 (GitHub release)
 
 * Review documentation.

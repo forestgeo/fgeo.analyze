@@ -7,7 +7,7 @@
 #' using this function.
 #'
 #' This function is deprecated. Better alternatives to count rows by groups are
-#' available in __dplyr__ and __janitor__ (see `group_by()`
+#' available in the packages __dplyr__ and __janitor__ (see `group_by()`
 #' and `count()` in __dplyr__ and `tabyl()` in __janitor__). Those alternatives
 #' are better tested and considerably faster.
 #'

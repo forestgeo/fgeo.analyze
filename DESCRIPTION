@@ -1,6 +1,6 @@
 Package: fgeo.analyze
 Title: Analyze ForestGEO Data
-Version: 1.0.1.9000
+Version: 1.0.2
 Authors@R: 
     c(person(given = "Mauro",
              family = "Lepore",
@@ -56,13 +56,13 @@ Imports:
     dplyr,
     fgeo.tool,
     fgeo.x,
-    generics,
     glue,
     graphics,
     grDevices,
     lubridate,
     magrittr,
     MASS,
+    purrr,
     rlang,
     stats,
     tibble,
@@ -71,13 +71,11 @@ Imports:
 Suggests: 
     covr,
     ggplot2,
-    janitor,
     knitr,
-    purrr,
+    measurements,
     readr,
     rmarkdown,
     spelling,
-    stringr,
     testthat
 Remotes: 
     forestgeo/fgeo.tool@*release,
