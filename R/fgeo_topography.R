@@ -25,10 +25,9 @@
 #' @examples
 #' elev_list <- fgeo.x::elevation
 #' fgeo_topography(elev_list, gridsize = 20)
-#'
+#' 
 #' elev_df <- elev_list$col
 #' fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
-#'
 #' @family habitat functions
 #' @family functions to construct fgeo classes
 #' @export
@@ -118,7 +117,6 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
 #' )
 #' head(result)
 #' str(result)
-#'
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
@@ -139,23 +137,25 @@ allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
   meanelev <- convex <- slope <- numeric()
   corner <- numeric()
   for (c in 1:(columns - 1)) for (r in 1:(rows - 1)) {
-    quad_idx <- fgeo.tool::rowcol_to_index(
-      r, c, gridsize = gridsize, plotdim = plotdim
-    )
-    corner[1] <- elevmat[r, c]
-    corner[2] <- elevmat[r + 1, c]
-    corner[3] <- elevmat[r + 1, c + 1]
-    corner[4] <- elevmat[r, c + 1]
-    meanelev[quad_idx] <- mean(corner)
-    slope[quad_idx] <- quadslope(corner, gridsize = gridsize)[1]
-    if (c %% 33 == 0 && r %% 33 == 0) {
-      message("Finding elevation and slope of quadrat ", quad_idx, "\n")
+      quad_idx <- fgeo.tool::rowcol_to_index(
+        r, c,
+        gridsize = gridsize, plotdim = plotdim
+      )
+      corner[1] <- elevmat[r, c]
+      corner[2] <- elevmat[r + 1, c]
+      corner[3] <- elevmat[r + 1, c + 1]
+      corner[4] <- elevmat[r, c + 1]
+      meanelev[quad_idx] <- mean(corner)
+      slope[quad_idx] <- quadslope(corner, gridsize = gridsize)[1]
+      if (c %% 33 == 0 && r %% 33 == 0) {
+        message("Finding elevation and slope of quadrat ", quad_idx, "\n")
+      }
     }
-  }
 
   for (i in 1:totalquads) {
     neighbor.quads <- findborderquads(
-      i, dist = gridsize, gridsize = gridsize, plotdim = plotdim
+      i,
+      dist = gridsize, gridsize = gridsize, plotdim = plotdim
     )
     meanelev.neighbor <- mean(meanelev[neighbor.quads])
     convex[i] <- meanelev[i] - meanelev.neighbor
@@ -171,24 +171,26 @@ allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
 
   if (edgecorrect) {
     for (c in 1:(columns - 1)) for (r in 1:(rows - 1)) {
-      first_or_prevlast_col <- (c == 1) || (c == (columns - 1))
-      first_or_prevlast_row <-  (r == 1) || (r == (rows - 1))
-      if (first_or_prevlast_col || first_or_prevlast_row) {
-        quad_idx <- fgeo.tool::rowcol_to_index(
-          r, c, gridsize = gridsize, plotdim = plotdim
-        )
-        xy <- fgeo.tool::index_to_gxgy(
-          quad_idx, gridsize = gridsize, plotdim = plotdim
-        )
-        midx <- xy$gx + gridsize / 2
-        midy <- xy$gy + gridsize / 2
+        first_or_prevlast_col <- (c == 1) || (c == (columns - 1))
+        first_or_prevlast_row <- (r == 1) || (r == (rows - 1))
+        if (first_or_prevlast_col || first_or_prevlast_row) {
+          quad_idx <- fgeo.tool::rowcol_to_index(
+            r, c,
+            gridsize = gridsize, plotdim = plotdim
+          )
+          xy <- fgeo.tool::index_to_gxgy(
+            quad_idx,
+            gridsize = gridsize, plotdim = plotdim
+          )
+          midx <- xy$gx + gridsize / 2
+          midy <- xy$gy + gridsize / 2
 
-        xy_on_midpoint <- elev$col$x == midx & elev$col$y == midy
-        elevcol <- elev$col[xy_on_midpoint, , drop = FALSE]
-        midelev <- elevcol$elev
-        convex[quad_idx] <- midelev - meanelev[quad_idx]
+          xy_on_midpoint <- elev$col$x == midx & elev$col$y == midy
+          elevcol <- elev$col[xy_on_midpoint, , drop = FALSE]
+          midelev <- elevcol$elev
+          convex[quad_idx] <- midelev - meanelev[quad_idx]
+        }
       }
-    }
   }
 
   data.frame(meanelev = meanelev, convex = convex, slope = slope)

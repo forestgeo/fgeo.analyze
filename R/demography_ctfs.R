@@ -76,34 +76,35 @@
 #' @examples
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
-#'
+#' 
 #' as_tibble(
 #'   recruitment_ctfs(census1, census2)
 #' )
-#'
+#' 
 #' # Use `interaction(...)` to aggregate by any number of grouping variables
 #' sp_quadrat <- interaction(census1$sp, census1$quadrat)
-#'
+#' 
 #' recruitment <- recruitment_ctfs(
 #'   census1, census2,
 #'   split1 = sp_quadrat,
 #'   quiet = TRUE
 #' )
 #' as_tibble(recruitment)
-#'
+#' 
 #' mortality <- mortality_ctfs(
-#'   census1, census2, split1 = sp_quadrat, quiet = TRUE
+#'   census1, census2,
+#'   split1 = sp_quadrat, quiet = TRUE
 #' )
 #' as_tibble(mortality)
-#'
+#' 
 #' growth <- growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE)
 #' as_tibble(growth)
-#'
+#' 
 #' # Easy way to separate grouping variables
 #' tidyr_is_installed <- requireNamespace("tidyr", quietly = TRUE)
 #' if (tidyr_is_installed) {
 #'   library(tidyr)
-#'
+#' 
 #'   as_tibble(growth) %>%
 #'     separate(groups, into = c("sp", "quadrat"))
 #' }
@@ -186,7 +187,8 @@ mortality_ctfs <- function(census1,
                            split2 = NULL,
                            quiet = FALSE) {
   prep <- wrap_prepare_recruitment_mortality(
-    census1, census2, split1, split2, quiet, mindbh = NULL
+    census1, census2, split1, split2, quiet,
+    mindbh = NULL
   )
 
   check_alivecode(prep$census1, prep$census2, alivecode, quiet)
@@ -378,7 +380,7 @@ trim.growth <- function(cens1,
   stdev.dbh1 <- slope * cens1$dbh + intercept
   growth <- (cens2$dbh - cens1$dbh) / time
   bad.neggrow <- which(cens2$dbh <= (cens1$dbh - err.limit *
-      stdev.dbh1))
+    stdev.dbh1))
   bad.posgrow <- which(growth > maxgrow)
   homdiff <- abs(as.numeric(cens2$hom) - as.numeric(cens1$hom)) / as.numeric(cens1$hom)
   accept <- rep(TRUE, length(cens1$dbh))

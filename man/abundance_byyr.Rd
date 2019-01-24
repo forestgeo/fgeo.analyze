@@ -76,7 +76,6 @@ abundance_byyr(vft, DBH >= 10)
 
 basal <- basal_area_byyr(vft, DBH >= 10)
 basal
-
 \dontrun{
 measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
 if (measurements_is_installed) {

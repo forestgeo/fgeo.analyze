@@ -25,91 +25,91 @@
 #'
 #' @examples
 #' library(fgeo.tool)
-#'
+#' 
 #' # abundance() -------------------------------------------------------------
-#'
+#' 
 #' abundance(data.frame(1))
-#'
+#' 
 #' # One stem per tree
 #' tree <- tribble(
 #'   ~TreeID, ~StemID, ~DBH,
-#'       "1",   "1.1",   11,
-#'       "2",   "2.1",   21
+#'   "1", "1.1", 11,
+#'   "2", "2.1", 21
 #' )
-#'
+#' 
 #' abundance(tree)
-#'
+#' 
 #' # One tree with multiple stems
 #' stem <- tribble(
 #'   ~TreeID, ~StemID, ~DBH,
-#'       "1",   "1.1",   11,
-#'       "1",   "1.2",   12
+#'   "1", "1.1", 11,
+#'   "1", "1.2", 12
 #' )
-#'
+#' 
 #' abundance(stem)
 #'
 #' \dontrun{
 #' # Similar but more realistic
 #' stem <- fgeo.x::download_data("luquillo_stem5_random")
-#'
+#' 
 #' abundance(stem)
-#'
+#' 
 #' abundance(pick_main_stem(stem))
 #' }
-#'
+#' 
 #' vft <- tribble(
 #'   ~PlotName, ~CensusID, ~TreeID, ~StemID, ~DBH,
-#'         "p",         1,     "1",   "1.1",   10,
-#'         "q",         2,     "1",   "1.1",   10
+#'   "p", 1, "1", "1.1", 10,
+#'   "q", 2, "1", "1.1", 10
 #' )
-#'
+#' 
 #' # * Warns if it detects multiple values of censusid or plotname
 #' # * Also warns if it detects duplicated values of treeid
 #' abundance(vft)
-#'
+#' 
 #' # If trees have buttressess, the data may have multiple stems per treeid or
 #' # multiple measures per stemid.
 #' vft2 <- tribble(
 #'   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
-#'           1,     "1",   "1.1",   88,  130,
-#'           1,     "1",   "1.1",   10,  160,
-#'           1,     "2",   "2.1",   20,  130,
-#'           1,     "2",   "2.2",   30,  130,
+#'   1, "1", "1.1", 88, 130,
+#'   1, "1", "1.1", 10, 160,
+#'   1, "2", "2.1", 20, 130,
+#'   1, "2", "2.2", 30, 130,
 #' )
-#'
+#' 
 #' # You should count only the main stem of each tree
 #' (main_stem <- pick_main_stem(vft2))
-#'
+#' 
 #' abundance(main_stem)
-#'
+#' 
 #' vft3 <- tribble(
 #'   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
-#'           1,     "1",   "1.1",   20,  130,
-#'           1,     "1",   "1.2",   10,  160,  # Main stem
-#'           2,     "1",   "1.1",   12,  130,
-#'           2,     "1",   "1.2",   22,  130   # Main stem
+#'   1, "1", "1.1", 20, 130,
+#'   1, "1", "1.2", 10, 160, # Main stem
+#'   2, "1", "1.1", 12, 130,
+#'   2, "1", "1.2", 22, 130 # Main stem
 #' )
-#'
+#' 
 #' # You can compute by groups
 #' by_census <- group_by(vft3, CensusID)
 #' (main_stems_by_census <- pick_main_stem(by_census))
-#'
+#' 
 #' abundance(main_stems_by_census)
-#'
+#' 
 #' # basal_area() ------------------------------------------------------------
-#'
+#' 
 #' # Data must have a column named dbh (case insensitive)
 #' basal_area(data.frame(dbh = 1))
-#'
+#' 
 #' # * Warns if it detects multiple values of censusid or plotname
 #' # * Also warns if it detects duplicated values of stemid
 #' basal_area(vft)
-#'
+#' 
 #' # First you may pick the main stemid of each stem
 #' (main_stemids <- pick_main_stemid(vft2))
-#'
+#' 
 #' basal_area(main_stemids)
-#'
+#' 
 #' # You can compute by groups
 #' basal_area(by_census)
 #'
@@ -117,7 +117,7 @@
 #' measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
 #' if (measurements_is_installed) {
 #'   library(measurements)
-#'
+#' 
 #'   # Convert units
 #'   ba <- basal_area(by_census)
 #'   ba$basal_area_he <- conv_unit(
@@ -125,11 +125,11 @@
 #'     from = "mm2",
 #'     to = "hectare"
 #'   )
-#'
+#' 
 #'   ba
 #' }
 #' }
-#'
+#' 
 #' @family functions for abundance and basal area
 #' @name abundance
 NULL
@@ -200,7 +200,6 @@ groups_lower <- function(x) {
 #' out
 #' ref <- dplyr::grouped_df(rlang::set_names(out, toupper), c("X"))
 #' group_vars_restore(out, ref)
-#'
 #' @noRd
 group_vars_restore <- function(x, y) {
   in_ref <- fgeo.tool::detect_insensitive(
@@ -223,11 +222,13 @@ restore_input_names_output_groups <- function(out, .data) {
 # Only if data contains specific `name`s.
 warn_if_needed_plotname_censusid <- function(.x) {
   warn_if_has_var(
-    .x, name = "censusid", predicate = is_multiple,
+    .x,
+    name = "censusid", predicate = is_multiple,
     problem = "Multiple", hint = "Do you need to group by censusid?"
   )
   warn_if_has_var(
-    .x, name = "plotname", predicate = is_multiple,
+    .x,
+    name = "plotname", predicate = is_multiple,
     problem = "Multiple", hint = "Do you need to pick a single plot?"
   )
 
@@ -236,7 +237,8 @@ warn_if_needed_plotname_censusid <- function(.x) {
 
 warn_if_needed_treeid <- function(.x) {
   warn_if_has_var(
-    .x, name = "treeid", predicate = is_duplicated,
+    .x,
+    name = "treeid", predicate = is_duplicated,
     problem = "Duplicated", hint = "Do you need to pick main stems?"
   )
   invisible(.x)
@@ -244,7 +246,8 @@ warn_if_needed_treeid <- function(.x) {
 
 warn_if_needed_stemid <- function(.x) {
   warn_if_has_var(
-    .x, name = "stemid", predicate = is_duplicated,
+    .x,
+    name = "stemid", predicate = is_duplicated,
     problem = "Duplicated", hint = "Do you need to pick largest `hom` values?"
   )
   invisible(.x)

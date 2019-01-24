@@ -44,7 +44,8 @@ test_that("outputs the expected list", {
 test_that("prints as an unclassed list (i.e. doesn't show attr ...)", {
   output <- capture_output(
     print(
-      tt_test(fgeo.x::tree6_3species, habitat = fgeo.x::habitat, sp = "CASARB"))
+      tt_test(fgeo.x::tree6_3species, habitat = fgeo.x::habitat, sp = "CASARB")
+    )
   )
   expect_false(grepl("tt_lst", output))
 })
@@ -213,12 +214,12 @@ test_that("tt_test() outputs equivalent to the original implementation", {
   abnd <- abund_index(fgeo.x::tree6_3species, pdim_luq, gsize_luq)
 
   out_tt <- fgeo.analyze:::torusonesp.all(
-    "CASARB",  fgeo.x::habitat, abnd, pdim_luq, gsize_luq
+    "CASARB", fgeo.x::habitat, abnd, pdim_luq, gsize_luq
   )
   abnd <- abund_index(cns_luq, pdim_luq, gsize_luq)
 
   out_original <- torusonesp.all_original(
-    "CASARB",  fgeo.x::habitat, abnd, pdim_luq, gsize_luq
+    "CASARB", fgeo.x::habitat, abnd, pdim_luq, gsize_luq
   )
   expect_equivalent(out_tt, out_original)
 })

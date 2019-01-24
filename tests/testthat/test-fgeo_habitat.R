@@ -58,7 +58,8 @@ test_that("fgeo_habitat results in gx and gy that are multiple of gridsize", {
 test_that("fgeo_habitat is sensitive to `edgecorrect`", {
   habitat <- fgeo_habitat(fgeo.x::elevation, gridsize = 20, n = 4)
   out <- fgeo_habitat(
-    fgeo.x::elevation, gridsize = 20, n = 4, edgecorrect = FALSE
+    fgeo.x::elevation,
+    gridsize = 20, n = 4, edgecorrect = FALSE
   )
   expect_false(identical(out, habitat))
 })

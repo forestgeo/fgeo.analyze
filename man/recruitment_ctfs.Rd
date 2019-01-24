@@ -128,7 +128,8 @@ recruitment <- recruitment_ctfs(
 as_tibble(recruitment)
 
 mortality <- mortality_ctfs(
-  census1, census2, split1 = sp_quadrat, quiet = TRUE
+  census1, census2,
+  split1 = sp_quadrat, quiet = TRUE
 )
 as_tibble(mortality)
 

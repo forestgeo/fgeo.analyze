@@ -55,7 +55,6 @@ habitats <- fgeo_habitat(
 )
 
 str(habitats)
-
 \dontrun{
 fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
 if (fgeo_plot_is_installed) {

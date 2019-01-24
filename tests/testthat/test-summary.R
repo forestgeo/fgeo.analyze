@@ -68,8 +68,8 @@ test_that("prints output equal to reference", {
   skip("Run only during risky refactoring")
 
   explain_tt_test <- as.data.frame(
-    summary(tt_test(fgeo.data::luquillo_tree5_random, fgeo.x::habitat)
-  ))
+    summary(tt_test(fgeo.data::luquillo_tree5_random, fgeo.x::habitat))
+  )
 
   expect_printed_output(explain_tt_test)
 })

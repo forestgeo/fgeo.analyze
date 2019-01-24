@@ -28,7 +28,7 @@
 #'
 #' @examples
 #' library(fgeo.tool)
-#'
+#' 
 #' # Example data
 #' vft <- tibble(
 #'   PlotName = c("luq", "luq", "luq", "luq", "luq", "luq", "luq", "luq"),
@@ -52,16 +52,15 @@
 #'   Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
 #'   HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L)
 #' )
-#'
+#' 
 #' vft
-#'
+#' 
 #' abundance_byyr(vft, DBH >= 10, DBH < 20)
-#'
+#' 
 #' abundance_byyr(vft, DBH >= 10)
-#'
+#' 
 #' basal <- basal_area_byyr(vft, DBH >= 10)
 #' basal
-#'
 #' \dontrun{
 #' measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
 #' if (measurements_is_installed) {
@@ -73,7 +72,7 @@
 #'       ~ measurements::conv_unit(.x, from = "mm2", to = "hectare")
 #'     )
 #'   basal_he
-#'
+#' 
 #'   # Standardize
 #'   number_of_hectares <- 50
 #'   basal_he %>%

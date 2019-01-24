@@ -122,7 +122,8 @@ context("as.data.frame.tt_lst")
 
 test_that("as.data.frame.demography_ctfs takes arguments via `...`", {
   result <- recruitment_ctfs(
-    fgeo.x::tree5, fgeo.x::tree6, split1 = fgeo.x::tree5$sp
+    fgeo.x::tree5, fgeo.x::tree6,
+    split1 = fgeo.x::tree5$sp
   )
 
   expect_is(
@@ -144,22 +145,3 @@ test_that("as.data.frame.demography_ctfs takes arguments via `...`", {
 #     "character"
 #   )
 # })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

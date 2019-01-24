@@ -67,33 +67,33 @@
 #'
 #' @examples
 #' library(fgeo.tool)
-#'
+#' 
 #' # Example data
 #' tree <- fgeo.x::tree6_3species
 #' elevation <- fgeo.x::elevation
-#'
+#' 
 #' # Pick alive trees, of 10 mm or more
 #' census <- filter(tree, status == "A", dbh >= 10)
-#'
+#' 
 #' # Pick sufficiently abundant species
 #' pick <- filter(dplyr::add_count(census, sp), n > 50)
-#'
+#' 
 #' # Use your habitat data or create it from elevation data
 #' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
-#'
+#' 
 #' # Defaults to using all species
 #' as_tibble(
 #'   tt_test(census, habitat)
 #' )
-#'
+#' 
 #' Reduce(rbind, tt_test(census, habitat))
-#'
+#' 
 #' some_species <- c("CASARB", "PREMON")
 #' result <- tt_test(census, habitat, sp = some_species)
 #' result
-#'
+#' 
 #' as_tibble(result)
-#'
+#' 
 #' summary(result)
 #' @family habitat functions
 #' @export
@@ -184,24 +184,24 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   for (i in 1:num.habs) {
     if (i == 1) {
       cols <- c(
-          paste("N.Hab.", i, sep = ""),
-          paste("Gr.Hab.", i, sep = ""),
-          paste("Ls.Hab.", i, sep = ""),
-          paste("Eq.Hab.", i, sep = ""),
-          paste("Rep.Agg.Neut.", i, sep = ""),
-          paste("Obs.Quantile.", i, sep = "")
-        )
+        paste("N.Hab.", i, sep = ""),
+        paste("Gr.Hab.", i, sep = ""),
+        paste("Ls.Hab.", i, sep = ""),
+        paste("Eq.Hab.", i, sep = ""),
+        paste("Rep.Agg.Neut.", i, sep = ""),
+        paste("Obs.Quantile.", i, sep = "")
+      )
     }
     if (i > 1) {
       cols <- c(
-          cols,
-          paste("N.Hab.", i, sep = ""),
-          paste("Gr.Hab.", i, sep = ""),
-          paste("Ls.Hab.", i, sep = ""),
-          paste("Eq.Hab.", i, sep = ""),
-          paste("Rep.Agg.Neut.", i, sep = ""),
-          paste("Obs.Quantile.", i, sep = "")
-        )
+        cols,
+        paste("N.Hab.", i, sep = ""),
+        paste("Gr.Hab.", i, sep = ""),
+        paste("Ls.Hab.", i, sep = ""),
+        paste("Eq.Hab.", i, sep = ""),
+        paste("Rep.Agg.Neut.", i, sep = ""),
+        paste("Obs.Quantile.", i, sep = "")
+      )
     }
   }
   # Names columns of output matrix.
@@ -221,7 +221,8 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
   # matrix
   totmat <- matrix(
     apply(allabund20, MARGIN = 2, FUN = "sum"),
-    plotdimqy, plotdimqx, byrow = FALSE
+    plotdimqy, plotdimqx,
+    byrow = FALSE
   )
 
   # fills matrix with habitat types, oriented in the same way as the species and
@@ -370,7 +371,7 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
 
     # otherwise it's neutral (not different from random dist)
     if ((GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) < 0.975) &
-        (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) > 0.025)) {
+      (GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy)) > 0.025)) {
       GrLsEq[1, (6 * i) - 1] <- 0
     }
 

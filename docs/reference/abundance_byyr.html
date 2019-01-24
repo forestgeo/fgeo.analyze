@@ -72,7 +72,7 @@ given dbh range (notice the difference with abundance_byyr()).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -246,22 +246,21 @@ including dead, missing, and gone stems.</p>
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
 #&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div><div class='input'>
 </div></span><span class='co'># NOT RUN {</span>
-<span class='no'>measurements_and_purr_are_installed</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>sapply</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"measurements"</span>, <span class='st'>"purrr"</span>), <span class='no'>requireNamespace</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))
-<span class='kw'>if</span> (<span class='no'>measurements_and_purr_are_installed</span>) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>purrr</span>)
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>measurements</span>)
-
+<span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='kw'>if</span> (<span class='no'>measurements_is_installed</span>) {
   <span class='co'># Convert units</span>
   <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
   <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='no'>basal</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(<span class='no'>years</span>, ~ <span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>))
+    <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(
+      <span class='no'>years</span>,
+      ~ <span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>)
+    )
   <span class='no'>basal_he</span>
 
   <span class='co'># Standardize</span>
   <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
   <span class='no'>basal_he</span> <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~ <span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
+    <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~ <span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
 }
 <span class='co'># }</span></pre>
   </div>

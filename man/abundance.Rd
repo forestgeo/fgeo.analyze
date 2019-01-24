@@ -43,8 +43,8 @@ abundance(data.frame(1))
 # One stem per tree
 tree <- tribble(
   ~TreeID, ~StemID, ~DBH,
-      "1",   "1.1",   11,
-      "2",   "2.1",   21
+  "1", "1.1", 11,
+  "2", "2.1", 21
 )
 
 abundance(tree)
@@ -52,8 +52,8 @@ abundance(tree)
 # One tree with multiple stems
 stem <- tribble(
   ~TreeID, ~StemID, ~DBH,
-      "1",   "1.1",   11,
-      "1",   "1.2",   12
+  "1", "1.1", 11,
+  "1", "1.2", 12
 )
 
 abundance(stem)
@@ -69,8 +69,8 @@ abundance(pick_main_stem(stem))
 
 vft <- tribble(
   ~PlotName, ~CensusID, ~TreeID, ~StemID, ~DBH,
-        "p",         1,     "1",   "1.1",   10,
-        "q",         2,     "1",   "1.1",   10
+  "p", 1, "1", "1.1", 10,
+  "q", 2, "1", "1.1", 10
 )
 
 # * Warns if it detects multiple values of censusid or plotname
@@ -81,10 +81,10 @@ abundance(vft)
 # multiple measures per stemid.
 vft2 <- tribble(
   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
-          1,     "1",   "1.1",   88,  130,
-          1,     "1",   "1.1",   10,  160,
-          1,     "2",   "2.1",   20,  130,
-          1,     "2",   "2.2",   30,  130,
+  1, "1", "1.1", 88, 130,
+  1, "1", "1.1", 10, 160,
+  1, "2", "2.1", 20, 130,
+  1, "2", "2.2", 30, 130,
 )
 
 # You should count only the main stem of each tree
@@ -94,10 +94,10 @@ abundance(main_stem)
 
 vft3 <- tribble(
   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
-          1,     "1",   "1.1",   20,  130,
-          1,     "1",   "1.2",   10,  160,  # Main stem
-          2,     "1",   "1.1",   12,  130,
-          2,     "1",   "1.2",   22,  130   # Main stem
+  1, "1", "1.1", 20, 130,
+  1, "1", "1.2", 10, 160, # Main stem
+  2, "1", "1.1", 12, 130,
+  2, "1", "1.2", 22, 130 # Main stem
 )
 
 # You can compute by groups

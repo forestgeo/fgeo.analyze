@@ -51,7 +51,6 @@ fgeo_topography(elev_list, gridsize = 20)
 
 elev_df <- elev_list$col
 fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
-
 }
 \seealso{
 \code{\link[=fgeo_habitat]{fgeo_habitat()}}.

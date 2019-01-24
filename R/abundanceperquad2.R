@@ -27,7 +27,7 @@ abundanceperquad2 <- function(censdata,
   maxquad <- floor(plotdim[1] / gridsize) * floor(plotdim[2] / gridsize)
   allquad <- 1:maxquad
   if (dim(result[[type]])[1] < length(allspp) |
-      dim(result[[type]])[2] < length(allquad)) {
+    dim(result[[type]])[2] < length(allquad)) {
     result[[type]] <- fill.dimension(
       result[[type]],
       class1 = allspp,
