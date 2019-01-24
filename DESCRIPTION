@@ -54,8 +54,8 @@ Depends:
     R (>= 3.2)
 Imports: 
     dplyr,
-    fgeo.tool,
-    fgeo.x,
+    fgeo.tool (>= 1.0.1),
+    fgeo.x (>= 1.0.1),
     glue,
     graphics,
     grDevices,
@@ -78,8 +78,8 @@ Suggests:
     spelling,
     testthat
 Remotes: 
-    forestgeo/fgeo.tool@*release,
-    forestgeo/fgeo.x@*release
+    forestgeo/fgeo.tool,
+    forestgeo/fgeo.x
 Encoding: UTF-8
 Language: en-US
 LazyData: true
