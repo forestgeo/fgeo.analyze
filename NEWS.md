@@ -2,6 +2,10 @@
 
 * Work in progress.
 
+# fgeo.analyze 1.0.3 (GitHub release)
+
+* Released version now uses released versions recursively via @*release.
+
 # fgeo.analyze 1.0.2 (GitHub release)
 
 * Tidy dependencies.

@@ -1,6 +1,6 @@
 Package: fgeo.analyze
 Title: Analyze ForestGEO Data
-Version: 1.0.2.9000
+Version: 1.0.3
 Authors@R: 
     c(person(given = "Mauro",
              family = "Lepore",
@@ -53,9 +53,9 @@ BugReports: https://github.com/forestgeo/fgeo.analyze/issues
 Depends: 
     R (>= 3.2)
 Imports: 
+    fgeo.x,
+    fgeo.tool,
     dplyr,
-    fgeo.tool (>= 1.0.1),
-    fgeo.x (>= 1.0.1),
     glue,
     graphics,
     grDevices,
@@ -78,8 +78,8 @@ Suggests:
     spelling,
     testthat
 Remotes: 
-    forestgeo/fgeo.tool,
-    forestgeo/fgeo.x
+    forestgeo/fgeo.x@*release,
+    forestgeo/fgeo.tool@*release
 Encoding: UTF-8
 Language: en-US
 LazyData: true
