@@ -1,3 +1,4 @@
+^revdepcheck$
 ^cran-comments\.md$
 ^vignettes$
 ^\.buildignore$
