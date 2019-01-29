@@ -20,6 +20,8 @@
 #'   as many distinct integer values as determined by the argument `n`.
 #'
 #' @examples
+#' assert_is_installed("fgeo.x")
+#'
 #' # Input a ForestGEO-like elevation list or dataframe
 #' elevation_ls <- fgeo.x::elevation
 #' habitats <- fgeo_habitat(

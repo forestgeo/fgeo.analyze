@@ -18,6 +18,8 @@
 #' Thanks to Jian Zhang for reporting a bug (issue 59).
 #'
 #' @examples
+#' assert_is_installed("fgeo.x")
+#'
 #' elev_list <- fgeo.x::elevation
 #' fgeo_topography(elev_list, gridsize = 20)
 #'
@@ -102,6 +104,8 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
 #' @seealso [calcslope()], [quadslope()]
 #'
 #' @examples
+#' assert_is_installed("fgeo.x")
+#'
 #' # The input to elev is very specific; you may need to tweak it.
 #' elev <- fgeo.x::elevation
 #' result <- allquadratslopes(

@@ -83,6 +83,7 @@ Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 
 \examples{
 library(fgeo.tool)
+assert_is_installed("fgeo.x")
 
 # Example data
 tree <- fgeo.x::tree6_3species

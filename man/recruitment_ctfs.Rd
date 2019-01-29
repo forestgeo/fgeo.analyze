@@ -110,6 +110,8 @@ other survivors. Individuals whose status is \code{NA} in either census are
 deleted from all calculations.
 }
 \examples{
+assert_is_installed("fgeo.x")
+
 census1 <- fgeo.x::tree5
 census2 <- fgeo.x::tree6
 

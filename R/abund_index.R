@@ -19,6 +19,7 @@
 #' is a rowname.
 #'
 #' @examples
+#' assert_is_installed("fgeo.x")
 #' abund_index(fgeo.x::tree6, plotdim = c(1000, 500), gridsize = 20)
 #' @family functions for abundance and basal area
 #' @noRd

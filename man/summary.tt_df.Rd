@@ -21,6 +21,8 @@ A tibble.
 Summary of \code{tt_test()} results.
 }
 \examples{
+assert_is_installed("fgeo.x")
+
 tt_result <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
 
 summary(tt_result)

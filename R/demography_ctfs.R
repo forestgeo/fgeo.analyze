@@ -74,37 +74,39 @@
 #' * `date2`, mean date in census 2.
 #'
 #' @examples
+#' assert_is_installed("fgeo.x")
+#'
 #' census1 <- fgeo.x::tree5
 #' census2 <- fgeo.x::tree6
-#' 
+#'
 #' as_tibble(
 #'   recruitment_ctfs(census1, census2)
 #' )
-#' 
+#'
 #' # Use `interaction(...)` to aggregate by any number of grouping variables
 #' sp_quadrat <- interaction(census1$sp, census1$quadrat)
-#' 
+#'
 #' recruitment <- recruitment_ctfs(
 #'   census1, census2,
 #'   split1 = sp_quadrat,
 #'   quiet = TRUE
 #' )
 #' as_tibble(recruitment)
-#' 
+#'
 #' mortality <- mortality_ctfs(
 #'   census1, census2,
 #'   split1 = sp_quadrat, quiet = TRUE
 #' )
 #' as_tibble(mortality)
-#' 
+#'
 #' growth <- growth_ctfs(census1, census2, split1 = sp_quadrat, quiet = TRUE)
 #' as_tibble(growth)
-#' 
+#'
 #' # Easy way to separate grouping variables
 #' tidyr_is_installed <- requireNamespace("tidyr", quietly = TRUE)
 #' if (tidyr_is_installed) {
 #'   library(tidyr)
-#' 
+#'
 #'   as_tibble(growth) %>%
 #'     separate(groups, into = c("sp", "quadrat"))
 #' }

@@ -12,6 +12,11 @@
 #' @importFrom tibble tibble as.tibble as_tibble
 NULL
 
+#' @importFrom fgeo.tool assert_is_installed
+#' @export
+#' @keywords internal
+fgeo.tool::assert_is_installed
+
 #' Pipe operator
 #'
 #' See \code{magrittr::\link[magrittr]{\%>\%}} for details.

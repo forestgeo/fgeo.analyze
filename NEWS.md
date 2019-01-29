@@ -2,6 +2,10 @@
 
 * Work in progress.
 
+# fgeo.analyze 1.1.1 (GitHub release)
+
+* fgeo.x no longer is imported but suggested.
+
 # fgeo.analyze 1.1.0 (GitHub release)
 
 * Import fgeo packages via `Additional_repositories` served at <https://forestgeo.github.io/drat/>

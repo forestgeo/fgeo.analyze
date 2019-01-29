@@ -1,6 +1,6 @@
 Package: fgeo.analyze
 Title: Analyze ForestGEO Data
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: 
     c(person(given = "Mauro",
              family = "Lepore",
@@ -55,7 +55,6 @@ Depends:
 Imports: 
     dplyr,
     fgeo.tool,
-    fgeo.x,
     glue,
     graphics,
     grDevices,
@@ -70,6 +69,7 @@ Imports:
     withr
 Suggests: 
     covr,
+    fgeo.x,
     ggplot2,
     knitr,
     measurements,

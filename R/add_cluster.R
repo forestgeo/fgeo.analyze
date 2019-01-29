@@ -13,6 +13,7 @@
 #'   argument `k` to [stats::cutree()]).
 #'
 #' @examples
+#' assert_is_installed("fgeo.x")
 #' elev_ls <- fgeo.x::elevation
 #' topo <- fgeo_topography(elev_ls, gridsize = 20)
 #' add_cluster(topo, n = 4)

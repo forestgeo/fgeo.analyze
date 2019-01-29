@@ -45,6 +45,8 @@ Thanks to Jian Zhang for reporting a bug (issue 59).
 }
 
 \examples{
+assert_is_installed("fgeo.x")
+
 elev_list <- fgeo.x::elevation
 fgeo_topography(elev_list, gridsize = 20)
 

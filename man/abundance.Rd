@@ -59,6 +59,7 @@ stem <- tribble(
 abundance(stem)
 \dontrun{
 # Similar but more realistic
+assert_is_installed("fgeo.x")
 stem <- fgeo.x::download_data("luquillo_stem5_random")
 
 abundance(stem)

@@ -10,6 +10,8 @@
 #' @seealso [tt_test()], [base::summary()].
 #'
 #' @examples
+#' assert_is_installed("fgeo.x")
+#'
 #' tt_result <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
 #'
 #' summary(tt_result)

@@ -67,6 +67,7 @@
 #'
 #' @examples
 #' library(fgeo.tool)
+#' assert_is_installed("fgeo.x")
 #'
 #' # Example data
 #' tree <- fgeo.x::tree6_3species
@@ -406,7 +407,13 @@ rename_to_xy <- function(x) {
 }
 
 check_tt_test <- function(census, habitat, sp, plotdim, gridsize) {
-  has_stem_names <- !has_table_names(fgeo.x::tree6)(census)
+  tree_names <- c(
+  "treeID", "stemID", "tag", "StemTag", "sp", "quadrat", "gx", "gy",
+  "MeasureID", "CensusID", "dbh", "pom", "hom", "ExactDate", "DFstatus",
+  "codes", "nostems", "status", "date"
+  )
+  has_stem_names <- !all(names(census) %in% tree_names)
+
   msg <- "Is `census` a tree table (not a stem table)? See `?tt_test()`."
   if (has_stem_names) warn(msg)
 
