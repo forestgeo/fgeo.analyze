@@ -68,7 +68,7 @@ metrics from step 1.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1.9000</span>
       </span>
     </div>
 
@@ -144,19 +144,19 @@ metrics from step 1.</p></li>
     
     </div>
 
-    <pre class="usage"><span class='fu'>fgeo_habitat</span>(<span class='no'>elevation</span>, <span class='no'>gridsize</span>, <span class='no'>n</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>fgeo_habitat</span>(<span class='no'>elev</span>, <span class='no'>gridsize</span>, <span class='no'>n</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>elevation</th>
+      <th>elev</th>
       <td><p>One of these:</p><ul>
-<li><p>A dataframe containing elevation data, with columns <code>gx</code> and <code>gy</code> or <code>x</code>
-and <code>y</code> (e.g. <code>fgeo.x::elevation$col</code>).</p></li>
-<li><p>A ForestGEO-like elevation list with elements
-<code>xdim</code> and <code>ydim</code> giving plot dimensions, and element <code>col</code> containing a
-dataframe as described in the previous item (e.g. <code><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>fgeo.x::elevation</a></code>).</p></li>
+<li><p>A dataframe containing elevation data, with columns <code>gx</code>, <code>gy</code>, and
+<code>elev</code>, or <code>x</code>, <code>y</code>, and <code>elev</code> (e.g. <code>fgeo.x::elevation$col</code>).</p></li>
+<li><p>A ForestGEO-like elevation list with elements <code>xdim</code> and <code>ydim</code> giving
+plot dimensions, and element <code>col</code> containing a dataframe as described in
+the previous item (e.g. <code><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>fgeo.x::elevation</a></code>).</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -190,7 +190,9 @@ as many distinct integer values as determined by the argument <code>n</code>.</p
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Input a ForestGEO-like elevation list or dataframe</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/assert_is_installed'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
+
+<span class='co'># Input a ForestGEO-like elevation list or dataframe</span>
 <span class='no'>elevation_ls</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>elevation</a></span>
 <span class='no'>habitats</span> <span class='kw'>&lt;-</span> <span class='fu'>fgeo_habitat</span>(
   <span class='no'>elevation_ls</span>,
@@ -208,8 +210,7 @@ as many distinct integer values as determined by the argument <code>n</code>.</p
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>habitats</span>)</div><div class='output co'>#&gt; Classes 'fgeo_habitat', 'fgeo_topography', 'tbl_df', 'tbl' and 'data.frame':	400 obs. of  3 variables:
 #&gt;  $ gx      : num  0 0 0 0 0 0 0 0 0 0 ...
 #&gt;  $ gy      : num  0 20 40 60 80 100 120 140 160 180 ...
-#&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'>
-</div><span class='co'># NOT RUN {</span>
+#&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</div><span class='co'># NOT RUN {</span>
 <span class='no'>fgeo_plot_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"fgeo.plot"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='kw'>if</span> (<span class='no'>fgeo_plot_is_installed</span>) {
   <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.plot</span>)

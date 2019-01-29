@@ -67,7 +67,7 @@ messages." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1.9000</span>
       </span>
     </div>
 
@@ -264,7 +264,9 @@ deleted from all calculations.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>census1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree5</a></span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/assert_is_installed'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
+
+<span class='no'>census1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree5</a></span>
 <span class='no'>census2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6</a></span>
 
 <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(
@@ -299,7 +301,8 @@ deleted from all calculations.</p>
 #&gt; </span><span style='color: #555555;'>10</span><span> GUAGUI.1419     1     0     0     0 0.406  4.54 </span><span style='text-decoration: underline;'>19</span><span>012 </span><span style='text-decoration: underline;'>20</span><span>670
 #&gt; </span><span style='color: #555555;'># ... with 530 more rows</span><span></div><div class='input'>
 <span class='no'>mortality</span> <span class='kw'>&lt;-</span> <span class='fu'>mortality_ctfs</span>(
-  <span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>sp_quadrat</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='no'>census1</span>, <span class='no'>census2</span>,
+  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>sp_quadrat</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )
 <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>mortality</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 540 x 10</span><span>
 #&gt;    groups          N     D  rate lower upper  time date1 date2 dbhmean
