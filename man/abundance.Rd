@@ -5,12 +5,12 @@
 \alias{basal_area}
 \title{Abundance and basal area, optionally by groups.}
 \usage{
-abundance(x)
+abundance(data)
 
-basal_area(x)
+basal_area(data)
 }
 \arguments{
-\item{x}{A dataframe. \code{\link[=basal_area]{basal_area()}} requires a column named \code{dbh} (case
+\item{data}{A dataframe. \code{\link[=basal_area]{basal_area()}} requires a column named \code{dbh} (case
 insensitive).}
 }
 \description{
@@ -57,7 +57,6 @@ stem <- tribble(
 )
 
 abundance(stem)
-
 \dontrun{
 # Similar but more realistic
 stem <- fgeo.x::download_data("luquillo_stem5_random")
@@ -122,7 +121,6 @@ basal_area(main_stemids)
 
 # You can compute by groups
 basal_area(by_census)
-
 \dontrun{
 measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
 if (measurements_is_installed) {

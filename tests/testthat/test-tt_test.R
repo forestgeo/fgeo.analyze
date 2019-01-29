@@ -70,8 +70,8 @@ test_that("species may be factor or character", {
 
 test_that("tt_test fails gracefully with bad input", {
   expect_error(
-    tt_test(census = 1, c("SLOBER", "PREMON"), habitat = hab_luq),
-    "data.frame.*census.*is not TRUE"
+    tt_test(1, c("SLOBER", "PREMON"), habitat = hab_luq),
+    "data.frame.*is not TRUE"
   )
 
   expect_error(

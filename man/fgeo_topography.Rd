@@ -6,22 +6,21 @@
 \alias{fgeo_topography.list}
 \title{Create topography data: convexity, slope, and mean elevation.}
 \usage{
-fgeo_topography(elevation, ...)
+fgeo_topography(elev, ...)
 
-\method{fgeo_topography}{data.frame}(elevation, gridsize, xdim = NULL,
+\method{fgeo_topography}{data.frame}(elev, gridsize, xdim = NULL,
   ydim = NULL, edgecorrect = TRUE, ...)
 
-\method{fgeo_topography}{list}(elevation, gridsize, edgecorrect = TRUE,
-  ...)
+\method{fgeo_topography}{list}(elev, gridsize, edgecorrect = TRUE, ...)
 }
 \arguments{
-\item{elevation}{One of these:
+\item{elev}{One of these:
 \itemize{
-\item A dataframe containing elevation data, with columns \code{gx} and \code{gy} or \code{x}
-and \code{y} (e.g. \code{fgeo.x::elevation$col}).
-\item A ForestGEO-like elevation list with elements
-\code{xdim} and \code{ydim} giving plot dimensions, and element \code{col} containing a
-dataframe as described in the previous item (e.g. \code{fgeo.x::elevation}).
+\item A dataframe containing elevation data, with columns \code{gx}, \code{gy}, and
+\code{elev}, or \code{x}, \code{y}, and \code{elev} (e.g. \code{fgeo.x::elevation$col}).
+\item A ForestGEO-like elevation list with elements \code{xdim} and \code{ydim} giving
+plot dimensions, and element \code{col} containing a dataframe as described in
+the previous item (e.g. \code{fgeo.x::elevation}).
 }}
 
 \item{...}{Other arguments passed to methods.}
@@ -29,7 +28,7 @@ dataframe as described in the previous item (e.g. \code{fgeo.x::elevation}).
 \item{gridsize}{Number giving the size of each quadrat for which a habitat
 is calculated. Commonly, \code{gridsize = 20}.}
 
-\item{xdim, ydim}{(Required if \code{elevation} is a dataframe) \code{x} and \code{y}
+\item{xdim, ydim}{(Required if \code{elev} is a dataframe) \code{x} and \code{y}
 dimensions of the plot.}
 
 \item{edgecorrect}{Correct convexity in edge quadrats?}

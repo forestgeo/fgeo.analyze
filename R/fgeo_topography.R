@@ -2,15 +2,10 @@
 #'
 #' @inherit fgeo_habitat details
 #'
-#' @param elevation One of these:
-#'  * A dataframe containing elevation data, with columns `gx` and `gy` or `x`
-#'  and `y` (e.g. `fgeo.x::elevation$col`).
-#'  * A ForestGEO-like elevation list with elements
-#'  `xdim` and `ydim` giving plot dimensions, and element `col` containing a
-#'  dataframe as described in the previous item (e.g. `fgeo.x::elevation`).
+#' @inheritParams fgeo.tool::fgeo_elevation
 #' @param gridsize Number giving the size of each quadrat for which a habitat
 #'   is calculated. Commonly, `gridsize = 20`.
-#' @param xdim,ydim (Required if `elevation` is a dataframe) `x` and `y`
+#' @param xdim,ydim (Required if `elev` is a dataframe) `x` and `y`
 #'   dimensions of the plot.
 #' @param edgecorrect Correct convexity in edge quadrats?
 #' @param ... Other arguments passed to methods.
@@ -25,24 +20,24 @@
 #' @examples
 #' elev_list <- fgeo.x::elevation
 #' fgeo_topography(elev_list, gridsize = 20)
-#' 
+#'
 #' elev_df <- elev_list$col
 #' fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
 #' @family habitat functions
 #' @family functions to construct fgeo classes
 #' @export
-fgeo_topography <- function(elevation, ...) {
+fgeo_topography <- function(elev, ...) {
   UseMethod("fgeo_topography")
 }
 
 #' @export
-fgeo_topography.default <- function(elevation, gridsize, ...) {
-  abort_bad_class(elevation)
+fgeo_topography.default <- function(elev, gridsize, ...) {
+  abort_bad_class(elev)
 }
 
 #' @rdname fgeo_topography
 #' @export
-fgeo_topography.data.frame <- function(elevation,
+fgeo_topography.data.frame <- function(elev,
                                        gridsize,
                                        xdim = NULL,
                                        ydim = NULL,
@@ -51,24 +46,24 @@ fgeo_topography.data.frame <- function(elevation,
   force(gridsize)
   abort_if_xdim_ydim_is_null(xdim, ydim)
 
-  elevation_ls <- list(col = elevation, xdim = xdim, ydim = ydim)
-  fgeo_topography.list(elevation = elevation_ls, gridsize, edgecorrect)
+  elevation_ls <- list(col = elev, xdim = xdim, ydim = ydim)
+  fgeo_topography.list(elev = elevation_ls, gridsize, edgecorrect)
 }
 
 #' @rdname fgeo_topography
 #' @export
-fgeo_topography.list <- function(elevation,
+fgeo_topography.list <- function(elev,
                                  gridsize,
                                  edgecorrect = TRUE,
                                  ...) {
   force(gridsize)
-  plotdim <- c(elevation$xdim, elevation$ydim)
+  plotdim <- c(elev$xdim, elev$ydim)
 
   # Match names-requirements of allquadratslopes()
-  names(elevation$col) <- sub("gx", "x", names(elevation$col))
-  names(elevation$col) <- sub("gy", "y", names(elevation$col))
+  names(elev$col) <- sub("gx", "x", names(elev$col))
+  names(elev$col) <- sub("gy", "y", names(elev$col))
   topo <- suppressMessages(
-    allquadratslopes(elevation, gridsize, plotdim, edgecorrect)
+    allquadratslopes(elev, gridsize, plotdim, edgecorrect)
   )
 
   quad_idx <- as.integer(rownames(topo))
@@ -77,8 +72,8 @@ fgeo_topography.list <- function(elevation,
   new_fgeo_topography(out)
 }
 
-new_fgeo_topography <- function(x) {
-  structure(x, class = c("fgeo_topography", class(x)))
+new_fgeo_topography <- function(data) {
+  structure(data, class = c("fgeo_topography", class(data)))
 }
 
 abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
@@ -121,7 +116,7 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
 #' @noRd
 allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
   if (!"col" %in% names(elev)) {
-    warning("Input to elev must be a list with one element named 'col'.")
+    warn("Input to elev must be a list with one element named 'col'.")
   }
   rw <- cl <- 0
   on.exit(message(rw, " ", cl, "\n"))

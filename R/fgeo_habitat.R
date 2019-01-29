@@ -26,7 +26,7 @@
 #'   elevation_ls,
 #'   gridsize = 20, n = 4
 #' )
-#' 
+#'
 #' # Or
 #' elevation_df <- fgeo.x::elevation$col
 #' habitats <- fgeo_habitat(
@@ -34,32 +34,32 @@
 #'   gridsize = 20, n = 4,
 #'   xdim = 320, ydim = 500
 #' )
-#' 
+#'
 #' str(habitats)
 #' \dontrun{
 #' fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
 #' if (fgeo_plot_is_installed) {
 #'   library(fgeo.plot)
-#' 
+#'
 #'   autoplot(habitats)
 #' }
 #' }
-#' 
+#'
 #' # Habitat data is useful for calculating species-habitat associations
 #' census <- fgeo.x::tree6_3species
-#' 
+#'
 #' as_tibble(
 #'   tt_test(census, habitats)
 #' )
 #' @family habitat functions
 #' @family functions to construct fgeo classes
 #' @export
-fgeo_habitat <- function(elevation, gridsize, n, ...) {
-  out <- add_cluster(fgeo_topography(elevation, gridsize, ...), n)
+fgeo_habitat <- function(elev, gridsize, n, ...) {
+  out <- add_cluster(fgeo_topography(elev, gridsize, ...), n)
   names(out) <- sub("cluster", "habitats", names(out))
   new_fgeo_habitat(out[c("gx", "gy", "habitats")])
 }
 
-new_fgeo_habitat <- function(x) {
-  structure(x, class = c("fgeo_habitat", class(x)))
+new_fgeo_habitat <- function(data) {
+  structure(data, class = c("fgeo_habitat", class(data)))
 }

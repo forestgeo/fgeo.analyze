@@ -19,8 +19,8 @@ status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-proje
 Install the latest stable version of **fgeo.analyze** with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("forestgeo/fgeo.analyze@*release")
+these_repos <- c(getOption("repos"), "https://forestgeo.github.io/drat")
+install.packages("fgeo.analyze", repos = these_repos)
 ```
 
 Install the development version of **fgeo.analyze** with:

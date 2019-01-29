@@ -14,7 +14,7 @@
 #' abundant species. In a 50-ha plot, a minimum abundance of 50 trees/species
 #' has been used.
 #'
-#' @param census A dataframe; a ForestGEO _tree_ table (see details).
+#' @param tree A dataframe; a ForestGEO _tree_ table (see details).
 #' @param sp Character sting giving any number of species-names.
 #' @param habitat Object giving the habitat designation for each
 #'   plot partition defined by `gridsize`. See [`fgeo_habitat()`].
@@ -67,47 +67,47 @@
 #'
 #' @examples
 #' library(fgeo.tool)
-#' 
+#'
 #' # Example data
 #' tree <- fgeo.x::tree6_3species
 #' elevation <- fgeo.x::elevation
-#' 
+#'
 #' # Pick alive trees, of 10 mm or more
 #' census <- filter(tree, status == "A", dbh >= 10)
-#' 
+#'
 #' # Pick sufficiently abundant species
 #' pick <- filter(dplyr::add_count(census, sp), n > 50)
-#' 
+#'
 #' # Use your habitat data or create it from elevation data
 #' habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
-#' 
+#'
 #' # Defaults to using all species
 #' as_tibble(
 #'   tt_test(census, habitat)
 #' )
-#' 
+#'
 #' Reduce(rbind, tt_test(census, habitat))
-#' 
+#'
 #' some_species <- c("CASARB", "PREMON")
 #' result <- tt_test(census, habitat, sp = some_species)
 #' result
-#' 
+#'
 #' as_tibble(result)
-#' 
+#'
 #' summary(result)
 #' @family habitat functions
 #' @export
-tt_test <- function(census,
+tt_test <- function(tree,
                     habitat,
                     sp = NULL,
                     plotdim = NULL,
                     gridsize = NULL) {
-  stopifnot(is.data.frame(census))
+  stopifnot(is.data.frame(tree))
 
-  n_row <- nrow(dplyr::filter_all(census, dplyr::all_vars(is.na(.))))
+  n_row <- nrow(dplyr::filter_all(tree, dplyr::all_vars(is.na(.))))
   if (n_row > 0) {
     warn(glue("Dropping {n_row} row(s) full of missing values"))
-    census <- dplyr::filter_all(census, dplyr::any_vars(!is.na(.)))
+    tree <- dplyr::filter_all(tree, dplyr::any_vars(!is.na(.)))
   }
 
   stopifnot(is.data.frame(habitat))
@@ -122,11 +122,11 @@ tt_test <- function(census,
   gridsize <- gridsize %||% fgeo.tool::extract_gridsize(habitat)
   inform_gridsize_plotdim(gridsize, plotdim)
 
-  sp <- sp %||% unique(census$sp)[!is.na(unique(census$sp))]
+  sp <- sp %||% unique(tree$sp)[!is.na(unique(tree$sp))]
   habitat <- sanitize_habitat_names_if_necessary(habitat)
-  check_tt_test(census, habitat, sp, plotdim, gridsize)
+  check_tt_test(tree, habitat, sp, plotdim, gridsize)
 
-  abundance <- abund_index(census, plotdim, gridsize)
+  abundance <- abund_index(tree, plotdim, gridsize)
   result <- lapply(
     X = sp,
     FUN = torusonesp.all,

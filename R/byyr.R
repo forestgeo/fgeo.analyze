@@ -28,7 +28,7 @@
 #'
 #' @examples
 #' library(fgeo.tool)
-#' 
+#'
 #' # Example data
 #' vft <- tibble(
 #'   PlotName = c("luq", "luq", "luq", "luq", "luq", "luq", "luq", "luq"),
@@ -52,13 +52,13 @@
 #'   Tag = c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),
 #'   HOM = c(130L, 130L, 130L, 130L, 130L, 130L, 130L, 130L)
 #' )
-#' 
+#'
 #' vft
-#' 
+#'
 #' abundance_byyr(vft, DBH >= 10, DBH < 20)
-#' 
+#'
 #' abundance_byyr(vft, DBH >= 10)
-#' 
+#'
 #' basal <- basal_area_byyr(vft, DBH >= 10)
 #' basal
 #' \dontrun{
@@ -72,7 +72,7 @@
 #'       ~ measurements::conv_unit(.x, from = "mm2", to = "hectare")
 #'     )
 #'   basal_he
-#' 
+#'
 #'   # Standardize
 #'   number_of_hectares <- 50
 #'   basal_he %>%
@@ -148,14 +148,14 @@ pick_byyr <- function(vft, ...) {
   dplyr::filter(vft, !!!dots)
 }
 
-add_years <- function(x) {
-  drop_if_missing_dates(x) %>%
+add_years <- function(data) {
+  drop_if_missing_dates(data) %>%
     mean_years() %>%
     fgeo.tool::drop_if_na("year")
 }
 
-mean_years <- function(vft) {
-  years <- vft %>%
+mean_years <- function(data) {
+  years <- data %>%
     set_names(tolower) %>%
     group_by(.data$plotcensusnumber) %>%
     summarize(
@@ -164,28 +164,28 @@ mean_years <- function(vft) {
     unique() %>%
     arrange(.data$plotcensusnumber) %>%
     ungroup() %>%
-    rename_matches(vft)
+    rename_matches(data)
 
-  dplyr::left_join(vft, years, by = "plotcensusnumber") %>%
+  dplyr::left_join(data, years, by = "plotcensusnumber") %>%
     mutate(species = paste(.data$genus, .data$speciesname)) %>%
     arrange(.data$year)
 }
 
-drop_if_missing_dates <- function(x) {
-  missing_dates <- is.na(insensitive(x)$exactdate)
+drop_if_missing_dates <- function(data) {
+  missing_dates <- is.na(insensitive(data)$exactdate)
   if (any(missing_dates)) {
     warn("Detected and ignoring missing dates.")
   }
-  x <- x[!missing_dates, , drop = FALSE]
-  invisible(x)
+  data <- data[!missing_dates, , drop = FALSE]
+  invisible(data)
 }
 
-tidy_byyr_names <- function(x) {
-  x <- rlang::set_names(x, tolower)
+tidy_byyr_names <- function(data) {
+  data_ <- rlang::set_names(data, tolower)
   spp_family <- c("species", "family")
-  yr_nms <- setdiff(names(x), spp_family)
-  names(x) <- c(spp_family, glue("yr_{yr_nms}"))
-  x
+  yr_nms <- setdiff(names(data_), spp_family)
+  names(data_) <- c(spp_family, glue("yr_{yr_nms}"))
+  data_
 }
 
 #' Inform, warn or abort if not all expresisons refer to a given variable.
@@ -197,8 +197,8 @@ tidy_byyr_names <- function(x) {
 #'
 #' @noRd
 flag_if_not_expression_of_var <- function(dots, .flag, .var) {
-  .dots <- rlang::expr_deparse(dots)
-  if (!any(grepl(.var, .dots))) {
+  dots_ <- rlang::expr_deparse(dots)
+  if (!any(grepl(.var, dots_))) {
     flag_is_abort <- identical(.flag, rlang::abort)
     request <- ifelse(flag_is_abort, "must", "should")
     msg <- glue("All expressions passed to `...` {request} refer to `{.var}`.")

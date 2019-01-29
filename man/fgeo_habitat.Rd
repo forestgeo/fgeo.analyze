@@ -4,16 +4,16 @@
 \alias{fgeo_habitat}
 \title{Create habitat data from measures of topography.}
 \usage{
-fgeo_habitat(elevation, gridsize, n, ...)
+fgeo_habitat(elev, gridsize, n, ...)
 }
 \arguments{
-\item{elevation}{One of these:
+\item{elev}{One of these:
 \itemize{
-\item A dataframe containing elevation data, with columns \code{gx} and \code{gy} or \code{x}
-and \code{y} (e.g. \code{fgeo.x::elevation$col}).
-\item A ForestGEO-like elevation list with elements
-\code{xdim} and \code{ydim} giving plot dimensions, and element \code{col} containing a
-dataframe as described in the previous item (e.g. \code{fgeo.x::elevation}).
+\item A dataframe containing elevation data, with columns \code{gx}, \code{gy}, and
+\code{elev}, or \code{x}, \code{y}, and \code{elev} (e.g. \code{fgeo.x::elevation$col}).
+\item A ForestGEO-like elevation list with elements \code{xdim} and \code{ydim} giving
+plot dimensions, and element \code{col} containing a dataframe as described in
+the previous item (e.g. \code{fgeo.x::elevation}).
 }}
 
 \item{gridsize}{Number giving the size of each quadrat for which a habitat

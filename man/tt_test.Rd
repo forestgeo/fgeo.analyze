@@ -4,10 +4,10 @@
 \alias{tt_test}
 \title{Torus Translation Test to determine habitat associations of tree species.}
 \usage{
-tt_test(census, habitat, sp = NULL, plotdim = NULL, gridsize = NULL)
+tt_test(tree, habitat, sp = NULL, plotdim = NULL, gridsize = NULL)
 }
 \arguments{
-\item{census}{A dataframe; a ForestGEO \emph{tree} table (see details).}
+\item{tree}{A dataframe; a ForestGEO \emph{tree} table (see details).}
 
 \item{habitat}{Object giving the habitat designation for each
 plot partition defined by \code{gridsize}. See \code{\link[=fgeo_habitat]{fgeo_habitat()}}.}

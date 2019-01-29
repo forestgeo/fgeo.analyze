@@ -18,55 +18,54 @@
 #' Subsetting data is not the job of these functions. Instead see
 #' [base::subset()], [dplyr::filter()], or `[`.
 #'
-#' @param x A dataframe. [basal_area()] requires a column named `dbh` (case
+#' @param data A dataframe. [basal_area()] requires a column named `dbh` (case
 #'   insensitive).
 #'
 #' @seealso [dplyr::n()], [dplyr::group_by()].
 #'
 #' @examples
 #' library(fgeo.tool)
-#' 
+#'
 #' # abundance() -------------------------------------------------------------
-#' 
+#'
 #' abundance(data.frame(1))
-#' 
+#'
 #' # One stem per tree
 #' tree <- tribble(
 #'   ~TreeID, ~StemID, ~DBH,
 #'   "1", "1.1", 11,
 #'   "2", "2.1", 21
 #' )
-#' 
+#'
 #' abundance(tree)
-#' 
+#'
 #' # One tree with multiple stems
 #' stem <- tribble(
 #'   ~TreeID, ~StemID, ~DBH,
 #'   "1", "1.1", 11,
 #'   "1", "1.2", 12
 #' )
-#' 
-#' abundance(stem)
 #'
+#' abundance(stem)
 #' \dontrun{
 #' # Similar but more realistic
 #' stem <- fgeo.x::download_data("luquillo_stem5_random")
-#' 
+#'
 #' abundance(stem)
-#' 
+#'
 #' abundance(pick_main_stem(stem))
 #' }
-#' 
+#'
 #' vft <- tribble(
 #'   ~PlotName, ~CensusID, ~TreeID, ~StemID, ~DBH,
 #'   "p", 1, "1", "1.1", 10,
 #'   "q", 2, "1", "1.1", 10
 #' )
-#' 
+#'
 #' # * Warns if it detects multiple values of censusid or plotname
 #' # * Also warns if it detects duplicated values of treeid
 #' abundance(vft)
-#' 
+#'
 #' # If trees have buttressess, the data may have multiple stems per treeid or
 #' # multiple measures per stemid.
 #' vft2 <- tribble(
@@ -76,12 +75,12 @@
 #'   1, "2", "2.1", 20, 130,
 #'   1, "2", "2.2", 30, 130,
 #' )
-#' 
+#'
 #' # You should count only the main stem of each tree
 #' (main_stem <- pick_main_stem(vft2))
-#' 
+#'
 #' abundance(main_stem)
-#' 
+#'
 #' vft3 <- tribble(
 #'   ~CensusID, ~TreeID, ~StemID, ~DBH, ~HOM,
 #'   1, "1", "1.1", 20, 130,
@@ -89,35 +88,34 @@
 #'   2, "1", "1.1", 12, 130,
 #'   2, "1", "1.2", 22, 130 # Main stem
 #' )
-#' 
+#'
 #' # You can compute by groups
 #' by_census <- group_by(vft3, CensusID)
 #' (main_stems_by_census <- pick_main_stem(by_census))
-#' 
+#'
 #' abundance(main_stems_by_census)
-#' 
+#'
 #' # basal_area() ------------------------------------------------------------
-#' 
+#'
 #' # Data must have a column named dbh (case insensitive)
 #' basal_area(data.frame(dbh = 1))
-#' 
+#'
 #' # * Warns if it detects multiple values of censusid or plotname
 #' # * Also warns if it detects duplicated values of stemid
 #' basal_area(vft)
-#' 
+#'
 #' # First you may pick the main stemid of each stem
 #' (main_stemids <- pick_main_stemid(vft2))
-#' 
+#'
 #' basal_area(main_stemids)
-#' 
+#'
 #' # You can compute by groups
 #' basal_area(by_census)
-#'
 #' \dontrun{
 #' measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
 #' if (measurements_is_installed) {
 #'   library(measurements)
-#' 
+#'
 #'   # Convert units
 #'   ba <- basal_area(by_census)
 #'   ba$basal_area_he <- conv_unit(
@@ -125,26 +123,26 @@
 #'     from = "mm2",
 #'     to = "hectare"
 #'   )
-#' 
+#'
 #'   ba
 #' }
 #' }
-#' 
+#'
 #' @family functions for abundance and basal area
 #' @name abundance
 NULL
 with_anycase_group_df <- function(.summary, side_effects) {
-  function(x) {
+  function(data) {
     # Census and ViewFull tables have column names with different case. To
     # handle both kinds of dataset we lowercase column and group names.
-    low_nms <- groups_lower(set_names(x, tolower))
+    low_nms <- groups_lower(set_names(data, tolower))
     # Allow multiple, different side effects for different summaries
     lapply(side_effects, function(.f) .f(low_nms))
 
     result <- .summary(low_nms)
 
     # Restore the original case of names and relevant groups
-    restore_input_names_output_groups(result, x)
+    restore_input_names_output_groups(result, data)
   }
 }
 
@@ -162,18 +160,21 @@ basal_area <- with_anycase_group_df(
   list(warn_if_needed_stemid, warn_if_needed_plotname_censusid)
 )
 
-abundance_df <- function(x) {
-  g <- dplyr::group_vars(x)
-  out <- summarize(x, n = n())
+abundance_df <- function(data) {
+  g <- dplyr::group_vars(data)
+  out <- summarize(data, n = n())
   dplyr::grouped_df(out, g)
 }
 
-basal_area_df <- function(x) {
-  g <- dplyr::group_vars(x)
-  if (rlang::is_empty(x)) {
-    x <- tibble(dbh = double(0))
+basal_area_df <- function(data) {
+  g <- dplyr::group_vars(data)
+  if (rlang::is_empty(data)) {
+    data <- tibble(dbh = double(0))
   }
-  out <- summarize(x, basal_area = sum(basal_area_dbl(.data$dbh), na.rm = TRUE))
+  out <- summarize(
+    data,
+    basal_area = sum(basal_area_dbl(.data$dbh), na.rm = TRUE)
+  )
   dplyr::grouped_df(out, g)
 }
 
@@ -181,8 +182,8 @@ basal_area_dbl <- function(x) {
   1 / 4 * pi * (x)^2
 }
 
-groups_lower <- function(x) {
-  dplyr::grouped_df(x, tolower(dplyr::group_vars(x)))
+groups_lower <- function(data) {
+  dplyr::grouped_df(data, tolower(dplyr::group_vars(data)))
 }
 
 #' Get the correct grouping variables.
@@ -192,8 +193,9 @@ groups_lower <- function(x) {
 #' have the correct grouping variables but with the wrong case. This function
 #' outputs a sting of the grouping variable in `x` with the case of `y`.
 #'
-#' @param x A dataframe which groups are ok but lowercase.
-#' @param y A reference dataframe which gropus are not ok but have correct case.
+#' @param data A dataframe which groups are ok but lowercase.
+#' @param data_ref A reference dataframe which gropus are not ok but have
+#'   correct case.
 #'
 #' @examples
 #' out <- dplyr::grouped_df(tibble::tibble(x = 1, y = 1, z = 1), c("x", "y"))
@@ -201,61 +203,61 @@ groups_lower <- function(x) {
 #' ref <- dplyr::grouped_df(rlang::set_names(out, toupper), c("X"))
 #' group_vars_restore(out, ref)
 #' @noRd
-group_vars_restore <- function(x, y) {
+group_vars_restore <- function(data, data_ref) {
   in_ref <- fgeo.tool::detect_insensitive(
-    dplyr::group_vars(x),
-    dplyr::group_vars(y)
+    dplyr::group_vars(data),
+    dplyr::group_vars(data_ref)
   )
 
   fgeo.tool::extract_insensitive(
-    dplyr::group_vars(x),
-    dplyr::group_vars(y)
+    dplyr::group_vars(data),
+    dplyr::group_vars(data_ref)
   )
 }
 
-restore_input_names_output_groups <- function(out, .data) {
-  out <- rename_matches(out, .data)
-  g <- group_vars_restore(out, .data)
-  dplyr::grouped_df(ungroup(out), g)
+restore_input_names_output_groups <- function(data, data_ref) {
+  data_ <- rename_matches(data, data_ref)
+  g <- group_vars_restore(data_, data_ref)
+  dplyr::grouped_df(ungroup(data_), g)
 }
 
-# Only if data contains specific `name`s.
-warn_if_needed_plotname_censusid <- function(.x) {
+# Warn only if data contains specific `name`s.
+warn_if_needed_plotname_censusid <- function(data) {
   warn_if_has_var(
-    .x,
+    data,
     name = "censusid", predicate = is_multiple,
     problem = "Multiple", hint = "Do you need to group by censusid?"
   )
   warn_if_has_var(
-    .x,
+    data,
     name = "plotname", predicate = is_multiple,
     problem = "Multiple", hint = "Do you need to pick a single plot?"
   )
 
-  invisible(.x)
+  invisible(data)
 }
 
-warn_if_needed_treeid <- function(.x) {
+warn_if_needed_treeid <- function(data) {
   warn_if_has_var(
-    .x,
+    data,
     name = "treeid", predicate = is_duplicated,
     problem = "Duplicated", hint = "Do you need to pick main stems?"
   )
-  invisible(.x)
+  invisible(data)
 }
 
-warn_if_needed_stemid <- function(.x) {
+warn_if_needed_stemid <- function(data) {
   warn_if_has_var(
-    .x,
+    data,
     name = "stemid", predicate = is_duplicated,
     problem = "Duplicated", hint = "Do you need to pick largest `hom` values?"
   )
-  invisible(.x)
+  invisible(data)
 }
 
-warn_if_has_var <- function(.x, name, predicate, problem, hint) {
-  if (utils::hasName(.x, name)) {
+warn_if_has_var <- function(data, name, predicate, problem, hint) {
+  if (utils::hasName(data, name)) {
     msg <- glue("`{name}`: {problem} values were detected. {hint}")
-    fgeo.tool::flag_if_group(.x, name, predicate, warn, msg)
+    fgeo.tool::flag_if_group(data, name, predicate, warn, msg)
   }
 }
