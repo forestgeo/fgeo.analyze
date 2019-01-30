@@ -10,13 +10,13 @@
 |collate  |English_United States.1252   |
 |ctype    |English_United States.1252   |
 |tz       |America/New_York             |
-|date     |2019-01-27                   |
+|date     |2019-01-30                   |
 
 # Dependencies
 
 |package      |old      |new        |<U+0394>  |
 |:------------|:--------|:----------|:--|
-|fgeo.analyze |1.0.3    |1.0.3.9000 |*  |
+|fgeo.analyze |1.1.1    |1.1.1.9000 |*  |
 |assertthat   |0.2.0    |0.2.0      |   |
 |BH           |1.69.0-1 |1.69.0-1   |   |
 |bindr        |0.1.1    |0.1.1      |   |
@@ -26,8 +26,7 @@
 |crayon       |1.3.4    |1.3.4      |   |
 |dplyr        |0.7.8    |0.7.8      |   |
 |fansi        |0.4.0    |0.4.0      |   |
-|fgeo.tool    |1.0.3    |1.0.3.9000 |*  |
-|fgeo.x       |1.0.1    |1.0.1.9000 |*  |
+|fgeo.tool    |1.2.0    |1.2.0      |   |
 |glue         |1.3.0    |1.3.0      |   |
 |hms          |0.4.2    |0.4.2      |   |
 |lubridate    |1.7.4    |1.7.4      |   |
@@ -54,5 +53,5 @@
 
 |package                  |version |error |warning |note |
 |:------------------------|:-------|:-----|:-------|:----|
-|[fgeo](problems.md#fgeo) |1.0.1   |      |        |1    |
+|[fgeo](problems.md#fgeo) |1.0.1   |1     |1       |1    |
 

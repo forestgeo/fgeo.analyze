@@ -2,7 +2,9 @@
 
 * Work in progress.
 
-# fgeo.analyze 1.1.1 (GitHub release)
+* Reset and rerun revdepcheck.
+
+# fgeo.analyze 1.1.1 (GitHub and drat release)
 
 * fgeo.x no longer is imported but suggested.
 
@@ -26,4 +28,4 @@
 
 # fgeo.analyze 1.0.0 (GitHub release)
 
-* Initial GitHub release. For CRAN, fgeo.x and fgeo.tool must be released first.
+* Initial release.
