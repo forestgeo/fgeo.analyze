@@ -2,7 +2,9 @@
 
 * Work in progress.
 
-* Reset and rerun revdepcheck.
+# fgeo.analyze 1.1.2 (GitHub and drat release)
+
+* Use tidy versions.
 
 # fgeo.analyze 1.1.1 (GitHub and drat release)
 
