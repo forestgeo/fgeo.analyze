@@ -484,6 +484,7 @@ habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 tt_test_result <- tt_test(pick, habitat)
 #> Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.
 #> Using `gridsize = 20`. To change this value see `?tt_test()`.
+#> Warning: Is `census` a tree table (not a stem table)? See `?tt_test()`.
 
 # A list or matrices
 tt_test_result

@@ -107,10 +107,6 @@ Reduce(rbind, tt_test(census, habitat))
 
 some_species <- c("CASARB", "PREMON")
 result <- tt_test(census, habitat, sp = some_species)
-result
-
-as_tibble(result)
-
 summary(result)
 }
 \seealso{

@@ -1,5 +1,5 @@
 #' @importFrom dplyr group_by ungroup filter select mutate summarize arrange
-#' @importFrom dplyr count
+#' @importFrom dplyr count n
 #' @importFrom fgeo.tool check_crucial_names is_duplicated is_multiple
 #' @importFrom fgeo.tool rename_matches
 #' @importFrom glue glue glue_collapse
@@ -30,4 +30,4 @@ fgeo.tool::assert_is_installed
 NULL
 
 # Avoid CMD check warnings
-utils::globalVariables(c(".data", ".", "n"))
+utils::globalVariables(c(".data", "."))

@@ -1,6 +1,6 @@
 # fgeo
 
-Version: 1.0.1
+Version: 1.1.1
 
 ## In both
 
@@ -8,7 +8,7 @@ Version: 1.0.1
     ```
     Re-running with no redirection of stdout/stderr.
     Hmm ... looks like a package
-    You may want to clean up by 'rm -Rf C:/Users/LeporeM/AppData/Local/Temp/1/RtmpcRF8uS/Rd2pdf1d0841fd684c'
+    You may want to clean up by 'rm -Rf C:/Users/LeporeM/AppData/Local/Temp/1/RtmpG8OhLE/Rd2pdf38203bce3cc'
     ```
 
 *   checking PDF version of manual ... WARNING

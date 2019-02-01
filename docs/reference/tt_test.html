@@ -64,7 +64,7 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
       </span>
     </div>
 
@@ -280,42 +280,7 @@ species is aggregated on that habitat.</p>
 #&gt; PREMON      270     1322        8              0        0.16875
 #&gt; SLOBER     1292      303        5              0        0.80750</div><div class='input'>
 <span class='no'>some_species</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"CASARB"</span>, <span class='st'>"PREMON"</span>)
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='no'>some_species</span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'><span class='no'>result</span></div><div class='output co'>#&gt; [[1]]
-#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
-#&gt; CASARB      29     1242      356        2              0        0.77625      20
-#&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
-#&gt; CASARB      390     1206        4              0        0.24375      12
-#&gt;        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
-#&gt; CASARB      778      817        5              0        0.48625       5
-#&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#&gt; CASARB      932      658       10              0         0.5825
-#&gt; attr(,"fixed_nan")
-#&gt; [1] FALSE
-#&gt; 
-#&gt; [[2]]
-#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
-#&gt; PREMON      91     1093      504        3              0       0.683125      89
-#&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
-#&gt; PREMON     1254      344        2              0        0.78375      40
-#&gt;        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
-#&gt; PREMON      305     1292        3              0       0.190625      14
-#&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#&gt; PREMON      270     1322        8              0        0.16875
-#&gt; attr(,"fixed_nan")
-#&gt; [1] FALSE
-#&gt; </div><div class='input'>
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 8</span><span>
-#&gt;   habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
-#&gt; </span><span style='color: #555555;'>*</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> 1       CASARB    29   </span><span style='text-decoration: underline;'>1</span><span>242    356      2            0        0.776
-#&gt; </span><span style='color: #555555;'>2</span><span> 2       CASARB    20    390   </span><span style='text-decoration: underline;'>1</span><span>206      4            0        0.244
-#&gt; </span><span style='color: #555555;'>3</span><span> 3       CASARB    12    778    817      5            0        0.486
-#&gt; </span><span style='color: #555555;'>4</span><span> 4       CASARB     5    932    658     10            0        0.582
-#&gt; </span><span style='color: #555555;'>5</span><span> 1       PREMON    91   </span><span style='text-decoration: underline;'>1</span><span>093    504      3            0        0.683
-#&gt; </span><span style='color: #555555;'>6</span><span> 2       PREMON    89   </span><span style='text-decoration: underline;'>1</span><span>254    344      2            0        0.784
-#&gt; </span><span style='color: #555555;'>7</span><span> 3       PREMON    40    305   </span><span style='text-decoration: underline;'>1</span><span>292      3            0        0.191
-#&gt; </span><span style='color: #555555;'>8</span><span> 4       PREMON    14    270   </span><span style='text-decoration: underline;'>1</span><span>322      8            0        0.169</div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 3</span><span>
+<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='no'>some_species</span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 3</span><span>
 #&gt;   sp     habitat association
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      
 #&gt; </span><span style='color: #555555;'>1</span><span> CASARB 1       neutral    

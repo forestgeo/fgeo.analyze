@@ -29,27 +29,17 @@
 #'   gridsize = 20, n = 4
 #' )
 #'
-#' # Or
-#' elevation_df <- fgeo.x::elevation$col
-#' habitats <- fgeo_habitat(
-#'   elevation_df,
-#'   gridsize = 20, n = 4,
-#'   xdim = 320, ydim = 500
-#' )
-#'
 #' str(habitats)
-#' \dontrun{
-#' fgeo_plot_is_installed <- requireNamespace("fgeo.plot", quietly = TRUE)
-#' if (fgeo_plot_is_installed) {
-#'   library(fgeo.plot)
 #'
-#'   autoplot(habitats)
-#' }
+#' \dontrun{
+#' assert_is_installed("fgeo.plot")
+#' library(fgeo.plot)
+#'
+#' autoplot(habitats)
 #' }
 #'
 #' # Habitat data is useful for calculating species-habitat associations
 #' census <- fgeo.x::tree6_3species
-#'
 #' as_tibble(
 #'   tt_test(census, habitats)
 #' )

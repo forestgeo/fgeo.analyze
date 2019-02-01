@@ -2,6 +2,11 @@
 
 * Work in progress.
 
+# fgeo.analyze 1.1.3 (GitHub and drat release)
+
+* Meet CRAN standards.
+* `dplyr::n()` is now imported to avoid [`error could not find function "n"`](https://dplyr.tidyverse.org/news/index.html#breaking-changes).
+
 # fgeo.analyze 1.1.2 (GitHub and drat release)
 
 * Use tidy versions.
