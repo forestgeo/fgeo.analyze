@@ -257,7 +257,7 @@ warn_if_needed_stemid <- function(data) {
 }
 
 warn_if_has_var <- function(data, name, predicate, problem, hint) {
-  if (utils::hasName(data, name)) {
+  if (rlang::has_name(data, name)) {
     msg <- glue("`{name}`: {problem} values were detected. {hint}")
     fgeo.tool::flag_if_group(data, name, predicate, warn, msg)
   }
