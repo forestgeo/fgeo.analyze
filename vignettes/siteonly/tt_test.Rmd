@@ -43,7 +43,6 @@ remotes::install_github("forestgeo/fgeo")
 library(dplyr)
 library(ggplot2)
 library(fgeo)
-library(fgeo.data)
 ```
 
 ```{r}
@@ -56,14 +55,15 @@ set.seed(1014)
 We will use example datasets that come with __fgeo.analyze__.
 
 ```{r}
-census <- luquillo_tree6_random
+census <- fgeo.x::download_data("luquillo_tree6_random")
 
 str(census)
 ```
 
 ```{r}
 # Creating habitat data from elevation data
-habitat <- fgeo_habitat(luquillo_elevation, gridsize = 20, n = 4)
+elevation <- fgeo.x::elevation
+habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 str(habitat)
 ```
 

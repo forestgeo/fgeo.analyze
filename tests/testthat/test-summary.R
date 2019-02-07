@@ -66,7 +66,8 @@ context("summary-regression")
 # FIXME: Added for extra safety during dangerous moves. Can remove when done
 test_that("prints output equal to reference", {
   skip("Run only during risky refactoring")
-
+  skip_on_travis("Run only during risky refactoring")
+  luquillo_tree5_random <- fgeo.x::download_data("luquillo_tree5_random")
   explain_tt_test <- as.data.frame(
     summary(tt_test(fgeo.data::luquillo_tree5_random, fgeo.x::habitat))
   )
