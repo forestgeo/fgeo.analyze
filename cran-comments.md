@@ -8,24 +8,8 @@
 
 ## R CMD check results
 
-* using R version 3.4.4 (2018-03-15)
-* using platform: x86_64-pc-linux-gnu (64-bit)
-* this is package ‘fgeo.analyze’ version ‘1.1.3’
+0 errors | 1 warnings (safe to ignore) | 0 notes
 
-Status: 2 NOTEs
-* NOTE 1 raises if the package is built using R v3.5. (<https://ropensci.github.io/dev_guide/building.html#authorship>).
-* NOTE 2 is safe to ignore.
-
-NOTE 1
-* Authors@R field gives persons with non-standard roles:
-* Gabriel Arellano [aut, rev]: rev
-* Suzanne Lao [aut, rev]: rev
-* KangMin Ngo [rev]: rev
-* Haley Overstreet [rev]: rev
-* Sabrina Russo [aut, rev]: rev
-* Daniel Zuleta [aut, rev]: rev
-
-NOTE 2
 * New submission
 * Strong dependencies not in mainstream repositories:
 * fgeo.tool
@@ -34,6 +18,16 @@ NOTE 2
 * Availability using Additional_repositories specification:
 * fgeo.tool yes https://forestgeo.github.io/drat/
 * fgeo.x yes https://forestgeo.github.io/drat/
+
+[Raises only if the package is built using R v3.5](https://ropensci.github.io/dev_guide/building.html#authorship):
+
+* Authors@R field gives persons with non-standard roles:
+* Gabriel Arellano [aut, rev]: rev
+* Suzanne Lao [aut, rev]: rev
+* KangMin Ngo [rev]: rev
+* Haley Overstreet [rev]: rev
+* Sabrina Russo [aut, rev]: rev
+* Daniel Zuleta [aut, rev]: rev
 
 ## Downstream dependencies
 

@@ -9,6 +9,7 @@
 Developer facing:
 
 TODO Website is now build on Travis CI and pushed served on the gh-pages branch.
+* fgeo is now a suggested package.
 
 # fgeo.analyze 1.1.3  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
 

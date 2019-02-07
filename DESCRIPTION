@@ -69,6 +69,7 @@ Imports:
     withr (>= 2.1.2)
 Suggests: 
     covr (>= 3.2.1),
+    fgeo (>= 1.1.1),
     fgeo.x (>= 1.1.2),
     ggplot2 (>= 3.1.0),
     knitr (>= 1.21),
