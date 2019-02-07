@@ -1,3 +1,6 @@
+^ru\.sh$
+^ca\.sh$
+^cm\.sh$
 ^revdep$
 ^cran-comments\.md$
 ^vignettes$
