@@ -2,7 +2,7 @@
 
 * Work in progress.
 
-# fgeo.analyze 1.1.3.9000  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
+# fgeo.analyze 1.1.4 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
 
 * News now link to GitHub and drat release pages.
 
