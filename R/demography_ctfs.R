@@ -1,11 +1,15 @@
 #' Recruitment, mortality, and growth.
 #'
+#' @description
+#' \Sexpr[results=rd, stage=render]{fgeo.analyze:::lifecycle("questioning")}
+#'
 #' These functions are adapted from the CTFS-R package. Compared to the
 #' original functions, these ones have a similar interface but use more
 #' conservative defaults and allow suppressing messages. These functions also
 #' feature formal tests, bug fixes, additional assertions, and improved
 #' messages.
 #'
+#' @details
 #' Survivors are all individuals alive in both censuses, with `status == A` in
 #' the first census, and a diameter greater than `mindbh` in the first census.
 #' The total population in the second census includes all those alive plus any

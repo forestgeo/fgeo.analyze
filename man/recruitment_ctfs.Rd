@@ -96,6 +96,8 @@ julian object (R displays as date, but treats as integer).
 }
 }
 \description{
+\Sexpr[results=rd, stage=render]{fgeo.analyze:::lifecycle("questioning")}
+
 These functions are adapted from the CTFS-R package. Compared to the
 original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
