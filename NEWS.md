@@ -6,16 +6,16 @@
 
 * Maintenance release.
 
-# fgeo.analyze 1.1.3  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
+# fgeo.analyze 1.1.3  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
 
 * Meet CRAN standards.
 * `dplyr::n()` is now imported to avoid [`error could not find function "n"`](https://dplyr.tidyverse.org/news/index.html#breaking-changes).
 
-# fgeo.analyze 1.1.2  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
+# fgeo.analyze 1.1.2  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
 
 * Use tidy versions.
 
-# fgeo.analyze 1.1.1  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
+# fgeo.analyze 1.1.1  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
 
 * fgeo.x no longer is imported but suggested.
 
@@ -25,7 +25,7 @@
 
 * First argument of most visible functions now follow tidyverse principles (<http://bit.ly/2TfDcfX>).
 
-# fgeo.analyze 1.0.3  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
+# fgeo.analyze 1.0.3  ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
 
 * Released version now uses released versions recursively via @*release.
 
