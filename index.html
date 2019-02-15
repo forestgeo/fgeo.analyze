@@ -136,26 +136,27 @@
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;   &lt;int&gt;</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 1     4</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">summarize</span>(vft, <span class="dt">n =</span> <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; 1     4</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="kw"><a href="reference/abundance.html">abundance</a></span>(vft)</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Warning: `treeid`: Duplicated values were detected. Do you need to pick</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; main stems?</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 1     4</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; Warning: Calling `n()` without importing or prefixing it is deprecated, use `dplyr::n()`.</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; This warning is displayed once per session.</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;       n</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 1     4</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="kw"><a href="reference/abundance.html">abundance</a></span>(vft)</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; Warning: `treeid`: Duplicated values were detected. Do you need to pick</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; main stems?</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt;       n</span></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 1     4</span></a></code></pre></div>
 <p>But that result is likely not what you expect. Instead, you likely expect this:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">summarize</span>(vft, <span class="dt">n =</span> <span class="kw">n_distinct</span>(TreeID))</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; Warning in summarise_impl(.data, dots): hybrid evaluation forced for</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; `n_distinct`. Please use dplyr::n_distinct() or library(dplyr) to remove</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; this warning.</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1     2</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; Warning: Calling `n_distinct()` without importing or prefixing it is deprecated, use `dplyr::n_distinct()`.</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; This warning is displayed once per session.</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;       n</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 1     2</span></a></code></pre></div>
 <p>As shown above, you can get a correct result by combining <code>summarize()</code> and <code>n_distinct()</code> (from the <strong>dplyr</strong> package). But <code><a href="reference/abundance.html">abundance()</a></code> includes some useful additional features (see <code>?abundance()</code>). This code conveys your intention more clearly, i.e. to calculate tree abundance by counting the number of main stems:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">(main_stems &lt;-<span class="st"> </span><span class="kw">pick_main_stem</span>(vft))</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; # A tibble: 2 x 5</span></a>

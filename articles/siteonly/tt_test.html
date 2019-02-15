@@ -93,7 +93,7 @@
             <h3 class="subtitle">Given a number of tree species and habitat types in a plot, are species significantly aggregated within habitats?</h3>
                         <h4 class="author">Mauro Lepore</h4>
             
-            <h4 class="date">2019-02-14</h4>
+            <h4 class="date">2019-02-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/forestgeo/fgeo.analyze/blob/master/vignettes/siteonly/tt_test.Rmd"><code>vignettes/siteonly/tt_test.Rmd</code></a></small>
       <div class="hidden name"><code>tt_test.Rmd</code></div>
@@ -339,7 +339,7 @@
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(sp, habitat) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">total_stem_count =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(N.Hab))</a>
 <a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="co">#&gt; # Groups:   sp [?]</span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="co">#&gt; # Groups:   sp [3]</span></a>
 <a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co">#&gt;    sp     habitat total_stem_count</span></a>
 <a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb16-8" data-line-number="8"><span class="co">#&gt;  1 CASARB 1                     29</span></a>
