@@ -1,5 +1,6 @@
 # fgeo.analyze (development version)
 
+* `tt_test()` now aborts if data has insufficiently abundant species (#40).
 * Work in progress.
 
 # fgeo.analyze 1.1.4 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
