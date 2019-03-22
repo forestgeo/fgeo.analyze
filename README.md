@@ -69,6 +69,8 @@ count(vft)
 #>   <int>
 #> 1     4
 summarize(vft, n = n())
+#> Warning: Calling `n()` without importing or prefixing it is deprecated, use `dplyr::n()`.
+#> This warning is displayed once per session.
 #> # A tibble: 1 x 1
 #>       n
 #>   <int>
@@ -87,9 +89,8 @@ expect this:
 
 ``` r
 summarize(vft, n = n_distinct(TreeID))
-#> Warning in summarise_impl(.data, dots): hybrid evaluation forced for
-#> `n_distinct`. Please use dplyr::n_distinct() or library(dplyr) to remove
-#> this warning.
+#> Warning: Calling `n_distinct()` without importing or prefixing it is deprecated, use `dplyr::n_distinct()`.
+#> This warning is displayed once per session.
 #> # A tibble: 1 x 1
 #>       n
 #>   <int>

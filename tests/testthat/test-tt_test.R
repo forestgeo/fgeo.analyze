@@ -11,8 +11,6 @@ sp_top3_luq <- unique(fgeo.x::tree6_3species$sp)
 pdim_luq <- c(320, 500)
 gsize_luq <- 20
 
-
-
 test_that("tt_test drops rows full of NA with a warning", {
   library(dplyr)
 
@@ -145,14 +143,14 @@ test_that("with habitat data with names gx,gy|x,y output is identical", {
 
 # Bug fixes ---------------------------------------------------------------
 
-test_that("warns if fixed NaN", {
+test_that("tt_test errs if a quadrat is a quadrat is empty (#40)", {
   species <- c("CASARB", "PREMON", "SLOBER")
   tree <- fgeo.x::tree5 %>%
     filter(sp %in% species)
 
-  expect_warning(
+  expect_error(
     tt_test(tree, fgeo.x::habitat),
-    "zero.*where.*`Tortotstcnthab` and `Torspstcnthab` are zero"
+    "Can't calculate the relative stem density"
   )
 })
 

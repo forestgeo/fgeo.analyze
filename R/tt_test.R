@@ -133,30 +133,19 @@ tt_test <- function(tree,
     gridsize = gridsize
   )
 
-  if (any(fixed_nan(result))) {
-    warn_fixed_nan()
-  }
-
   new_tt_lst(result)
 }
 
-fixed_nan <- function(x) {
-  vapply(
-    lapply(x, attributes),
-    function(x) x[["fixed_nan"]],
-    FUN.VALUE = logical(1)
-  )
-}
-
-warn_fixed_nan <- function() {
-  warn(glue("
-    Using zero (`0`) where the relative stem density of focal species
-    per habitat of the focal torus-based map can't be calculated
-    because `Tortotstcnthab` and `Torspstcnthab` are zero:
+abort_if_insufficiently_abundant <- function() {
+  abort(glue("
+    Can't calculate the relative stem density of focal species per habitat of
+    the focal torus-based map. Is your data sufficiently abundant?
+    `Tortotstcnthab / Torspstcnthab` is not a number (`NaN`).
     * `Tortotstcnthab` determines total number of stems per habitat of the
-      focal torus-based map.
+    focal torus-based map.
     * `Torspstcnthab` determines tot. no. stems for focal sp. per habitat of
-      the focal torus-based map.
+    the focal torus-based map.
+    For more details see https://github.com/forestgeo/fgeo.analyze/issues/40.
   "))
 }
 
@@ -173,9 +162,6 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
 
   GrLsEq <- matrix(0, 1, num.habs * 6) # Creates empty matrix for output.
   rownames(GrLsEq) <- species # Names single row of output matrix.
-
-  # Will be `TRUE` if `NaN` must be replaced by zero (`0`)
-  fixed_nan <- FALSE
 
   # Creates names for columns of output matrix.
   for (i in 1:num.habs) {
@@ -318,8 +304,7 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
         # torus-based map.
         Torspprophab <- Torspstcnthab / Tortotstcnthab
         if (any(is.nan(Torspprophab))) {
-          Torspprophab[is.nan(Torspprophab)] <- 0
-          fixed_nan <- TRUE
+          abort_if_insufficiently_abundant()
         }
 
         for (i in 1:num.habs) {
@@ -377,8 +362,6 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
     GrLsEq[1, (6 * i)] <- GrLsEq[1, (6 * i) - 4] / (4 * (plotdimqx * plotdimqy))
   }
 
-  # Flag if had to fix `NaN` to throw a warning from higher level
-  attr(GrLsEq, "fixed_nan") <- fixed_nan
   GrLsEq
 }
 
