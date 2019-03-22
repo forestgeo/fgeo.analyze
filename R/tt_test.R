@@ -136,16 +136,11 @@ tt_test <- function(tree,
   new_tt_lst(result)
 }
 
-abort_if_insufficiently_abundant <- function() {
+abort_if_zero_tortotstcnthab <- function() {
   abort(glue("
-    Can't calculate the relative stem density of focal species per habitat of
-    the focal torus-based map. Is your data sufficiently abundant?
-    `Tortotstcnthab / Torspstcnthab` is not a number (`NaN`).
-    * `Tortotstcnthab` determines total number of stems per habitat of the
-    focal torus-based map.
-    * `Torspstcnthab` determines tot. no. stems for focal sp. per habitat of
-    the focal torus-based map.
-    For more details see https://github.com/forestgeo/fgeo.analyze/issues/40.
+    Can't deal with a zero value of `Tortotstcnthab` (total number of stems for
+    focal species per habitat of the focal torus-based map).
+    For more information see https://github.com/forestgeo/fgeo.analyze/issues/40.
   "))
 }
 
@@ -303,8 +298,8 @@ torusonesp.all <- function(species, hab.index20, allabund20, plotdim, gridsize) 
         # Calculates relative stem density of focal sp. per habitat of the focal
         # torus-based map.
         Torspprophab <- Torspstcnthab / Tortotstcnthab
-        if (any(is.nan(Torspprophab))) {
-          abort_if_insufficiently_abundant()
+        if (any(Tortotstcnthab == 0)) {
+          abort_if_zero_tortotstcnthab()
         }
 
         for (i in 1:num.habs) {

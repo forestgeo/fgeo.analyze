@@ -498,8 +498,6 @@ tt_test_result
 #> CASARB      11      482     1114        4              0        0.30125
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #> CASARB       8     1217      377        6              0       0.760625
-#> attr(,"fixed_nan")
-#> [1] FALSE
 #> 
 #> [[2]]
 #>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
@@ -510,8 +508,6 @@ tt_test_result
 #> PREMON      39      230     1367        3              0        0.14375
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #> PREMON      15      130     1465        5              0        0.08125
-#> attr(,"fixed_nan")
-#> [1] FALSE
 #> 
 #> [[3]]
 #>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
@@ -522,8 +518,6 @@ tt_test_result
 #> SLOBER      21     1336      260        4              0          0.835
 #>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
 #> SLOBER       8     1193      396       11              0       0.745625
-#> attr(,"fixed_nan")
-#> [1] FALSE
 
 # A dataframe
 as_tibble(tt_test_result)
