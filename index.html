@@ -532,68 +532,62 @@
 <a class="sourceLine" id="cb22-24" data-line-number="24"><span class="co">#&gt; CASARB      11      482     1114        4              0        0.30125</span></a>
 <a class="sourceLine" id="cb22-25" data-line-number="25"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
 <a class="sourceLine" id="cb22-26" data-line-number="26"><span class="co">#&gt; CASARB       8     1217      377        6              0       0.760625</span></a>
-<a class="sourceLine" id="cb22-27" data-line-number="27"><span class="co">#&gt; attr(,"fixed_nan")</span></a>
-<a class="sourceLine" id="cb22-28" data-line-number="28"><span class="co">#&gt; [1] FALSE</span></a>
-<a class="sourceLine" id="cb22-29" data-line-number="29"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb22-30" data-line-number="30"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb22-31" data-line-number="31"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
-<a class="sourceLine" id="cb22-32" data-line-number="32"><span class="co">#&gt; PREMON      94     1005      594        1              0       0.628125</span></a>
-<a class="sourceLine" id="cb22-33" data-line-number="33"><span class="co">#&gt;        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2</span></a>
-<a class="sourceLine" id="cb22-34" data-line-number="34"><span class="co">#&gt; PREMON      97     1478      120        2              0        0.92375</span></a>
-<a class="sourceLine" id="cb22-35" data-line-number="35"><span class="co">#&gt;        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3</span></a>
-<a class="sourceLine" id="cb22-36" data-line-number="36"><span class="co">#&gt; PREMON      39      230     1367        3              0        0.14375</span></a>
-<a class="sourceLine" id="cb22-37" data-line-number="37"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
-<a class="sourceLine" id="cb22-38" data-line-number="38"><span class="co">#&gt; PREMON      15      130     1465        5              0        0.08125</span></a>
-<a class="sourceLine" id="cb22-39" data-line-number="39"><span class="co">#&gt; attr(,"fixed_nan")</span></a>
-<a class="sourceLine" id="cb22-40" data-line-number="40"><span class="co">#&gt; [1] FALSE</span></a>
-<a class="sourceLine" id="cb22-41" data-line-number="41"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb22-42" data-line-number="42"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb22-43" data-line-number="43"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
-<a class="sourceLine" id="cb22-44" data-line-number="44"><span class="co">#&gt; SLOBER      21      270     1328        2              0        0.16875</span></a>
-<a class="sourceLine" id="cb22-45" data-line-number="45"><span class="co">#&gt;        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2</span></a>
-<a class="sourceLine" id="cb22-46" data-line-number="46"><span class="co">#&gt; SLOBER      25      516     1082        2              0         0.3225</span></a>
-<a class="sourceLine" id="cb22-47" data-line-number="47"><span class="co">#&gt;        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3</span></a>
-<a class="sourceLine" id="cb22-48" data-line-number="48"><span class="co">#&gt; SLOBER      21     1336      260        4              0          0.835</span></a>
-<a class="sourceLine" id="cb22-49" data-line-number="49"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
-<a class="sourceLine" id="cb22-50" data-line-number="50"><span class="co">#&gt; SLOBER       8     1193      396       11              0       0.745625</span></a>
-<a class="sourceLine" id="cb22-51" data-line-number="51"><span class="co">#&gt; attr(,"fixed_nan")</span></a>
-<a class="sourceLine" id="cb22-52" data-line-number="52"><span class="co">#&gt; [1] FALSE</span></a>
-<a class="sourceLine" id="cb22-53" data-line-number="53"></a>
-<a class="sourceLine" id="cb22-54" data-line-number="54"><span class="co"># A dataframe</span></a>
-<a class="sourceLine" id="cb22-55" data-line-number="55"><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(tt_test_result)</a>
-<a class="sourceLine" id="cb22-56" data-line-number="56"><span class="co">#&gt; # A tibble: 12 x 8</span></a>
-<a class="sourceLine" id="cb22-57" data-line-number="57"><span class="co">#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>
-<a class="sourceLine" id="cb22-58" data-line-number="58"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb22-59" data-line-number="59"><span class="co">#&gt;  1 1       CASARB    35   1313    282      5            0       0.821 </span></a>
-<a class="sourceLine" id="cb22-60" data-line-number="60"><span class="co">#&gt;  2 2       CASARB    24    394   1204      2            0       0.246 </span></a>
-<a class="sourceLine" id="cb22-61" data-line-number="61"><span class="co">#&gt;  3 3       CASARB    11    482   1114      4            0       0.301 </span></a>
-<a class="sourceLine" id="cb22-62" data-line-number="62"><span class="co">#&gt;  4 4       CASARB     8   1217    377      6            0       0.761 </span></a>
-<a class="sourceLine" id="cb22-63" data-line-number="63"><span class="co">#&gt;  5 1       PREMON    94   1005    594      1            0       0.628 </span></a>
-<a class="sourceLine" id="cb22-64" data-line-number="64"><span class="co">#&gt;  6 2       PREMON    97   1478    120      2            0       0.924 </span></a>
-<a class="sourceLine" id="cb22-65" data-line-number="65"><span class="co">#&gt;  7 3       PREMON    39    230   1367      3            0       0.144 </span></a>
-<a class="sourceLine" id="cb22-66" data-line-number="66"><span class="co">#&gt;  8 4       PREMON    15    130   1465      5            0       0.0812</span></a>
-<a class="sourceLine" id="cb22-67" data-line-number="67"><span class="co">#&gt;  9 1       SLOBER    21    270   1328      2            0       0.169 </span></a>
-<a class="sourceLine" id="cb22-68" data-line-number="68"><span class="co">#&gt; 10 2       SLOBER    25    516   1082      2            0       0.322 </span></a>
-<a class="sourceLine" id="cb22-69" data-line-number="69"><span class="co">#&gt; 11 3       SLOBER    21   1336    260      4            0       0.835 </span></a>
-<a class="sourceLine" id="cb22-70" data-line-number="70"><span class="co">#&gt; 12 4       SLOBER     8   1193    396     11            0       0.746</span></a>
-<a class="sourceLine" id="cb22-71" data-line-number="71"></a>
-<a class="sourceLine" id="cb22-72" data-line-number="72"><span class="co"># A simple summary to help you interpret the results</span></a>
-<a class="sourceLine" id="cb22-73" data-line-number="73"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(tt_test_result)</a>
-<a class="sourceLine" id="cb22-74" data-line-number="74"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
-<a class="sourceLine" id="cb22-75" data-line-number="75"><span class="co">#&gt;    sp     habitat association</span></a>
-<a class="sourceLine" id="cb22-76" data-line-number="76"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      </span></a>
-<a class="sourceLine" id="cb22-77" data-line-number="77"><span class="co">#&gt;  1 CASARB 1       neutral    </span></a>
-<a class="sourceLine" id="cb22-78" data-line-number="78"><span class="co">#&gt;  2 CASARB 2       neutral    </span></a>
-<a class="sourceLine" id="cb22-79" data-line-number="79"><span class="co">#&gt;  3 CASARB 3       neutral    </span></a>
-<a class="sourceLine" id="cb22-80" data-line-number="80"><span class="co">#&gt;  4 CASARB 4       neutral    </span></a>
-<a class="sourceLine" id="cb22-81" data-line-number="81"><span class="co">#&gt;  5 PREMON 1       neutral    </span></a>
-<a class="sourceLine" id="cb22-82" data-line-number="82"><span class="co">#&gt;  6 PREMON 2       neutral    </span></a>
-<a class="sourceLine" id="cb22-83" data-line-number="83"><span class="co">#&gt;  7 PREMON 3       neutral    </span></a>
-<a class="sourceLine" id="cb22-84" data-line-number="84"><span class="co">#&gt;  8 PREMON 4       neutral    </span></a>
-<a class="sourceLine" id="cb22-85" data-line-number="85"><span class="co">#&gt;  9 SLOBER 1       neutral    </span></a>
-<a class="sourceLine" id="cb22-86" data-line-number="86"><span class="co">#&gt; 10 SLOBER 2       neutral    </span></a>
-<a class="sourceLine" id="cb22-87" data-line-number="87"><span class="co">#&gt; 11 SLOBER 3       neutral    </span></a>
-<a class="sourceLine" id="cb22-88" data-line-number="88"><span class="co">#&gt; 12 SLOBER 4       neutral</span></a></code></pre></div>
+<a class="sourceLine" id="cb22-27" data-line-number="27"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb22-28" data-line-number="28"><span class="co">#&gt; [[2]]</span></a>
+<a class="sourceLine" id="cb22-29" data-line-number="29"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
+<a class="sourceLine" id="cb22-30" data-line-number="30"><span class="co">#&gt; PREMON      94     1005      594        1              0       0.628125</span></a>
+<a class="sourceLine" id="cb22-31" data-line-number="31"><span class="co">#&gt;        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2</span></a>
+<a class="sourceLine" id="cb22-32" data-line-number="32"><span class="co">#&gt; PREMON      97     1478      120        2              0        0.92375</span></a>
+<a class="sourceLine" id="cb22-33" data-line-number="33"><span class="co">#&gt;        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3</span></a>
+<a class="sourceLine" id="cb22-34" data-line-number="34"><span class="co">#&gt; PREMON      39      230     1367        3              0        0.14375</span></a>
+<a class="sourceLine" id="cb22-35" data-line-number="35"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
+<a class="sourceLine" id="cb22-36" data-line-number="36"><span class="co">#&gt; PREMON      15      130     1465        5              0        0.08125</span></a>
+<a class="sourceLine" id="cb22-37" data-line-number="37"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb22-38" data-line-number="38"><span class="co">#&gt; [[3]]</span></a>
+<a class="sourceLine" id="cb22-39" data-line-number="39"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
+<a class="sourceLine" id="cb22-40" data-line-number="40"><span class="co">#&gt; SLOBER      21      270     1328        2              0        0.16875</span></a>
+<a class="sourceLine" id="cb22-41" data-line-number="41"><span class="co">#&gt;        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2</span></a>
+<a class="sourceLine" id="cb22-42" data-line-number="42"><span class="co">#&gt; SLOBER      25      516     1082        2              0         0.3225</span></a>
+<a class="sourceLine" id="cb22-43" data-line-number="43"><span class="co">#&gt;        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3</span></a>
+<a class="sourceLine" id="cb22-44" data-line-number="44"><span class="co">#&gt; SLOBER      21     1336      260        4              0          0.835</span></a>
+<a class="sourceLine" id="cb22-45" data-line-number="45"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
+<a class="sourceLine" id="cb22-46" data-line-number="46"><span class="co">#&gt; SLOBER       8     1193      396       11              0       0.745625</span></a>
+<a class="sourceLine" id="cb22-47" data-line-number="47"></a>
+<a class="sourceLine" id="cb22-48" data-line-number="48"><span class="co"># A dataframe</span></a>
+<a class="sourceLine" id="cb22-49" data-line-number="49"><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(tt_test_result)</a>
+<a class="sourceLine" id="cb22-50" data-line-number="50"><span class="co">#&gt; # A tibble: 12 x 8</span></a>
+<a class="sourceLine" id="cb22-51" data-line-number="51"><span class="co">#&gt;    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile</span></a>
+<a class="sourceLine" id="cb22-52" data-line-number="52"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb22-53" data-line-number="53"><span class="co">#&gt;  1 1       CASARB    35   1313    282      5            0       0.821 </span></a>
+<a class="sourceLine" id="cb22-54" data-line-number="54"><span class="co">#&gt;  2 2       CASARB    24    394   1204      2            0       0.246 </span></a>
+<a class="sourceLine" id="cb22-55" data-line-number="55"><span class="co">#&gt;  3 3       CASARB    11    482   1114      4            0       0.301 </span></a>
+<a class="sourceLine" id="cb22-56" data-line-number="56"><span class="co">#&gt;  4 4       CASARB     8   1217    377      6            0       0.761 </span></a>
+<a class="sourceLine" id="cb22-57" data-line-number="57"><span class="co">#&gt;  5 1       PREMON    94   1005    594      1            0       0.628 </span></a>
+<a class="sourceLine" id="cb22-58" data-line-number="58"><span class="co">#&gt;  6 2       PREMON    97   1478    120      2            0       0.924 </span></a>
+<a class="sourceLine" id="cb22-59" data-line-number="59"><span class="co">#&gt;  7 3       PREMON    39    230   1367      3            0       0.144 </span></a>
+<a class="sourceLine" id="cb22-60" data-line-number="60"><span class="co">#&gt;  8 4       PREMON    15    130   1465      5            0       0.0812</span></a>
+<a class="sourceLine" id="cb22-61" data-line-number="61"><span class="co">#&gt;  9 1       SLOBER    21    270   1328      2            0       0.169 </span></a>
+<a class="sourceLine" id="cb22-62" data-line-number="62"><span class="co">#&gt; 10 2       SLOBER    25    516   1082      2            0       0.322 </span></a>
+<a class="sourceLine" id="cb22-63" data-line-number="63"><span class="co">#&gt; 11 3       SLOBER    21   1336    260      4            0       0.835 </span></a>
+<a class="sourceLine" id="cb22-64" data-line-number="64"><span class="co">#&gt; 12 4       SLOBER     8   1193    396     11            0       0.746</span></a>
+<a class="sourceLine" id="cb22-65" data-line-number="65"></a>
+<a class="sourceLine" id="cb22-66" data-line-number="66"><span class="co"># A simple summary to help you interpret the results</span></a>
+<a class="sourceLine" id="cb22-67" data-line-number="67"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(tt_test_result)</a>
+<a class="sourceLine" id="cb22-68" data-line-number="68"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
+<a class="sourceLine" id="cb22-69" data-line-number="69"><span class="co">#&gt;    sp     habitat association</span></a>
+<a class="sourceLine" id="cb22-70" data-line-number="70"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      </span></a>
+<a class="sourceLine" id="cb22-71" data-line-number="71"><span class="co">#&gt;  1 CASARB 1       neutral    </span></a>
+<a class="sourceLine" id="cb22-72" data-line-number="72"><span class="co">#&gt;  2 CASARB 2       neutral    </span></a>
+<a class="sourceLine" id="cb22-73" data-line-number="73"><span class="co">#&gt;  3 CASARB 3       neutral    </span></a>
+<a class="sourceLine" id="cb22-74" data-line-number="74"><span class="co">#&gt;  4 CASARB 4       neutral    </span></a>
+<a class="sourceLine" id="cb22-75" data-line-number="75"><span class="co">#&gt;  5 PREMON 1       neutral    </span></a>
+<a class="sourceLine" id="cb22-76" data-line-number="76"><span class="co">#&gt;  6 PREMON 2       neutral    </span></a>
+<a class="sourceLine" id="cb22-77" data-line-number="77"><span class="co">#&gt;  7 PREMON 3       neutral    </span></a>
+<a class="sourceLine" id="cb22-78" data-line-number="78"><span class="co">#&gt;  8 PREMON 4       neutral    </span></a>
+<a class="sourceLine" id="cb22-79" data-line-number="79"><span class="co">#&gt;  9 SLOBER 1       neutral    </span></a>
+<a class="sourceLine" id="cb22-80" data-line-number="80"><span class="co">#&gt; 10 SLOBER 2       neutral    </span></a>
+<a class="sourceLine" id="cb22-81" data-line-number="81"><span class="co">#&gt; 11 SLOBER 3       neutral    </span></a>
+<a class="sourceLine" id="cb22-82" data-line-number="82"><span class="co">#&gt; 12 SLOBER 4       neutral</span></a></code></pre></div>
 <p><a href="https://forestgeo.github.io/fgeo">Get started with <strong>fgeo</strong></a></p>
 </div>
 </div>
