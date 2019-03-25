@@ -150,7 +150,7 @@ test_that("tt_test errs if a quadrat is a quadrat is empty (#40)", {
 
   expect_error(
     tt_test(tree, fgeo.x::habitat),
-    "Can't deal with a zero value of `Tortotstcnthab`"
+    "Every quadrat in the dataset must have at lease one tree"
   )
 })
 

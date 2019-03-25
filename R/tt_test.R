@@ -138,8 +138,7 @@ tt_test <- function(tree,
 
 abort_if_zero_tortotstcnthab <- function() {
   abort(glue("
-    Can't deal with a zero value of `Tortotstcnthab` (total number of stems for
-    focal species per habitat of the focal torus-based map).
+    Every quadrat in the dataset must have at lease one tree.
     For more information see https://github.com/forestgeo/fgeo.analyze/issues/40.
   "))
 }
