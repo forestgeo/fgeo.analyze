@@ -70,7 +70,7 @@ fgeo_topography.list <- function(elev,
 
   quad_idx <- as.integer(rownames(topo))
   gxgy <- fgeo.tool::index_to_gxgy(quad_idx, gridsize, plotdim)
-  out <- as.tibble(cbind(gxgy, topo))
+  out <- as_tibble(cbind(gxgy, topo))
   new_fgeo_topography(out)
 }
 

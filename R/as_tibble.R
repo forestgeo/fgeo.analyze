@@ -31,7 +31,7 @@ as.data.frame.tt_lst <- function(x, ...) {
 
 tt_gather <- function(x) {
   flip <- t(Reduce(rbind, x))
-  as.tibble(gather_mat(flip, "metric", "sp", "value"))
+  as_tibble(gather_mat(flip, "metric", "sp", "value"))
 }
 
 tt_restructure <- function(x) {

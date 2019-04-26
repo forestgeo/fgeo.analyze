@@ -9,7 +9,7 @@
 #' @importFrom rlang abort inform warn expr eval_tidy expr_label %||% set_names
 #' @importFrom stats dnorm median optim qbeta qt quantile rgamma rnorm runif sd
 #' @importFrom stats nls var nls.control predict resid
-#' @importFrom tibble tibble as.tibble as_tibble
+#' @importFrom tibble tibble as_tibble
 NULL
 
 #' @importFrom fgeo.tool assert_is_installed
