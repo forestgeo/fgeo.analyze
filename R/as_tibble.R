@@ -67,7 +67,7 @@ tt_create_df <- function(tt_data) {
     purrr::map(~ .x["value", ]) %>%
     purrr::imap(~ c(.y, .x)) %>%
     purrr::reduce(rbind) %>%
-    tibble::as_tibble() %>%
+    tibble::as_tibble(.name_repair = "minimal") %>%
     rlang::set_names(c("species_habitat", tt_data$metrics)) %>%
     purrr::modify_at(.at = tt_data$metrics, as.numeric) %>%
     dplyr::arrange(.data$species_habitat)
