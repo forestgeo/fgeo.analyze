@@ -524,6 +524,13 @@ check_prepare_demography <- function(census1,
   check_crucial_names(census1, crucial)
   check_crucial_names(census2, crucial)
 
+  if (duplicated_treeid(census1) || duplicated_treeid(census2)) {
+    warn(glue(
+      "The census data should have a single row per tree per census.
+      Do you need `fgeo.tool::pick_main_stem()`?"
+    ))
+  }
+
   if (!is.null(split2)) {
     warn_once(
       paste0(
@@ -535,6 +542,10 @@ check_prepare_demography <- function(census1,
   }
 
   invisible()
+}
+
+duplicated_treeid <- function(data) {
+  any(duplicated(set_names(data, tolower)$treeid))
 }
 
 check_alivecode <- function(census1, census2, alivecode, quiet) {

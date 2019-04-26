@@ -13,6 +13,25 @@ pluck_n <- function(.x, n) lapply(.x, function(x) x[1:n])
 tiny1 <- fgeo.x::tree5
 tiny2 <- fgeo.x::tree6
 
+test_that("mortlity_ctfs warns if censues are stem not tree tables", {
+  skip_if_not_installed("fgeo.data")
+
+  census1 <- fgeo.data::luquillo_stem5_random
+  census2 <- fgeo.data::luquillo_stem6_random
+
+  expect_warning(
+    mortality_ctfs(census1, census2),
+    "census.*should have a single row per tree per census."
+  )
+  census1 <- fgeo.data::luquillo_tree5_random
+  census2 <- fgeo.data::luquillo_tree6_random
+
+  expect_warning(
+    mortality_ctfs(census1, census2),
+    NA
+  )
+})
+
 test_that("output is equal if aggregated via `split2` or `interaction()`", {
   # Toy groups
   tiny1$g1 <- sample(c("a", "b"), nrow(tiny1), replace = TRUE)
@@ -397,21 +416,30 @@ describe("recruitment_ctfs(), mortality_ctfs(), and growth_ctfs()", {
     stem5 <- pick10sp(bciex::bci12s5mini)
     stem6 <- pick10sp(bciex::bci12s6mini)
 
-    out <- recruitment_ctfs(stem5, stem6)
+    out <- expect_warning(
+      recruitment_ctfs(stem5, stem6),
+      "census.*should have a single row per tree per census."
+    )
     expect_ref(out, "ref-recruitment_ctfs_bci_stem")
     expect_type(out, "list")
     expect_is(out[[1]], "numeric")
     expect_length(out, 8)
     expect_false(any(is.na(out)))
 
-    out <- mortality_ctfs(stem5, stem6)
+    out <- expect_warning(
+      mortality_ctfs(stem5, stem6),
+      "census.*should have a single row per tree per census."
+    )
     expect_ref(out, "ref-mortality_ctfs_bci_stem")
     expect_type(out, "list")
     expect_is(out[[1]], "numeric")
     expect_length(out, 9)
     expect_false(any(is.na(out)))
 
-    out <- growth_ctfs(stem5, stem6)
+    out <- expect_warning(
+      growth_ctfs(stem5, stem6),
+      "census.*should have a single row per tree per census."
+    )
     expect_ref(out, "ref-growth_ctfs_bci_stem")
     expect_type(out, "list")
     expect_is(out[[1]], "numeric")
