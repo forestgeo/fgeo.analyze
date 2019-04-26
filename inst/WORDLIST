@@ -15,7 +15,6 @@ fgeo
 forestgeo
 ForestGEO
 ggplot
-gh
 github
 gridsize
 http
@@ -41,6 +40,7 @@ TfDcfX
 tibble
 tidyverse
 treeid
+treeIDs
 tt
 TT
 ViewFullTable

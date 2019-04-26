@@ -10,14 +10,23 @@
 
 0 errors | 1 warnings (safe to ignore) | 0 notes
 
-* New submission
-* Strong dependencies not in mainstream repositories:
-* fgeo.tool
-* Suggests or Enhances not in mainstream repositories:
-* fgeo.x
-* Availability using Additional_repositories specification:
-* fgeo.tool yes https://forestgeo.github.io/drat/
-* fgeo.x yes https://forestgeo.github.io/drat/
+   Maintainer: 'Mauro Lepore <leporem@si.edu>'
+   
+   New submission
+   
+   Version contains large components (1.1.4.9000)
+   
+   Strong dependencies not in mainstream repositories:
+     fgeo.tool
+   Suggests or Enhances not in mainstream repositories:
+     fgeo, fgeo.x
+   Availability using Additional_repositories specification:
+     fgeo.tool   yes   https://forestgeo.github.io/drat/
+     fgeo        yes   https://forestgeo.github.io/drat/
+     fgeo.x      yes   https://forestgeo.github.io/drat/
+
+
+
 
 [Raises only if the package is built using R v3.5](https://ropensci.github.io/dev_guide/building.html#authorship):
 
