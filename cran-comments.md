@@ -1,46 +1,27 @@
 ## Test environments
 
-* local: windows 10 x64 (R 3.5.2)
-* travis: 
-  * mac os x 10.13.3 (R 3.5.2)
-  * ubuntu 14.04 (R 3.2, 3.3, oldrel, release, devel)
+* local: windows 10 x64 (R 3.6.0)
+* travis: ubuntu 14.04 (R 3.2, 3.3, 3.4, oldrel, release, devel)
 * win-builder (R devel and release)
+* rhub: x86_64-apple-darwin15.6.0 (R release)
 
 ## R CMD check results
 
-0 errors | 1 warnings (safe to ignore) | 0 notes
+fgeo.analyze_1.1.5
 
-   Maintainer: 'Mauro Lepore <leporem@si.edu>'
-   
-   New submission
-   
-   Version contains large components (1.1.4.9000)
-   
-   Strong dependencies not in mainstream repositories:
-     fgeo.tool
-   Suggests or Enhances not in mainstream repositories:
-     fgeo, fgeo.x
-   Availability using Additional_repositories specification:
-     fgeo.tool   yes   https://forestgeo.github.io/drat/
-     fgeo        yes   https://forestgeo.github.io/drat/
-     fgeo.x      yes   https://forestgeo.github.io/drat/
+0 errors | 1 warning | 0 notes 
 
+New submission
 
-
-
-[Raises only if the package is built using R v3.5](https://ropensci.github.io/dev_guide/building.html#authorship):
-
-* Authors@R field gives persons with non-standard roles:
-* Gabriel Arellano [aut, rev]: rev
-* Suzanne Lao [aut, rev]: rev
-* KangMin Ngo [rev]: rev
-* Haley Overstreet [rev]: rev
-* Sabrina Russo [aut, rev]: rev
-* Daniel Zuleta [aut, rev]: rev
+Strong dependencies not in mainstream repositories:
+  fgeo.tool
+Suggests or Enhances not in mainstream repositories:
+  fgeo, fgeo.x
+Availability using Additional_repositories specification:
+  fgeo.tool   yes   https://forestgeo.github.io/drat/
+  fgeo        yes   https://forestgeo.github.io/drat/
+  fgeo.x      yes   https://forestgeo.github.io/drat/
 
 ## Downstream dependencies
 
-I checked 1 reverse dependencies (0 from CRAN + 1 from <https://forestgeo.github.io/drat/>; summary at <https://github.com/forestgeo/fgeo.analyze/tree/master/revdep>):
-
- * I saw 0 new problems
- * I failed to check 0 packages
+There are currently no downstream dependencies for this package.
