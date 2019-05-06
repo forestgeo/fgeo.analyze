@@ -1,6 +1,6 @@
 Package: fgeo.analyze
 Title: Analyze ForestGEO Data
-Version: 1.1.4.9000
+Version: 1.1.5
 Authors@R: 
     c(person(given = "Mauro",
              family = "Lepore",
