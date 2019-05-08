@@ -1,0 +1,3 @@
+check-ubuntu-rchk.R
+check_on_macos.R
+check_with_sanitizers.R
