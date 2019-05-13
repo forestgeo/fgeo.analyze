@@ -1,3 +1,2 @@
-check-ubuntu-rchk.R
-check_on_macos.R
-check_with_sanitizers.R
+jobs1.R
+jobs2.R
