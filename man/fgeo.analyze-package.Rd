@@ -6,8 +6,13 @@
 \alias{fgeo.analyze-package}
 \title{fgeo.analyze: Analyze ForestGEO Data}
 \description{
-Analyze ForestGEO data
-    (<http://www.forestgeo.si.edu/>).
+To help you access, transform, analyze, and
+    visualize ForestGEO data, we developed a collection of R packages
+    (<https://forestgeo.github.io/fgeo/>). This package, in particular,
+    helps you to implement a wide range of analyses of plot species
+    distributions, topography, demography, biomass, and species-habitat
+    associations. To learn more about ForestGEO visit
+    <http://www.forestgeo.si.edu/>.
 }
 \seealso{
 Useful links:
