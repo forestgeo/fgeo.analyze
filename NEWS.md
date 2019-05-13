@@ -4,10 +4,9 @@
 
 # fgeo.analyze 1.1.6 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
 
-* On TravisCI, check not include all minor R versions from 3.2 to release.
 * `as_tibble()` no longer warns about inadequate names specification.
 * `fgeo_topography()` no longer warns that as.tibble() is deprecated.
-* Demography functions now warn duplicated treeIDs. Closes #28.
+* Demography functions now warn duplicated treeIDs (#28).
 * `tt_test()` now aborts if not all quadrats have at lease one tree (#40).
 
 # fgeo.analyze 1.1.4 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
