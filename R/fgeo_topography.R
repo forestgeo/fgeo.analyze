@@ -13,7 +13,7 @@
 #' @seealso [fgeo_habitat()].
 #' @return A dataframe of subclass fgeo_topography.
 #'
-#' @author This function wraps code by Rick Condit.
+#' @author This function wraps code by Richard Condit.
 #' @section Acknowledgment:
 #' Thanks to Jian Zhang for reporting a bug (issue 59).
 #'
@@ -93,7 +93,7 @@ abort_if_xdim_ydim_is_null <- function(xdim, ydim) {
 #' neighbors.
 #'
 #' Helene Muller-Landau added a section to correct convexity in edge quadrats.
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #'
 #' @param plotdim The x and y dimensions of the plot.
 #' @param gridsize Side of the square quadrat.
@@ -208,7 +208,7 @@ warn_if_no_data_falls_on_half_gridsize <- function(elev, gridsize, edgecorrect) 
   }
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 findborderquads <- function(index, dist, gridsize, plotdim) {
@@ -232,7 +232,7 @@ findborderquads <- function(index, dist, gridsize, plotdim) {
   return(bound.index[bound.index > 0])
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 quadslope <- function(cornerelev, gridsize) {
@@ -254,7 +254,7 @@ quadslope <- function(cornerelev, gridsize) {
   return(c(mean(slope), sqrt(stats::var(slope))))
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 calcslope <- function(z, gridsize) {

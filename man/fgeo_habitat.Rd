@@ -72,7 +72,7 @@ Other habitat functions: \code{\link{fgeo_topography}},
 Other functions to construct fgeo classes: \code{\link{fgeo_topography}}
 }
 \author{
-Rick Condit.
+Richard Condit.
 }
 \concept{functions to construct fgeo classes}
 \concept{habitat functions}

@@ -3,7 +3,7 @@
 #' @inheritParams ctfs::abundanceperquad
 #' @param type "abund". Other options are intentionally not possible.
 #'
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #'
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @family functions for abundance and basal area
@@ -40,7 +40,7 @@ abundanceperquad2 <- function(censdata,
 
 #' A faster version of ctfs::abundance(), only for counts (not ba or agb).
 #'
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #'
 #' @family functions for abundance and basal area
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/

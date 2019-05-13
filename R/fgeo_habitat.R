@@ -6,7 +6,7 @@
 #' 2. It calculates habitats based on hierarchical clustering of the topographic
 #' metrics from step 1.
 #'
-#' @author Rick Condit.
+#' @author Richard Condit.
 #'
 #' @inheritParams fgeo_topography
 #' @param n Integer. Number of cluster-groups to construct (passed to the

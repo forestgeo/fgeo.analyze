@@ -150,7 +150,7 @@ if (tidyr_is_installed) {
 }
 }
 \author{
-Rick Condit, Suzanne Lao.
+Richard Condit, Suzanne Lao.
 }
 \concept{demography functions}
 \concept{functions for ForestGEO data.}

@@ -28,7 +28,7 @@ Useful links:
 Authors:
 \itemize{
   \item Gabriel Arellano \email{gabriel.arellano.torres@gmail.com} [reviewer]
-  \item  Richard  Condit \email{richardcondit@gmail.com}
+  \item Richard Condit \email{richardcondit@gmail.com}
   \item Matteo Detto \email{teoparaglider@gmail.com}
   \item Kyle Harms \email{ kharms@lsu.edu}
   \item Suzanne Lao \email{laoz@si.edu} [reviewer]

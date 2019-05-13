@@ -3,10 +3,10 @@
 #' @param x vector or dataframe to modify.
 #' @seealso `httr::insensitive()`.
 #'
-#' @author Hadley Wickham (see `?httr::insensitive()`).
 #' @section Acknowledgment:
 #' Thanks to Neil Richardson for recommending this function
-#' (https://twitter.com/enpiar).
+#' (https://twitter.com/enpiar), and to Hadley Wickham for developing
+#' `?httr::insensitive()`, which is the starting point of this function.
 #'
 #' @examples
 #' x <- c("abc" = 1, "def" = 2)
@@ -15,7 +15,7 @@
 #' y["ABC"]
 #' y[["ABC"]]
 #' y$ABC
-#' 
+#'
 #' vft <- data.frame(TreeID = 1)
 #' insensitive(vft)[["TreeID"]]
 #' insensitive(vft)[["treeid"]]
@@ -23,7 +23,7 @@
 #' insensitive(vft)["treeid"]
 #' insensitive(vft)$TreeID
 #' insensitive(vft)$treeid
-#' 
+#'
 #' # Works
 #' transform(insensitive(vft), new = treeid)
 #' # dplyr::mutate(insensitive(vft), new = treeid)

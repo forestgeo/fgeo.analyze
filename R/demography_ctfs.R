@@ -44,7 +44,7 @@
 #' @param err.limit,maxgrow A number. Numbers such as 10000 are high and will
 #'   return all measures.
 #'
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #'
 #' @return
 #' Metrics of recruitment: Similar to metrics of mortality.
@@ -248,7 +248,7 @@ mortality_ctfs <- function(census1,
   new_demography_ctfs(result, split2)
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 mortality.calculation <- function(N, S, meantime) {
@@ -366,7 +366,7 @@ growth_ctfs <- function(census1,
   new_demography_ctfs(result, split2)
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 trim.growth <- function(cens1,
@@ -611,7 +611,7 @@ apply_mean   <- function(X, INDEX) tapply(X, INDEX, FUN = mean, na.rm = TRUE)
 apply_sd     <- function(X, INDEX) tapply(X, INDEX, FUN = sd,   na.rm = TRUE)
 apply_length <- function(X, INDEX) tapply(X, INDEX, FUN = length)
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 find.climits <- function(N, D, alpha = .05, kind = "upper") {
@@ -627,14 +627,14 @@ find.climits <- function(N, D, alpha = .05, kind = "upper") {
   result
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 drp <- function(x) {
   drop(as.matrix(x))
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 fill.dimension <- function(dataarray, class1, class2, fill = 0) {
@@ -648,7 +648,7 @@ fill.dimension <- function(dataarray, class1, class2, fill = 0) {
   result
 }
 
-#' @author Rick Condit, Suzanne Lao.
+#' @author Richard Condit, Suzanne Lao.
 #' @family functions from http://ctfs.si.edu/Public/CTFSRPackage/
 #' @noRd
 rndown5 <- function(s) {
