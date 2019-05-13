@@ -7,20 +7,9 @@
 
 ## R CMD check results
 
-fgeo.analyze_1.1.5
-
-0 errors | 1 warning | 0 notes 
+0 errors | 0 warning | 1 notes 
 
 New submission
-
-Strong dependencies not in mainstream repositories:
-  fgeo.tool
-Suggests or Enhances not in mainstream repositories:
-  fgeo, fgeo.x
-Availability using Additional_repositories specification:
-  fgeo.tool   yes   https://forestgeo.github.io/drat/
-  fgeo        yes   https://forestgeo.github.io/drat/
-  fgeo.x      yes   https://forestgeo.github.io/drat/
 
 ## Downstream dependencies
 
