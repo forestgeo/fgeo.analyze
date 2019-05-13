@@ -2,7 +2,7 @@
 
 * Work in progress.
 
-# fgeo.analyze 1.1.5 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases) and [drat](https://forestgeo.github.io/drat/))
+# fgeo.analyze 1.1.6 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
 
 * On TravisCI, check not include all minor R versions from 3.2 to release.
 * `as_tibble()` no longer warns about inadequate names specification.
