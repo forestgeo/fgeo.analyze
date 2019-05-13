@@ -43,7 +43,9 @@ Or [install all **fgeo** packages in one step](https://forestgeo.github.io/fgeo/
 ## Example
 
 ```{r}
-library(fgeo)
+library(fgeo.x)
+library(fgeo.tool)
+library(fgeo.analyze)
 ```
 
 ### Abundance
@@ -259,13 +261,13 @@ as_tibble(growth) %>%
 
 ```{r}
 # Pick alive trees, of 10 mm or more
-tree <- fgeo.x::download_data("luquillo_tree5_random")
+tree <- download_data("luquillo_tree5_random")
 census <- filter(tree, status == "A", dbh >= 10)
 # Pick sufficiently abundant species
 pick <- filter(add_count(census, sp), n > 50)
 
 # Use your habitat data or create it from elevation data
-elevation <- fgeo.x::download_data("luquillo_elevation")
+elevation <- download_data("luquillo_elevation")
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 
 tt_test_result <- tt_test(pick, habitat)

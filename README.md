@@ -36,14 +36,20 @@ step](https://forestgeo.github.io/fgeo/index.html#installation).
 ## Example
 
 ``` r
-library(fgeo)
+library(fgeo.x)
+library(fgeo.tool)
+#> 
+#> Attaching package: 'fgeo.tool'
+#> The following object is masked from 'package:stats':
+#> 
+#>     filter
+library(fgeo.analyze)
 ```
 
 ### Abundance
 
 Your data may have multiple stems per treeid and even multiple measures
-per stemid (if trees have
-buttresses).
+per stemid (if trees have buttresses).
 
 ``` r
 # Trees with buttresses may have multiple measurements of a single stem. 
@@ -364,7 +370,7 @@ as_tibble(
 #> * Bad: `split1 = x1, split2 = x2`
 #> * Good: `split1 = interaction(x1, x2)`
 #> This warning is displayed once per session.
-#> Error:   Can't deal with data created with `split2` (deprecated).
+#>   Can't deal with data created with `split2` (deprecated).
 #>   * Bad: `split1 = x1, split2 = x2`
 #>   * Good: `split1 = interaction(x1, x2)`
 ```
@@ -473,13 +479,13 @@ as_tibble(growth) %>%
 
 ``` r
 # Pick alive trees, of 10 mm or more
-tree <- fgeo.x::download_data("luquillo_tree5_random")
+tree <- download_data("luquillo_tree5_random")
 census <- filter(tree, status == "A", dbh >= 10)
 # Pick sufficiently abundant species
 pick <- filter(add_count(census, sp), n > 50)
 
 # Use your habitat data or create it from elevation data
-elevation <- fgeo.x::download_data("luquillo_elevation")
+elevation <- download_data("luquillo_elevation")
 habitat <- fgeo_habitat(elevation, gridsize = 20, n = 4)
 
 tt_test_result <- tt_test(pick, habitat)
