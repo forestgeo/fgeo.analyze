@@ -2,7 +2,7 @@
 
 * Work in progress.
 
-# fgeo.analyze 1.1.8 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
+# fgeo.analyze 1.1.9 ([GitHub](https://github.com/forestgeo/fgeo.analyze/releases))
 
 * `as_tibble()` no longer warns about inadequate names specification.
 * `fgeo_topography()` no longer warns that as.tibble() is deprecated.
