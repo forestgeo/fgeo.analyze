@@ -2,10 +2,8 @@
 
 This is a re-submission. In this version I have:
 
-* Confirmed that all CRAN dependencies of this package are now available.
-* Incremented the version number to reduce confusion.
-* Explained to Uwe Ligges the modular design of the fgeo packages. Uwe answered:
-"OK, then let us go ahead." (on 2019-05-14 7:06 PM, Re: [CRAN-pretest-archived] CRAN submission fgeo.plot 1.1.4 -- fgeo.plot is a different but related package).
+* Incremented the version number to avoid confusion.
+* Removed all \Sexpr{} expressions from help files.
 
 ## Test environments
 
