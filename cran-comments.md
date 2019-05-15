@@ -1,3 +1,15 @@
+## Re-submission
+
+This is a re-submission. In this version I have:
+
+* Confirmed that all CRAN dependencies of this package are now available.
+
+* Explained to Uwe Ligges the modular design of the fgeo packages. On 2019-05-14 7:06 PM Uwe answered "OK, then let us go ahead." (Re: [CRAN-pretest-archived] CRAN submission fgeo.plot 1.1.4).
+
+* Incremented the version number to reduce confusion.
+
+
+
 ## Test environments
 
 * local: windows 10 x64 (R 3.6.0)
