@@ -3,7 +3,8 @@
 This is a re-submission. In this version I have:
 
 * Incremented the version number to avoid confusion.
-* Removed all \Sexpr{} expressions from help files.
+* Added one reference in the Description field of the DESCRIPTION file.
+* Replaces \dontrun{} by \donttest{} to skip R CMD check for speed.
 
 ## Test environments
 
