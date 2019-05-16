@@ -31,7 +31,8 @@
 #'
 #' str(habitats)
 #'
-#' \dontrun{
+#' # Skip R CMD check for speed
+#' \donttest{
 #' assert_is_installed("fgeo.plot")
 #' library(fgeo.plot)
 #'

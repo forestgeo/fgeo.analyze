@@ -47,7 +47,9 @@
 #' )
 #'
 #' abundance(stem)
-#' \dontrun{
+#'
+#' # Skip R CMD check for speed
+#' \donttest{
 #' # Similar but more realistic
 #' assert_is_installed("fgeo.x")
 #' stem <- fgeo.x::download_data("luquillo_stem5_random")
@@ -112,7 +114,9 @@
 #'
 #' # You can compute by groups
 #' basal_area(by_census)
-#' \dontrun{
+#'
+#' # Skip R CMD check for speed
+#' \donttest{
 #' measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
 #' if (measurements_is_installed) {
 #'   library(measurements)

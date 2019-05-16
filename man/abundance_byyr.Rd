@@ -76,7 +76,9 @@ abundance_byyr(vft, DBH >= 10)
 
 basal <- basal_area_byyr(vft, DBH >= 10)
 basal
-\dontrun{
+
+# Skip R CMD check for speed
+\donttest{
 measurements_is_installed <- requireNamespace("measurements", quietly = TRUE)
 if (measurements_is_installed) {
   # Convert units
