@@ -3,7 +3,6 @@
 #' @importFrom fgeo.tool check_crucial_names is_duplicated is_multiple
 #' @importFrom fgeo.tool rename_matches
 #' @importFrom glue glue glue_collapse
-#' @importFrom grDevices dev.off graphics.off pdf
 #' @importFrom graphics hist lines par plot points text
 #' @importFrom MASS boxcox
 #' @importFrom rlang abort inform warn expr eval_tidy expr_label %||% set_names
