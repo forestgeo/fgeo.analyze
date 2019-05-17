@@ -66,8 +66,6 @@
 #' <https://doi.org/10.1007/s11104-018-3878-0>.
 #'
 #' @examples
-#' # Skip R CMD check for speed
-#' \donttest{
 #' library(fgeo.tool)
 #' assert_is_installed("fgeo.x")
 #'
@@ -89,10 +87,11 @@
 #'   tt_test(census, habitat)
 #' )
 #'
+#' Reduce(rbind, tt_test(census, habitat))
+#'
 #' some_species <- c("CASARB", "PREMON")
 #' result <- tt_test(census, habitat, sp = some_species)
 #' summary(result)
-#' }
 #' @family habitat functions
 #' @export
 tt_test <- function(tree,
