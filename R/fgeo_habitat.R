@@ -31,14 +31,6 @@
 #'
 #' str(habitats)
 #'
-#' # Skip R CMD check for speed
-#' \donttest{
-#' assert_is_installed("fgeo.plot")
-#' library(fgeo.plot)
-#'
-#' autoplot(habitats)
-#' }
-#'
 #' # Habitat data is useful for calculating species-habitat associations
 #' census <- fgeo.x::tree6_3species
 #' as_tibble(
