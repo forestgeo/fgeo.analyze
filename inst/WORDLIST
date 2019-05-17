@@ -7,6 +7,7 @@ Chitra
 CTFS
 dbh
 df
+doi
 dplyr
 edu
 Engone
@@ -23,7 +24,6 @@ io
 Jian
 julian
 Kenfack
-lifecycle
 lst
 ly
 Obiang
@@ -39,7 +39,6 @@ tbl
 TfDcfX
 tibble
 tidyverse
-TravisCI
 treeid
 treeIDs
 tt
