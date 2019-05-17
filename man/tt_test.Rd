@@ -82,6 +82,8 @@ Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 }
 
 \examples{
+# Skip R CMD check for speed
+\donttest{
 library(fgeo.tool)
 assert_is_installed("fgeo.x")
 
@@ -103,11 +105,10 @@ as_tibble(
   tt_test(census, habitat)
 )
 
-Reduce(rbind, tt_test(census, habitat))
-
 some_species <- c("CASARB", "PREMON")
 result <- tt_test(census, habitat, sp = some_species)
 summary(result)
+}
 }
 \seealso{
 \code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=summary.tt_df]{summary.tt_df()}}, \code{\link[=as_tibble]{as_tibble()}},
