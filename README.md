@@ -19,10 +19,9 @@ status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-proje
 
 ## Installation
 
-Install the latest stable version of **fgeo.analyze** with:
+Install the latest stable version of **fgeo.analyze** from CRAN with:
 
 ``` r
-these_repos <- c(getOption("repos"), "https://forestgeo.github.io/drat")
 install.packages("fgeo.analyze", repos = these_repos)
 ```
 

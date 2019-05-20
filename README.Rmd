@@ -26,10 +26,9 @@ __fgeo.analyze__ provides functions to analyze [ForestGEO](http://www.forestgeo.
 
 ## Installation
 
-Install the latest stable version of **fgeo.analyze** with:
+Install the latest stable version of **fgeo.analyze** from CRAN with:
 
 ```R
-these_repos <- c(getOption("repos"), "https://forestgeo.github.io/drat")
 install.packages("fgeo.analyze", repos = these_repos)
 ```
 
