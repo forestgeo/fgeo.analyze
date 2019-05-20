@@ -3,6 +3,14 @@
 
 # <img src="https://i.imgur.com/vTLlhbp.png" align="right" height=88 /> Analyze ForestGEO data
 
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Travis build
+status](https://travis-ci.org/forestgeo/fgeo.analyze.svg?branch=master)](https://travis-ci.org/forestgeo/fgeo.analyze)
+[![Coverage
+status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
+
 **fgeo.analyze** provides functions to analyze
 [ForestGEO](http://www.forestgeo.si.edu/) data.
 
