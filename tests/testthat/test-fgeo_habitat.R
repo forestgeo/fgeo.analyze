@@ -43,10 +43,9 @@ test_that("fgeo_habitat errs with informative messages", {
 
 test_that("fgeo_habitat plots with plot.fgeo_habitat()", {
   skip_if_not_installed("fgeo.plot")
-  library(fgeo.plot)
 
   habitat <- fgeo_habitat(fgeo.x::elevation, gridsize = 20, n = 4)
-  expect_is(autoplot(habitat), "ggplot")
+  expect_is(fgeo.plot::autoplot(habitat), "ggplot")
 })
 
 test_that("fgeo_habitat results in gx and gy that are multiple of gridsize", {
