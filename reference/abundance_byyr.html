@@ -72,7 +72,7 @@ given dbh range (notice the difference with abundance_byyr()).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.10.9000</span>
       </span>
     </div>
 
@@ -244,8 +244,9 @@ including dead, missing, and gone stems.</p>
 <span class='no'>basal</span></div><div class='output co'>#&gt; # A tibble: 1 x 4
 #&gt;   species family yr_2001 yr_2002
 #&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 Gn spp  f        1100.    314.</div><span class='co'># NOT RUN {</span>
-<span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+#&gt; 1 Gn spp  f        1100.    314.</div><div class='input'>
+# Skip R CMD check for speed
+</div><div class='input'><span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='kw'>if</span> (<span class='no'>measurements_is_installed</span>) {
   <span class='co'># Convert units</span>
   <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
@@ -260,8 +261,18 @@ including dead, missing, and gone stems.</p>
   <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
   <span class='no'>basal_he</span> <span class='kw'>%&gt;%</span>
     <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~ <span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
-}
-<span class='co'># }</span></pre>
+}</div><div class='output co'>#&gt; $species
+#&gt; [1] "Gn spp"
+#&gt; 
+#&gt; $family
+#&gt; [1] "f"
+#&gt; 
+#&gt; $yr_2001
+#&gt; [1] 2.199115e-09
+#&gt; 
+#&gt; $yr_2002
+#&gt; [1] 6.283185e-10
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
