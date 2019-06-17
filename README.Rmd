@@ -287,7 +287,7 @@ summary(tt_test_result)
 
 ## Information
 
-* [Getting help](SUPPORT.md).
-* [Contributing](CONTRIBUTING.md).
-* [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+* [Getting help](https://forestgeo.github.io/fgeo.analyze/SUPPORT.html).
+* [Contributing](https://forestgeo.github.io/fgeo.analyze/CONTRIBUTING.html).
+* [Contributor Code of Conduct](https://forestgeo.github.io/fgeo.analyze/CODE_OF_CONDUCT.html).
 

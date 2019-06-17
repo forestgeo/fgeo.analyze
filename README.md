@@ -51,7 +51,8 @@ library(fgeo.analyze)
 ### Abundance
 
 Your data may have multiple stems per treeid and even multiple measures
-per stemid (if trees have buttresses).
+per stemid (if trees have
+buttresses).
 
 ``` r
 # Trees with buttresses may have multiple measurements of a single stem. 
@@ -269,15 +270,15 @@ vft
 #> # A tibble: 8 x 13
 #>   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate
 #>   <chr>       <int>  <int>  <dbl> <chr>  <int> <chr> <chr>       <chr>    
-#> 1 luq             1      1    1.1 alive     10 Gn    spp         2001-01-~
-#> 2 luq             1      1    1.2 dead      NA Gn    spp         2001-01-~
-#> 3 luq             1      2    2.1 alive     20 Gn    spp         2001-01-~
-#> 4 luq             1      2    2.2 alive     30 Gn    spp         2001-01-~
-#> 5 luq             2      1    1.1 alive     20 Gn    spp         2002-01-~
-#> 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-~
-#> 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-~
-#> 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-~
-#> # ... with 4 more variables: PlotCensusNumber <int>, Family <chr>,
+#> 1 luq             1      1    1.1 alive     10 Gn    spp         2001-01-…
+#> 2 luq             1      1    1.2 dead      NA Gn    spp         2001-01-…
+#> 3 luq             1      2    2.1 alive     20 Gn    spp         2001-01-…
+#> 4 luq             1      2    2.2 alive     30 Gn    spp         2001-01-…
+#> 5 luq             2      1    1.1 alive     20 Gn    spp         2002-01-…
+#> 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-…
+#> 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-…
+#> 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-…
+#> # … with 4 more variables: PlotCensusNumber <int>, Family <chr>,
 #> #   Tag <int>, HOM <int>
 ```
 
@@ -405,7 +406,7 @@ as_tibble(
 #>  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558
 #>  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622
 #> 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670
-#> # ... with 530 more rows
+#> # … with 530 more rows
 ```
 
 The same applies for other demography functions.
@@ -431,7 +432,7 @@ as_tibble(
 #>  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558    13.1
 #>  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622    16.6
 #> 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670   108  
-#> # ... with 530 more rows
+#> # … with 530 more rows
 ```
 
 A simple way to separate the grouping variables is with
@@ -457,7 +458,7 @@ as_tibble(growth)
 #>  8 CASSYL.1411 NA         0    NA    NA   NA       NA    NA
 #>  9 SLOBER.1414  1.40      1    NA    16.6  4.57 18952 20622
 #> 10 GUAGUI.1419 NA         0    NA    NA   NA       NA    NA
-#> # ... with 530 more rows
+#> # … with 530 more rows
 
 as_tibble(growth) %>% 
   tidyr::separate(groups, into = c("species", "quadrats"))
@@ -474,7 +475,7 @@ as_tibble(growth) %>%
 #>  8 CASSYL  1411     NA         0    NA    NA   NA       NA    NA
 #>  9 SLOBER  1414      1.40      1    NA    16.6  4.57 18952 20622
 #> 10 GUAGUI  1419     NA         0    NA    NA   NA       NA    NA
-#> # ... with 530 more rows
+#> # … with 530 more rows
 ```
 
 ### Species-habitat associations
@@ -568,6 +569,8 @@ summary(tt_test_result)
 
 ## Information
 
-  - [Getting help](SUPPORT.md).
-  - [Contributing](CONTRIBUTING.md).
-  - [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+  - [Getting
+    help](https://forestgeo.github.io/fgeo.analyze/SUPPORT.html).
+  - [Contributing](https://forestgeo.github.io/fgeo.analyze/CONTRIBUTING.html).
+  - [Contributor Code of
+    Conduct](https://forestgeo.github.io/fgeo.analyze/CODE_OF_CONDUCT.html).
