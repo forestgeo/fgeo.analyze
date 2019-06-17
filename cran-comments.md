@@ -1,11 +1,3 @@
-## Re-submission
-
-This is a re-submission. In this version I have:
-
-* Incremented the version number to avoid confusion.
-* Added one reference in the Description field of the DESCRIPTION file.
-* Replaces \dontrun{} by \donttest{} to skip R CMD check for speed.
-
 ## Test environments
 
 * local: windows 10 x64 (R 3.6.0)
@@ -17,8 +9,22 @@ This is a re-submission. In this version I have:
 
 0 errors | 0 warning | 1 notes 
 
-New submission
+New maintainer:  
+  Mauro Lepore <maurolepore@gmail.com>  
+Old maintainer(s):  
+  Mauro Lepore <leporem@si.edu>  
+
+I have changed my email address. I'll soon do this for all "fgeo" packages.
+
+
+
+FIXME: Version contains large components (1.1.10.9000)
+
+
 
 ## Downstream dependencies
 
-There are currently no downstream dependencies for this package.
+We checked 2 reverse dependencies from CRAN, comparing R CMD check results across CRAN and dev versions of this package:
+
+* We saw 0 new problems
+* We failed to check 0 packages
