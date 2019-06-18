@@ -16,12 +16,6 @@ Old maintainer(s):
 
 I have changed my email address. I'll soon do this for all "fgeo" packages.
 
-
-
-FIXME: Version contains large components (1.1.10.9000)
-
-
-
 ## Downstream dependencies
 
 We checked 2 reverse dependencies from CRAN, comparing R CMD check results across CRAN and dev versions of this package:
