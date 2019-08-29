@@ -8,10 +8,12 @@
 
 <title>Torus Translation Test to determine habitat associations of tree species. — tt_test • fgeo.analyze</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -30,11 +32,12 @@
 
 
 
-<meta property="og:title" content="Torus Translation Test to determine habitat associations of tree species. — tt_test" />
 
+<meta property="og:title" content="Torus Translation Test to determine habitat associations of tree species. — tt_test" />
 <meta property="og:description" content="Determine habitat-species associations with code developed by Sabrina Russo,
 Daniel Zuleta, Matteo Detto, and Kyle Harms." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -95,7 +98,6 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/maurolepore">
@@ -130,14 +132,12 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms." />
     </div>
 
     <div class="ref-description">
-    
     <p>Determine habitat-species associations with code developed by Sabrina Russo,
 Daniel Zuleta, Matteo Detto, and Kyle Harms.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>tt_test</span>(<span class='no'>tree</span>, <span class='no'>habitat</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plotdim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -162,11 +162,10 @@ If the guess is wrong, you should provide the correct values manually (and
 check that your habitat data is correct).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of matrices.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This test only makes sense at the population level. We are interested in
@@ -178,13 +177,11 @@ stems per tree.</p>
 <p>You should only try to determine the habitat association for sufficiently
 abundant species. In a 50-ha plot, a minimum abundance of 50 trees/species
 has been used.</p>
-    
     <h2 class="hasAnchor" id="acknowledgments"><a class="anchor" href="#acknowledgments"></a>Acknowledgments</h2>
 
     
     <p>Nestor Engone Obiang, David Kenfack, Jennifer Baltzer, and Rutuja
 Chitra-Tarak provided feedback. Daniel Zuleta provided guidance.</p>
-    
     <h2 class="hasAnchor" id="interpretation-of-output"><a class="anchor" href="#interpretation-of-output"></a>Interpretation of Output</h2>
 
     
@@ -213,20 +210,17 @@ the value given</em>.</p>
 <p>Values of the <code>Obs.Quantile &lt; 0.025</code> means that the species is repelled from
 that habitat, while values of the <code>Obs.Quantile &gt; 0.975</code> means that the
 species is aggregated on that habitat.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     
     <p>Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 <a href='https://doi.org/10.1007/s11104-018-3878-0'>https://doi.org/10.1007/s11104-018-3878-0</a>.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='summary.tt_df.html'>summary.tt_lst()</a></code>, <code><a href='summary.tt_df.html'>summary.tt_df()</a></code>, <code><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble()</a></code>,
 <code><a href='fgeo_habitat.html'>fgeo_habitat()</a></code>.</p>
 <p>Other habitat functions: <code><a href='fgeo_habitat.html'>fgeo_habitat</a></code>,
   <code><a href='fgeo_topography.html'>fgeo_topography</a></code></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.tool</span>)
@@ -296,19 +290,12 @@ species is aggregated on that habitat.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#acknowledgments">Acknowledgments</a></li>
-
       <li><a href="#interpretation-of-output">Interpretation of Output</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
