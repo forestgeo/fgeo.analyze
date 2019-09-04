@@ -18,13 +18,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -51,6 +53,7 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms." />
 <![endif]-->
 
 
+
   </head>
 
   <body>
@@ -75,7 +78,7 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -121,6 +124,7 @@ Daniel Zuleta, Matteo Detto, and Kyle Harms." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -180,12 +184,14 @@ has been used.</p>
     <h2 class="hasAnchor" id="acknowledgments"><a class="anchor" href="#acknowledgments"></a>Acknowledgments</h2>
 
     
-    <p>Nestor Engone Obiang, David Kenfack, Jennifer Baltzer, and Rutuja
+
+<p>Nestor Engone Obiang, David Kenfack, Jennifer Baltzer, and Rutuja
 Chitra-Tarak provided feedback. Daniel Zuleta provided guidance.</p>
     <h2 class="hasAnchor" id="interpretation-of-output"><a class="anchor" href="#interpretation-of-output"></a>Interpretation of Output</h2>
 
     
-    <ul>
+
+<ul>
 <li><p><code>N.Hab.1</code>: Count of stems of the focal species in habitat 1.</p></li>
 <li><p><code>Gr.Hab.1</code>: Count of instances the observed relative density of the focal
 species on habitat 1 was greater than the relative density based on the TT
@@ -202,7 +208,8 @@ The <code>Rep.Agg.Neut</code> columns for each habitat indicate whether the spec
 significantly repelled (-1), aggregated (1), or neutrally distributed (0) on
 the habitat in question.</p></li>
 </ul>
-    <p>The probabilities associated with the test for whether these patterns are
+
+<p>The probabilities associated with the test for whether these patterns are
 statistically significant are in the <code>Obs.Quantile</code> columns for each habitat.
 Note that to calculate the probability for <em>repelled</em>, it is <em>the value
 given</em>, but to calculate the probability for <em>aggregated</em>, it is <em>one minus
@@ -213,7 +220,8 @@ species is aggregated on that habitat.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     
-    <p>Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
+
+<p>Zuleta, D., Russo, S.E., Barona, A. et al. Plant Soil (2018).
 <a href='https://doi.org/10.1007/s11104-018-3878-0'>https://doi.org/10.1007/s11104-018-3878-0</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -223,18 +231,18 @@ species is aggregated on that habitat.</p>
   <code><a href='fgeo_topography.html'>fgeo_topography</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.tool</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/assert_is_installed'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>fgeo.tool</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
 
 <span class='co'># Example data</span>
-<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6_3species</a></span>
-<span class='no'>elevation</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>elevation</a></span>
+<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree6_3species</a></span>
+<span class='no'>elevation</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>elevation</a></span>
 
 <span class='co'># Pick alive trees, of 10 mm or more</span>
-<span class='no'>census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>filter</a></span>(<span class='no'>tree</span>, <span class='no'>status</span> <span class='kw'>==</span> <span class='st'>"A"</span>, <span class='no'>dbh</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)
+<span class='no'>census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>filter</a></span>(<span class='no'>tree</span>, <span class='no'>status</span> <span class='kw'>==</span> <span class='st'>"A"</span>, <span class='no'>dbh</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)
 
 <span class='co'># Pick sufficiently abundant species</span>
-<span class='no'>pick</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>filter</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/tally.html'>add_count</a></span>(<span class='no'>census</span>, <span class='no'>sp</span>), <span class='no'>n</span> <span class='kw'>&gt;</span> <span class='fl'>50</span>)
+<span class='no'>pick</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>filter</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/tally.html'>add_count</a></span>(<span class='no'>census</span>, <span class='no'>sp</span>), <span class='no'>n</span> <span class='kw'>&gt;</span> <span class='fl'>50</span>)
 
 <span class='co'># Use your habitat data or create it from elevation data</span>
 <span class='no'>habitat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='fgeo_habitat.html'>fgeo_habitat</a></span>(<span class='no'>elevation</span>, <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
@@ -257,7 +265,7 @@ species is aggregated on that habitat.</p>
 #&gt; 10 2       SLOBER    24    810    788      2            0        0.506
 #&gt; 11 3       SLOBER    17   1155    440      5            0        0.722
 #&gt; 12 4       SLOBER     7   1292    303      5            0        0.808</div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/funprog'>Reduce</a></span>(<span class='no'>rbind</span>, <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>))</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
+<span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Reduce</a></span>(<span class='no'>rbind</span>, <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>))</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
 #&gt; CASARB      29     1242      356        2              0       0.776250      20
 #&gt; PREMON      91     1093      504        3              0       0.683125      89
 #&gt; SLOBER      18      273     1324        3              0       0.170625      24
@@ -273,8 +281,8 @@ species is aggregated on that habitat.</p>
 #&gt; CASARB      932      658       10              0        0.58250
 #&gt; PREMON      270     1322        8              0        0.16875
 #&gt; SLOBER     1292      303        5              0        0.80750</div><div class='input'>
-<span class='no'>some_species</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"CASARB"</span>, <span class='st'>"PREMON"</span>)
-<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='no'>some_species</span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 3
+<span class='no'>some_species</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CASARB"</span>, <span class='st'>"PREMON"</span>)
+<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>tt_test</span>(<span class='no'>census</span>, <span class='no'>habitat</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='no'>some_species</span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>result</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 3
 #&gt;   sp     habitat association
 #&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      
 #&gt; 1 CASARB 1       neutral    
@@ -304,19 +312,23 @@ species is aggregated on that habitat.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://github.com/maurolepore'>Mauro Lepore</a>, <a href='https://forestgeo.si.edu/arellano-gabriel'>Gabriel Arellano</a>, Richard Condit, Matteo Detto, Kyle Harms, Suzanne Lao, Sabrina Russo, Daniel Zuleta.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

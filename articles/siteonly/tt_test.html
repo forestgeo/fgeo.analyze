@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Habitat-species associations • fgeo.analyze</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
 <script src="../../pkgdown.js"></script><meta property="og:title" content="Habitat-species associations">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -86,6 +87,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -93,7 +95,7 @@
             <h3 class="subtitle">Given a number of tree species and habitat types in a plot, are species significantly aggregated within habitats?</h3>
                         <h4 class="author">Mauro Lepore</h4>
             
-            <h4 class="date">2019-09-03</h4>
+            <h4 class="date">2019-09-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/forestgeo/fgeo.analyze/blob/master/vignettes/siteonly/tt_test.Rmd"><code>vignettes/siteonly/tt_test.Rmd</code></a></small>
       <div class="hidden name"><code>tt_test.Rmd</code></div>
@@ -108,8 +110,8 @@
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p>First, install and load (“open”) the relevant packages.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("remotes")</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"forestgeo/fgeo"</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"forestgeo/fgeo"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
@@ -118,17 +120,17 @@
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
 <a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo.x)</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo.tool)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.x)</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.tool)</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; Attaching package: 'fgeo.tool'</span></a>
 <a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; The following object is masked from 'package:stats':</span></a>
 <a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;     filter</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(fgeo.analyze)</a></code></pre></div>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.analyze)</a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># For reproducible results</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1014</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1014</span>)</a></code></pre></div>
 </div>
 <div id="load-census-and-habitat-data" class="section level2">
 <h2 class="hasAnchor">
@@ -136,7 +138,7 @@
 <p>We will use example datasets that come with <strong>fgeo.analyze</strong>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">census &lt;-<span class="st"> </span>fgeo.x<span class="op">::</span><span class="kw">download_data</span>(<span class="st">"luquillo_tree6_random"</span>)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(census)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(census)</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; Classes 'tbl_df', 'tbl' and 'data.frame':    1000 obs. of  19 variables:</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;  $ treeID   : int  104 119 180 602 631 647 1086 1144 1168 1380 ...</span></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;  $ stemID   : int  143 158 225 736 775 793 1339 1410 1438 1702 ...</span></a>
@@ -160,7 +162,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Creating habitat data from elevation data</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">elevation &lt;-<span class="st"> </span>fgeo.x<span class="op">::</span>elevation</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">habitat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/fgeo_habitat.html">fgeo_habitat</a></span>(elevation, <span class="dt">gridsize =</span> <span class="dv">20</span>, <span class="dt">n =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(habitat)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(habitat)</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; Classes 'fgeo_habitat', 'fgeo_topography', 'tbl_df', 'tbl' and 'data.frame': 400 obs. of  3 variables:</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;  $ gx      : num  0 0 0 0 0 0 0 0 0 0 ...</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;  $ gy      : num  0 20 40 60 80 100 120 140 160 180 ...</span></a>
@@ -168,10 +170,10 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">fgeo.plot<span class="op">::</span><span class="kw">autoplot</span>(habitat)</a></code></pre></div>
 <p><img src="tt_test_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;"></p>
 <p>To load your own data, you may run something like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="st">"PATH/CENSUS_DATA.rdata"</span>)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/load.html">load</a></span>(<span class="st">"PATH/CENSUS_DATA.rdata"</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">census &lt;-<span class="st"> </span>CENSUS_DATA</a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="st">"PATH/HABITAT-DATA.rdata"</span>)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/load.html">load</a></span>(<span class="st">"PATH/HABITAT-DATA.rdata"</span>)</a>
 <a class="sourceLine" id="cb7-5" data-line-number="5">habitat &lt;-<span class="st"> </span>HABITAT<span class="op">-</span>DATA</a></code></pre></div>
 </div>
 <div id="pick-data" class="section level2">
@@ -191,7 +193,7 @@
 <a class="sourceLine" id="cb8-11" data-line-number="11">pick &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(pick, n <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>)</a>
 <a class="sourceLine" id="cb8-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co"># Summary</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unique">unique</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(pick, sp, n))</a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(pick, sp, n))</a>
 <a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
 <a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt;   sp         n</span></a>
 <a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt;   &lt;chr&gt;  &lt;int&gt;</span></a>
@@ -211,7 +213,7 @@
 <a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">x =</span> gx <span class="op">+</span><span class="st"> </span>offset, </a>
 <a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="dt">y =</span> gy <span class="op">+</span><span class="st"> </span>offset,</a>
 <a class="sourceLine" id="cb9-8" data-line-number="8">  <span class="co"># From continuous to categorical</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9">  <span class="dt">habitats =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/factor">as.factor</a></span>(habitats)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">  <span class="dt">habitats =</span> <span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(habitats)</a>
 <a class="sourceLine" id="cb9-10" data-line-number="10">)</a></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(pick, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> gx, <span class="dt">y =</span> gy)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">geom_raster</a></span>(<span class="dt">data =</span> habitat2, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x, y, <span class="dt">fill =</span> habitats)) <span class="op">+</span><span class="st"> </span></a>
@@ -223,7 +225,7 @@
 </div>
 <div id="tt_test-and-any-number-of-species" class="section level2">
 <h2 class="hasAnchor">
-<a href="#tt_test-and-any-number-of-species" class="anchor"></a><code><a href="../../reference/tt_test.html">tt_test()</a></code> and any number of species</h2>
+<a href="#tt_test-and-any-number-of-species" class="anchor"></a><code>tt_test()</code> and any number of species</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">tt_test_result &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/tt_test.html">tt_test</a></span>(pick, habitat)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; Using `gridsize = 20`. To change this value see `?tt_test()`.</span></a>
@@ -258,8 +260,8 @@
 <a class="sourceLine" id="cb11-32" data-line-number="32"><span class="co">#&gt; SLOBER      17     1155      440        5              0          0.722</span></a>
 <a class="sourceLine" id="cb11-33" data-line-number="33"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
 <a class="sourceLine" id="cb11-34" data-line-number="34"><span class="co">#&gt; SLOBER       7     1292      303        5              0          0.807</span></a></code></pre></div>
-<p>To help you interpret the results, you can use <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(tt_test_result)</a>
+<p>To help you interpret the results, you can use <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(tt_test_result)</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt;    sp     habitat association</span></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      </span></a>
@@ -276,7 +278,7 @@
 <a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; 11 SLOBER 3       neutral    </span></a>
 <a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; 12 SLOBER 4       neutral</span></a></code></pre></div>
 <p>You may want to combine the output into a single matrix by row-binding each element of the results-list.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/funprog">Reduce</a></span>(rbind, tt_test_result)</a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span>(rbind, tt_test_result)</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; CASARB      29     1242      356        2              0          0.776</span></a>
 <a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; PREMON      91     1093      504        3              0          0.683</span></a>
@@ -310,7 +312,7 @@
 <a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co">#&gt; 10 2       SLOBER    24    810    788      2            0        0.506</span></a>
 <a class="sourceLine" id="cb14-15" data-line-number="15"><span class="co">#&gt; 11 3       SLOBER    17   1155    440      5            0        0.722</span></a>
 <a class="sourceLine" id="cb14-16" data-line-number="16"><span class="co">#&gt; 12 4       SLOBER     7   1292    303      5            0        0.807</span></a></code></pre></div>
-<p>You can benefit from storing your results in a dataframe. Compared to a matrix, a dataframe fits better in common workflows for data manipulation and visualization. The dataframe is the most important data structure used in <strong>dplyr</strong>, <strong>ggplot2</strong>, and many other packages. Here are some examples of what you can do with our dataframe output. (The next few code chunks use <a href="http://style.tidyverse.org/pipes.html">the pipe operator (<code>%&gt;%</code>)</a> to avoid saving intermediary results and to make our code more expressive – where each line is an imperative statement that communicates our intention.)</p>
+<p>You can benefit from storing your results in a dataframe. Compared to a matrix, a dataframe fits better in common workflows for data manipulation and visualization. The dataframe is the most important data structure used in <strong>dplyr</strong>, <strong>ggplot2</strong>, and many other packages. Here are some examples of what you can do with our dataframe output. (The next few code chunks use <a href="http://style.tidyverse.org/pipes.html">the pipe operator (<code><a href="../../reference/pipe.html">%&gt;%</a></code>)</a> to avoid saving intermediary results and to make our code more expressive – where each line is an imperative statement that communicates our intention.)</p>
 <ul>
 <li>Pick interesting rows and sort them in a meaningful way.</li>
 </ul>
@@ -328,7 +330,7 @@
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(tt_test_result) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(sp, habitat) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">total_stem_count =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(N.Hab))</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">total_stem_count =</span> <span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(N.Hab))</a>
 <a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#&gt; # A tibble: 12 x 3</span></a>
 <a class="sourceLine" id="cb16-5" data-line-number="5"><span class="co">#&gt; # Groups:   sp [3]</span></a>
 <a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co">#&gt;    sp     habitat total_stem_count</span></a>
@@ -358,7 +360,7 @@
       <li><a href="#load-census-and-habitat-data">Load census and habitat data</a></li>
       <li><a href="#pick-data">Pick data</a></li>
       <li><a href="#overview">Overview</a></li>
-      <li><a href="#tt_test-and-any-number-of-species"><code><a href="--/--/reference/tt_test-html">tt_test()</a></code> and any number of species</a></li>
+      <li><a href="#tt_test-and-any-number-of-species"><code>tt_test()</code> and any number of species</a></li>
       </ul>
 </div>
       </div>
@@ -366,17 +368,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://github.com/maurolepore">Mauro Lepore</a>, <a href="https://forestgeo.si.edu/arellano-gabriel">Gabriel Arellano</a>, Richard Condit, Matteo Detto, Kyle Harms, Suzanne Lao, Sabrina Russo, Daniel Zuleta.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -18,13 +18,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,6 +37,7 @@
 
 <meta property="og:title" content="Abundance and basal area, optionally by groups. — abundance" />
 <meta property="og:description" content="
+
 abundance() counts the number of rows in a dataset, optionally by groups
 created with dplyr::group_by() (similar to dplyr::n()). It warns if it
 detects duplicated values of treeid.
@@ -42,8 +45,9 @@ basal_area() sums the basal area of
 all stems in a dataset, optionally by groups created with group_by(). It
 warns if it detects duplicated values of stemid. It does not convert units
 (but see examples).
-" />
-<meta property="og:description" content="Both abundance() and basal_area() warn if they detect
+
+
+Both abundance() and basal_area() warn if they detect
 multiple censusid and multiple plots." />
 <meta name="twitter:card" content="summary" />
 
@@ -58,6 +62,7 @@ multiple censusid and multiple plots." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -84,7 +89,7 @@ multiple censusid and multiple plots." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -130,6 +135,7 @@ multiple censusid and multiple plots." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -141,7 +147,8 @@ multiple censusid and multiple plots." />
     </div>
 
     <div class="ref-description">
-    <ul>
+    
+<ul>
 <li><p><code>abundance()</code> counts the number of rows in a dataset, optionally by groups
 created with <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> (similar to <code><a href='https://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>). It warns if it
 detects duplicated values of treeid.</p></li>
@@ -150,7 +157,8 @@ all stems in a dataset, optionally by groups created with <code>group_by()</code
 warns if it detects duplicated values of stemid. It does not convert units
 (but see examples).</p></li>
 </ul>
-    <p>Both <code>abundance()</code> and <code>basal_area()</code> warn if they detect
+
+<p>Both <code>abundance()</code> and <code>basal_area()</code> warn if they detect
 multiple censusid and multiple plots.</p>
     </div>
 
@@ -173,27 +181,25 @@ insensitive).</p></td>
     <p>You may want to calculate the abundance or basal area for a specific subset
 of data (e.g. "alive" stems or stems which <code>dbh</code> is within some range).
 Subsetting data is not the job of these functions. Instead see
-<code><a href='https://www.rdocumentation.org/packages/base/topics/subset'>base::subset()</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code>, or <code>[</code>.</p>
+<code><a href='https://rdrr.io/r/base/subset.html'>base::subset()</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code>, or <code>[</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p>
 <p>Other functions for abundance and basal area: <code><a href='abundance_byyr.html'>abundance_byyr</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>fgeo.tool</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘fgeo.tool’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:testthat’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    matches</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>fgeo.tool</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘fgeo.tool’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter</span></div><div class='input'>
 <span class='co'># abundance() -------------------------------------------------------------</span>
 
-<span class='fu'>abundance</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>abundance</span>(<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
 #&gt;       n
 #&gt;   &lt;int&gt;
 #&gt; 1     1</div><div class='input'>
 <span class='co'># One stem per tree</span>
-<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
+<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
   ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
   <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>11</span>,
   <span class='st'>"2"</span>, <span class='st'>"2.1"</span>, <span class='fl'>21</span>
@@ -204,7 +210,7 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;   &lt;int&gt;
 #&gt; 1     2</div><div class='input'>
 <span class='co'># One tree with multiple stems</span>
-<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
+<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
   ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
   <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>11</span>,
   <span class='st'>"1"</span>, <span class='st'>"1.2"</span>, <span class='fl'>12</span>
@@ -214,20 +220,22 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;       n
 #&gt;   &lt;int&gt;
 #&gt; 1     2</div><div class='input'>
-# Skip R CMD check for speed
-</div><div class='input'><span class='co'># Similar but more realistic</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/assert_is_installed'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
-<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/download_data'>download_data</a></span>(<span class='st'>"luquillo_stem5_random"</span>)
+<span class='co'># Skip R CMD check for speed</span>
+<span class='co'># \donttest{</span>
+<span class='co'># Similar but more realistic</span>
+<span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
+<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fgeo.x/man/download_data.html'>download_data</a></span>(<span class='st'>"luquillo_stem5_random"</span>)
 
 <span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; # A tibble: 1 x 1
 #&gt;       n
 #&gt;   &lt;int&gt;
 #&gt; 1  1320</div><div class='input'>
-<span class='fu'>abundance</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>pick_main_stem</a></span>(<span class='no'>stem</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>abundance</span>(<span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span>(<span class='no'>stem</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
 #&gt;       n
 #&gt;   &lt;int&gt;
-#&gt; 1  1000</div><div class='input'>
-<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
+#&gt; 1  1000</div><div class='input'><span class='co'># }</span>
+
+<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
   ~<span class='no'>PlotName</span>, ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
   <span class='st'>"p"</span>, <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>10</span>,
   <span class='st'>"q"</span>, <span class='fl'>2</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>10</span>
@@ -241,7 +249,7 @@ Subsetting data is not the job of these functions. Instead see
 #&gt; 1     2</div><div class='input'>
 <span class='co'># If trees have buttressess, the data may have multiple stems per treeid or</span>
 <span class='co'># multiple measures per stemid.</span>
-<span class='no'>vft2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
+<span class='no'>vft2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
   ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>, ~<span class='no'>HOM</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>88</span>, <span class='fl'>130</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>10</span>, <span class='fl'>160</span>,
@@ -250,7 +258,7 @@ Subsetting data is not the job of these functions. Instead see
 )
 
 <span class='co'># You should count only the main stem of each tree</span>
-(<span class='no'>main_stem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>pick_main_stem</a></span>(<span class='no'>vft2</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 5
+(<span class='no'>main_stem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span>(<span class='no'>vft2</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 5
 #&gt;   CensusID TreeID StemID   DBH   HOM
 #&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
 #&gt; 1        1 1      1.1       10   160
@@ -259,7 +267,7 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;       n
 #&gt;   &lt;int&gt;
 #&gt; 1     2</div><div class='input'>
-<span class='no'>vft3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>tribble</a></span>(
+<span class='no'>vft3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
   ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>, ~<span class='no'>HOM</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>20</span>, <span class='fl'>130</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.2"</span>, <span class='fl'>10</span>, <span class='fl'>160</span>, <span class='co'># Main stem</span>
@@ -268,8 +276,8 @@ Subsetting data is not the job of these functions. Instead see
 )
 
 <span class='co'># You can compute by groups</span>
-<span class='no'>by_census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/reexports'>group_by</a></span>(<span class='no'>vft3</span>, <span class='no'>CensusID</span>)
-(<span class='no'>main_stems_by_census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>pick_main_stem</a></span>(<span class='no'>by_census</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 5
+<span class='no'>by_census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>group_by</a></span>(<span class='no'>vft3</span>, <span class='no'>CensusID</span>)
+(<span class='no'>main_stems_by_census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span>(<span class='no'>by_census</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 5
 #&gt; # Groups:   CensusID [2]
 #&gt;   CensusID TreeID StemID   DBH   HOM
 #&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
@@ -284,7 +292,7 @@ Subsetting data is not the job of these functions. Instead see
 <span class='co'># basal_area() ------------------------------------------------------------</span>
 
 <span class='co'># Data must have a column named dbh (case insensitive)</span>
-<span class='fu'>basal_area</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>dbh</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>basal_area</span>(<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>dbh</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
 #&gt;   basal_area
 #&gt;        &lt;dbl&gt;
 #&gt; 1      0.785</div><div class='input'>
@@ -295,7 +303,7 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;        &lt;dbl&gt;
 #&gt; 1       157.</div><div class='input'>
 <span class='co'># First you may pick the main stemid of each stem</span>
-(<span class='no'>main_stemids</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/pick_main_stem'>pick_main_stemid</a></span>(<span class='no'>vft2</span>))</div><div class='output co'>#&gt; # A tibble: 3 x 5
+(<span class='no'>main_stemids</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stemid</a></span>(<span class='no'>vft2</span>))</div><div class='output co'>#&gt; # A tibble: 3 x 5
 #&gt;   CensusID TreeID StemID   DBH   HOM
 #&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
 #&gt; 1        1 1      1.1       10   160
@@ -312,14 +320,15 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;      &lt;dbl&gt;      &lt;dbl&gt;
 #&gt; 1        1       393.
 #&gt; 2        2       493.</div><div class='input'>
-# Skip R CMD check for speed
-</div><div class='input'><span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/ns-load'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># Skip R CMD check for speed</span>
+<span class='co'># \donttest{</span>
+<span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='kw'>if</span> (<span class='no'>measurements_is_installed</span>) {
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>measurements</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>measurements</span>)
 
   <span class='co'># Convert units</span>
   <span class='no'>ba</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area</span>(<span class='no'>by_census</span>)
-  <span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/measurements/topics/conv_unit'>conv_unit</a></span>(
+  <span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/measurements/man/conv_unit.html'>conv_unit</a></span>(
     <span class='no'>ba</span>$<span class='no'>basal_area</span>,
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>
@@ -331,7 +340,8 @@ Subsetting data is not the job of these functions. Instead see
 #&gt;   CensusID basal_area basal_area_he
 #&gt;      &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;
 #&gt; 1        1       393.  0.0000000393
-#&gt; 2        2       493.  0.0000000493</div><div class='input'>
+#&gt; 2        2       493.  0.0000000493</div><div class='input'># }
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -346,19 +356,23 @@ Subsetting data is not the job of these functions. Instead see
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://github.com/maurolepore'>Mauro Lepore</a>, <a href='https://forestgeo.si.edu/arellano-gabriel'>Gabriel Arellano</a>, Richard Condit, Matteo Detto, Kyle Harms, Suzanne Lao, Sabrina Russo, Daniel Zuleta.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

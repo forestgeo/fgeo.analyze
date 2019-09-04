@@ -18,13 +18,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -39,6 +41,7 @@ habitats in two steps:
 It calculates mean elevation, convexity and slope for each quadrat.
 It calculates habitats based on hierarchical clustering of the topographic
 metrics from step 1.
+
 " />
 <meta name="twitter:card" content="summary" />
 
@@ -53,6 +56,7 @@ metrics from step 1.
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -79,7 +83,7 @@ metrics from step 1.
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -125,6 +129,7 @@ metrics from step 1.
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -142,6 +147,7 @@ habitats in two steps:</p><ol>
 <li><p>It calculates habitats based on hierarchical clustering of the topographic
 metrics from step 1.</p></li>
 </ol>
+
     </div>
 
     <pre class="usage"><span class='fu'>fgeo_habitat</span>(<span class='no'>elev</span>, <span class='no'>gridsize</span>, <span class='no'>n</span>, <span class='no'>...</span>)</pre>
@@ -156,7 +162,7 @@ metrics from step 1.</p></li>
 <code>elev</code>, or <code>x</code>, <code>y</code>, and <code>elev</code> (e.g. <code>fgeo.x::elevation$col</code>).</p></li>
 <li><p>A ForestGEO-like elevation list with elements <code>xdim</code> and <code>ydim</code> giving
 plot dimensions, and element <code>col</code> containing a dataframe as described in
-the previous item (e.g. <code><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>fgeo.x::elevation</a></code>).</p></li>
+the previous item (e.g. <code><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>fgeo.x::elevation</a></code>).</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -167,7 +173,7 @@ is calculated. Commonly, <code>gridsize = 20</code>.</p></td>
     <tr>
       <th>n</th>
       <td><p>Integer. Number of cluster-groups to construct (passed to the
-argument <code>k</code> to <code><a href='https://www.rdocumentation.org/packages/stats/topics/cutree'>stats::cutree()</a></code>).</p></td>
+argument <code>k</code> to <code><a href='https://rdrr.io/r/stats/cutree.html'>stats::cutree()</a></code>).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -188,21 +194,21 @@ as many distinct integer values as determined by the argument <code>n</code>.</p
 <p>Other functions to construct fgeo classes: <code><a href='fgeo_topography.html'>fgeo_topography</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/fgeo.tool/topics/assert_is_installed'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
 
 <span class='co'># Input a ForestGEO-like elevation list or dataframe</span>
-<span class='no'>elevation_ls</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>elevation</a></span>
+<span class='no'>elevation_ls</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>elevation</a></span>
 <span class='no'>habitats</span> <span class='kw'>&lt;-</span> <span class='fu'>fgeo_habitat</span>(
   <span class='no'>elevation_ls</span>,
   <span class='kw'>gridsize</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>
 )
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>(<span class='no'>habitats</span>)</div><div class='output co'>#&gt; Classes ‘fgeo_habitat’, ‘fgeo_topography’, ‘tbl_df’, ‘tbl’ and 'data.frame':	400 obs. of  3 variables:
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>habitats</span>)</div><div class='output co'>#&gt; Classes ‘fgeo_habitat’, ‘fgeo_topography’, ‘tbl_df’, ‘tbl’ and 'data.frame':	400 obs. of  3 variables:
 #&gt;  $ gx      : num  0 0 0 0 0 0 0 0 0 0 ...
 #&gt;  $ gy      : num  0 20 40 60 80 100 120 140 160 180 ...
 #&gt;  $ habitats: int  1 1 1 1 1 1 1 1 1 1 ...</div><div class='input'>
 <span class='co'># Habitat data is useful for calculating species-habitat associations</span>
-<span class='no'>census</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://www.rdocumentation.org/packages/fgeo.x/topics/datasets'>tree6_3species</a></span>
+<span class='no'>census</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree6_3species</a></span>
 <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(
   <span class='fu'><a href='tt_test.html'>tt_test</a></span>(<span class='no'>census</span>, <span class='no'>habitats</span>)
 )</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; # A tibble: 12 x 8
@@ -235,19 +241,23 @@ as many distinct integer values as determined by the argument <code>n</code>.</p
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by <a href='https://github.com/maurolepore'>Mauro Lepore</a>, <a href='https://forestgeo.si.edu/arellano-gabriel'>Gabriel Arellano</a>, Richard Condit, Matteo Detto, Kyle Harms, Suzanne Lao, Sabrina Russo, Daniel Zuleta.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
