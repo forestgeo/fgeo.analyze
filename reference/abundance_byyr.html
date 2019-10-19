@@ -266,7 +266,7 @@ including dead, missing, and gone stems.</p>
   <span class='co'># Standardize</span>
   <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
   <span class='no'>basal_he</span> <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map_at</a></span>(<span class='no'>years</span>, ~ <span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
+    <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map_if.html'>map_at</a></span>(<span class='no'>years</span>, ~ <span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
 }</div><div class='output co'>#&gt; $species
 #&gt; [1] "Gn spp"
 #&gt; 
