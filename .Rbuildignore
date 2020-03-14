@@ -16,3 +16,4 @@
 ^data-raw$
 ^fgeo\.analyze\.Rproj$
 ^\.Rproj\.user$
+^CRAN-RELEASE$
