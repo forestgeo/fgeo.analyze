@@ -1,6 +1,6 @@
 # fgeo.analyze (development version)
 
-* Work in progress.
+* Maintenance release.
 
 # fgeo.analyze 1.1.11
 

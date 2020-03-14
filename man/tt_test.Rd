@@ -113,8 +113,9 @@ summary(result)
 \code{\link[=summary.tt_lst]{summary.tt_lst()}}, \code{\link[=summary.tt_df]{summary.tt_df()}}, \code{\link[=as_tibble]{as_tibble()}},
 \code{\link[=fgeo_habitat]{fgeo_habitat()}}.
 
-Other habitat functions: \code{\link{fgeo_habitat}},
-  \code{\link{fgeo_topography}}
+Other habitat functions: 
+\code{\link{fgeo_habitat}()},
+\code{\link{fgeo_topography}()}
 }
 \author{
 Sabrina Russo, Daniel Zuleta, Matteo Detto, and Kyle Harms.

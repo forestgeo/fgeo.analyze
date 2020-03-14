@@ -8,8 +8,14 @@
 \usage{
 fgeo_topography(elev, ...)
 
-\method{fgeo_topography}{data.frame}(elev, gridsize, xdim = NULL,
-  ydim = NULL, edgecorrect = TRUE, ...)
+\method{fgeo_topography}{data.frame}(
+  elev,
+  gridsize,
+  xdim = NULL,
+  ydim = NULL,
+  edgecorrect = TRUE,
+  ...
+)
 
 \method{fgeo_topography}{list}(elev, gridsize, edgecorrect = TRUE, ...)
 }
@@ -56,10 +62,12 @@ fgeo_topography(elev_df, gridsize = 20, xdim = 320, ydim = 500)
 \seealso{
 \code{\link[=fgeo_habitat]{fgeo_habitat()}}.
 
-Other habitat functions: \code{\link{fgeo_habitat}},
-  \code{\link{tt_test}}
+Other habitat functions: 
+\code{\link{fgeo_habitat}()},
+\code{\link{tt_test}()}
 
-Other functions to construct fgeo classes: \code{\link{fgeo_habitat}}
+Other functions to construct fgeo classes: 
+\code{\link{fgeo_habitat}()}
 }
 \author{
 This function wraps code by Richard Condit.

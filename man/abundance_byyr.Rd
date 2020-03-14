@@ -17,7 +17,7 @@ it should contain columns \code{PlotName}, \code{CensusID}, \code{TreeID}, \code
 1980-01-01 to the present day in the format yyyy-mm-dd.}
 
 \item{...}{Expressions to pick main stems of a specific \code{dbh} range (e.g.
-\code{DBH >= 10} or \code{DBH >= 10, DBH < 20}, or \code{DBH >= 10 & DBH < 20}).}
+\code{DBH >= 10} or \verb{DBH >= 10, DBH < 20}, or \code{DBH >= 10 & DBH < 20}).}
 }
 \value{
 A dataframe.
@@ -100,6 +100,7 @@ if (measurements_is_installed) {
 \seealso{
 \code{\link[fgeo.tool:pick_main_stem]{fgeo.tool::pick_main_stem()}}.
 
-Other functions for abundance and basal area: \code{\link{abundance}}
+Other functions for abundance and basal area: 
+\code{\link{abundance}()}
 }
 \concept{functions for abundance and basal area}

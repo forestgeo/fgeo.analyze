@@ -147,6 +147,7 @@ if (measurements_is_installed) {
 \seealso{
 \code{\link[dplyr:n]{dplyr::n()}}, \code{\link[dplyr:group_by]{dplyr::group_by()}}.
 
-Other functions for abundance and basal area: \code{\link{abundance_byyr}}
+Other functions for abundance and basal area: 
+\code{\link{abundance_byyr}()}
 }
 \concept{functions for abundance and basal area}

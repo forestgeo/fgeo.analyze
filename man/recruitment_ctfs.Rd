@@ -6,16 +6,40 @@
 \alias{growth_ctfs}
 \title{Recruitment, mortality, and growth.}
 \usage{
-recruitment_ctfs(census1, census2, mindbh = NULL, alivecode = NULL,
-  split1 = NULL, split2 = NULL, quiet = FALSE)
+recruitment_ctfs(
+  census1,
+  census2,
+  mindbh = NULL,
+  alivecode = NULL,
+  split1 = NULL,
+  split2 = NULL,
+  quiet = FALSE
+)
 
-mortality_ctfs(census1, census2, alivecode = NULL, split1 = NULL,
-  split2 = NULL, quiet = FALSE)
+mortality_ctfs(
+  census1,
+  census2,
+  alivecode = NULL,
+  split1 = NULL,
+  split2 = NULL,
+  quiet = FALSE
+)
 
-growth_ctfs(census1, census2, rounddown = FALSE, method = "I",
-  stdev = FALSE, dbhunit = "mm", mindbh = NULL, growthcol = "dbh",
-  err.limit = 1000, maxgrow = 1000, split1 = NULL, split2 = NULL,
-  quiet = FALSE)
+growth_ctfs(
+  census1,
+  census2,
+  rounddown = FALSE,
+  method = "I",
+  stdev = FALSE,
+  dbhunit = "mm",
+  mindbh = NULL,
+  growthcol = "dbh",
+  err.limit = 1000,
+  maxgrow = 1000,
+  split1 = NULL,
+  split2 = NULL,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{census1, census2}{Two census tables, each being a ForestGEO-like \emph{tree}
