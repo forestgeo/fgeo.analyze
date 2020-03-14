@@ -28,7 +28,7 @@ test_that("as.data.frame.tt_lst outputs the expected dataframe", {
 
 test_that("as.data.frame.tt_lst takes arguments via `...`", {
   tt_lst <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
-  expect_is(as.data.frame(tt_lst)[["sp"]], "factor")
+  expect_is(as.data.frame(tt_lst,  stringsAsFactors = TRUE)[["sp"]], "factor")
 
   expect_is(
     as.data.frame(tt_lst, stringsAsFactors = FALSE)[["sp"]],
@@ -127,7 +127,7 @@ test_that("as.data.frame.demography_ctfs takes arguments via `...`", {
   )
 
   expect_is(
-    as.data.frame(result)[["groups"]],
+    as.data.frame(result, stringsAsFactors = TRUE)[["groups"]],
     "factor"
   )
   expect_is(
