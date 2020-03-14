@@ -146,16 +146,40 @@ feature formal tests, bug fixes, additional assertions, and improved
 messages.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>recruitment_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>recruitment_ctfs</span>(
+  <span class='no'>census1</span>,
+  <span class='no'>census2</span>,
+  <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
-<span class='fu'>mortality_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>mortality_ctfs</span>(
+  <span class='no'>census1</span>,
+  <span class='no'>census2</span>,
+  <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
-<span class='fu'>growth_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>rounddown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"I"</span>,
-  <span class='kw'>stdev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbhunit</span> <span class='kw'>=</span> <span class='st'>"mm"</span>, <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>growthcol</span> <span class='kw'>=</span> <span class='st'>"dbh"</span>,
-  <span class='kw'>err.limit</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>maxgrow</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>growth_ctfs</span>(
+  <span class='no'>census1</span>,
+  <span class='no'>census2</span>,
+  <span class='kw'>rounddown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"I"</span>,
+  <span class='kw'>stdev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>dbhunit</span> <span class='kw'>=</span> <span class='st'>"mm"</span>,
+  <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>growthcol</span> <span class='kw'>=</span> <span class='st'>"dbh"</span>,
+  <span class='kw'>err.limit</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>maxgrow</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
