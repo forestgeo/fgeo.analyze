@@ -1,20 +1,13 @@
 ## Test environments
 
-* local: windows 10 x64 (R 3.6.0)
+* ubuntu 18.04 (local), R 3.6.3
+* ubuntu 18.04 (docker), R-devel 2020-03-04 r77906
 * travis: ubuntu 14.04 (R 3.2, 3.3, 3.4, oldrel, release, devel)
-* win-builder (R devel and release)
-* rhub: x86_64-apple-darwin15.6.0 (R release)
+* win-builder, R-devel and release
 
 ## R CMD check results
 
-0 errors | 0 warning | 1 notes 
-
-New maintainer:  
-  Mauro Lepore <maurolepore@gmail.com>  
-Old maintainer(s):  
-  Mauro Lepore <leporem@si.edu>  
-
-I have changed my email address. I'll soon do this for all "fgeo" packages.
+0 errors | 0 warnings | 0 note
 
 ## Downstream dependencies
 
@@ -22,3 +15,4 @@ We checked 2 reverse dependencies from CRAN, comparing R CMD check results acros
 
 * We saw 0 new problems
 * We failed to check 0 packages
+
