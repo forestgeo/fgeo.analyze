@@ -56,7 +56,10 @@ test_that("summary.tt_lst and summary.tt_df return equal", {
     arrange(sp, habitat) %>%
     purrr::modify(as.character)
 
-  expect_equal(summary(tt_result), tt_lst)
+  expect_equivalent(
+    summary(tt_result)[names(tt_lst)],
+    tt_lst
+  )
 })
 
 
