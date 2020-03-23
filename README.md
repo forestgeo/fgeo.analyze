@@ -6,8 +6,6 @@
 <!-- badges: start -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis build
-status](https://travis-ci.org/forestgeo/fgeo.analyze.svg?branch=master)](https://travis-ci.org/forestgeo/fgeo.analyze)
 [![Coverage
 status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master)
 [![CRAN
@@ -38,6 +36,15 @@ step](https://forestgeo.github.io/fgeo/index.html#installation).
 ## Example
 
 ``` r
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(fgeo.x)
 library(fgeo.tool)
 #> 
@@ -51,8 +58,7 @@ library(fgeo.analyze)
 ### Abundance
 
 Your data may have multiple stems per treeid and even multiple measures
-per stemid (if trees have
-buttresses).
+per stemid (if trees have buttresses).
 
 ``` r
 # Trees with buttresses may have multiple measurements of a single stem. 
@@ -75,18 +81,16 @@ nrow(vft)
 count(vft)
 #> # A tibble: 1 x 1
 #>       n
-#>   <int>
+#> * <int>
 #> 1     4
 summarize(vft, n = n())
-#> Warning: Calling `n()` without importing or prefixing it is deprecated, use `dplyr::n()`.
-#> This warning is displayed once per session.
 #> # A tibble: 1 x 1
 #>       n
 #>   <int>
 #> 1     4
 abundance(vft)
-#> Warning: `treeid`: Duplicated values were detected. Do you need to pick
-#> main stems?
+#> Warning: `treeid`: Duplicated values were detected. Do you need to pick main
+#> stems?
 #> # A tibble: 1 x 1
 #>       n
 #>   <int>
@@ -98,8 +102,6 @@ expect this:
 
 ``` r
 summarize(vft, n = n_distinct(TreeID))
-#> Warning: Calling `n_distinct()` without importing or prefixing it is deprecated, use `dplyr::n_distinct()`.
-#> This warning is displayed once per session.
 #> # A tibble: 1 x 1
 #>       n
 #>   <int>
@@ -114,6 +116,10 @@ counting the number of main stems:
 
 ``` r
 (main_stems <- pick_main_stem(vft))
+#> Warning: The `add` argument of `group_by()` is deprecated as of dplyr 1.0.0.
+#> Please use the `.add` argument instead.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_warnings()` to see where this warning was generated.
 #> # A tibble: 2 x 5
 #>   CensusID TreeID StemID   DBH   HOM
 #>      <dbl> <chr>  <chr>  <dbl> <dbl>
@@ -205,8 +211,8 @@ main_stemids
 #> 5        2 2      2.1       30   130
 #> 6        2 2      2.2       40   130
 basal_area(main_stemids)
-#> Warning: `stemid`: Duplicated values were detected. Do you need to pick
-#> largest `hom` values?
+#> Warning: `stemid`: Duplicated values were detected. Do you need to pick largest
+#> `hom` values?
 #> Warning: `censusid`: Multiple values were detected. Do you need to group by
 #> censusid?
 #> # A tibble: 1 x 1
@@ -278,8 +284,8 @@ vft
 #> 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-…
 #> 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-…
 #> 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-…
-#> # … with 4 more variables: PlotCensusNumber <int>, Family <chr>,
-#> #   Tag <int>, HOM <int>
+#> # … with 4 more variables: PlotCensusNumber <int>, Family <chr>, Tag <int>,
+#> #   HOM <int>
 ```
 
 Abundance by year.
@@ -304,7 +310,7 @@ basal_area_byyr(vft, DBH >= 10)
 #> # A tibble: 1 x 4
 #>   species family yr_2001 yr_2002
 #>   <chr>   <chr>    <dbl>   <dbl>
-#> 1 Gn spp  f        1100.    314.
+#> 1 f       Gn spp   1100.    314.
 ```
 
 ### Demography
@@ -373,7 +379,7 @@ as_tibble(
 #> * Bad: `split1 = x1, split2 = x2`
 #> * Good: `split1 = interaction(x1, x2)`
 #> This warning is displayed once per session.
-#>   Can't deal with data created with `split2` (deprecated).
+#> Error:   Can't deal with data created with `split2` (deprecated).
 #>   * Bad: `split1 = x1, split2 = x2`
 #>   * Good: `split1 = interaction(x1, x2)`
 ```
@@ -499,34 +505,34 @@ tt_test_result <- tt_test(pick, habitat)
 # A list or matrices
 tt_test_result
 #> [[1]]
-#>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
-#> CASARB      35     1313      282        5              0       0.820625
-#>        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2
-#> CASARB      24      394     1204        2              0        0.24625
-#>        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3
-#> CASARB      11      482     1114        4              0        0.30125
-#>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#> CASARB       8     1217      377        6              0       0.760625
+#>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
+#> CASARB      35     1313      282        5              0       0.820625      24
+#>        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
+#> CASARB      394     1204        2              0        0.24625      11
+#>        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
+#> CASARB      482     1114        4              0        0.30125       8
+#>        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
+#> CASARB     1217      377        6              0       0.760625
 #> 
 #> [[2]]
-#>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
-#> PREMON      94     1005      594        1              0       0.628125
-#>        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2
-#> PREMON      97     1478      120        2              0        0.92375
-#>        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3
-#> PREMON      39      230     1367        3              0        0.14375
-#>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#> PREMON      15      130     1465        5              0        0.08125
+#>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
+#> PREMON      94     1005      594        1              0       0.628125      97
+#>        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
+#> PREMON     1478      120        2              0        0.92375      39
+#>        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
+#> PREMON      230     1367        3              0        0.14375      15
+#>        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
+#> PREMON      130     1465        5              0        0.08125
 #> 
 #> [[3]]
-#>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1
-#> SLOBER      21      270     1328        2              0        0.16875
-#>        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2
-#> SLOBER      25      516     1082        2              0         0.3225
-#>        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3
-#> SLOBER      21     1336      260        4              0          0.835
-#>        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
-#> SLOBER       8     1193      396       11              0       0.745625
+#>        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
+#> SLOBER      21      270     1328        2              0        0.16875      25
+#>        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3
+#> SLOBER      516     1082        2              0         0.3225      21
+#>        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4
+#> SLOBER     1336      260        4              0          0.835       8
+#>        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4
+#> SLOBER     1193      396       11              0       0.745625
 
 # A dataframe
 as_tibble(tt_test_result)

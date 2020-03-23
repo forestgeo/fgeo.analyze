@@ -43,6 +43,7 @@ Or [install all **fgeo** packages in one step](https://forestgeo.github.io/fgeo/
 ## Example
 
 ```{r}
+library(dplyr)
 library(fgeo.x)
 library(fgeo.tool)
 library(fgeo.analyze)
