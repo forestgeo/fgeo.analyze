@@ -110,7 +110,7 @@ test_that("as_tibble.demography_ctfs is equal to unclassed w/ ungrouped data", {
 test_that("as_tibble.demography_ctfs and as.data.frame.* output equal", {
   result <- recruitment_ctfs(fgeo.x::tree5, fgeo.x::tree6)
 
-  expect_equal(
+  expect_equivalent(
     as_tibble(result),
     as.data.frame(result)
   )
