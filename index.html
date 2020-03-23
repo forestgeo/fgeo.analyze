@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">fgeo.analyze</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.12.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.13</span>
       </span>
     </div>
 
@@ -116,21 +116,30 @@
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.x)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.tool)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Attaching package: 'fgeo.tool'</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; The following object is masked from 'package:stats':</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;     filter</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.analyze)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.x)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.tool)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; Attaching package: 'fgeo.tool'</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; The following object is masked from 'package:stats':</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;     filter</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(fgeo.analyze)</a></code></pre></div>
 <div id="abundance" class="section level3">
 <h3 class="hasAnchor">
 <a href="#abundance" class="anchor"></a>Abundance</h3>
 <p>Your data may have multiple stems per treeid and even multiple measures per stemid (if trees have buttresses).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># Trees with buttresses may have multiple measurements of a single stem. </span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># Main stems have highest `HOM`, then largest `DBH`.</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">vft &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">tribble</a></span>(</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">vft &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tribble</a></span>(</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="op">~</span>CensusID, <span class="op">~</span>TreeID, <span class="op">~</span>StemID, <span class="op">~</span>DBH, <span class="op">~</span>HOM,</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">          <span class="dv">1</span>,     <span class="st">"1"</span>,   <span class="st">"1.1"</span>,   <span class="dv">88</span>,  <span class="dv">130</span>,</a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">          <span class="dv">1</span>,     <span class="st">"1"</span>,   <span class="st">"1.1"</span>,   <span class="dv">10</span>,  <span class="dv">160</span>,  <span class="co"># Main stem</span></a>
@@ -140,54 +149,54 @@
 <p>Fundamentally, <code><a href="reference/abundance.html">abundance()</a></code> counts rows. All of these results are the same:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(vft)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; [1] 4</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">count</a></span>(vft)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(vft)</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; * &lt;int&gt;</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 1     4</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">summarize</a></span>(vft, <span class="dt">n =</span> <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; Warning: Calling `n()` without importing or prefixing it is deprecated, use `dplyr::n()`.</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; This warning is displayed once per session.</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 1     4</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="kw"><a href="reference/abundance.html">abundance</a></span>(vft)</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; Warning: `treeid`: Duplicated values were detected. Do you need to pick</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; main stems?</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 1     4</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(vft, <span class="dt">n =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/n.html">n</a></span>())</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;       n</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; 1     4</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="kw"><a href="reference/abundance.html">abundance</a></span>(vft)</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Warning: `treeid`: Duplicated values were detected. Do you need to pick main</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; stems?</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;       n</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 1     4</span></a></code></pre></div>
 <p>But that result is likely not what you expect. Instead, you likely expect this:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">summarize</a></span>(vft, <span class="dt">n =</span> <span class="kw">n_distinct</span>(TreeID))</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; Warning: Calling `n_distinct()` without importing or prefixing it is deprecated, use `dplyr::n_distinct()`.</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; This warning is displayed once per session.</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; 1     2</span></a></code></pre></div>
-<p>As shown above, you can get a correct result by combining <code><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">summarize()</a></code> and <code>n_distinct()</code> (from the <strong>dplyr</strong> package). But <code><a href="reference/abundance.html">abundance()</a></code> includes some useful additional features (see <code>?abundance()</code>). This code conveys your intention more clearly, i.e. to calculate tree abundance by counting the number of main stems:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(vft, <span class="dt">n =</span> <span class="kw"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(TreeID))</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;       n</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; 1     2</span></a></code></pre></div>
+<p>As shown above, you can get a correct result by combining <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct()</a></code> (from the <strong>dplyr</strong> package). But <code><a href="reference/abundance.html">abundance()</a></code> includes some useful additional features (see <code>?abundance()</code>). This code conveys your intention more clearly, i.e. to calculate tree abundance by counting the number of main stems:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">(main_stems &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html">pick_main_stem</a></span>(vft))</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;   CensusID TreeID StemID   DBH   HOM</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; 1        1 1      1.1       10   160</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; 2        1 2      2.2       30   130</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="kw"><a href="reference/abundance.html">abundance</a></span>(main_stems)</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;       n</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;   &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; 1     2</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; Warning: The `add` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; Please use the `.add` argument instead.</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; This warning is displayed once every 8 hours.</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;   CensusID TreeID StemID   DBH   HOM</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; 1        1 1      1.1       10   160</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt; 2        1 2      2.2       30   130</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw"><a href="reference/abundance.html">abundance</a></span>(main_stems)</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;       n</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;   &lt;int&gt;</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; 1     2</span></a></code></pre></div>
 <p>If you have data from multiple censuses, then you can compute by census (or any other group).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">vft2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">tribble</a></span>(</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">vft2 &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tribble</a></span>(</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="op">~</span>CensusID, <span class="op">~</span>TreeID, <span class="op">~</span>StemID, <span class="op">~</span>DBH, <span class="op">~</span>HOM,</a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">          <span class="dv">1</span>,     <span class="st">"1"</span>,   <span class="st">"1.1"</span>,   <span class="dv">10</span>,  <span class="dv">130</span>,</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">          <span class="dv">1</span>,     <span class="st">"1"</span>,   <span class="st">"1.2"</span>,   <span class="dv">20</span>,  <span class="dv">130</span>,  <span class="co"># Main stem</span></a>
 <a class="sourceLine" id="cb8-5" data-line-number="5">          <span class="dv">2</span>,     <span class="st">"1"</span>,   <span class="st">"1.1"</span>,   <span class="dv">12</span>,  <span class="dv">130</span>,</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">          <span class="dv">2</span>,     <span class="st">"1"</span>,   <span class="st">"1.2"</span>,   <span class="dv">22</span>,  <span class="dv">130</span>   <span class="co"># Main stem</span></a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">by_census &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">group_by</a></span>(vft2, CensusID)</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">by_census &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(vft2, CensusID)</a>
 <a class="sourceLine" id="cb8-9" data-line-number="9">(main_stems_by_census &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html">pick_main_stem</a></span>(by_census))</a>
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
 <a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; # Groups:   CensusID [2]</span></a>
@@ -203,7 +212,7 @@
 <a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt; 1        1     1</span></a>
 <a class="sourceLine" id="cb8-22" data-line-number="22"><span class="co">#&gt; 2        2     1</span></a></code></pre></div>
 <p>Often you will need to first subset data (e.g. by <code>status</code> or <code>DBH</code>) and then count.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">over20 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">filter</a></span>(main_stems_by_census, DBH <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>)</a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">over20 &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(main_stems_by_census, DBH <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="reference/abundance.html">abundance</a></span>(over20)</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; # A tibble: 1 x 2</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; # Groups:   CensusID [1]</span></a>
@@ -215,7 +224,7 @@
 <h3 class="hasAnchor">
 <a href="#basal-area" class="anchor"></a>Basal area</h3>
 <p>If trees have buttresses, then you may need to pick the main stemid of each stem so you do not count the same stem more than once.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">vft3 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">tribble</a></span>(</a>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">vft3 &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tribble</a></span>(</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="op">~</span>CensusID, <span class="op">~</span>TreeID, <span class="op">~</span>StemID, <span class="op">~</span>DBH, <span class="op">~</span>HOM,</a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">          <span class="dv">1</span>,     <span class="st">"1"</span>,   <span class="st">"1.1"</span>,   <span class="dv">88</span>,  <span class="dv">130</span>,</a>
 <a class="sourceLine" id="cb10-4" data-line-number="4">          <span class="dv">1</span>,     <span class="st">"1"</span>,   <span class="st">"1.1"</span>,   <span class="dv">10</span>,  <span class="dv">160</span>,  <span class="co"># Main stem</span></a>
@@ -247,8 +256,8 @@
 <a class="sourceLine" id="cb10-30" data-line-number="30"><span class="co">#&gt; 5        2 2      2.1       30   130</span></a>
 <a class="sourceLine" id="cb10-31" data-line-number="31"><span class="co">#&gt; 6        2 2      2.2       40   130</span></a>
 <a class="sourceLine" id="cb10-32" data-line-number="32"><span class="kw"><a href="reference/abundance.html">basal_area</a></span>(main_stemids)</a>
-<a class="sourceLine" id="cb10-33" data-line-number="33"><span class="co">#&gt; Warning: `stemid`: Duplicated values were detected. Do you need to pick</span></a>
-<a class="sourceLine" id="cb10-34" data-line-number="34"><span class="co">#&gt; largest `hom` values?</span></a>
+<a class="sourceLine" id="cb10-33" data-line-number="33"><span class="co">#&gt; Warning: `stemid`: Duplicated values were detected. Do you need to pick largest</span></a>
+<a class="sourceLine" id="cb10-34" data-line-number="34"><span class="co">#&gt; `hom` values?</span></a>
 <a class="sourceLine" id="cb10-35" data-line-number="35"><span class="co">#&gt; Warning: `censusid`: Multiple values were detected. Do you need to group by</span></a>
 <a class="sourceLine" id="cb10-36" data-line-number="36"><span class="co">#&gt; censusid?</span></a>
 <a class="sourceLine" id="cb10-37" data-line-number="37"><span class="co">#&gt; # A tibble: 1 x 1</span></a>
@@ -256,7 +265,7 @@
 <a class="sourceLine" id="cb10-39" data-line-number="39"><span class="co">#&gt;        &lt;dbl&gt;</span></a>
 <a class="sourceLine" id="cb10-40" data-line-number="40"><span class="co">#&gt; 1      3377.</span></a></code></pre></div>
 <p><code><a href="reference/abundance.html">basal_area()</a></code> also allows you to compute by groups.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">by_census &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">group_by</a></span>(main_stemids, CensusID)</a>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">by_census &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(main_stemids, CensusID)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="reference/abundance.html">basal_area</a></span>(by_census)</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; # A tibble: 2 x 2</span></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; # Groups:   CensusID [2]</span></a>
@@ -265,7 +274,7 @@
 <a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt; 1        1      1100.</span></a>
 <a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt; 2        2      2278.</span></a></code></pre></div>
 <p>But if you want to compute on a subset of data, then you need to pick the data first.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">ten_to_twenty &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">filter</a></span>(by_census, DBH <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, DBH <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>)</a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">ten_to_twenty &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(by_census, DBH <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, DBH <span class="op">&lt;=</span><span class="st"> </span><span class="dv">20</span>)</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="reference/abundance.html">basal_area</a></span>(ten_to_twenty)</a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt; # A tibble: 2 x 2</span></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; # Groups:   CensusID [2]</span></a>
@@ -278,7 +287,7 @@
 <h3 class="hasAnchor">
 <a href="#abundance-and-basal-area-aggregated-by-year" class="anchor"></a>Abundance and basal area aggregated by year</h3>
 <p>Example data.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">vft &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">tibble</a></span>(</a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">vft &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">tibble</a></span>(</a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="dt">PlotName =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"luq"</span>, <span class="st">"luq"</span>, <span class="st">"luq"</span>, <span class="st">"luq"</span>, <span class="st">"luq"</span>, <span class="st">"luq"</span>, <span class="st">"luq"</span>, <span class="st">"luq"</span>),</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="dt">CensusID =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L),</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="dt">TreeID =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L),</a>
@@ -309,8 +318,8 @@
 <a class="sourceLine" id="cb13-29" data-line-number="29"><span class="co">#&gt; 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-…</span></a>
 <a class="sourceLine" id="cb13-30" data-line-number="30"><span class="co">#&gt; 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-…</span></a>
 <a class="sourceLine" id="cb13-31" data-line-number="31"><span class="co">#&gt; 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-…</span></a>
-<a class="sourceLine" id="cb13-32" data-line-number="32"><span class="co">#&gt; # … with 4 more variables: PlotCensusNumber &lt;int&gt;, Family &lt;chr&gt;,</span></a>
-<a class="sourceLine" id="cb13-33" data-line-number="33"><span class="co">#&gt; #   Tag &lt;int&gt;, HOM &lt;int&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb13-32" data-line-number="32"><span class="co">#&gt; # … with 4 more variables: PlotCensusNumber &lt;int&gt;, Family &lt;chr&gt;, Tag &lt;int&gt;,</span></a>
+<a class="sourceLine" id="cb13-33" data-line-number="33"><span class="co">#&gt; #   HOM &lt;int&gt;</span></a></code></pre></div>
 <p>Abundance by year.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="reference/abundance_byyr.html">abundance_byyr</a></span>(vft, DBH <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>, DBH <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; # A tibble: 1 x 3</span></a>
@@ -327,7 +336,7 @@
 <a class="sourceLine" id="cb15-2" data-line-number="2"><span class="co">#&gt; # A tibble: 1 x 4</span></a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co">#&gt;   species family yr_2001 yr_2002</span></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt; 1 Gn spp  f        1100.    314.</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">#&gt; 1 f       Gn spp   1100.    314.</span></a></code></pre></div>
 </div>
 <div id="demography" class="section level3">
 <h3 class="hasAnchor">
@@ -385,7 +394,7 @@
 <a class="sourceLine" id="cb18-11" data-line-number="11"><span class="co">#&gt; * Bad: `split1 = x1, split2 = x2`</span></a>
 <a class="sourceLine" id="cb18-12" data-line-number="12"><span class="co">#&gt; * Good: `split1 = interaction(x1, x2)`</span></a>
 <a class="sourceLine" id="cb18-13" data-line-number="13"><span class="co">#&gt; This warning is displayed once per session.</span></a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">#&gt;   Can't deal with data created with `split2` (deprecated).</span></a>
+<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="co">#&gt; Error:   Can't deal with data created with `split2` (deprecated).</span></a>
 <a class="sourceLine" id="cb18-15" data-line-number="15"><span class="co">#&gt;   * Bad: `split1 = x1, split2 = x2`</span></a>
 <a class="sourceLine" id="cb18-16" data-line-number="16"><span class="co">#&gt;   * Good: `split1 = interaction(x1, x2)`</span></a></code></pre></div>
 <p>Instead, pass the multiple grouping variables to <code>split</code> via <code><a href="https://rdrr.io/r/base/interaction.html">interaction()</a></code>. This approach allows you to use any number of grouping variables and the output always works with <code><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble()</a></code>.</p>
@@ -479,9 +488,9 @@
 <a href="#species-habitat-associations" class="anchor"></a>Species-habitat associations</h3>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># Pick alive trees, of 10 mm or more</span></a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">tree &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.x/man/download_data.html">download_data</a></span>(<span class="st">"luquillo_tree5_random"</span>)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">census &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">filter</a></span>(tree, status <span class="op">==</span><span class="st"> "A"</span>, dbh <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">census &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(tree, status <span class="op">==</span><span class="st"> "A"</span>, dbh <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co"># Pick sufficiently abundant species</span></a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">pick &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">filter</a></span>(<span class="kw"><a href="https://rdrr.io/pkg/fgeo.tool/man/reexports.html">add_count</a></span>(census, sp), n <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">pick &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">add_count</a></span>(census, sp), n <span class="op">&gt;</span><span class="st"> </span><span class="dv">50</span>)</a>
 <a class="sourceLine" id="cb22-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb22-7" data-line-number="7"><span class="co"># Use your habitat data or create it from elevation data</span></a>
 <a class="sourceLine" id="cb22-8" data-line-number="8">elevation &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/fgeo.x/man/download_data.html">download_data</a></span>(<span class="st">"luquillo_elevation"</span>)</a>
@@ -495,34 +504,34 @@
 <a class="sourceLine" id="cb22-16" data-line-number="16"><span class="co"># A list or matrices</span></a>
 <a class="sourceLine" id="cb22-17" data-line-number="17">tt_test_result</a>
 <a class="sourceLine" id="cb22-18" data-line-number="18"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb22-19" data-line-number="19"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
-<a class="sourceLine" id="cb22-20" data-line-number="20"><span class="co">#&gt; CASARB      35     1313      282        5              0       0.820625</span></a>
-<a class="sourceLine" id="cb22-21" data-line-number="21"><span class="co">#&gt;        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2</span></a>
-<a class="sourceLine" id="cb22-22" data-line-number="22"><span class="co">#&gt; CASARB      24      394     1204        2              0        0.24625</span></a>
-<a class="sourceLine" id="cb22-23" data-line-number="23"><span class="co">#&gt;        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3</span></a>
-<a class="sourceLine" id="cb22-24" data-line-number="24"><span class="co">#&gt; CASARB      11      482     1114        4              0        0.30125</span></a>
-<a class="sourceLine" id="cb22-25" data-line-number="25"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
-<a class="sourceLine" id="cb22-26" data-line-number="26"><span class="co">#&gt; CASARB       8     1217      377        6              0       0.760625</span></a>
+<a class="sourceLine" id="cb22-19" data-line-number="19"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2</span></a>
+<a class="sourceLine" id="cb22-20" data-line-number="20"><span class="co">#&gt; CASARB      35     1313      282        5              0       0.820625      24</span></a>
+<a class="sourceLine" id="cb22-21" data-line-number="21"><span class="co">#&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3</span></a>
+<a class="sourceLine" id="cb22-22" data-line-number="22"><span class="co">#&gt; CASARB      394     1204        2              0        0.24625      11</span></a>
+<a class="sourceLine" id="cb22-23" data-line-number="23"><span class="co">#&gt;        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4</span></a>
+<a class="sourceLine" id="cb22-24" data-line-number="24"><span class="co">#&gt; CASARB      482     1114        4              0        0.30125       8</span></a>
+<a class="sourceLine" id="cb22-25" data-line-number="25"><span class="co">#&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
+<a class="sourceLine" id="cb22-26" data-line-number="26"><span class="co">#&gt; CASARB     1217      377        6              0       0.760625</span></a>
 <a class="sourceLine" id="cb22-27" data-line-number="27"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb22-28" data-line-number="28"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb22-29" data-line-number="29"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
-<a class="sourceLine" id="cb22-30" data-line-number="30"><span class="co">#&gt; PREMON      94     1005      594        1              0       0.628125</span></a>
-<a class="sourceLine" id="cb22-31" data-line-number="31"><span class="co">#&gt;        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2</span></a>
-<a class="sourceLine" id="cb22-32" data-line-number="32"><span class="co">#&gt; PREMON      97     1478      120        2              0        0.92375</span></a>
-<a class="sourceLine" id="cb22-33" data-line-number="33"><span class="co">#&gt;        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3</span></a>
-<a class="sourceLine" id="cb22-34" data-line-number="34"><span class="co">#&gt; PREMON      39      230     1367        3              0        0.14375</span></a>
-<a class="sourceLine" id="cb22-35" data-line-number="35"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
-<a class="sourceLine" id="cb22-36" data-line-number="36"><span class="co">#&gt; PREMON      15      130     1465        5              0        0.08125</span></a>
+<a class="sourceLine" id="cb22-29" data-line-number="29"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2</span></a>
+<a class="sourceLine" id="cb22-30" data-line-number="30"><span class="co">#&gt; PREMON      94     1005      594        1              0       0.628125      97</span></a>
+<a class="sourceLine" id="cb22-31" data-line-number="31"><span class="co">#&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3</span></a>
+<a class="sourceLine" id="cb22-32" data-line-number="32"><span class="co">#&gt; PREMON     1478      120        2              0        0.92375      39</span></a>
+<a class="sourceLine" id="cb22-33" data-line-number="33"><span class="co">#&gt;        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4</span></a>
+<a class="sourceLine" id="cb22-34" data-line-number="34"><span class="co">#&gt; PREMON      230     1367        3              0        0.14375      15</span></a>
+<a class="sourceLine" id="cb22-35" data-line-number="35"><span class="co">#&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
+<a class="sourceLine" id="cb22-36" data-line-number="36"><span class="co">#&gt; PREMON      130     1465        5              0        0.08125</span></a>
 <a class="sourceLine" id="cb22-37" data-line-number="37"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb22-38" data-line-number="38"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb22-39" data-line-number="39"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1</span></a>
-<a class="sourceLine" id="cb22-40" data-line-number="40"><span class="co">#&gt; SLOBER      21      270     1328        2              0        0.16875</span></a>
-<a class="sourceLine" id="cb22-41" data-line-number="41"><span class="co">#&gt;        N.Hab.2 Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2</span></a>
-<a class="sourceLine" id="cb22-42" data-line-number="42"><span class="co">#&gt; SLOBER      25      516     1082        2              0         0.3225</span></a>
-<a class="sourceLine" id="cb22-43" data-line-number="43"><span class="co">#&gt;        N.Hab.3 Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3</span></a>
-<a class="sourceLine" id="cb22-44" data-line-number="44"><span class="co">#&gt; SLOBER      21     1336      260        4              0          0.835</span></a>
-<a class="sourceLine" id="cb22-45" data-line-number="45"><span class="co">#&gt;        N.Hab.4 Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
-<a class="sourceLine" id="cb22-46" data-line-number="46"><span class="co">#&gt; SLOBER       8     1193      396       11              0       0.745625</span></a>
+<a class="sourceLine" id="cb22-39" data-line-number="39"><span class="co">#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2</span></a>
+<a class="sourceLine" id="cb22-40" data-line-number="40"><span class="co">#&gt; SLOBER      21      270     1328        2              0        0.16875      25</span></a>
+<a class="sourceLine" id="cb22-41" data-line-number="41"><span class="co">#&gt;        Gr.Hab.2 Ls.Hab.2 Eq.Hab.2 Rep.Agg.Neut.2 Obs.Quantile.2 N.Hab.3</span></a>
+<a class="sourceLine" id="cb22-42" data-line-number="42"><span class="co">#&gt; SLOBER      516     1082        2              0         0.3225      21</span></a>
+<a class="sourceLine" id="cb22-43" data-line-number="43"><span class="co">#&gt;        Gr.Hab.3 Ls.Hab.3 Eq.Hab.3 Rep.Agg.Neut.3 Obs.Quantile.3 N.Hab.4</span></a>
+<a class="sourceLine" id="cb22-44" data-line-number="44"><span class="co">#&gt; SLOBER     1336      260        4              0          0.835       8</span></a>
+<a class="sourceLine" id="cb22-45" data-line-number="45"><span class="co">#&gt;        Gr.Hab.4 Ls.Hab.4 Eq.Hab.4 Rep.Agg.Neut.4 Obs.Quantile.4</span></a>
+<a class="sourceLine" id="cb22-46" data-line-number="46"><span class="co">#&gt; SLOBER     1193      396       11              0       0.745625</span></a>
 <a class="sourceLine" id="cb22-47" data-line-number="47"></a>
 <a class="sourceLine" id="cb22-48" data-line-number="48"><span class="co"># A dataframe</span></a>
 <a class="sourceLine" id="cb22-49" data-line-number="49"><span class="kw"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>(tt_test_result)</a>
@@ -626,7 +635,6 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
-<li><a href="https://travis-ci.org/forestgeo/fgeo.analyze"><img src="https://travis-ci.org/forestgeo/fgeo.analyze.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master"><img src="https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg" alt="Coverage status"></a></li>
 <li><a href="https://cran.r-project.org/package=fgeo.analyze"><embed src="https://www.r-pkg.org/badges/version/fgeo.analyze"></embed></a></li>
 </ul>
