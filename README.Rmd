@@ -19,6 +19,7 @@ options(fgeo.quiet = TRUE)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Coverage status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
+[![R-CMD-check](https://github.com/forestgeo/fgeo.analyze/workflows/R-CMD-check/badge.svg)](https://github.com/forestgeo/fgeo.analyze/actions)
 <!-- badges: end -->
 
 __fgeo.analyze__ provides functions to analyze [ForestGEO](http://www.forestgeo.si.edu/) data.
