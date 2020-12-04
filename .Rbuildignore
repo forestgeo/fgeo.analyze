@@ -11,7 +11,6 @@
 ^LICENSE\.md$
 ^docs$
 ^_pkgdown\.yml$
-^\.travis\.yml$
 ^vignettes/siteonly$
 ^data-raw$
 ^fgeo\.analyze\.Rproj$
