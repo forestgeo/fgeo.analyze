@@ -12,16 +12,10 @@ test_that("basal_area_byyr and abundance_byyr fail with informative errors", {
 
   msg <- "All expressions.*must refer to `dbh`"
 
-
-
-
-
-
-  expect_error(abundance_byyr(vft, exactdate > 0), msg)
-
-
-
-
+  # Focus on the expected error
+  suppressWarnings(
+    expect_error(abundance_byyr(vft, exactdate > 0), msg)
+  )
 
   expect_silent(abundance_byyr(vft, DBH > 0))
   expect_silent(abundance_byyr(vft, exactdate > 0, dbh > 0))

@@ -1,18 +1,5 @@
 context("summary.tt_df")
 
-expect_printed_output <- function(object, update = FALSE) {
-  file <- rlang::quo_text(rlang::enquo(object))
-
-  testthat::expect_known_output(
-    object, paste0("ref-", file),
-    print = TRUE, update = update
-  )
-
-  invisible(object)
-}
-
-
-
 tt_result <- tt_test(fgeo.x::tree6_3species, fgeo.x::habitat)
 
 test_that("summary.tt_df returns the expected data structure", {
@@ -29,9 +16,8 @@ test_that("summary.tt_df returns the expected data structure", {
   expect_named(summary(as_tibble(tt_result)), c("sp", "habitat", "association"))
 })
 
-test_that("summary.tt_lst returns the expected output", {
-  explain_tt_lst <- summary(tt_result)
-  expect_printed_output(explain_tt_lst)
+test_that("summary.tt_lst returns the expected value", {
+  expect_known_value(summary(tt_result), test_path("ref-summary-tt_result"))
 })
 
 test_that("summary.tt_lst result has all columns are of base type 'character'", {
@@ -60,20 +46,4 @@ test_that("summary.tt_lst and summary.tt_df return equal", {
     summary(tt_result)[names(tt_lst)],
     tt_lst
   )
-})
-
-
-
-context("summary-regression")
-
-# FIXME: Added for extra safety during dangerous moves. Can remove when done
-test_that("prints output equal to reference", {
-  skip("Run only during risky refactoring")
-  skip_on_travis("Run only during risky refactoring")
-  luquillo_tree5_random <- fgeo.x::download_data("luquillo_tree5_random")
-  explain_tt_test <- as.data.frame(
-    summary(tt_test(fgeo.data::luquillo_tree5_random, fgeo.x::habitat))
-  )
-
-  expect_printed_output(explain_tt_test)
 })

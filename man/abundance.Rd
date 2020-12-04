@@ -16,7 +16,7 @@ insensitive).}
 \description{
 \itemize{
 \item \code{\link[=abundance]{abundance()}} counts the number of rows in a dataset, optionally by groups
-created with \code{\link[dplyr:group_by]{dplyr::group_by()}} (similar to \code{\link[dplyr:n]{dplyr::n()}}). It warns if it
+created with \code{\link[dplyr:group_by]{dplyr::group_by()}} (similar to \code{\link[dplyr:context]{dplyr::n()}}). It warns if it
 detects duplicated values of treeid.
 \item \code{\link[=basal_area]{basal_area()}} sums the basal area of
 all stems in a dataset, optionally by groups created with \code{\link[=group_by]{group_by()}}. It
@@ -145,7 +145,7 @@ if (measurements_is_installed) {
 
 }
 \seealso{
-\code{\link[dplyr:n]{dplyr::n()}}, \code{\link[dplyr:group_by]{dplyr::group_by()}}.
+\code{\link[dplyr:context]{dplyr::n()}}, \code{\link[dplyr:group_by]{dplyr::group_by()}}.
 
 Other functions for abundance and basal area: 
 \code{\link{abundance_byyr}()}
