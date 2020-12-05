@@ -1,4 +1,4 @@
-# fgeo.analyze (in development)
+# fgeo.analyze 1.1.14
 
 * Maintenance release.
 
