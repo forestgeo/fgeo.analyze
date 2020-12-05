@@ -1,17 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # <img src="https://i.imgur.com/vTLlhbp.png" align="right" height=88 /> Analyze ForestGEO data
 
 <!-- badges: start -->
-
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
-[![R-CMD-check](https://github.com/forestgeo/fgeo.analyze/workflows/R-CMD-check/badge.svg)](https://github.com/forestgeo/fgeo.analyze/actions)
-[![Codecov test
-coverage](https://codecov.io/gh/forestgeo/fgeo.analyze/branch/master/graph/badge.svg)](https://codecov.io/gh/forestgeo/fgeo.analyze?branch=master)
-<!-- badges: end -->
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![CRAN status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze) [![R-CMD-check](https://github.com/forestgeo/fgeo.analyze/workflows/R-CMD-check/badge.svg)](https://github.com/forestgeo/fgeo.analyze/actions) [![Codecov test coverage](https://codecov.io/gh/forestgeo/fgeo.analyze/branch/master/graph/badge.svg)](https://codecov.io/gh/forestgeo/fgeo.analyze?branch=master) <!-- badges: end -->
 
 **fgeo.analyze** provides functions to analyze ForestGEO data.
 
@@ -30,8 +22,7 @@ Install the development version of **fgeo.analyze** with:
 devtools::install_github("forestgeo/fgeo.analyze")
 ```
 
-Or [install all **fgeo** packages in one
-step](https://forestgeo.github.io/fgeo/index.html#installation).
+Or [install all **fgeo** packages in one step](https://forestgeo.github.io/fgeo/index.html#installation).
 
 ## Example
 
@@ -57,8 +48,7 @@ library(fgeo.analyze)
 
 ### Abundance
 
-Your data may have multiple stems per treeid and even multiple measures
-per stemid (if trees have buttresses).
+Your data may have multiple stems per treeid and even multiple measures per stemid (if trees have buttresses).
 
 ``` r
 # Trees with buttresses may have multiple measurements of a single stem. 
@@ -72,8 +62,7 @@ vft <- tribble(
 )
 ```
 
-Fundamentally, `abundance()` counts rows. All of these results are the
-same:
+Fundamentally, `abundance()` counts rows. All of these results are the same:
 
 ``` r
 nrow(vft)
@@ -88,19 +77,14 @@ abundance(vft)
 #> <print(tibble::tibble())>
 ```
 
-But that result is likely not what you expect. Instead, you likely
-expect this:
+But that result is likely not what you expect. Instead, you likely expect this:
 
 ``` r
 summarize(vft, n = n_distinct(TreeID))
 #> <print(tibble::tibble())>
 ```
 
-As shown above, you can get a correct result by combining `summarize()`
-and `n_distinct()` (from the **dplyr** package). But `abundance()`
-includes some useful additional features (see `?abundance()`). This code
-conveys your intention more clearly, i.e. to calculate tree abundance by
-counting the number of main stems:
+As shown above, you can get a correct result by combining `summarize()` and `n_distinct()` (from the **dplyr** package). But `abundance()` includes some useful additional features (see `?abundance()`). This code conveys your intention more clearly, i.e. to calculate tree abundance by counting the number of main stems:
 
 ``` r
 (main_stems <- pick_main_stem(vft))
@@ -113,8 +97,7 @@ abundance(main_stems)
 #> <print(tibble::tibble())>
 ```
 
-If you have data from multiple censuses, then you can compute by census
-(or any other group).
+If you have data from multiple censuses, then you can compute by census (or any other group).
 
 ``` r
 vft2 <- tribble(
@@ -131,8 +114,7 @@ abundance(main_stems_by_census)
 #> <print(tibble::tibble())>
 ```
 
-Often you will need to first subset data (e.g. by `status` or `DBH`) and
-then count.
+Often you will need to first subset data (e.g. by `status` or `DBH`) and then count.
 
 ``` r
 over20 <- filter(main_stems_by_census, DBH > 20)
@@ -142,8 +124,7 @@ abundance(over20)
 
 ### Basal area
 
-If trees have buttresses, then you may need to pick the main stemid of
-each stem so you do not count the same stem more than once.
+If trees have buttresses, then you may need to pick the main stemid of each stem so you do not count the same stem more than once.
 
 ``` r
 vft3 <- tribble(
@@ -177,8 +158,7 @@ basal_area(by_census)
 #> <print(tibble::tibble())>
 ```
 
-But if you want to compute on a subset of data, then you need to pick
-the data first.
+But if you want to compute on a subset of data, then you need to pick the data first.
 
 ``` r
 ten_to_twenty <- filter(by_census, DBH >= 10, DBH <= 20)
@@ -237,8 +217,7 @@ census1 <- fgeo.x::tree5
 census2 <- fgeo.x::tree6
 ```
 
-Demography functions output a list that you can convert to a more
-convenient dataframe with `as_tibble()`.
+Demography functions output a list that you can convert to a more convenient dataframe with `as_tibble()`.
 
 ``` r
 recruitment_ctfs(census1, census2)
@@ -276,8 +255,7 @@ as_tibble(
 #> <print(tibble::tibble())>
 ```
 
-Except if you use `split2`: This argument creates a complex data
-structure that `as_tibble()` cannot handle.
+Except if you use `split2`: This argument creates a complex data structure that `as_tibble()` cannot handle.
 
 ``` r
 # Errs
@@ -298,9 +276,7 @@ as_tibble(
 #>   * Good: `split1 = interaction(x1, x2)`
 ```
 
-Instead, pass the multiple grouping variables to `split` via
-`interaction()`. This approach allows you to use any number of grouping
-variables and the output always works with `as_tibble()`.
+Instead, pass the multiple grouping variables to `split` via `interaction()`. This approach allows you to use any number of grouping variables and the output always works with `as_tibble()`.
 
 ``` r
 # Recommended
@@ -329,8 +305,7 @@ as_tibble(
 #> <print(tibble::tibble())>
 ```
 
-A simple way to separate the grouping variables is with
-`tidyr::separate()`.
+A simple way to separate the grouping variables is with `tidyr::separate()`.
 
 ``` r
 growth <- growth_ctfs(
@@ -409,8 +384,6 @@ summary(tt_test_result)
 
 ## Information
 
--   [Getting
-    help](https://forestgeo.github.io/fgeo.analyze/SUPPORT.html).
+-   [Getting help](https://forestgeo.github.io/fgeo.analyze/SUPPORT.html).
 -   [Contributing](https://forestgeo.github.io/fgeo.analyze/CONTRIBUTING.html).
--   [Contributor Code of
-    Conduct](https://forestgeo.github.io/fgeo.analyze/CODE_OF_CONDUCT.html).
+-   [Contributor Code of Conduct](https://forestgeo.github.io/fgeo.analyze/CODE_OF_CONDUCT.html).

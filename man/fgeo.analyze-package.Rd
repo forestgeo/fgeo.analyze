@@ -13,7 +13,7 @@ To help you access, transform, analyze, and
     topography, demography, and biomass. It also includes a torus
     translation test to determine habitat associations of tree species as
     described by Zuleta et al. (2018) <doi:10.1007/s11104-018-3878-0>. To
-    learn more about ForestGEO visit <http://www.forestgeo.si.edu/>.
+    learn more about ForestGEO visit <https://forestgeo.si.edu/>.
 }
 \seealso{
 Useful links:
