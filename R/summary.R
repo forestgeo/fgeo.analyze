@@ -35,12 +35,12 @@ summary.tt_df <- function(object, ...) {
     object,
     # Short alias to fit in screen-width
     obs = .data$Obs.Quantile,
-    association =   dplyr::case_when(
-      (.data$obs - 1) ==  1 & (1 - (.data$obs)) <  0.05 ~ "aggregated",
-      (.data$obs - 1) ==  1 & (1 - (.data$obs)) >= 0.05 ~ "agg_nonsignificant",
-      (.data$obs - 1) == -1 &      (.data$obs)  <  0.05 ~ "repelled",
-      (.data$obs - 1) == -1 &      (.data$obs)  >= 0.05 ~ "rep_nonsignificant",
-      TRUE                                              ~ "neutral"
+    association = dplyr::case_when(
+      (.data$obs - 1) == 1 & (1 - (.data$obs)) < 0.05 ~ "aggregated",
+      (.data$obs - 1) == 1 & (1 - (.data$obs)) >= 0.05 ~ "agg_nonsignificant",
+      (.data$obs - 1) == -1 & (.data$obs) < 0.05 ~ "repelled",
+      (.data$obs - 1) == -1 & (.data$obs) >= 0.05 ~ "rep_nonsignificant",
+      TRUE ~ "neutral"
     )
   )
 

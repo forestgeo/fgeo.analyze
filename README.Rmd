@@ -17,12 +17,12 @@ options(fgeo.quiet = TRUE)
 
 <!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Coverage status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
 [![R-CMD-check](https://github.com/forestgeo/fgeo.analyze/workflows/R-CMD-check/badge.svg)](https://github.com/forestgeo/fgeo.analyze/actions)
+[![Codecov test coverage](https://codecov.io/gh/forestgeo/fgeo.analyze/branch/master/graph/badge.svg)](https://codecov.io/gh/forestgeo/fgeo.analyze?branch=master)
 <!-- badges: end -->
 
-__fgeo.analyze__ provides functions to analyze [ForestGEO](http://www.forestgeo.si.edu/) data.
+__fgeo.analyze__ provides functions to analyze ForestGEO data.
 
 ## Installation
 
@@ -284,7 +284,7 @@ as_tibble(tt_test_result)
 summary(tt_test_result)
 ```
 
-[Get started with __fgeo__](https://forestgeo.github.io/fgeo)
+[Get started with __fgeo__](https://forestgeo.github.io/fgeo/)
 
 ## Information
 

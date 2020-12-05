@@ -381,9 +381,9 @@ rename_to_xy <- function(x) {
 
 check_tt_test <- function(census, habitat, sp, plotdim, gridsize) {
   tree_names <- c(
-  "treeID", "stemID", "tag", "StemTag", "sp", "quadrat", "gx", "gy",
-  "MeasureID", "CensusID", "dbh", "pom", "hom", "ExactDate", "DFstatus",
-  "codes", "nostems", "status", "date"
+    "treeID", "stemID", "tag", "StemTag", "sp", "quadrat", "gx", "gy",
+    "MeasureID", "CensusID", "dbh", "pom", "hom", "ExactDate", "DFstatus",
+    "codes", "nostems", "status", "date"
   )
   has_stem_names <- !all(names(census) %in% tree_names)
 

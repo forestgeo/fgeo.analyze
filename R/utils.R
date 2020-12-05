@@ -18,7 +18,9 @@ round_any <- function(x, accuracy, f = round) {
 # * r-lib/rlang/blob/cd272fdea1d84c596ba63e05c8f79645bbf03767/R/cnd.R#L936
 warn_once_env <- new.env(parent = emptyenv())
 warn_once <- function(msg) {
-  if (exists(msg, warn_once_env)) return(invisible())
+  if (exists(msg, warn_once_env)) {
+    return(invisible())
+  }
   warning(
     paste0(msg, "\nThis warning is displayed once per session."),
     call. = FALSE
@@ -32,7 +34,9 @@ forget_warn_once <- function() {
 
 inform_once_env <- new.env(parent = emptyenv())
 inform_once <- function(msg) {
-  if (exists(msg, inform_once_env)) return(invisible())
+  if (exists(msg, inform_once_env)) {
+    return(invisible())
+  }
   message(paste0(msg, "\nThis message is displayed once per session."))
   inform_once_env[[msg]] <- TRUE
   invisible()

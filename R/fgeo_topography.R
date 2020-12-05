@@ -135,7 +135,8 @@ allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
   elevmat <- matrix(elevdata$elev, nrow = rows, ncol = columns, byrow = F)
   meanelev <- convex <- slope <- numeric()
   corner <- numeric()
-  for (c in 1:(columns - 1)) for (r in 1:(rows - 1)) {
+  for (c in 1:(columns - 1)) {
+    for (r in 1:(rows - 1)) {
       quad_idx <- fgeo.tool::rowcol_to_index(
         r, c,
         gridsize = gridsize, plotdim = plotdim
@@ -150,6 +151,7 @@ allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
         message("Finding elevation and slope of quadrat ", quad_idx, "\n")
       }
     }
+  }
 
   for (i in 1:totalquads) {
     neighbor.quads <- findborderquads(
@@ -169,7 +171,8 @@ allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
   # to do.
 
   if (edgecorrect) {
-    for (c in 1:(columns - 1)) for (r in 1:(rows - 1)) {
+    for (c in 1:(columns - 1)) {
+      for (r in 1:(rows - 1)) {
         first_or_prevlast_col <- (c == 1) || (c == (columns - 1))
         first_or_prevlast_row <- (r == 1) || (r == (rows - 1))
         if (first_or_prevlast_col || first_or_prevlast_row) {
@@ -190,6 +193,7 @@ allquadratslopes <- function(elev, gridsize, plotdim, edgecorrect = TRUE) {
           convex[quad_idx] <- midelev - meanelev[quad_idx]
         }
       }
+    }
   }
 
   data.frame(meanelev = meanelev, convex = convex, slope = slope)
@@ -219,8 +223,10 @@ findborderquads <- function(index, dist, gridsize, plotdim) {
   maxrow <- plotdim[2] / gridsize
   maxcol <- plotdim[1] / gridsize
   layers <- floor(dist / gridsize)
-  for (i in (row - layers):(row + layers)) for (j in (col -
-      layers):(col + layers)) if (i != row | j != col) {
+  for (i in (row - layers):(row + layers)) {
+    for (j in (col -
+      layers):(col + layers)) {
+      if (i != row | j != col) {
         if (i >= 1 & i <= maxrow & j >= 1 & j <= maxcol) {
           no.boundaries <- no.boundaries + 1
           bound.index[no.boundaries] <- fgeo.tool::rowcol_to_index(
@@ -229,6 +235,8 @@ findborderquads <- function(index, dist, gridsize, plotdim) {
           )
         }
       }
+    }
+  }
   return(bound.index[bound.index > 0])
 }
 

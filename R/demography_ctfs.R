@@ -146,13 +146,13 @@ recruitment_ctfs <- function(census1,
   splitN <- list(prep$split1[alive1], prep$split2[alive1])
   splitN2 <- list(prep$split1[N2.inc], prep$split2[N2.inc])
 
-  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
-  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
-  S         <- fill_0( apply_length(prep$census2$dbh[S.inc], splitS))
-  N2        <- fill_0( apply_length(prep$census2$dbh[N2.inc], splitN2))
-  timeint   <- fill_NA(apply_mean(prep$time[N2.inc], splitN2))
+  fill_0 <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA <- fill_with_classes(list(class1, class2), fill = NA)
+  S <- fill_0(apply_length(prep$census2$dbh[S.inc], splitS))
+  N2 <- fill_0(apply_length(prep$census2$dbh[N2.inc], splitN2))
+  timeint <- fill_NA(apply_mean(prep$time[N2.inc], splitN2))
   startdate <- fill_NA(apply_mean(prep$census1$date[alive1], splitN))
-  enddate   <- fill_NA(apply_mean(prep$census2$date[N2.inc], splitN2))
+  enddate <- fill_NA(apply_mean(prep$census2$date[N2.inc], splitN2))
 
   if (equal(sum(N2), 0)) {
     nms <- c("N2", "R", "rate", "lower", "upper", "time", "date1", "date2")
@@ -170,12 +170,12 @@ recruitment_ctfs <- function(census1,
   upper.rate[lower.ci == 0] <- Inf
   rec.rate[N2 == 0] <- lower.rate[N2 == 0] <- upper.rate[N2 == 0] <- NA
   result <- list(
-    N2    = drp(N2),
-    R     = drp(N2 - S),
-    rate  = drp(rec.rate),
+    N2 = drp(N2),
+    R = drp(N2 - S),
+    rate = drp(rec.rate),
     lower = drp(lower.rate),
     upper = drp(upper.rate),
-    time  = drp(timeint),
+    time = drp(timeint),
     date1 = drp(startdate),
     date2 = drp(enddate)
   )
@@ -209,14 +209,14 @@ mortality_ctfs <- function(census1,
   splitN <- list(prep$split1[alive1], prep$split2[alive1])
   splitS <- list(prep$split1[alive1 & alive2], prep$split2[alive1 & alive2])
 
-  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
-  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
-  N         <- fill_0(apply_length(prep$census1$dbh[alive1], splitN))
-  S         <- fill_0(apply_length(prep$census1$dbh[alive1 & alive2], splitS))
-  meantime  <- fill_NA(apply_mean(prep$time[alive1], splitN))
-  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[alive1], splitN))
+  fill_0 <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA <- fill_with_classes(list(class1, class2), fill = NA)
+  N <- fill_0(apply_length(prep$census1$dbh[alive1], splitN))
+  S <- fill_0(apply_length(prep$census1$dbh[alive1 & alive2], splitS))
+  meantime <- fill_NA(apply_mean(prep$time[alive1], splitN))
+  meandbh <- fill_NA(apply_mean(prep$census1$dbh[alive1], splitN))
   startdate <- fill_NA(apply_mean(prep$census1$date[alive1], splitN))
-  enddate   <- fill_NA(apply_mean(prep$census2$date[alive1], splitN))
+  enddate <- fill_NA(apply_mean(prep$census2$date[alive1], splitN))
 
   if (equal(sum(N), 0)) {
     message(
@@ -233,14 +233,14 @@ mortality_ctfs <- function(census1,
     N = as.matrix(N), S = as.matrix(S), meantime = as.matrix(meantime)
   )
   result <- list(
-    N       = drp(m$N),
-    D       = drp(m$D),
-    rate    = drp(m$rate),
-    lower   = drp(m$lowerCI),
-    upper   = drp(m$upperCI),
-    time    = drp(m$time),
-    date1   = drp(startdate),
-    date2   = drp(enddate),
+    N = drp(m$N),
+    D = drp(m$D),
+    rate = drp(m$rate),
+    lower = drp(m$lowerCI),
+    upper = drp(m$upperCI),
+    time = drp(m$time),
+    date1 = drp(startdate),
+    date2 = drp(enddate),
     dbhmean = drp(meandbh)
   )
   new_demography_ctfs(result, split2)
@@ -334,15 +334,15 @@ growth_ctfs <- function(census1,
   class2 <- sort(unique(prep$split2))
   splitgood <- list(prep$split1[good], prep$split2[good])
 
-  fill_0    <- fill_with_classes(list(class1, class2), fill = 0)
-  fill_NA   <- fill_with_classes(list(class1, class2), fill = NA)
-  N         <- fill_0( apply_length(growthrate[good], splitgood))
+  fill_0 <- fill_with_classes(list(class1, class2), fill = 0)
+  fill_NA <- fill_with_classes(list(class1, class2), fill = NA)
+  N <- fill_0(apply_length(growthrate[good], splitgood))
   mean.grow <- fill_NA(apply_mean(growthrate[good], splitgood))
-  sd.grow   <- fill_NA(apply_sd(growthrate[good], splitgood))
-  meandbh   <- fill_NA(apply_mean(prep$census1$dbh[good], splitgood))
-  interval  <- fill_NA(apply_mean(time[good], splitgood))
+  sd.grow <- fill_NA(apply_sd(growthrate[good], splitgood))
+  meandbh <- fill_NA(apply_mean(prep$census1$dbh[good], splitgood))
+  interval <- fill_NA(apply_mean(time[good], splitgood))
   startdate <- fill_NA(apply_mean(prep$census1$date[good], splitgood))
-  enddate   <- fill_NA(apply_mean(prep$census2$date[good], splitgood))
+  enddate <- fill_NA(apply_mean(prep$census2$date[good], splitgood))
 
   ci.grow <- sd.grow
   ci.grow[N == 0] <- NA
@@ -605,8 +605,8 @@ fill_with_classes <- function(classes, fill) {
   }
 }
 
-apply_mean   <- function(X, INDEX) tapply(X, INDEX, FUN = mean, na.rm = TRUE)
-apply_sd     <- function(X, INDEX) tapply(X, INDEX, FUN = sd,   na.rm = TRUE)
+apply_mean <- function(X, INDEX) tapply(X, INDEX, FUN = mean, na.rm = TRUE)
+apply_sd <- function(X, INDEX) tapply(X, INDEX, FUN = sd, na.rm = TRUE)
 apply_length <- function(X, INDEX) tapply(X, INDEX, FUN = length)
 
 #' @author Richard Condit, Suzanne Lao.

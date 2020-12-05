@@ -6,14 +6,14 @@
 <!-- badges: start -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Coverage
-status](https://coveralls.io/repos/github/forestgeo/fgeo.analyze/badge.svg)](https://coveralls.io/r/forestgeo/fgeo.analyze?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fgeo.analyze)](https://cran.r-project.org/package=fgeo.analyze)
+[![R-CMD-check](https://github.com/forestgeo/fgeo.analyze/workflows/R-CMD-check/badge.svg)](https://github.com/forestgeo/fgeo.analyze/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/forestgeo/fgeo.analyze/branch/master/graph/badge.svg)](https://codecov.io/gh/forestgeo/fgeo.analyze?branch=master)
 <!-- badges: end -->
 
-**fgeo.analyze** provides functions to analyze
-[ForestGEO](http://www.forestgeo.si.edu/) data.
+**fgeo.analyze** provides functions to analyze ForestGEO data.
 
 ## Installation
 
@@ -79,22 +79,13 @@ same:
 nrow(vft)
 #> [1] 4
 count(vft)
-#> # A tibble: 1 x 1
-#>       n
-#> * <int>
-#> 1     4
+#> <print(tibble::tibble())>
 summarize(vft, n = n())
-#> # A tibble: 1 x 1
-#>       n
-#>   <int>
-#> 1     4
+#> <print(tibble::tibble())>
 abundance(vft)
 #> Warning: `treeid`: Duplicated values were detected. Do you need to pick main
 #> stems?
-#> # A tibble: 1 x 1
-#>       n
-#>   <int>
-#> 1     4
+#> <print(tibble::tibble())>
 ```
 
 But that result is likely not what you expect. Instead, you likely
@@ -102,10 +93,7 @@ expect this:
 
 ``` r
 summarize(vft, n = n_distinct(TreeID))
-#> # A tibble: 1 x 1
-#>       n
-#>   <int>
-#> 1     2
+#> <print(tibble::tibble())>
 ```
 
 As shown above, you can get a correct result by combining `summarize()`
@@ -120,16 +108,9 @@ counting the number of main stems:
 #> Please use the `.add` argument instead.
 #> This warning is displayed once every 8 hours.
 #> Call `lifecycle::last_warnings()` to see where this warning was generated.
-#> # A tibble: 2 x 5
-#>   CensusID TreeID StemID   DBH   HOM
-#>      <dbl> <chr>  <chr>  <dbl> <dbl>
-#> 1        1 1      1.1       10   160
-#> 2        1 2      2.2       30   130
+#> <print(tibble::tibble())>
 abundance(main_stems)
-#> # A tibble: 1 x 1
-#>       n
-#>   <int>
-#> 1     2
+#> <print(tibble::tibble())>
 ```
 
 If you have data from multiple censuses, then you can compute by census
@@ -145,19 +126,9 @@ vft2 <- tribble(
 )
 by_census <- group_by(vft2, CensusID)
 (main_stems_by_census <- pick_main_stem(by_census))
-#> # A tibble: 2 x 5
-#> # Groups:   CensusID [2]
-#>   CensusID TreeID StemID   DBH   HOM
-#>      <dbl> <chr>  <chr>  <dbl> <dbl>
-#> 1        1 1      1.2       20   130
-#> 2        2 1      1.2       22   130
+#> <print(tibble::tibble())>
 abundance(main_stems_by_census)
-#> # A tibble: 2 x 2
-#> # Groups:   CensusID [2]
-#>   CensusID     n
-#>      <dbl> <int>
-#> 1        1     1
-#> 2        2     1
+#> <print(tibble::tibble())>
 ```
 
 Often you will need to first subset data (e.g. by `status` or `DBH`) and
@@ -166,11 +137,7 @@ then count.
 ``` r
 over20 <- filter(main_stems_by_census, DBH > 20)
 abundance(over20)
-#> # A tibble: 1 x 2
-#> # Groups:   CensusID [1]
-#>   CensusID     n
-#>      <dbl> <int>
-#> 1        2     1
+#> <print(tibble::tibble())>
 ```
 
 ### Basal area
@@ -191,34 +158,15 @@ vft3 <- tribble(
           2,     "2",   "2.2",   40,  130,  # Main stem
 )
 (main_stemids <- pick_main_stemid(vft3))
-#> # A tibble: 6 x 5
-#>   CensusID TreeID StemID   DBH   HOM
-#>      <dbl> <chr>  <chr>  <dbl> <dbl>
-#> 1        1 1      1.1       10   160
-#> 2        1 2      2.1       20   130
-#> 3        1 2      2.2       30   130
-#> 4        2 1      1.1       20   160
-#> 5        2 2      2.1       30   130
-#> 6        2 2      2.2       40   130
+#> <print(tibble::tibble())>
 main_stemids
-#> # A tibble: 6 x 5
-#>   CensusID TreeID StemID   DBH   HOM
-#>      <dbl> <chr>  <chr>  <dbl> <dbl>
-#> 1        1 1      1.1       10   160
-#> 2        1 2      2.1       20   130
-#> 3        1 2      2.2       30   130
-#> 4        2 1      1.1       20   160
-#> 5        2 2      2.1       30   130
-#> 6        2 2      2.2       40   130
+#> <print(tibble::tibble())>
 basal_area(main_stemids)
 #> Warning: `stemid`: Duplicated values were detected. Do you need to pick largest
 #> `hom` values?
 #> Warning: `censusid`: Multiple values were detected. Do you need to group by
 #> censusid?
-#> # A tibble: 1 x 1
-#>   basal_area
-#>        <dbl>
-#> 1      3377.
+#> <print(tibble::tibble())>
 ```
 
 `basal_area()` also allows you to compute by groups.
@@ -226,12 +174,7 @@ basal_area(main_stemids)
 ``` r
 by_census <- group_by(main_stemids, CensusID)
 basal_area(by_census)
-#> # A tibble: 2 x 2
-#> # Groups:   CensusID [2]
-#>   CensusID basal_area
-#>      <dbl>      <dbl>
-#> 1        1      1100.
-#> 2        2      2278.
+#> <print(tibble::tibble())>
 ```
 
 But if you want to compute on a subset of data, then you need to pick
@@ -240,12 +183,7 @@ the data first.
 ``` r
 ten_to_twenty <- filter(by_census, DBH >= 10, DBH <= 20)
 basal_area(ten_to_twenty)
-#> # A tibble: 2 x 2
-#> # Groups:   CensusID [2]
-#>   CensusID basal_area
-#>      <dbl>      <dbl>
-#> 1        1       393.
-#> 2        2       314.
+#> <print(tibble::tibble())>
 ```
 
 ### Abundance and basal area aggregated by year
@@ -273,44 +211,23 @@ vft <- tibble(
 )
 
 vft
-#> # A tibble: 8 x 13
-#>   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate
-#>   <chr>       <int>  <int>  <dbl> <chr>  <int> <chr> <chr>       <chr>    
-#> 1 luq             1      1    1.1 alive     10 Gn    spp         2001-01-…
-#> 2 luq             1      1    1.2 dead      NA Gn    spp         2001-01-…
-#> 3 luq             1      2    2.1 alive     20 Gn    spp         2001-01-…
-#> 4 luq             1      2    2.2 alive     30 Gn    spp         2001-01-…
-#> 5 luq             2      1    1.1 alive     20 Gn    spp         2002-01-…
-#> 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-…
-#> 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-…
-#> 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-…
-#> # … with 4 more variables: PlotCensusNumber <int>, Family <chr>, Tag <int>,
-#> #   HOM <int>
+#> <print(tibble::tibble())>
 ```
 
 Abundance by year.
 
 ``` r
 abundance_byyr(vft, DBH >= 10, DBH < 20)
-#> # A tibble: 1 x 3
-#>   species family yr_2001
-#>   <chr>   <chr>    <dbl>
-#> 1 Gn spp  f            1
+#> <print(tibble::tibble())>
 abundance_byyr(vft, DBH >= 10)
-#> # A tibble: 1 x 4
-#>   species family yr_2001 yr_2002
-#>   <chr>   <chr>    <dbl>   <dbl>
-#> 1 Gn spp  f            2       1
+#> <print(tibble::tibble())>
 ```
 
 Basal area by year.
 
 ``` r
 basal_area_byyr(vft, DBH >= 10)
-#> # A tibble: 1 x 4
-#>   species family yr_2001 yr_2002
-#>   <chr>   <chr>    <dbl>   <dbl>
-#> 1 f       Gn spp   1100.    314.
+#> <print(tibble::tibble())>
 ```
 
 ### Demography
@@ -356,10 +273,7 @@ recruitment_ctfs(census1, census2)
 as_tibble(
   recruitment_ctfs(census1, census2, quiet = TRUE)
 )
-#> # A tibble: 1 x 8
-#>      N2     R   rate   lower  upper  time  date1  date2
-#>   <dbl> <dbl>  <dbl>   <dbl>  <dbl> <dbl>  <dbl>  <dbl>
-#> 1    29     3 0.0241 0.00846 0.0681  4.53 18938. 20601.
+#> <print(tibble::tibble())>
 ```
 
 Except if you use `split2`: This argument creates a complex data
@@ -399,20 +313,7 @@ as_tibble(
     quiet = TRUE
   )
 )
-#> # A tibble: 540 x 9
-#>    groups         N2     R  rate lower upper  time date1 date2
-#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 MATDOM.1007     1     0     0     0 0.410  4.50 18891 20535
-#>  2 CASSYL.1010     1     0     0     0 0.411  4.49 18914 20555
-#>  3 SLOBER.110      1     0     0     0 0.409  4.51 18897 20543
-#>  4 SLOBER.1106     1     0     0     0 0.404  4.56 18849 20516
-#>  5 CECSCH.1114     1     0     0     0 0.413  4.47 18948 20580
-#>  6 PSYBRA.1318     1     0     0     0 0.412  4.48 19011 20646
-#>  7 HIRRUG.1403     1     0     0     0 0.403  4.58 18834 20506
-#>  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558
-#>  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622
-#> 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670
-#> # … with 530 more rows
+#> <print(tibble::tibble())>
 ```
 
 The same applies for other demography functions.
@@ -425,20 +326,7 @@ as_tibble(
     quiet = TRUE
   )
 )
-#> # A tibble: 540 x 10
-#>    groups          N     D  rate lower upper  time date1 date2 dbhmean
-#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
-#>  1 MATDOM.1007     1     0     0     0 0.410  4.50 18891 20535   240  
-#>  2 CASSYL.1010     1     0     0     0 0.411  4.49 18914 20555    67  
-#>  3 SLOBER.110      1     0     0     0 0.409  4.51 18897 20543   150  
-#>  4 SLOBER.1106     1     0     0     0 0.404  4.56 18849 20516    50  
-#>  5 CECSCH.1114     1     0     0     0 0.413  4.47 18948 20580   228  
-#>  6 PSYBRA.1318     1     0     0     0 0.412  4.48 19011 20646    14  
-#>  7 HIRRUG.1403     1     0     0     0 0.403  4.58 18834 20506    12.9
-#>  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558    13.1
-#>  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622    16.6
-#> 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670   108  
-#> # … with 530 more rows
+#> <print(tibble::tibble())>
 ```
 
 A simple way to separate the grouping variables is with
@@ -451,37 +339,11 @@ growth <- growth_ctfs(
   quiet = TRUE
 )
 as_tibble(growth)
-#> # A tibble: 540 x 8
-#>    groups        rate     N  clim dbhmean  time date1 date2
-#>    <chr>        <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
-#>  1 MATDOM.1007  0         1    NA   240    4.50 18891 20535
-#>  2 CASSYL.1010  0.445     1    NA    67    4.49 18914 20555
-#>  3 SLOBER.110   0.666     1    NA   150    4.51 18897 20543
-#>  4 SLOBER.1106  0         1    NA    50    4.56 18849 20516
-#>  5 CECSCH.1114  1.79      1    NA   228    4.47 18948 20580
-#>  6 PSYBRA.1318  0.447     1    NA    14    4.48 19011 20646
-#>  7 HIRRUG.1403  1.66      1    NA    12.9  4.58 18834 20506
-#>  8 CASSYL.1411 NA         0    NA    NA   NA       NA    NA
-#>  9 SLOBER.1414  1.40      1    NA    16.6  4.57 18952 20622
-#> 10 GUAGUI.1419 NA         0    NA    NA   NA       NA    NA
-#> # … with 530 more rows
+#> <print(tibble::tibble())>
 
 as_tibble(growth) %>% 
   tidyr::separate(groups, into = c("species", "quadrats"))
-#> # A tibble: 540 x 9
-#>    species quadrats   rate     N  clim dbhmean  time date1 date2
-#>    <chr>   <chr>     <dbl> <dbl> <dbl>   <dbl> <dbl> <dbl> <dbl>
-#>  1 MATDOM  1007      0         1    NA   240    4.50 18891 20535
-#>  2 CASSYL  1010      0.445     1    NA    67    4.49 18914 20555
-#>  3 SLOBER  110       0.666     1    NA   150    4.51 18897 20543
-#>  4 SLOBER  1106      0         1    NA    50    4.56 18849 20516
-#>  5 CECSCH  1114      1.79      1    NA   228    4.47 18948 20580
-#>  6 PSYBRA  1318      0.447     1    NA    14    4.48 19011 20646
-#>  7 HIRRUG  1403      1.66      1    NA    12.9  4.58 18834 20506
-#>  8 CASSYL  1411     NA         0    NA    NA   NA       NA    NA
-#>  9 SLOBER  1414      1.40      1    NA    16.6  4.57 18952 20622
-#> 10 GUAGUI  1419     NA         0    NA    NA   NA       NA    NA
-#> # … with 530 more rows
+#> <print(tibble::tibble())>
 ```
 
 ### Species-habitat associations
@@ -536,47 +398,19 @@ tt_test_result
 
 # A dataframe
 as_tibble(tt_test_result)
-#> # A tibble: 12 x 8
-#>    habitat sp     N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
-#>  * <chr>   <chr>  <dbl>  <dbl>  <dbl>  <dbl>        <dbl>        <dbl>
-#>  1 1       CASARB    35   1313    282      5            0       0.821 
-#>  2 2       CASARB    24    394   1204      2            0       0.246 
-#>  3 3       CASARB    11    482   1114      4            0       0.301 
-#>  4 4       CASARB     8   1217    377      6            0       0.761 
-#>  5 1       PREMON    94   1005    594      1            0       0.628 
-#>  6 2       PREMON    97   1478    120      2            0       0.924 
-#>  7 3       PREMON    39    230   1367      3            0       0.144 
-#>  8 4       PREMON    15    130   1465      5            0       0.0812
-#>  9 1       SLOBER    21    270   1328      2            0       0.169 
-#> 10 2       SLOBER    25    516   1082      2            0       0.322 
-#> 11 3       SLOBER    21   1336    260      4            0       0.835 
-#> 12 4       SLOBER     8   1193    396     11            0       0.746
+#> <print(tibble::tibble())>
 
 # A simple summary to help you interpret the results
 summary(tt_test_result)
-#> # A tibble: 12 x 3
-#>    sp     habitat association
-#>    <chr>  <chr>   <chr>      
-#>  1 CASARB 1       neutral    
-#>  2 CASARB 2       neutral    
-#>  3 CASARB 3       neutral    
-#>  4 CASARB 4       neutral    
-#>  5 PREMON 1       neutral    
-#>  6 PREMON 2       neutral    
-#>  7 PREMON 3       neutral    
-#>  8 PREMON 4       neutral    
-#>  9 SLOBER 1       neutral    
-#> 10 SLOBER 2       neutral    
-#> 11 SLOBER 3       neutral    
-#> 12 SLOBER 4       neutral
+#> <print(tibble::tibble())>
 ```
 
-[Get started with **fgeo**](https://forestgeo.github.io/fgeo)
+[Get started with **fgeo**](https://forestgeo.github.io/fgeo/)
 
 ## Information
 
-  - [Getting
+-   [Getting
     help](https://forestgeo.github.io/fgeo.analyze/SUPPORT.html).
-  - [Contributing](https://forestgeo.github.io/fgeo.analyze/CONTRIBUTING.html).
-  - [Contributor Code of
+-   [Contributing](https://forestgeo.github.io/fgeo.analyze/CONTRIBUTING.html).
+-   [Contributor Code of
     Conduct](https://forestgeo.github.io/fgeo.analyze/CODE_OF_CONDUCT.html).

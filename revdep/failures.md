@@ -8,8 +8,6 @@
 * BugReports: https://github.com/forestgeo/fgeo.analyze/issues
 * Number of recursive dependencies: 0
 
-Run `revdep_details(,"")` for more info
-
 </details>
 
 ## Error before installation
@@ -43,8 +41,6 @@ Run `revdep_details(,"")` for more info
 * URL: https://github.com/forestgeo/fgeo.analyze
 * BugReports: https://github.com/forestgeo/fgeo.analyze/issues
 * Number of recursive dependencies: 0
-
-Run `revdep_details(,"")` for more info
 
 </details>
 
