@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -48,7 +52,6 @@ it sums the basal area of all trees. The result includes all stems within a
 given dbh range (notice the difference with abundance_byyr()).
 
 " />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -66,7 +69,7 @@ given dbh range (notice the difference with abundance_byyr()).
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -160,9 +163,9 @@ given dbh range (notice the difference with <code>abundance_byyr()</code>).</p><
 
     </div>
 
-    <pre class="usage"><span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>abundance_byyr</span><span class='op'>(</span><span class='va'>vft</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>basal_area_byyr</span>(<span class='no'>vft</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>basal_area_byyr</span><span class='op'>(</span><span class='va'>vft</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -199,76 +202,81 @@ including dead, missing, and gone stems.</p>
 <code><a href='abundance.html'>abundance</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>fgeo.tool</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/forestgeo/fgeo.tool'>fgeo.tool</a></span><span class='op'>)</span>
 
 <span class='co'># Example data</span>
-<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tibble</a></span>(
-  <span class='kw'>PlotName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>),
-  <span class='kw'>CensusID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>TreeID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>StemID</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span>, <span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span>),
-  <span class='kw'>Status</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+<span class='va'>vft</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>
+  PlotName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span>, <span class='st'>"luq"</span><span class='op'>)</span>,
+  CensusID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span><span class='op'>)</span>,
+  TreeID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span><span class='op'>)</span>,
+  StemID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span>, <span class='fl'>1.1</span>, <span class='fl'>1.2</span>, <span class='fl'>2.1</span>, <span class='fl'>2.2</span><span class='op'>)</span>,
+  Status <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
     <span class='st'>"alive"</span>, <span class='st'>"dead"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"alive"</span>, <span class='st'>"gone"</span>,
     <span class='st'>"dead"</span>, <span class='st'>"dead"</span>
-  ),
-  <span class='kw'>DBH</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10L</span>, <span class='fl'>NA</span>, <span class='fl'>20L</span>, <span class='fl'>30L</span>, <span class='fl'>20L</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>, <span class='fl'>NA</span>),
-  <span class='kw'>Genus</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>),
-  <span class='kw'>SpeciesName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>),
-  <span class='kw'>ExactDate</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
+  <span class='op'>)</span>,
+  DBH <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10L</span>, <span class='cn'>NA</span>, <span class='fl'>20L</span>, <span class='fl'>30L</span>, <span class='fl'>20L</span>, <span class='cn'>NA</span>, <span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+  Genus <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span>, <span class='st'>"Gn"</span><span class='op'>)</span>,
+  SpeciesName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span>, <span class='st'>"spp"</span><span class='op'>)</span>,
+  ExactDate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
     <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>, <span class='st'>"2001-01-01"</span>,
     <span class='st'>"2002-01-01"</span>, <span class='st'>"2002-01-01"</span>, <span class='st'>"2002-01-01"</span>,
     <span class='st'>"2002-01-01"</span>
-  ),
-  <span class='kw'>PlotCensusNumber</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>Family</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>),
-  <span class='kw'>Tag</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>),
-  <span class='kw'>HOM</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>)
-)
+  <span class='op'>)</span>,
+  PlotCensusNumber <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span><span class='op'>)</span>,
+  Family <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span>, <span class='st'>"f"</span><span class='op'>)</span>,
+  Tag <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span>, <span class='fl'>1L</span>, <span class='fl'>1L</span>, <span class='fl'>2L</span>, <span class='fl'>2L</span><span class='op'>)</span>,
+  HOM <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span>, <span class='fl'>130L</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='no'>vft</span></div><div class='output co'>#&gt; # A tibble: 8 x 13
+<span class='va'>vft</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 8 x 13</span><span>
 #&gt;   PlotName CensusID TreeID StemID Status   DBH Genus SpeciesName ExactDate
-#&gt;   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;int&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;    
-#&gt; 1 luq             1      1    1.1 alive     10 Gn    spp         2001-01-…
-#&gt; 2 luq             1      1    1.2 dead      NA Gn    spp         2001-01-…
-#&gt; 3 luq             1      2    2.1 alive     20 Gn    spp         2001-01-…
-#&gt; 4 luq             1      2    2.2 alive     30 Gn    spp         2001-01-…
-#&gt; 5 luq             2      1    1.1 alive     20 Gn    spp         2002-01-…
-#&gt; 6 luq             2      1    1.2 gone      NA Gn    spp         2002-01-…
-#&gt; 7 luq             2      2    2.1 dead      NA Gn    spp         2002-01-…
-#&gt; 8 luq             2      2    2.2 dead      NA Gn    spp         2002-01-…
-#&gt; # … with 4 more variables: PlotCensusNumber &lt;int&gt;, Family &lt;chr&gt;, Tag &lt;int&gt;,
-#&gt; #   HOM &lt;int&gt;</div><div class='input'>
-<span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>, <span class='no'>DBH</span> <span class='kw'>&lt;</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 3
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'>1</span><span> luq             1      1    1.1 alive     10 Gn    spp         2001-01-…
+#&gt; </span><span style='color: #555555;'>2</span><span> luq             1      1    1.2 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2001-01-…
+#&gt; </span><span style='color: #555555;'>3</span><span> luq             1      2    2.1 alive     20 Gn    spp         2001-01-…
+#&gt; </span><span style='color: #555555;'>4</span><span> luq             1      2    2.2 alive     30 Gn    spp         2001-01-…
+#&gt; </span><span style='color: #555555;'>5</span><span> luq             2      1    1.1 alive     20 Gn    spp         2002-01-…
+#&gt; </span><span style='color: #555555;'>6</span><span> luq             2      1    1.2 gone      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-…
+#&gt; </span><span style='color: #555555;'>7</span><span> luq             2      2    2.1 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-…
+#&gt; </span><span style='color: #555555;'>8</span><span> luq             2      2    2.2 dead      </span><span style='color: #BB0000;'>NA</span><span> Gn    spp         2002-01-…
+#&gt; </span><span style='color: #555555;'># … with 4 more variables: PlotCensusNumber </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, Family </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Tag </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   HOM </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span></div><div class='input'>
+<span class='fu'>abundance_byyr</span><span class='op'>(</span><span class='va'>vft</span>, <span class='va'>DBH</span> <span class='op'>&gt;=</span> <span class='fl'>10</span>, <span class='va'>DBH</span> <span class='op'>&lt;</span> <span class='fl'>20</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 3</span><span>
 #&gt;   species family yr_2001
-#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;
-#&gt; 1 Gn spp  f            1</div><div class='input'>
-<span class='fu'>abundance_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 4
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            1</div><div class='input'>
+<span class='fu'>abundance_byyr</span><span class='op'>(</span><span class='va'>vft</span>, <span class='va'>DBH</span> <span class='op'>&gt;=</span> <span class='fl'>10</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
 #&gt;   species family yr_2001 yr_2002
-#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 Gn spp  f            2       1</div><div class='input'>
-<span class='no'>basal</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area_byyr</span>(<span class='no'>vft</span>, <span class='no'>DBH</span> <span class='kw'>&gt;=</span> <span class='fl'>10</span>)
-<span class='no'>basal</span></div><div class='output co'>#&gt; # A tibble: 1 x 4
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f            2       1</div><div class='input'>
+<span class='va'>basal</span> <span class='op'>&lt;-</span> <span class='fu'>basal_area_byyr</span><span class='op'>(</span><span class='va'>vft</span>, <span class='va'>DBH</span> <span class='op'>&gt;=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>basal</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 4</span><span>
 #&gt;   species family yr_2001 yr_2002
-#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-#&gt; 1 Gn spp  f        1100.    314.</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> Gn spp  f        </span><span style='text-decoration: underline;'>1</span><span>100.    314.</div><div class='input'>
 <span class='co'># Skip R CMD check for speed</span>
 <span class='co'># \donttest{</span>
-<span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw'>if</span> (<span class='no'>measurements_is_installed</span>) {
+<span class='va'>measurements_is_installed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"measurements"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>measurements_is_installed</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='co'># Convert units</span>
-  <span class='no'>years</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span>)
-  <span class='no'>basal_he</span> <span class='kw'>&lt;-</span> <span class='no'>basal</span> <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span>(
-      <span class='no'>years</span>,
-      ~ <span class='kw pkg'>measurements</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/measurements/man/conv_unit.html'>conv_unit</a></span>(<span class='no'>.x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>)
-    )
-  <span class='no'>basal_he</span>
+  <span class='va'>years</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"yr_2001"</span>, <span class='st'>"yr_2002"</span><span class='op'>)</span>
+  <span class='va'>basal_he</span> <span class='op'>&lt;-</span> <span class='va'>basal</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>purrr</span><span class='fu'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/modify.html'>modify_at</a></span><span class='op'>(</span>
+      <span class='va'>years</span>,
+      <span class='op'>~</span> <span class='fu'>measurements</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/measurements/man/conv_unit.html'>conv_unit</a></span><span class='op'>(</span><span class='va'>.x</span>, from <span class='op'>=</span> <span class='st'>"mm2"</span>, to <span class='op'>=</span> <span class='st'>"hectare"</span><span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='va'>basal_he</span>
 
   <span class='co'># Standardize</span>
-  <span class='no'>number_of_hectares</span> <span class='kw'>&lt;-</span> <span class='fl'>50</span>
-  <span class='no'>basal_he</span> <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>purrr</span><span class='kw ns'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map_if.html'>map_at</a></span>(<span class='no'>years</span>, ~ <span class='no'>.x</span> / <span class='no'>number_of_hectares</span>)
-}</div><div class='output co'>#&gt; $species
+  <span class='va'>number_of_hectares</span> <span class='op'>&lt;-</span> <span class='fl'>50</span>
+  <span class='va'>basal_he</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>purrr</span><span class='fu'>::</span><span class='fu'><a href='https://purrr.tidyverse.org/reference/map_if.html'>map_at</a></span><span class='op'>(</span><span class='va'>years</span>, <span class='op'>~</span> <span class='va'>.x</span> <span class='op'>/</span> <span class='va'>number_of_hectares</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; $species
 #&gt; [1] "Gn spp"
 #&gt; 
 #&gt; $family
@@ -279,19 +287,13 @@ including dead, missing, and gone stems.</p>
 #&gt; 
 #&gt; $yr_2002
 #&gt; [1] 6.283185e-10
-#&gt; </div><div class='input'># }
-</div></pre>
+#&gt; </div><div class='input'><span class='co'># }</span>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -302,7 +304,7 @@ including dead, missing, and gone stems.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

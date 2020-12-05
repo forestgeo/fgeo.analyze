@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -41,7 +45,6 @@ original functions, these ones have a similar interface but use more
 conservative defaults and allow suppressing messages. These functions also
 feature formal tests, bug fixes, additional assertions, and improved
 messages." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -59,7 +62,7 @@ messages." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -146,40 +149,40 @@ feature formal tests, bug fixes, additional assertions, and improved
 messages.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>recruitment_ctfs</span>(
-  <span class='no'>census1</span>,
-  <span class='no'>census2</span>,
-  <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>recruitment_ctfs</span><span class='op'>(</span>
+  <span class='va'>census1</span>,
+  <span class='va'>census2</span>,
+  mindbh <span class='op'>=</span> <span class='cn'>NULL</span>,
+  alivecode <span class='op'>=</span> <span class='cn'>NULL</span>,
+  split1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  split2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>mortality_ctfs</span>(
-  <span class='no'>census1</span>,
-  <span class='no'>census2</span>,
-  <span class='kw'>alivecode</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+<span class='fu'>mortality_ctfs</span><span class='op'>(</span>
+  <span class='va'>census1</span>,
+  <span class='va'>census2</span>,
+  alivecode <span class='op'>=</span> <span class='cn'>NULL</span>,
+  split1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  split2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>growth_ctfs</span>(
-  <span class='no'>census1</span>,
-  <span class='no'>census2</span>,
-  <span class='kw'>rounddown</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"I"</span>,
-  <span class='kw'>stdev</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>dbhunit</span> <span class='kw'>=</span> <span class='st'>"mm"</span>,
-  <span class='kw'>mindbh</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>growthcol</span> <span class='kw'>=</span> <span class='st'>"dbh"</span>,
-  <span class='kw'>err.limit</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>maxgrow</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
-  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>split2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+<span class='fu'>growth_ctfs</span><span class='op'>(</span>
+  <span class='va'>census1</span>,
+  <span class='va'>census2</span>,
+  rounddown <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  method <span class='op'>=</span> <span class='st'>"I"</span>,
+  stdev <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  dbhunit <span class='op'>=</span> <span class='st'>"mm"</span>,
+  mindbh <span class='op'>=</span> <span class='cn'>NULL</span>,
+  growthcol <span class='op'>=</span> <span class='st'>"dbh"</span>,
+  err.limit <span class='op'>=</span> <span class='fl'>1000</span>,
+  maxgrow <span class='op'>=</span> <span class='fl'>1000</span>,
+  split1 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  split2 <span class='op'>=</span> <span class='cn'>NULL</span>,
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -288,110 +291,111 @@ the first census, and a diameter greater than <code>mindbh</code> in the first c
 The total population in the second census includes all those alive plus any
 other survivors. Individuals whose status is <code>NA</code> in either census are
 deleted from all calculations.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Richard Condit, Suzanne Lao.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span><span class='op'>(</span><span class='st'>"fgeo.x"</span><span class='op'>)</span>
 
-<span class='no'>census1</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree5</a></span>
-<span class='no'>census2</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree6</a></span>
+<span class='va'>census1</span> <span class='op'>&lt;-</span> <span class='fu'>fgeo.x</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree5</a></span>
+<span class='va'>census2</span> <span class='op'>&lt;-</span> <span class='fu'>fgeo.x</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree6</a></span>
 
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(
-  <span class='fu'>recruitment_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>)
-)</div><div class='output co'>#&gt; <span class='message'>Detected dbh ranges:</span>
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span>
+  <span class='fu'>recruitment_ctfs</span><span class='op'>(</span><span class='va'>census1</span>, <span class='va'>census2</span><span class='op'>)</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Detected dbh ranges:</span>
 #&gt; <span class='message'>  * `census1` = 10.9-323.</span>
 #&gt; <span class='message'>  * `census2` = 10.5-347.</span>
-#&gt; <span class='message'>Using dbh `mindbh = 0` and above.</span></div><div class='output co'>#&gt; # A tibble: 1 x 8
+#&gt; <span class='message'>Using dbh `mindbh = 0` and above.</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 8</span><span>
 #&gt;      N2     R   rate   lower  upper  time  date1  date2
-#&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1    29     3 0.0241 0.00846 0.0681  4.53 18938. 20601.</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>    29     3 0.024</span><span style='text-decoration: underline;'>1</span><span> 0.008</span><span style='text-decoration: underline;'>46</span><span> 0.068</span><span style='text-decoration: underline;'>1</span><span>  4.53 </span><span style='text-decoration: underline;'>18</span><span>938. </span><span style='text-decoration: underline;'>20</span><span>601.</div><div class='input'>
 <span class='co'># Use `interaction(...)` to aggregate by any number of grouping variables</span>
-<span class='no'>sp_quadrat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/interaction.html'>interaction</a></span>(<span class='no'>census1</span>$<span class='no'>sp</span>, <span class='no'>census1</span>$<span class='no'>quadrat</span>)
+<span class='va'>sp_quadrat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/interaction.html'>interaction</a></span><span class='op'>(</span><span class='va'>census1</span><span class='op'>$</span><span class='va'>sp</span>, <span class='va'>census1</span><span class='op'>$</span><span class='va'>quadrat</span><span class='op'>)</span>
 
-<span class='no'>recruitment</span> <span class='kw'>&lt;-</span> <span class='fu'>recruitment_ctfs</span>(
-  <span class='no'>census1</span>, <span class='no'>census2</span>,
-  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>sp_quadrat</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>recruitment</span>)</div><div class='output co'>#&gt; # A tibble: 540 x 9
+<span class='va'>recruitment</span> <span class='op'>&lt;-</span> <span class='fu'>recruitment_ctfs</span><span class='op'>(</span>
+  <span class='va'>census1</span>, <span class='va'>census2</span>,
+  split1 <span class='op'>=</span> <span class='va'>sp_quadrat</span>,
+  quiet <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>recruitment</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 540 x 9</span><span>
 #&gt;    groups         N2     R  rate lower upper  time date1 date2
-#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 MATDOM.1007     1     0     0     0 0.410  4.50 18891 20535
-#&gt;  2 CASSYL.1010     1     0     0     0 0.411  4.49 18914 20555
-#&gt;  3 SLOBER.110      1     0     0     0 0.409  4.51 18897 20543
-#&gt;  4 SLOBER.1106     1     0     0     0 0.404  4.56 18849 20516
-#&gt;  5 CECSCH.1114     1     0     0     0 0.413  4.47 18948 20580
-#&gt;  6 PSYBRA.1318     1     0     0     0 0.412  4.48 19011 20646
-#&gt;  7 HIRRUG.1403     1     0     0     0 0.403  4.58 18834 20506
-#&gt;  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558
-#&gt;  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622
-#&gt; 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670
-#&gt; # … with 530 more rows</div><div class='input'>
-<span class='no'>mortality</span> <span class='kw'>&lt;-</span> <span class='fu'>mortality_ctfs</span>(
-  <span class='no'>census1</span>, <span class='no'>census2</span>,
-  <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>sp_quadrat</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>mortality</span>)</div><div class='output co'>#&gt; # A tibble: 540 x 10
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> MATDOM.1007     1     0     0     0 0.410  4.50 </span><span style='text-decoration: underline;'>18</span><span>891 </span><span style='text-decoration: underline;'>20</span><span>535
+#&gt; </span><span style='color: #555555;'> 2</span><span> CASSYL.1010     1     0     0     0 0.411  4.49 </span><span style='text-decoration: underline;'>18</span><span>914 </span><span style='text-decoration: underline;'>20</span><span>555
+#&gt; </span><span style='color: #555555;'> 3</span><span> SLOBER.110      1     0     0     0 0.409  4.51 </span><span style='text-decoration: underline;'>18</span><span>897 </span><span style='text-decoration: underline;'>20</span><span>543
+#&gt; </span><span style='color: #555555;'> 4</span><span> SLOBER.1106     1     0     0     0 0.404  4.56 </span><span style='text-decoration: underline;'>18</span><span>849 </span><span style='text-decoration: underline;'>20</span><span>516
+#&gt; </span><span style='color: #555555;'> 5</span><span> CECSCH.1114     1     0     0     0 0.413  4.47 </span><span style='text-decoration: underline;'>18</span><span>948 </span><span style='text-decoration: underline;'>20</span><span>580
+#&gt; </span><span style='color: #555555;'> 6</span><span> PSYBRA.1318     1     0     0     0 0.412  4.48 </span><span style='text-decoration: underline;'>19</span><span>011 </span><span style='text-decoration: underline;'>20</span><span>646
+#&gt; </span><span style='color: #555555;'> 7</span><span> HIRRUG.1403     1     0     0     0 0.403  4.58 </span><span style='text-decoration: underline;'>18</span><span>834 </span><span style='text-decoration: underline;'>20</span><span>506
+#&gt; </span><span style='color: #555555;'> 8</span><span> CASSYL.1411     1     0     0     0 0.414  4.45 </span><span style='text-decoration: underline;'>18</span><span>931 </span><span style='text-decoration: underline;'>20</span><span>558
+#&gt; </span><span style='color: #555555;'> 9</span><span> SLOBER.1414     1     0     0     0 0.403  4.57 </span><span style='text-decoration: underline;'>18</span><span>952 </span><span style='text-decoration: underline;'>20</span><span>622
+#&gt; </span><span style='color: #555555;'>10</span><span> GUAGUI.1419     1     0     0     0 0.406  4.54 </span><span style='text-decoration: underline;'>19</span><span>012 </span><span style='text-decoration: underline;'>20</span><span>670
+#&gt; </span><span style='color: #555555;'># … with 530 more rows</span><span></div><div class='input'>
+<span class='va'>mortality</span> <span class='op'>&lt;-</span> <span class='fu'>mortality_ctfs</span><span class='op'>(</span>
+  <span class='va'>census1</span>, <span class='va'>census2</span>,
+  split1 <span class='op'>=</span> <span class='va'>sp_quadrat</span>, quiet <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>mortality</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 540 x 10</span><span>
 #&gt;    groups          N     D  rate lower upper  time date1 date2 dbhmean
-#&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 MATDOM.1007     1     0     0     0 0.410  4.50 18891 20535   240  
-#&gt;  2 CASSYL.1010     1     0     0     0 0.411  4.49 18914 20555    67  
-#&gt;  3 SLOBER.110      1     0     0     0 0.409  4.51 18897 20543   150  
-#&gt;  4 SLOBER.1106     1     0     0     0 0.404  4.56 18849 20516    50  
-#&gt;  5 CECSCH.1114     1     0     0     0 0.413  4.47 18948 20580   228  
-#&gt;  6 PSYBRA.1318     1     0     0     0 0.412  4.48 19011 20646    14  
-#&gt;  7 HIRRUG.1403     1     0     0     0 0.403  4.58 18834 20506    12.9
-#&gt;  8 CASSYL.1411     1     0     0     0 0.414  4.45 18931 20558    13.1
-#&gt;  9 SLOBER.1414     1     0     0     0 0.403  4.57 18952 20622    16.6
-#&gt; 10 GUAGUI.1419     1     0     0     0 0.406  4.54 19012 20670   108  
-#&gt; # … with 530 more rows</div><div class='input'>
-<span class='no'>growth</span> <span class='kw'>&lt;-</span> <span class='fu'>growth_ctfs</span>(<span class='no'>census1</span>, <span class='no'>census2</span>, <span class='kw'>split1</span> <span class='kw'>=</span> <span class='no'>sp_quadrat</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>growth</span>)</div><div class='output co'>#&gt; # A tibble: 540 x 8
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> MATDOM.1007     1     0     0     0 0.410  4.50 </span><span style='text-decoration: underline;'>18</span><span>891 </span><span style='text-decoration: underline;'>20</span><span>535   240  
+#&gt; </span><span style='color: #555555;'> 2</span><span> CASSYL.1010     1     0     0     0 0.411  4.49 </span><span style='text-decoration: underline;'>18</span><span>914 </span><span style='text-decoration: underline;'>20</span><span>555    67  
+#&gt; </span><span style='color: #555555;'> 3</span><span> SLOBER.110      1     0     0     0 0.409  4.51 </span><span style='text-decoration: underline;'>18</span><span>897 </span><span style='text-decoration: underline;'>20</span><span>543   150  
+#&gt; </span><span style='color: #555555;'> 4</span><span> SLOBER.1106     1     0     0     0 0.404  4.56 </span><span style='text-decoration: underline;'>18</span><span>849 </span><span style='text-decoration: underline;'>20</span><span>516    50  
+#&gt; </span><span style='color: #555555;'> 5</span><span> CECSCH.1114     1     0     0     0 0.413  4.47 </span><span style='text-decoration: underline;'>18</span><span>948 </span><span style='text-decoration: underline;'>20</span><span>580   228  
+#&gt; </span><span style='color: #555555;'> 6</span><span> PSYBRA.1318     1     0     0     0 0.412  4.48 </span><span style='text-decoration: underline;'>19</span><span>011 </span><span style='text-decoration: underline;'>20</span><span>646    14  
+#&gt; </span><span style='color: #555555;'> 7</span><span> HIRRUG.1403     1     0     0     0 0.403  4.58 </span><span style='text-decoration: underline;'>18</span><span>834 </span><span style='text-decoration: underline;'>20</span><span>506    12.9
+#&gt; </span><span style='color: #555555;'> 8</span><span> CASSYL.1411     1     0     0     0 0.414  4.45 </span><span style='text-decoration: underline;'>18</span><span>931 </span><span style='text-decoration: underline;'>20</span><span>558    13.1
+#&gt; </span><span style='color: #555555;'> 9</span><span> SLOBER.1414     1     0     0     0 0.403  4.57 </span><span style='text-decoration: underline;'>18</span><span>952 </span><span style='text-decoration: underline;'>20</span><span>622    16.6
+#&gt; </span><span style='color: #555555;'>10</span><span> GUAGUI.1419     1     0     0     0 0.406  4.54 </span><span style='text-decoration: underline;'>19</span><span>012 </span><span style='text-decoration: underline;'>20</span><span>670   108  
+#&gt; </span><span style='color: #555555;'># … with 530 more rows</span><span></div><div class='input'>
+<span class='va'>growth</span> <span class='op'>&lt;-</span> <span class='fu'>growth_ctfs</span><span class='op'>(</span><span class='va'>census1</span>, <span class='va'>census2</span>, split1 <span class='op'>=</span> <span class='va'>sp_quadrat</span>, quiet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>growth</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 540 x 8</span><span>
 #&gt;    groups        rate     N  clim dbhmean  time date1 date2
-#&gt;    &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 MATDOM.1007  0         1    NA   240    4.50 18891 20535
-#&gt;  2 CASSYL.1010  0.445     1    NA    67    4.49 18914 20555
-#&gt;  3 SLOBER.110   0.666     1    NA   150    4.51 18897 20543
-#&gt;  4 SLOBER.1106  0         1    NA    50    4.56 18849 20516
-#&gt;  5 CECSCH.1114  1.79      1    NA   228    4.47 18948 20580
-#&gt;  6 PSYBRA.1318  0.447     1    NA    14    4.48 19011 20646
-#&gt;  7 HIRRUG.1403  1.66      1    NA    12.9  4.58 18834 20506
-#&gt;  8 CASSYL.1411 NA         0    NA    NA   NA       NA    NA
-#&gt;  9 SLOBER.1414  1.40      1    NA    16.6  4.57 18952 20622
-#&gt; 10 GUAGUI.1419 NA         0    NA    NA   NA       NA    NA
-#&gt; # … with 530 more rows</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> MATDOM.1007  0         1    </span><span style='color: #BB0000;'>NA</span><span>   240    4.50 </span><span style='text-decoration: underline;'>18</span><span>891 </span><span style='text-decoration: underline;'>20</span><span>535
+#&gt; </span><span style='color: #555555;'> 2</span><span> CASSYL.1010  0.445     1    </span><span style='color: #BB0000;'>NA</span><span>    67    4.49 </span><span style='text-decoration: underline;'>18</span><span>914 </span><span style='text-decoration: underline;'>20</span><span>555
+#&gt; </span><span style='color: #555555;'> 3</span><span> SLOBER.110   0.666     1    </span><span style='color: #BB0000;'>NA</span><span>   150    4.51 </span><span style='text-decoration: underline;'>18</span><span>897 </span><span style='text-decoration: underline;'>20</span><span>543
+#&gt; </span><span style='color: #555555;'> 4</span><span> SLOBER.1106  0         1    </span><span style='color: #BB0000;'>NA</span><span>    50    4.56 </span><span style='text-decoration: underline;'>18</span><span>849 </span><span style='text-decoration: underline;'>20</span><span>516
+#&gt; </span><span style='color: #555555;'> 5</span><span> CECSCH.1114  1.79      1    </span><span style='color: #BB0000;'>NA</span><span>   228    4.47 </span><span style='text-decoration: underline;'>18</span><span>948 </span><span style='text-decoration: underline;'>20</span><span>580
+#&gt; </span><span style='color: #555555;'> 6</span><span> PSYBRA.1318  0.447     1    </span><span style='color: #BB0000;'>NA</span><span>    14    4.48 </span><span style='text-decoration: underline;'>19</span><span>011 </span><span style='text-decoration: underline;'>20</span><span>646
+#&gt; </span><span style='color: #555555;'> 7</span><span> HIRRUG.1403  1.66      1    </span><span style='color: #BB0000;'>NA</span><span>    12.9  4.58 </span><span style='text-decoration: underline;'>18</span><span>834 </span><span style='text-decoration: underline;'>20</span><span>506
+#&gt; </span><span style='color: #555555;'> 8</span><span> CASSYL.1411 </span><span style='color: #BB0000;'>NA</span><span>         0    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> SLOBER.1414  1.40      1    </span><span style='color: #BB0000;'>NA</span><span>    16.6  4.57 </span><span style='text-decoration: underline;'>18</span><span>952 </span><span style='text-decoration: underline;'>20</span><span>622
+#&gt; </span><span style='color: #555555;'>10</span><span> GUAGUI.1419 </span><span style='color: #BB0000;'>NA</span><span>         0    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'># … with 530 more rows</span><span></div><div class='input'>
 <span class='co'># Easy way to separate grouping variables</span>
-<span class='no'>tidyr_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"tidyr"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw'>if</span> (<span class='no'>tidyr_is_installed</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyr</span>)
+<span class='va'>tidyr_is_installed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"tidyr"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>tidyr_is_installed</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyr.tidyverse.org'>tidyr</a></span><span class='op'>)</span>
 
-  <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>growth</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span>(<span class='no'>groups</span>, <span class='kw'>into</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"sp"</span>, <span class='st'>"quadrat"</span>))
-}</div><div class='output co'>#&gt; # A tibble: 540 x 9
+  <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>growth</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>groups</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sp"</span>, <span class='st'>"quadrat"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 540 x 9</span><span>
 #&gt;    sp     quadrat   rate     N  clim dbhmean  time date1 date2
-#&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1 MATDOM 1007     0         1    NA   240    4.50 18891 20535
-#&gt;  2 CASSYL 1010     0.445     1    NA    67    4.49 18914 20555
-#&gt;  3 SLOBER 110      0.666     1    NA   150    4.51 18897 20543
-#&gt;  4 SLOBER 1106     0         1    NA    50    4.56 18849 20516
-#&gt;  5 CECSCH 1114     1.79      1    NA   228    4.47 18948 20580
-#&gt;  6 PSYBRA 1318     0.447     1    NA    14    4.48 19011 20646
-#&gt;  7 HIRRUG 1403     1.66      1    NA    12.9  4.58 18834 20506
-#&gt;  8 CASSYL 1411    NA         0    NA    NA   NA       NA    NA
-#&gt;  9 SLOBER 1414     1.40      1    NA    16.6  4.57 18952 20622
-#&gt; 10 GUAGUI 1419    NA         0    NA    NA   NA       NA    NA
-#&gt; # … with 530 more rows</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> MATDOM 1007     0         1    </span><span style='color: #BB0000;'>NA</span><span>   240    4.50 </span><span style='text-decoration: underline;'>18</span><span>891 </span><span style='text-decoration: underline;'>20</span><span>535
+#&gt; </span><span style='color: #555555;'> 2</span><span> CASSYL 1010     0.445     1    </span><span style='color: #BB0000;'>NA</span><span>    67    4.49 </span><span style='text-decoration: underline;'>18</span><span>914 </span><span style='text-decoration: underline;'>20</span><span>555
+#&gt; </span><span style='color: #555555;'> 3</span><span> SLOBER 110      0.666     1    </span><span style='color: #BB0000;'>NA</span><span>   150    4.51 </span><span style='text-decoration: underline;'>18</span><span>897 </span><span style='text-decoration: underline;'>20</span><span>543
+#&gt; </span><span style='color: #555555;'> 4</span><span> SLOBER 1106     0         1    </span><span style='color: #BB0000;'>NA</span><span>    50    4.56 </span><span style='text-decoration: underline;'>18</span><span>849 </span><span style='text-decoration: underline;'>20</span><span>516
+#&gt; </span><span style='color: #555555;'> 5</span><span> CECSCH 1114     1.79      1    </span><span style='color: #BB0000;'>NA</span><span>   228    4.47 </span><span style='text-decoration: underline;'>18</span><span>948 </span><span style='text-decoration: underline;'>20</span><span>580
+#&gt; </span><span style='color: #555555;'> 6</span><span> PSYBRA 1318     0.447     1    </span><span style='color: #BB0000;'>NA</span><span>    14    4.48 </span><span style='text-decoration: underline;'>19</span><span>011 </span><span style='text-decoration: underline;'>20</span><span>646
+#&gt; </span><span style='color: #555555;'> 7</span><span> HIRRUG 1403     1.66      1    </span><span style='color: #BB0000;'>NA</span><span>    12.9  4.58 </span><span style='text-decoration: underline;'>18</span><span>834 </span><span style='text-decoration: underline;'>20</span><span>506
+#&gt; </span><span style='color: #555555;'> 8</span><span> CASSYL 1411    </span><span style='color: #BB0000;'>NA</span><span>         0    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> SLOBER 1414     1.40      1    </span><span style='color: #BB0000;'>NA</span><span>    16.6  4.57 </span><span style='text-decoration: underline;'>18</span><span>952 </span><span style='text-decoration: underline;'>20</span><span>622
+#&gt; </span><span style='color: #555555;'>10</span><span> GUAGUI 1419    </span><span style='color: #BB0000;'>NA</span><span>         0    </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>   </span><span style='color: #BB0000;'>NA</span><span>       </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>
+#&gt; </span><span style='color: #555555;'># … with 530 more rows</span><span></div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Richard Condit, Suzanne Lao.</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -402,7 +406,7 @@ deleted from all calculations.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

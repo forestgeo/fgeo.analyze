@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -49,7 +53,6 @@ warns if it detects duplicated values of stemid. It does not convert units
 
 Both abundance() and basal_area() warn if they detect
 multiple censusid and multiple plots." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -67,7 +70,7 @@ multiple censusid and multiple plots." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -150,10 +153,10 @@ multiple censusid and multiple plots." />
     
 <ul>
 <li><p><code>abundance()</code> counts the number of rows in a dataset, optionally by groups
-created with <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> (similar to <code><a href='https://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>). It warns if it
+created with <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> (similar to <code><a href='https://dplyr.tidyverse.org/reference/context.html'>dplyr::n()</a></code>). It warns if it
 detects duplicated values of treeid.</p></li>
 <li><p><code>basal_area()</code> sums the basal area of
-all stems in a dataset, optionally by groups created with <code>group_by()</code>. It
+all stems in a dataset, optionally by groups created with <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by()</a></code>. It
 warns if it detects duplicated values of stemid. It does not convert units
 (but see examples).</p></li>
 </ul>
@@ -162,9 +165,9 @@ warns if it detects duplicated values of stemid. It does not convert units
 multiple censusid and multiple plots.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>abundance</span>(<span class='no'>data</span>)
+    <pre class="usage"><span class='fu'>abundance</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
 
-<span class='fu'>basal_area</span>(<span class='no'>data</span>)</pre>
+<span class='fu'>basal_area</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,179 +184,194 @@ insensitive).</p></td>
     <p>You may want to calculate the abundance or basal area for a specific subset
 of data (e.g. "alive" stems or stems which <code>dbh</code> is within some range).
 Subsetting data is not the job of these functions. Instead see
-<code><a href='https://rdrr.io/r/base/subset.html'>base::subset()</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code>, or <code>[</code>.</p>
+<code><a href='https://rdrr.io/r/base/subset.html'>base::subset()</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/filter.html'>dplyr::filter()</a></code>, or <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/n.html'>dplyr::n()</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p>
+    <div class='dont-index'><p><code><a href='https://dplyr.tidyverse.org/reference/context.html'>dplyr::n()</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code>.</p>
 <p>Other functions for abundance and basal area: 
 <code><a href='abundance_byyr.html'>abundance_byyr</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>fgeo.tool</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/forestgeo/fgeo.tool'>fgeo.tool</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘fgeo.tool’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    filter</span></div><div class='input'>
 <span class='co'># abundance() -------------------------------------------------------------</span>
 
-<span class='fu'>abundance</span>(<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fl'>1</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>abundance</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
-#&gt;   &lt;int&gt;
-#&gt; 1     1</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     1</div><div class='input'>
 <span class='co'># One stem per tree</span>
-<span class='no'>tree</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
-  ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
+<span class='va'>tree</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>TreeID</span>, <span class='op'>~</span><span class='va'>StemID</span>, <span class='op'>~</span><span class='va'>DBH</span>,
   <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>11</span>,
   <span class='st'>"2"</span>, <span class='st'>"2.1"</span>, <span class='fl'>21</span>
-)
+<span class='op'>)</span>
 
-<span class='fu'>abundance</span>(<span class='no'>tree</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>abundance</span><span class='op'>(</span><span class='va'>tree</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
-#&gt;   &lt;int&gt;
-#&gt; 1     2</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
 <span class='co'># One tree with multiple stems</span>
-<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
-  ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
+<span class='va'>stem</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>TreeID</span>, <span class='op'>~</span><span class='va'>StemID</span>, <span class='op'>~</span><span class='va'>DBH</span>,
   <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>11</span>,
   <span class='st'>"1"</span>, <span class='st'>"1.2"</span>, <span class='fl'>12</span>
-)
+<span class='op'>)</span>
 
-<span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>abundance</span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
-#&gt;   &lt;int&gt;
-#&gt; 1     2</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
 <span class='co'># Skip R CMD check for speed</span>
 <span class='co'># \donttest{</span>
 <span class='co'># Similar but more realistic</span>
-<span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
-<span class='no'>stem</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fgeo.x/man/download_data.html'>download_data</a></span>(<span class='st'>"luquillo_stem5_random"</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span><span class='op'>(</span><span class='st'>"fgeo.x"</span><span class='op'>)</span>
+<span class='va'>stem</span> <span class='op'>&lt;-</span> <span class='fu'>fgeo.x</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fgeo.x/man/download_data.html'>download_data</a></span><span class='op'>(</span><span class='st'>"luquillo_stem5_random"</span><span class='op'>)</span>
 
-<span class='fu'>abundance</span>(<span class='no'>stem</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>abundance</span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
-#&gt;   &lt;int&gt;
-#&gt; 1  1320</div><div class='input'>
-<span class='fu'>abundance</span>(<span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span>(<span class='no'>stem</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>320</div><div class='input'>
+<span class='fu'>abundance</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span><span class='op'>(</span><span class='va'>stem</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: The `add` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
+#&gt; <span class='warning'>Please use the `.add` argument instead.</span>
+#&gt; <span class='warning'></span><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
+#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
-#&gt;   &lt;int&gt;
-#&gt; 1  1000</div><div class='input'><span class='co'># }</span>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>000</div><div class='input'><span class='co'># }</span>
 
-<span class='no'>vft</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
-  ~<span class='no'>PlotName</span>, ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>,
+<span class='va'>vft</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>PlotName</span>, <span class='op'>~</span><span class='va'>CensusID</span>, <span class='op'>~</span><span class='va'>TreeID</span>, <span class='op'>~</span><span class='va'>StemID</span>, <span class='op'>~</span><span class='va'>DBH</span>,
   <span class='st'>"p"</span>, <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>10</span>,
   <span class='st'>"q"</span>, <span class='fl'>2</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>10</span>
-)
+<span class='op'>)</span>
 
 <span class='co'># * Warns if it detects multiple values of censusid or plotname</span>
 <span class='co'># * Also warns if it detects duplicated values of treeid</span>
-<span class='fu'>abundance</span>(<span class='no'>vft</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `censusid`: Multiple values were detected. Do you need to group by censusid?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `plotname`: Multiple values were detected. Do you need to pick a single plot?</span></div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>abundance</span><span class='op'>(</span><span class='va'>vft</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `treeid`: Duplicated values were detected. Do you need to pick main stems?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `censusid`: Multiple values were detected. Do you need to group by censusid?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `plotname`: Multiple values were detected. Do you need to pick a single plot?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
-#&gt;   &lt;int&gt;
-#&gt; 1     2</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
 <span class='co'># If trees have buttressess, the data may have multiple stems per treeid or</span>
 <span class='co'># multiple measures per stemid.</span>
-<span class='no'>vft2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
-  ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>, ~<span class='no'>HOM</span>,
+<span class='va'>vft2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>CensusID</span>, <span class='op'>~</span><span class='va'>TreeID</span>, <span class='op'>~</span><span class='va'>StemID</span>, <span class='op'>~</span><span class='va'>DBH</span>, <span class='op'>~</span><span class='va'>HOM</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>88</span>, <span class='fl'>130</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>10</span>, <span class='fl'>160</span>,
   <span class='fl'>1</span>, <span class='st'>"2"</span>, <span class='st'>"2.1"</span>, <span class='fl'>20</span>, <span class='fl'>130</span>,
   <span class='fl'>1</span>, <span class='st'>"2"</span>, <span class='st'>"2.2"</span>, <span class='fl'>30</span>, <span class='fl'>130</span>,
-)
+<span class='op'>)</span>
 
 <span class='co'># You should count only the main stem of each tree</span>
-(<span class='no'>main_stem</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span>(<span class='no'>vft2</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 5
+<span class='op'>(</span><span class='va'>main_stem</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span><span class='op'>(</span><span class='va'>vft2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 5</span><span>
 #&gt;   CensusID TreeID StemID   DBH   HOM
-#&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 1      1.1       10   160
-#&gt; 2        1 2      2.2       30   130</div><div class='input'>
-<span class='fu'>abundance</span>(<span class='no'>main_stem</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 1
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 1      1.1       10   160
+#&gt; </span><span style='color: #555555;'>2</span><span>        1 2      2.2       30   130</div><div class='input'>
+<span class='fu'>abundance</span><span class='op'>(</span><span class='va'>main_stem</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;       n
-#&gt;   &lt;int&gt;
-#&gt; 1     2</div><div class='input'>
-<span class='no'>vft3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>tribble</a></span>(
-  ~<span class='no'>CensusID</span>, ~<span class='no'>TreeID</span>, ~<span class='no'>StemID</span>, ~<span class='no'>DBH</span>, ~<span class='no'>HOM</span>,
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>     2</div><div class='input'>
+<span class='va'>vft3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span>
+  <span class='op'>~</span><span class='va'>CensusID</span>, <span class='op'>~</span><span class='va'>TreeID</span>, <span class='op'>~</span><span class='va'>StemID</span>, <span class='op'>~</span><span class='va'>DBH</span>, <span class='op'>~</span><span class='va'>HOM</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>20</span>, <span class='fl'>130</span>,
   <span class='fl'>1</span>, <span class='st'>"1"</span>, <span class='st'>"1.2"</span>, <span class='fl'>10</span>, <span class='fl'>160</span>, <span class='co'># Main stem</span>
   <span class='fl'>2</span>, <span class='st'>"1"</span>, <span class='st'>"1.1"</span>, <span class='fl'>12</span>, <span class='fl'>130</span>,
   <span class='fl'>2</span>, <span class='st'>"1"</span>, <span class='st'>"1.2"</span>, <span class='fl'>22</span>, <span class='fl'>130</span> <span class='co'># Main stem</span>
-)
+<span class='op'>)</span>
 
 <span class='co'># You can compute by groups</span>
-<span class='no'>by_census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/reexports.html'>group_by</a></span>(<span class='no'>vft3</span>, <span class='no'>CensusID</span>)
-(<span class='no'>main_stems_by_census</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span>(<span class='no'>by_census</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 5
-#&gt; # Groups:   CensusID [2]
+<span class='va'>by_census</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>vft3</span>, <span class='va'>CensusID</span><span class='op'>)</span>
+<span class='op'>(</span><span class='va'>main_stems_by_census</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stem</a></span><span class='op'>(</span><span class='va'>by_census</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 5</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   CensusID [2]</span><span>
 #&gt;   CensusID TreeID StemID   DBH   HOM
-#&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 1      1.2       10   160
-#&gt; 2        2 1      1.2       22   130</div><div class='input'>
-<span class='fu'>abundance</span>(<span class='no'>main_stems_by_census</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 2
-#&gt; # Groups:   CensusID [2]
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 1      1.2       10   160
+#&gt; </span><span style='color: #555555;'>2</span><span>        2 1      1.2       22   130</div><div class='input'>
+<span class='fu'>abundance</span><span class='op'>(</span><span class='va'>main_stems_by_census</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 2</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   CensusID [2]</span><span>
 #&gt;   CensusID     n
-#&gt;      &lt;dbl&gt; &lt;int&gt;
-#&gt; 1        1     1
-#&gt; 2        2     1</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1     1
+#&gt; </span><span style='color: #555555;'>2</span><span>        2     1</div><div class='input'>
 <span class='co'># basal_area() ------------------------------------------------------------</span>
 
 <span class='co'># Data must have a column named dbh (case insensitive)</span>
-<span class='fu'>basal_area</span>(<span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>dbh</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>basal_area</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>dbh <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;   basal_area
-#&gt;        &lt;dbl&gt;
-#&gt; 1      0.785</div><div class='input'>
+#&gt;        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>      0.785</div><div class='input'>
 <span class='co'># * Warns if it detects multiple values of censusid or plotname</span>
 <span class='co'># * Also warns if it detects duplicated values of stemid</span>
-<span class='fu'>basal_area</span>(<span class='no'>vft</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `stemid`: Duplicated values were detected. Do you need to pick largest `hom` values?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `censusid`: Multiple values were detected. Do you need to group by censusid?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `plotname`: Multiple values were detected. Do you need to pick a single plot?</span></div><div class='output co'>#&gt; # A tibble: 1 x 1
+<span class='fu'>basal_area</span><span class='op'>(</span><span class='va'>vft</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `stemid`: Duplicated values were detected. Do you need to pick largest `hom` values?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `censusid`: Multiple values were detected. Do you need to group by censusid?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `plotname`: Multiple values were detected. Do you need to pick a single plot?</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;   basal_area
-#&gt;        &lt;dbl&gt;
-#&gt; 1       157.</div><div class='input'>
+#&gt;        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>       157.</div><div class='input'>
 <span class='co'># First you may pick the main stemid of each stem</span>
-(<span class='no'>main_stemids</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stemid</a></span>(<span class='no'>vft2</span>))</div><div class='output co'>#&gt; # A tibble: 3 x 5
+<span class='op'>(</span><span class='va'>main_stemids</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/pick_main_stem.html'>pick_main_stemid</a></span><span class='op'>(</span><span class='va'>vft2</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   CensusID TreeID StemID   DBH   HOM
-#&gt;      &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1        1 1      1.1       10   160
-#&gt; 2        1 2      2.1       20   130
-#&gt; 3        1 2      2.2       30   130</div><div class='input'>
-<span class='fu'>basal_area</span>(<span class='no'>main_stemids</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 1
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1 1      1.1       10   160
+#&gt; </span><span style='color: #555555;'>2</span><span>        1 2      2.1       20   130
+#&gt; </span><span style='color: #555555;'>3</span><span>        1 2      2.2       30   130</div><div class='input'>
+<span class='fu'>basal_area</span><span class='op'>(</span><span class='va'>main_stemids</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 1</span><span>
 #&gt;   basal_area
-#&gt;        &lt;dbl&gt;
-#&gt; 1      1100.</div><div class='input'>
+#&gt;        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>      </span><span style='text-decoration: underline;'>1</span><span>100.</div><div class='input'>
 <span class='co'># You can compute by groups</span>
-<span class='fu'>basal_area</span>(<span class='no'>by_census</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 2
-#&gt; # Groups:   CensusID [2]
+<span class='fu'>basal_area</span><span class='op'>(</span><span class='va'>by_census</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 2</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   CensusID [2]</span><span>
 #&gt;   CensusID basal_area
-#&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-#&gt; 1        1       393.
-#&gt; 2        2       493.</div><div class='input'>
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1       393.
+#&gt; </span><span style='color: #555555;'>2</span><span>        2       493.</div><div class='input'>
 <span class='co'># Skip R CMD check for speed</span>
 <span class='co'># \donttest{</span>
-<span class='no'>measurements_is_installed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"measurements"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw'>if</span> (<span class='no'>measurements_is_installed</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>measurements</span>)
+<span class='va'>measurements_is_installed</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"measurements"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>measurements_is_installed</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>measurements</span><span class='op'>)</span>
 
   <span class='co'># Convert units</span>
-  <span class='no'>ba</span> <span class='kw'>&lt;-</span> <span class='fu'>basal_area</span>(<span class='no'>by_census</span>)
-  <span class='no'>ba</span>$<span class='no'>basal_area_he</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/measurements/man/conv_unit.html'>conv_unit</a></span>(
-    <span class='no'>ba</span>$<span class='no'>basal_area</span>,
-    <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"mm2"</span>,
-    <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"hectare"</span>
-  )
+  <span class='va'>ba</span> <span class='op'>&lt;-</span> <span class='fu'>basal_area</span><span class='op'>(</span><span class='va'>by_census</span><span class='op'>)</span>
+  <span class='va'>ba</span><span class='op'>$</span><span class='va'>basal_area_he</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/measurements/man/conv_unit.html'>conv_unit</a></span><span class='op'>(</span>
+    <span class='va'>ba</span><span class='op'>$</span><span class='va'>basal_area</span>,
+    from <span class='op'>=</span> <span class='st'>"mm2"</span>,
+    to <span class='op'>=</span> <span class='st'>"hectare"</span>
+  <span class='op'>)</span>
 
-  <span class='no'>ba</span>
-}</div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt; # Groups:   CensusID [2]
+  <span class='va'>ba</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 2 x 3</span><span>
+#&gt; </span><span style='color: #555555;'># Groups:   CensusID [2]</span><span>
 #&gt;   CensusID basal_area basal_area_he
-#&gt;      &lt;dbl&gt;      &lt;dbl&gt;         &lt;dbl&gt;
-#&gt; 1        1       393.  0.0000000393
-#&gt; 2        2       493.  0.0000000493</div><div class='input'># }
+#&gt;      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>        1       393.  0.000</span><span style='text-decoration: underline;'>000</span><span>039</span><span style='text-decoration: underline;'>3</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span>        2       493.  0.000</span><span style='text-decoration: underline;'>000</span><span>049</span><span style='text-decoration: underline;'>3</span><span></div><div class='input'><span class='co'># }</span>
 
-</div></pre>
+</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -364,7 +382,7 @@ Subsetting data is not the job of these functions. Instead see
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

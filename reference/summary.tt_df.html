@@ -6,27 +6,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Summary of <code>tt_test()</code> results. — summary.tt_df • fgeo.analyze</title>
+<title>Summary of tt_test() results. — summary.tt_df • fgeo.analyze</title>
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/united/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Summary of <code>tt_test()</code> results. — summary.tt_df" />
+<meta property="og:title" content="Summary of tt_test() results. — summary.tt_df" />
 <meta property="og:description" content="Summary of tt_test() results." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -139,10 +142,10 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for tt_df</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for tt_lst</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,62 +166,70 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='tt_test.html'>tt_test()</a></code>, <code><a href='https://rdrr.io/r/base/summary.html'>base::summary()</a></code>.</p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Adapted from code contributed by Daniel Zuleta.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span>(<span class='st'>"fgeo.x"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/fgeo.tool/man/assert_is_installed.html'>assert_is_installed</a></span><span class='op'>(</span><span class='st'>"fgeo.x"</span><span class='op'>)</span>
 
-<span class='no'>tt_result</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tt_test.html'>tt_test</a></span>(<span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree6_3species</a></span>, <span class='kw pkg'>fgeo.x</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>habitat</a></span>)</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>tt_result</span>)</div><div class='output co'>#&gt; # A tibble: 12 x 3
+<span class='va'>tt_result</span> <span class='op'>&lt;-</span> <span class='fu'><a href='tt_test.html'>tt_test</a></span><span class='op'>(</span><span class='fu'>fgeo.x</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>tree6_3species</a></span>, <span class='fu'>fgeo.x</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/fgeo.x/man/datasets.html'>habitat</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Using `plotdim = c(320, 500)`. To change this value see `?tt_test()`.</span></div><div class='output co'>#&gt; <span class='message'>Using `gridsize = 20`. To change this value see `?tt_test()`.</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>tt_result</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 12 x 3</span><span>
 #&gt;    sp     habitat association
-#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      
-#&gt;  1 CASARB 1       neutral    
-#&gt;  2 CASARB 2       neutral    
-#&gt;  3 CASARB 3       neutral    
-#&gt;  4 CASARB 4       neutral    
-#&gt;  5 PREMON 1       neutral    
-#&gt;  6 PREMON 2       neutral    
-#&gt;  7 PREMON 3       neutral    
-#&gt;  8 PREMON 4       neutral    
-#&gt;  9 SLOBER 1       neutral    
-#&gt; 10 SLOBER 2       neutral    
-#&gt; 11 SLOBER 3       neutral    
-#&gt; 12 SLOBER 4       neutral    </div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #555555;'> 1</span><span> CASARB 1       neutral    
+#&gt; </span><span style='color: #555555;'> 2</span><span> CASARB 2       neutral    
+#&gt; </span><span style='color: #555555;'> 3</span><span> CASARB 3       neutral    
+#&gt; </span><span style='color: #555555;'> 4</span><span> CASARB 4       neutral    
+#&gt; </span><span style='color: #555555;'> 5</span><span> PREMON 1       neutral    
+#&gt; </span><span style='color: #555555;'> 6</span><span> PREMON 2       neutral    
+#&gt; </span><span style='color: #555555;'> 7</span><span> PREMON 3       neutral    
+#&gt; </span><span style='color: #555555;'> 8</span><span> PREMON 4       neutral    
+#&gt; </span><span style='color: #555555;'> 9</span><span> SLOBER 1       neutral    
+#&gt; </span><span style='color: #555555;'>10</span><span> SLOBER 2       neutral    
+#&gt; </span><span style='color: #555555;'>11</span><span> SLOBER 3       neutral    
+#&gt; </span><span style='color: #555555;'>12</span><span> SLOBER 4       neutral    </div><div class='input'>
 <span class='co'># Same</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>tt_result</span>))</div><div class='output co'>#&gt; # A tibble: 12 x 3
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>tt_result</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 12 x 3</span><span>
 #&gt;    sp     habitat association
-#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      
-#&gt;  1 CASARB 1       neutral    
-#&gt;  2 CASARB 2       neutral    
-#&gt;  3 CASARB 3       neutral    
-#&gt;  4 CASARB 4       neutral    
-#&gt;  5 PREMON 1       neutral    
-#&gt;  6 PREMON 2       neutral    
-#&gt;  7 PREMON 3       neutral    
-#&gt;  8 PREMON 4       neutral    
-#&gt;  9 SLOBER 1       neutral    
-#&gt; 10 SLOBER 2       neutral    
-#&gt; 11 SLOBER 3       neutral    
-#&gt; 12 SLOBER 4       neutral    </div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      
+#&gt; </span><span style='color: #555555;'> 1</span><span> CASARB 1       neutral    
+#&gt; </span><span style='color: #555555;'> 2</span><span> CASARB 2       neutral    
+#&gt; </span><span style='color: #555555;'> 3</span><span> CASARB 3       neutral    
+#&gt; </span><span style='color: #555555;'> 4</span><span> CASARB 4       neutral    
+#&gt; </span><span style='color: #555555;'> 5</span><span> PREMON 1       neutral    
+#&gt; </span><span style='color: #555555;'> 6</span><span> PREMON 2       neutral    
+#&gt; </span><span style='color: #555555;'> 7</span><span> PREMON 3       neutral    
+#&gt; </span><span style='color: #555555;'> 8</span><span> PREMON 4       neutral    
+#&gt; </span><span style='color: #555555;'> 9</span><span> SLOBER 1       neutral    
+#&gt; </span><span style='color: #555555;'>10</span><span> SLOBER 2       neutral    
+#&gt; </span><span style='color: #555555;'>11</span><span> SLOBER 3       neutral    
+#&gt; </span><span style='color: #555555;'>12</span><span> SLOBER 4       neutral    </div><div class='input'>
 <span class='co'># You may want to add the explanation to the result of `tt_test()`</span>
 
-<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/join.html'>left_join</a></span>(<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span>(<span class='no'>tt_result</span>), <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>tt_result</span>))</div><div class='output co'>#&gt; <span class='message'>Joining, by = c("habitat", "sp")</span></div><div class='output co'>#&gt; # A tibble: 12 x 9
+<span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>tt_result</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>tt_result</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Joining, by = c("habitat", "sp")</span></div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 12 x 9</span><span>
 #&gt;    habitat sp    N.Hab Gr.Hab Ls.Hab Eq.Hab Rep.Agg.Neut Obs.Quantile
-#&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-#&gt;  1 1       CASA…    29   1242    356      2            0        0.776
-#&gt;  2 2       CASA…    20    390   1206      4            0        0.244
-#&gt;  3 3       CASA…    12    778    817      5            0        0.486
-#&gt;  4 4       CASA…     5    932    658     10            0        0.582
-#&gt;  5 1       PREM…    91   1093    504      3            0        0.683
-#&gt;  6 2       PREM…    89   1254    344      2            0        0.784
-#&gt;  7 3       PREM…    40    305   1292      3            0        0.191
-#&gt;  8 4       PREM…    14    270   1322      8            0        0.169
-#&gt;  9 1       SLOB…    18    273   1324      3            0        0.171
-#&gt; 10 2       SLOB…    24    810    788      2            0        0.506
-#&gt; 11 3       SLOB…    17   1155    440      5            0        0.722
-#&gt; 12 4       SLOB…     7   1292    303      5            0        0.808
-#&gt; # … with 1 more variable: association &lt;chr&gt;</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 1       CASA…    29   </span><span style='text-decoration: underline;'>1</span><span>242    356      2            0        0.776
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2       CASA…    20    390   </span><span style='text-decoration: underline;'>1</span><span>206      4            0        0.244
+#&gt; </span><span style='color: #555555;'> 3</span><span> 3       CASA…    12    778    817      5            0        0.486
+#&gt; </span><span style='color: #555555;'> 4</span><span> 4       CASA…     5    932    658     10            0        0.582
+#&gt; </span><span style='color: #555555;'> 5</span><span> 1       PREM…    91   </span><span style='text-decoration: underline;'>1</span><span>093    504      3            0        0.683
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2       PREM…    89   </span><span style='text-decoration: underline;'>1</span><span>254    344      2            0        0.784
+#&gt; </span><span style='color: #555555;'> 7</span><span> 3       PREM…    40    305   </span><span style='text-decoration: underline;'>1</span><span>292      3            0        0.191
+#&gt; </span><span style='color: #555555;'> 8</span><span> 4       PREM…    14    270   </span><span style='text-decoration: underline;'>1</span><span>322      8            0        0.169
+#&gt; </span><span style='color: #555555;'> 9</span><span> 1       SLOB…    18    273   </span><span style='text-decoration: underline;'>1</span><span>324      3            0        0.171
+#&gt; </span><span style='color: #555555;'>10</span><span> 2       SLOB…    24    810    788      2            0        0.506
+#&gt; </span><span style='color: #555555;'>11</span><span> 3       SLOB…    17   </span><span style='text-decoration: underline;'>1</span><span>155    440      5            0        0.722
+#&gt; </span><span style='color: #555555;'>12</span><span> 4       SLOB…     7   </span><span style='text-decoration: underline;'>1</span><span>292    303      5            0        0.808
+#&gt; </span><span style='color: #555555;'># … with 1 more variable: association </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div><div class='input'>
 <span class='co'># You may prefer a wide matrix</span>
-<span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Reduce</a></span>(<span class='no'>rbind</span>, <span class='no'>tt_result</span>)</div><div class='output co'>#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
+<span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Reduce</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='va'>tt_result</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        N.Hab.1 Gr.Hab.1 Ls.Hab.1 Eq.Hab.1 Rep.Agg.Neut.1 Obs.Quantile.1 N.Hab.2
 #&gt; CASARB      29     1242      356        2              0       0.776250      20
 #&gt; PREMON      91     1093      504        3              0       0.683125      89
 #&gt; SLOBER      18      273     1324        3              0       0.170625      24
@@ -235,24 +246,18 @@
 #&gt; PREMON      270     1322        8              0        0.16875
 #&gt; SLOBER     1292      303        5              0        0.80750</div><div class='input'>
 <span class='co'># You may prefer a wide dataframe</span>
-<span class='kw pkg'>tidyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/spread.html'>spread</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>tt_result</span>), <span class='st'>"habitat"</span>, <span class='st'>"association"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 5
+<span class='fu'>tidyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyr.tidyverse.org/reference/spread.html'>spread</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>tt_result</span><span class='op'>)</span>, <span class='st'>"habitat"</span>, <span class='st'>"association"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 3 x 5</span><span>
 #&gt;   sp     `1`     `2`     `3`     `4`    
-#&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
-#&gt; 1 CASARB neutral neutral neutral neutral
-#&gt; 2 PREMON neutral neutral neutral neutral
-#&gt; 3 SLOBER neutral neutral neutral neutral</div></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  
+#&gt; </span><span style='color: #555555;'>1</span><span> CASARB neutral neutral neutral neutral
+#&gt; </span><span style='color: #555555;'>2</span><span> PREMON neutral neutral neutral neutral
+#&gt; </span><span style='color: #555555;'>3</span><span> SLOBER neutral neutral neutral neutral</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Adapted from code contributed by Daniel Zuleta.</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -263,7 +268,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
